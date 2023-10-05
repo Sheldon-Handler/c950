@@ -45,4 +45,3 @@ class HashTable:
             hash_table.__delitem__(item)
         elif isinstance(__obj=item, __class_or_tuple=DeliveryPackage):
             hash_table.remove(__value=item)
-
