@@ -1,5 +1,4 @@
 # This class stores the information of a delivery package.
-import this
 
 from status import Status
 
@@ -26,13 +25,13 @@ class Package:
         :param deadline: deadline for delivery of package
         :param note: special note for package
         """
-        this.address = address
-        this.city = city
-        this.state = state
-        this.zip = zip
-        this.deadline = deadline
-        this.weight = weight
-        this.note = note
+        address = address
+        city = city
+        state = state
+        zip = zip
+        weight = weight
+        deadline = deadline
+        note = note
 
 
 # Class for storing the details of each delivery_package
@@ -42,9 +41,10 @@ class DeliveryPackage(Package):
 
 
     def __init__(self, status, address, city, state, zip, deadline, weight, note):
-        super().__init__(address=address, city=city, state=state, zip=zip, deadline=deadline, weight=weight, note=note)
+        super().__init__(address=address, city=city, state=state, zip=zip,
+                         deadline=deadline, weight=weight, note=note)
 
-        """
+    """
 
         :param address: address for delivering package
         :param city: city for delivery of package
