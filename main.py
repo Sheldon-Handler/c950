@@ -1,10 +1,14 @@
 # Student ID: 007830903
 # Name: Sheldon Handler
-import main
-import package
-import hash_table
-import status
+import types
 
-newPackage = package.Package.__init__(address="9732", city="brook", state="nt", postal="11210", note="s", status=status.Status.NOT_AVAILABLE, deadline="12:30", weight=42)
+import ctypes
+
+import package
+from status import Status
+
+newPackage = package.Package.__new__(package.Package)
+newPackage.__init__(address="012 Test St", city="Test City", state="NY", postal="01234", weight=21, deadline="12:30", note="", status=Status.EN_ROUTE)
 
 print(newPackage.__str__())
+
