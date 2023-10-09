@@ -1,14 +1,11 @@
+import array
 import csv
-import json.tool
 
-import package
+from package import Package
 
-hash_table = []
 
 class HashTable:
+    def __init__(self):
+        self = self
 
-    with open("packages.csv", "w") as stream:
-        writer = csv.writer(stream)
-        for package.Package in hash_table:
-            row = writer.writerow(hash_table)
-            writer.writerow(row)
+    def __add__(self, other):

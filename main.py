@@ -4,6 +4,7 @@ import types
 
 import ctypes
 
+import hash_table
 import package
 from status import Status
 
@@ -12,3 +13,4 @@ newPackage.__init__(address="012 Test St", city="Test City", state="NY", postal=
 
 print(newPackage.__str__())
 
+hash_table.HashTable.__add__(__x=newPackage)

@@ -1,12 +1,15 @@
 """
 This file stores the template for object package
 """
+import array
 import this
 
+import package
 from status import Status
 
 
 class Package:
+
     """
 This class stores information about a package.
     """
@@ -41,6 +44,7 @@ This class stores information about a package.
 
     def __str__(self):
         return f"Delivery Package - Address: {self.address}, City: {self.city}, State: {self.state}, Postal: {self.postal}, Weight: {self.weight}, Deadline: {self.deadline}, Note: {self.note}, Status: {self.status}"
+
 
 # Example usage:
 # example_package = Package("1234 Test St", "Test City", "NY", "01234", 21, "EOD", "", Status.EN_ROUTE)
