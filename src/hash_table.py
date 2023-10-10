@@ -1,3 +1,4 @@
+import package
 from package import Package
 
 
@@ -8,8 +9,8 @@ class HashTable:
 
     def __init__(self, size: int):
         """
-        Initialize HashTable
-        :param size: size of the table
+        Initialize HashTable with size
+        :param size: size of HashTable
         :type size: int
         """
         self.size = size
@@ -21,29 +22,16 @@ class HashTable:
         :param key: key to hash
         :type key: int
         :return: hash of key modulus size of table
+        :rtype: int
         """
         return hash(key) % self.size
-
-    def __insert__(self, key: int, value: Package):
-        """
-        Insert key-value pair into hash table
-        :param key: key of item to insert
-        :type key: int
-        :param value: value to insert
-        :type value: Package
-        """
-        index = self.hash(key)
-        for item in self.table[index]:
-            if item[0] == key:
-                item[1] = value
-                break
-        self.table[index].append([key, value])
 
     def __getitem__(self, key):
         """
         Get item value from key
         :param key: key to get value from
         :return: item value from key if it exists, else raise KeyError
+        :rtype: Package
         """
         index = self.hash(key)
         for item in self.table[index]:
@@ -79,3 +67,36 @@ class HashTable:
                 break
             else:
                 raise KeyError(key)
+
+    def __iadd__(self, other):
+        """
+        Add item to HashTable
+        :param other: item to add
+        :type other: Package
+        :return: self
+        :rtype: HashTable
+        """
+        self[other.package_id] = other
+        return self
+
+    def __imod__(self, other):
+        """
+        Modify item in HashTable
+        :param other: item to modify
+        :type other: Package
+        :return: self
+        :rtype: HashTable
+        """
+        self[other.package_id] = other
+        return self
+
+    def __isub__(self, other):
+        """
+        Remove item from HashTable
+        :param other: item to remove
+        :type other: Package
+        :return: self
+        :rtype: HashTable
+        """
+        del self[other.package_id]
+        return self

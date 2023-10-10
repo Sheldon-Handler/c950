@@ -1,10 +1,14 @@
 from enum import Enum
 
-import hash_table
 
-
-# enum class for the delivery status of the package
 class Status(Enum):
+    """
+    Status enum to store package status
+    :param Enum: enum to inherit from
+    :type Enum: Enum
+
+    """
+
     NOT_AVAILABLE = 0
     AT_THE_HUB = 1
     EN_ROUTE = 2
