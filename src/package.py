@@ -1,11 +1,6 @@
 """
 This file stores the template for object package
 """
-import array
-import this
-
-import package
-from status import Status
 
 
 class Package:
@@ -15,7 +10,7 @@ This class stores information about a package.
     """
 
     def __init__(self, package_id: int, address: str, city: str, state: str, postal: str, weight: int, deadline: str,
-                 note: str, status: Status):
+                 note: str, status: "str"):
         """
 
         :param package_id: id of package
@@ -39,6 +34,9 @@ This class stores information about a package.
         self.note = note
         self.status = status
 
+    def __hash__(self):
+        return hash(self.package_id)
+
     def update_status(self, new_status):
         self.status = new_status
 
@@ -46,8 +44,3 @@ This class stores information about a package.
         return f"Delivery Package - Address: {self.address}, City: {self.city}, State: {self.state}, Postal: {self.postal}, Weight: {self.weight}, Deadline: {self.deadline}, Note: {self.note}, Status: {self.status}"
 
 
-# Example usage:
-# example_package = Package("1234 Test St", "Test City", "NY", "01234", 21, "EOD", "", Status.EN_ROUTE)
-# print(example_package)
-# example_package.update_status(Status.DELIVERED)
-# print(example_package)
