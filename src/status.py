@@ -1,5 +1,7 @@
 from enum import Enum
 
+import hash_table
+
 
 # enum class for the delivery status of the package
 class Status(Enum):
