@@ -1,3 +1,5 @@
+import struct
+
 import package
 from package import Package
 

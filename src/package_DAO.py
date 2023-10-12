@@ -1,6 +1,7 @@
 import sqlite3
 
-import package
+import _sqlite3
+
 from package import Package
 
 
@@ -9,16 +10,26 @@ class PackageDAO:
     PackageDAO class to store packages in database
     """
 
+    conn = sqlite3.connect(database="../data/database.db")
+
     def __init__(self):
         """
         Initialize PackageDAO
         """
 
-        self.conn = sqlite3.connect("../data/database.db")
-        self.cursor = self.conn.cursor()
+        self.conn.execute("""
+        CREATE TABLE IF NOT EXISTS package
+        (package_id INT PRIMARY KEY,
+        address VARCHAR,
+        city VARCHAR,
+        state VARCHAR,
+        zip VARCHAR,
+        weight INT,
+        deadline VARCHAR,
+        note VARCHAR,
+        status INT);
+        """)
 
-        self.conn.execute("CREATE TABLE IF NOT EXISTS package (package_id INT PRIMARY KEY, address VARCHAR, "
-                          "city VARCHAR, state VARCHAR, zip VARCHAR, weight INT, deadline VARCHAR, note VARCHAR, status BLOB)")
         self.conn.commit()
 
         self.conn.row_factory.register_converter("Package", lambda p: (

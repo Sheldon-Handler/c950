@@ -1,19 +1,28 @@
+import collections
+import dataclasses
 import enum
-import sqlite3.dbapi2
-from dataclasses import dataclass
+import sqlite3
+from dataclasses import dataclass, field
 
 
 class Status(enum.Enum):
     """
-    Status enum to store package status
-    :param Enum: enum to inherit from
-    :type Enum: Enum
+    Status enum.Enum subclass to store package status.
+    :param enum.Enum: enum class to inherit from
+    :type enum.Enum: enum.Enum
     """
 
     NOT_AVAILABLE = 0
-    AT_THE_HUB = 1
+    NOT_AVAILABLE.name = "Not Available"
+
+    AT_HUB = 1
+    AT_HUB.name = "At Hub"
+
     EN_ROUTE = 2
+    EN_ROUTE.name = "En Route"
+
     DELIVERED = 3
+    DELIVERED.name = "Delivered"
 
 
 @dataclass
@@ -22,82 +31,15 @@ class Package:
     Package class to store package information
     """
 
-    package_id: int
-    address: str
-    city: str
-    state: str
-    postal: str
-    weight: int
-    deadline: str
-    note: str
-    status: Status
-
-    # @staticmethod
-    # def get_all_packages() -> list['Package']:
-    #     """
-    #     Get all packages
-    #     :return: list of all packages
-    #     :rtype: list[Package]
-    #     """
-    #     conn = sqlite3.connect(database="../data/database.db")
-    #     cursor = conn.cursor()
-    #     cursor.execute("SELECT * FROM package")
-    #     packages = cursor.fetchall()
-    #     package_list = list.__init__([])
-    #     for package in packages:
-    #         package_list.append(Package(package_id=package[0], address=package[1], city=package[2], state=package[3],
-    #                                     postal=package[4], weight=package[5], deadline=package[6], note=package[7],
-    #                                     status=Status(package[8])))
-    #     return package_list
-    #
-    # @staticmethod
-    # def get_package(package_id: int) -> 'Package':
-    #     """
-    #     Get package from package_id
-    #     :param package_id: id of package to get
-    #     :type package_id: int
-    #     :return: package from package_id
-    #     :rtype: Package
-    #     """
-    #     conn = sqlite3.connect(database="../data/database.db")
-    #     cursor = conn.cursor()
-    #     cursor.execute("SELECT * FROM package WHERE package_id = ?", [package_id])
-    #     package = cursor.fetchone()
-    #     return Package(package_id=package[0], address=package[1], city=package[2], state=package[3], postal=package[4],
-    #                    weight=package[5], deadline=package[6], note=package[7], status=Status(package[8]))
-    #
-    # @staticmethod
-    # def set_package(package_id: int, package: 'Package'):
-    #     """
-    #     Set package address
-    #     :param package_id: id of package to set
-    #     :type package_id: int
-    #     :param package: package with correct data to set
-    #     :type package: Package
-    #     """
-    #     conn = sqlite3.connect(database="../data/database.db")
-    #     cursor = conn.cursor()
-    #     cursor.execute("UPDATE package SET address = ? WHERE package_id = ?", [package, package_id])
-    #     conn.commit()
-    #
-    # @staticmethod
-    # def add_package(package: 'Package') -> 'Package':
-    #     """
-    #     Add package
-    #     :param package: package to add
-    #     :type package: Package
-    #     :return: added package
-    #     :rtype: Package
-    #     """
-    #     conn = sqlite3.connect(database="../data/database.db")
-    #     cursor = conn.cursor()
-    #     cursor.execute("INSERT INTO package (package_id, address, city, state, postal, weight, deadline, note, status) "
-    #                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-    #                    [package.package_id, package.address, package.city, package.state, package.postal,
-    #                     package.weight, package.deadline, package.note, package.status.value.__int__()])
-    #     conn.commit()
-    #     return package
-
+    package_id: int = field(default=None)
+    address: str = field(default=None)
+    city: str = field(default=None)
+    state: str = field(default=None)
+    postal: str = field(default=None)
+    weight: int = field(default=None)
+    deadline: str = field(default=None)
+    note: str = field(default=None)
+    status: Status = field(default=None)
 
     # def __init__(self, package_id: int, address: str, city: str, state: str, postal: str, weight: int, deadline: str,
     #              note: str, status: Status):
@@ -134,21 +76,6 @@ class Package:
     #     self.deadline = deadline
     #     self.note = note
     #     self.status = status
-    #
-    # def __setattr__(self, key, value):
-    #     """
-    #     Set attribute value
-    #     :param self: package to set attribute value of
-    #     :type self: Package
-    #     :param key: attribute to set
-    #     :type key: str
-    #     :param value: value to set
-    #     :type value: any
-    #     """
-    #     if key == "status":
-    #         if value not in Status:
-    #             raise ValueError(f"Invalid status: {value}")
-    #     super().__setattr__(key, value)
     #
     # def __str__(self):
     #     """
