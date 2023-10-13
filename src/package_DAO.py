@@ -1,6 +1,4 @@
 import sqlite3
-
-from hash_table import HashTable
 from package import Package
 
 

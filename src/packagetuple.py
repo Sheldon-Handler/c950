@@ -1,4 +1,14 @@
 from collections import namedtuple
 
-package_tuple = namedtuple('Package', ['package_id', 'address', 'city', 'state', 'postal', 'weight', 'deadline', 'note', 'status'])
-status_tuple = namedtuple('Status', ['status_id', 'status'])
+
+class Packagetuple:
+
+    def __init__(self):
+        """
+        Initialize Packagetuple
+        :param self: self to initialize
+        :type self: Packagetuple
+        """
+        self.Packagetuple = namedtuple('Packagetuple', ['package_id', 'address', 'city', 'state', 'postal', 'weight',
+                                                        'deadline', 'note', 'status'])
+        
