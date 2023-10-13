@@ -1,7 +1,6 @@
 import sqlite3
 
-import _sqlite3
-
+from hash_table import HashTable
 from package import Package
 
 
@@ -11,13 +10,19 @@ class PackageDAO:
     """
 
     conn = sqlite3.connect(database="../data/database.db")
+    conn.row_factory = sqlite3.Row
 
     def __init__(self):
         """
         Initialize PackageDAO
+        :param self: self to initialize
+        :type self: PackageDAO
         """
 
-        self.conn.execute("""
+        # Create tables if they don't exist
+        self.conn.executescript("""CREATE TABLE IF NOT EXISTS status (id INT PRIMARY KEY, name VARCHAR);
+        UPDATE TABLE SET status (id, name) VALUES (1, "Not Available"), (2, "At Hub"), (3, "En Route"), (4, "Delivered");
+        
         CREATE TABLE IF NOT EXISTS package
         (package_id INT PRIMARY KEY,
         address VARCHAR,
@@ -27,16 +32,12 @@ class PackageDAO:
         weight INT,
         deadline VARCHAR,
         note VARCHAR,
-        status INT);
+        status INT FOREIGN KEY REFERENCES status(id));
         """)
 
+        # Commit changes
         self.conn.commit()
 
-        self.conn.row_factory.register_converter("Package", lambda p: (
-            Package(p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8])))
-
-        self.conn.row_factory.register_adapter(Package, lambda p: (
-            p.package_id, p.address, p.city, p.state, p.postal, p.weight, p.deadline, p.note, p.status))
 
     def __getitem__(self, key):
         """
@@ -47,7 +48,8 @@ class PackageDAO:
         :rtype: Package
         """
 
-        return self.cursor.fetchone().get(key).commit()
+        # Return Package from key
+        return self.conn.row_factory.get(key).commit()
 
     def __setitem__(self, key: int, item: Package):
         """
@@ -58,6 +60,7 @@ class PackageDAO:
         :type item: Package
         """
 
+        # Set Package item from key
         self.conn.row_factory.set(item.package_id, item).commit()
 
     def __add__(self, item: Package):
@@ -69,9 +72,13 @@ class PackageDAO:
         :type item: Package
         """
 
+        # Try to add Package item to database
         try:
+            # Add Package item to database
             self.conn.row_factory.add(item).commit()
+        # If error, raise exception
         except Exception as e:
+            # Raise exception
             raise e
 
     def __delitem__(self, key):
@@ -83,6 +90,7 @@ class PackageDAO:
         :type key: int
         """
 
+        # Delete Package from key. Key is package_id. Commit changes.
         self.conn.row_factory.delete(key).commit()
 
     def get_all(self):
@@ -94,4 +102,5 @@ class PackageDAO:
         :rtype: list
         """
 
-        return self.conn.row_factory.fetchall().commit()
+        # Get all Packages from database
+        return self.conn.row_factory.fetchall()
