@@ -1,10 +1,19 @@
+"""
+package_dao.py contains PackageDAO class to store packages in database.
+:author: Sheldon Handler
+"""
+
+# Import sqlite3
 import sqlite3
+# Import Package from package
 from package import Package
 
 
-class PackageDAO:
+# PackageDAO class
+class PackageDao:
     """
     PackageDAO class to store packages in database
+    :
     """
 
     conn = sqlite3.connect(database="../data/database.db")
