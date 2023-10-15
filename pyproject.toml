@@ -1,0 +1,15 @@
+[project]
+name = "c950"
+version = "1.0.0"
+description = "Data Structures and Algorithms II"
+authors = [
+    {name = "Sheldon Handler", email = "shandl8@wgu.edu"},
+]
+dependencies = []
+requires-python = ">=3.7"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"

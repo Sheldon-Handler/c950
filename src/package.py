@@ -1,72 +1,73 @@
 """
-package.py file to store Package class to store package information.
-:import: dataclass from dataclasses
-:class: Package
+package.py file to store Package class.
+:author: Sheldon Handler
 """
 
-# Import dataclass from dataclasses
-from dataclasses import dataclass
 
-
-@dataclass
+# Package class
 class Package:
     """
-    Package dataclass to store package information.
-    :attributes: package_id, location, weight, deadline, note
+    Package class to store package information.
+    :class: Package
+    :method: __init__: Constructor for Package class.
+    :method: __str__: String representation of Package class.
     """
 
-    # Package ID
-    package_id: int
+    # Constructor
+    def __init__(self, package_id: int, address: str, city: str, state: str, zip_code: str, weight: int, deadline: str, note: str):
+        """
+        Constructor for Package class.
+        :param: self: Package
+        :type: self: Package
+        :param: package_id: int
+        :type: package_id: int
+        :param: address: str
+        :type: address: str
+        :param: city: str
+        :type: city: str
+        :param: state: str
+        :type: state: str
+        :param: zip_code: str
+        :type: zip_code: str
+        :param: weight: int
+        :type: weight: int
+        :param: deadline: str
+        :type: deadline: str
+        :param: note: str
+        :type: note: str
+        """
 
-    # Address
-    address: str
+        # Set package ID
+        self.package_id = package_id
 
-    # City
-    city: str
+        # Set address
+        self.address = address
 
-    # State
-    state: str
+        # Set city
+        self.city = city
 
-    # Zip code
-    zip_code: str,
+        # Set state
+        self.state = state
 
-    # Weight
-    weight: int
+        # Set zip code
+        self.zip_code = zip_code
 
-    #Deadline
-    deadline: str
+        # Set weight
+        self.weight = weight
 
-    # Note
-    note: str
+        # Set deadline
+        self.deadline = deadline
 
+        # Set note
+        self.note = note
 
-@dataclass
-class Package:
-    """
-    Package class to store package information
-    :attributes: package_id, address, city, state, zip_code, weight, deadline, note
-    """
+        # String representation
+        def __str__(self):
+            """
+            String representation of Package class.
+            :param: self: Package
+            :type: self: Package
+            :return: str
+            """
 
-    # Package ID
-    package_id: int
-
-    # Address
-    address: str
-
-    # City
-    city: str
-
-    # State
-    state: str
-
-    # Zip code
-    zip_code: str
-
-    # Weight
-    weight: int
-
-    #Deadline
-    deadline: str
-
-    # Note
-    note: str
+            return f'Package ID: {self.package_id}, Address: {self.address}, City: {self.city}, State: {self.state}, Zip Code: {self.zip_code}, Weight: {self.weight}, Deadline: {self.deadline}, Note: {self.note}'
