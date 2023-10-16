@@ -2,11 +2,13 @@ import struct
 from package import Package
 
 
+# HashTable class
 class HashTable:
     """
     HashTable class to store key-value pairs
     """
 
+    # Constructor
     def __init__(self, size: int):
         """
         Initialize HashTable with size
@@ -16,6 +18,7 @@ class HashTable:
         self.size = size
         self.table = [[] for _ in range(size)]
 
+    # Method to get hash of key
     def hash(self, key: int):
         """
         Hash function to get index of key
@@ -26,6 +29,7 @@ class HashTable:
         """
         return hash(key) % self.size
 
+    # Method to get item value from key
     def __getitem__(self, key):
         """
         Get item value from key
@@ -39,6 +43,7 @@ class HashTable:
                 return item[1]
         raise KeyError(key)
 
+    # Method to set item value from key
     def __setitem__(self, key: int, value: Package):
         """
         Set item value from key
@@ -54,6 +59,7 @@ class HashTable:
                 break
         self.table[index].append([key, value])
 
+    # Method to delete item from key
     def __delitem__(self, key: int):
         """
         Delete item from key
@@ -68,6 +74,7 @@ class HashTable:
             else:
                 raise KeyError(key)
 
+    # Method to add item to HashTable
     def __iadd__(self, other):
         """
         Add item to HashTable
@@ -79,6 +86,7 @@ class HashTable:
         self[other.package_id] = other
         return self
 
+    # Method to modify item in HashTable
     def __imod__(self, other):
         """
         Modify item in HashTable
@@ -90,6 +98,7 @@ class HashTable:
         self[other.package_id] = other
         return self
 
+    # Method to remove item from HashTable
     def __isub__(self, other):
         """
         Remove item from HashTable

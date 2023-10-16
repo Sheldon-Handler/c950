@@ -1,6 +1,5 @@
 """
 package_dao.py contains PackageDAO class to store packages in database.
-:author: Sheldon Handler
 """
 
 # Import sqlite3
@@ -9,11 +8,10 @@ import sqlite3
 from package import Package
 
 
-# PackageDAO class
+# PackageDao class
 class PackageDao:
     """
-    PackageDAO class to store packages in database
-    :
+    PackageDAO class to store packages in database.
     """
 
     conn = sqlite3.connect(database="../data/database.db")
@@ -44,7 +42,6 @@ class PackageDao:
 
         # Commit changes
         self.conn.commit()
-
 
     def __getitem__(self, key):
         """

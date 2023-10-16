@@ -1,6 +1,5 @@
 """
 package.py file to store Package class.
-:author: Sheldon Handler
 """
 
 
@@ -17,23 +16,23 @@ class Package:
     def __init__(self, package_id: int, address: str, city: str, state: str, zip_code: str, weight: int, deadline: str, note: str):
         """
         Constructor for Package class.
-        :param: self: Package
+        :param: self: self reference
         :type: self: Package
-        :param: package_id: int
+        :param: package_id: id of package
         :type: package_id: int
-        :param: address: str
+        :param: address: address of package
         :type: address: str
-        :param: city: str
+        :param: city: city of package
         :type: city: str
-        :param: state: str
+        :param: state: state of package
         :type: state: str
-        :param: zip_code: str
+        :param: zip_code: zip code of package
         :type: zip_code: str
-        :param: weight: int
+        :param: weight: weight of package
         :type: weight: int
-        :param: deadline: str
+        :param: deadline: deadline of package
         :type: deadline: str
-        :param: note: str
+        :param: note: note of package
         :type: note: str
         """
 

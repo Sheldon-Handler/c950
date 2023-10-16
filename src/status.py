@@ -8,12 +8,15 @@ status.py file to store Status Enum class to store status of package delivery.
 from enum import Enum
 
 
-# Status Enum subclass of Enum to store status of package delivery
+# Status Enum class
 class Status(Enum):
     """
     Status Enum class to store status of package delivery.
-    :super Enum: Enum to inherit from
     :constants: NOT_AVAILABLE, AT_HUB, EN_ROUTE, DELIVERED
+    :cvar NOT_AVAILABLE: Enum constant for package not available
+    :cvar AT_HUB: Enum constant for package at hub
+    :cvar EN_ROUTE: Enum constant for package en route
+    :cvar DELIVERED: Enum constant for package delivered
     """
 
     # Enum constant for package not available
