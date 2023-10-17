@@ -1,15 +1,12 @@
 """
 __init__.py file to initialize c950.dao package.
-:author: Sheldon Handler
 """
 
 # Import sqlite3
 import sqlite3
 
-import package
-
 # Connect to database
-conn = sqlite3.connect(database="resources/c950/")
+conn = sqlite3.connect(database="c950/resources/c950/")
 
 # Create cursor
 cursor = conn.cursor()
