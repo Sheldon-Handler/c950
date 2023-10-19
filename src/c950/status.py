@@ -8,9 +8,10 @@ See Also:
 from enum import Enum
 
 
-# PackageStatus Enum class
-class PackageStatus(Enum):
-    """PackageStatus Enum class to store status of package.
+class Status:
+    # PackageStatus Enum class
+    class PackageStatus(Enum):
+        """PackageStatus Enum class to store status of package.
 
     Attributes:
         UNDEFINED: Enum constant for package with undefined status
@@ -28,22 +29,22 @@ class PackageStatus(Enum):
         https://docs.python.org/3/library/enum.html
     """
 
-    __order__ = "NOT_AVAILABLE AT_HUB EN_ROUTE DELIVERED"
-    # Set enum constant for package with undefined status
-    UNDEFINED = None
-    # Set enum constant for package not available
-    NOT_AVAILABLE = 0
-    # Set enum constant for package at hub
-    AT_HUB = 1
-    # Set enum constant for package en route
-    EN_ROUTE = 2
-    # Set enum constant for package delivered
-    DELIVERED = 3
+        __order__ = "UNDEFINED NOT_AVAILABLE AT_HUB EN_ROUTE DELIVERED"
+        # Set enum constant for package with undefined status
+        UNDEFINED = 0
+        # Set enum constant for package not available
+        NOT_AVAILABLE = 1
+        # Set enum constant for package at hub
+        AT_HUB = 2
+        # Set enum constant for package en route
+        EN_ROUTE = 3
+        # Set enum constant for package delivered
+        DELIVERED = 4
 
 
-# TruckStatus Enum class
-class TruckStatus(Enum):
-    """TruckStatus Enum class to store status of truck.
+    # TruckStatus Enum class
+    class TruckStatus(Enum):
+        """TruckStatus Enum class to store status of truck.
 
     Attributes:
         UNDEFINED: Enum constant for truck with undefined status
@@ -61,15 +62,13 @@ class TruckStatus(Enum):
         https://docs.python.org/3/library/enum.html
     """
 
-    # Set order of enum constants
-    __order__ = "UNDEFINED AT_HUB EN_ROUTE RETURNING FINISHED"
     # Set enum constant for truck with undefined status
-    UNDEFINED = ""
+        UNDEFINED = ""
     # Set enum constant for truck at hub
-    AT_HUB = "At Hub"
+        AT_HUB = "At Hub"
     # Set enum constant for truck en route
-    EN_ROUTE = "En Route"
+        EN_ROUTE = "En Route"
     # Set enum constant for truck returning
-    RETURNING = "Returning"
+        RETURNING = "Returning"
     # Set enum constant for truck finished
-    FINISHED = "Finished"
+        FINISHED = "Finished"

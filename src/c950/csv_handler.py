@@ -83,7 +83,7 @@ class CsvHandler:
         # Open file in read mode
         with open(self.filename, mode="r", newline="") as file:
             # Create csv reader instance for file with excel dialect
-            reader = csv.reader(csvfile=file, dialect="excel")
+            reader = csv.reader(file, dialect="excel")
             # Skip header row
             next(reader)
             # Iterate over rows in file
@@ -95,11 +95,11 @@ class CsvHandler:
         return data_list
 
     # Method to write data to the CSV file
-    def write(self, data: list[list], header: list[str] = None) -> None:
+    def write(self, data: list[list]) -> None:
         """This method writes the data to the CSV file.
 
         Args:
-            data (list): A list of rows, where each row is represented as a list of values.
+            data (list[list]): A list of rows, where each row is represented as a list of values.
 
         Example:
             csv_handler = CsvHandler("output.csv")
@@ -112,15 +112,10 @@ class CsvHandler:
             https://docs.python.org/3/library/functions.html#open
         """
 
-        # If header is not None, change the header attribute.
-        if header is not None:
-            # Set header attribute
-            self.header = header
-
         # open file in write mode
         with open(self.filename, mode="w", newline="") as file:
             # Create csv writer instance for file with excel dialect
-            writer = csv.writer(csvfile=file, dialect="excel")
+            writer = csv.writer(file, dialect="excel")
             # Write header row
             writer.writerow(self.header)
             # Write data to file
@@ -128,11 +123,11 @@ class CsvHandler:
 
 
 # Example usage:
-csv_handler = CsvHandler("data.csv")
-data = csv_handler.read()
-for row in data:
-    print(row)
-
-output_data = [["Name", "Age"], ["Alice", 30], ["Bob", 25]]
-output_csv_handler = CsvHandler("output.csv")
-output_csv_handler.write(output_data)
+# csv_handler = CsvHandler("data.csv")
+# data = csv_handler.read()
+# for row in data:
+#     print(row)
+#
+# output_data = [["Name", "Age"], ["Alice", 30], ["Bob", 25]]
+# output_csv_handler = CsvHandler("output.csv")
+# output_csv_handler.write(output_data)

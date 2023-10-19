@@ -1,10 +1,10 @@
 """This Python module defines a Status Enum class to represent the status of
 the truck, and a truck dataclass to store the truck information."""
 
-# Import Enum from enum
-from enum import Enum
 # Import dataclass from dataclasses
 from dataclasses import dataclass
+# Import Enum from enum
+from enum import Enum
 
 
 # Status Enum class

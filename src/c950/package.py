@@ -1,8 +1,8 @@
 """package.py file to store Package class."""
+from enum import Enum, global_enum
+
 # Import dataclass from dataclasses
 from dataclasses import dataclass
-# Import PackageStatus from status
-from status import PackageStatus
 
 
 # Package dataclass
@@ -22,6 +22,10 @@ class Package:
         note (str): note of package
         status (Status): status of package
 
+    Methods:
+        list_repr(): Return list representation of package.
+        create_from_list(package_row): Create package from list.
+
     Example:
         package = Package(package_id, address, city, state, zip_code, weight, deadline, note, status)
         package.package_id  # Returns package_id
@@ -35,7 +39,7 @@ class Package:
         package.status  # Returns status
 
     References:
-        https://docs.python.org/3/library/dataclasses.html
+        https://docs.python.org/3/library/dataclasses.html?highlight=dataclass#dataclasses.dataclass
     """
 
     # Attribute package_id
@@ -55,34 +59,19 @@ class Package:
     # Attribute note
     note: str
     # Attribute status
-    status: PackageStatus
+    status: str
 
     # Method to return list representation of package.
-    def list_repr(self):
+    def to_list(self):
         """This method is used to get a List representation of the package
         object.
 
         Returns:
             list: List representation of package.
 
-        See Also:
-            https://docs.python.org/3/library/list.html
+        References:
+            https://docs.python.org/3/library/stdtypes.html#list
         """
 
-        return [self.package_id, self.address, self.city, self.state, self.zip_code, self.weight, self.deadline, self.note, self.status]
-
-    @classmethod
-    def create_from_list(list):
-        """This method is used to create a Package object from a list.
-
-        Args:
-            list (list): List of package attributes.
-
-        Returns:
-            Package: Package object.
-
-        See Also:
-            https://docs.python.org/3/library/list.html
-        """
-
-        return Package(list[0], list[1], list[2], list[3], list[4], list[5], list[6], list[7], PackageStatus(list[8]))
+        return [self.package_id, self.address, self.city, self.state, self.zip_code, self.weight, self.deadline,
+                self.note, self.status]
