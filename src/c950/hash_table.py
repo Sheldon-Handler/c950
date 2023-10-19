@@ -16,7 +16,6 @@ from dataclasses import dataclass, field
 
 
 # HashTable class
-@dataclass
 class HashTable:
     """HashTable to store key-value pairs.
 
@@ -34,9 +33,24 @@ class HashTable:
         __delitem__(key): Removes a key-value pair from the hash table.
     """
 
-    size: int = 100
-    table: list = field(default_factory=lambda: [None] * 100)
+    # Constructor
+    def __init__(self, size: int):
+        """Initialize the HashTable instance.
 
+        Args:
+            self (HashTable): The HashTable instance to initialize.
+            size (int): The size of the hash table.
+
+        Returns:
+            HashTable: A HashTable instance with the specified size.
+
+        References:
+            https://docs.python.org/3/reference/datamodel.html#object.__init__
+        """
+        self.size = size
+        self.table = [None] * size
+
+    # Method to compute hash value for a given key
     def hash(self, key):
         """Compute the hash value for a given key.
 
@@ -46,11 +60,10 @@ class HashTable:
         Returns:
             int: The hash value for the key.
         """
-        hash_value = 0
-        for char in str(key):
-            hash_value += ord(char)
-        return hash_value % self.size
+        # Return sum of ASCII values of characters in key
+        return sum(ord(char) for char in key) % self.size
 
+    # Method to retrieve item from hash table
     def __getitem__(self, key):
         """Retrieve the value associated with a given key.
 
@@ -60,13 +73,15 @@ class HashTable:
         Returns:
             The value associated with the key, or None if the key is not found.
         """
-        index = self.hash(key)
-        if self.table[index] is not None:
-            for stored_key, value in self.table[index]:
+        if self.table[self.hash(key)] is not None:
+            for stored_key, value in self.table[self.hash(key)]:
                 if stored_key == key:
                     return value
-        return None
+            raise IndexError(key)
+        else:
+            raise KeyError(key)
 
+    # Method to set an item into hash table.
     def __setitem__(self, key, value):
         """Insert a key-value pair into the hash table.
 
@@ -85,6 +100,7 @@ class HashTable:
             else:
                 self.table[index].append((key, value))
 
+    # Method to delete item from hash table
     def __delitem__(self, key):
         """Remove a key-value pair from the hash table.
 

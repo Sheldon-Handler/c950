@@ -1,0 +1,3 @@
+package_id,address,city,state,zip_code,weight,deadline,note,status
+1,123 Main Street,Salt Lake City,UT,84111,10,EOD,Some note,AT_HUB
+2,123 Main Street,Salt Lake City,UT,84111,10,EOD,Some note,DELIVERED
