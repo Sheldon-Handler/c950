@@ -31,8 +31,8 @@ class HashTable:
         Returns:
             None
         """
-        self.table = [None] * size
         self.size = size
+        self.table = [] * size
 
     def hash(self, item) -> int:
         """
@@ -63,7 +63,7 @@ class HashTable:
         if key_value_pair is None:
             return None
         else:
-            return key_value_pair[1]
+            return key_value_pair
 
     def __setitem__(self, key: int, value: object) -> None:
         """
