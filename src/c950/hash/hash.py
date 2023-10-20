@@ -14,3 +14,4 @@ class Hash:
     def hash_function(self, key):
         return key % self.size
 
+hash()

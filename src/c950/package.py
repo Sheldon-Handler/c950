@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 
 # Package dataclass
-@dataclass(order=True)
+@dataclass(order=True, frozen=True)
 class Package:
     """This Package dataclass is used to represent a package object to store
     package information.
@@ -60,6 +60,9 @@ class Package:
     note: str
     # Attribute status
     status: str
+
+    def __hash__(self):
+        return hash(self.package_id)
 
     # Method to return list representation of package.
     def to_list(self):

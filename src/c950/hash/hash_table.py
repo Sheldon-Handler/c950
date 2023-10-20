@@ -1,78 +1,96 @@
 """
-This module contains the HashTable class. It is a custom hash table implementation with basic operations.
+Module for the HashTable class.
 """
 
 
-class HashTable:
-    """A custom hash table implementation.
+class Node:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+        self.next = None
 
-    Args:
-        size (int): The size of the hash table.
+
+# HashTable class
+class HashTable:
+    """
+    A class for creating a hash table.
 
     Attributes:
-        size (int): The size of the hash table.
-        table (list): The hash table itself.
+        size: The size of the hash table.
+        table: The hash table itself, implemented as an array of lists.
     """
 
-    def __init__(self, size: int = 10):
-        self.size = size
+    def __init__(self, size: int) -> None:
+        """
+        Initialize a new hash table with the given size.
+
+        Args:
+            size: The size of the hash table.
+            table: The hash table itself, implemented as an array of lists.
+
+        Returns:
+            None
+        """
         self.table = [None] * size
+        self.size = size
 
-    def hash_function(self, key: int) -> int:
-        """Returns an integer index for the given key.
+    def hash(self, item) -> int:
+        """
+        Return the hash value of the given key.
 
         Args:
-            key (Any): The key to hash.
+            key: The key to hash.
 
         Returns:
-            int: An integer index for the given key.
+            The hash value of the key.
         """
 
-        return key % self.size
+        return item.__hash__() % self.size
 
-    def add(self, key: int, value: object) -> None:
-        """Adds a key-value pair to the hash table.
-
-        Args:
-            key (Any): The key to add.
-            value (Any): The value to add.
+    # Method to get the value associated with the given key.
+    def __getitem__(self, key: int) -> object:
         """
-
-        index = self.hash_function(key)
-        if self.table[index] is None:
-            self.table[index] = []
-        self.table[index].append((key, value))
-
-    def get(self, key: int) -> Any:
-        """Gets the value associated with the given key.
+        Get the value associated with the given key.
 
         Args:
-            key (Any): The key to look up.
+            key: The key to look up.
 
         Returns:
-            Any: The value associated with the given key, or `None` if the key is not found.
+            The value associated with the key, or None if the key is not found.
         """
-
-        index = self.hash_function(key)
-        if self.table[index] is None:
+        index = self.hash(key)
+        key_value_pair = self.table[index]
+        if key_value_pair is None:
             return None
-        for k, v in self.table[index]:
-            if k == key:
-                return v
-        return None
+        else:
+            return key_value_pair[1]
 
-    def remove(self, key: int) -> None:
-        """Removes the key-value pair associated with the given key from the hash table.
+    def __setitem__(self, key: int, value: object) -> None:
+        """
+        Add a new key-value pair to the hash table.
 
         Args:
-            key (Any): The key to remove.
+            key: The key to add.
+            value: The value to add.
+
+        Returns:
+            None
+        """
+        index = self.hash(key)
+        self.table[index] = (key, value)
+
+    def __delitem__(self, key: int) -> None:
+        """
+        Remove the key-value pair associated with the given key from the hash table.
+
+        Args:
+            key: The key to remove.
         """
 
-        index = self.hash_function(key)
+        index = self.hash(key)
         if self.table[index] is None:
             return
-        for i in range(len(self.table[index])):
+        for i in self.table[index]:
             if self.table[index][i][0] == key:
                 del self.table[index][i]
                 break
-
