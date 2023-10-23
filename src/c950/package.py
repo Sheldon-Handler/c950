@@ -7,6 +7,7 @@
 #  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+import sqlite3
 
 
 class Package:
@@ -26,11 +27,11 @@ class Package:
         state: str,
         zip: str,
         weight_kilo: int,
-        delivery_deadline: str,
+        delivery_deadline: sqlite3.Time,
         special_notes: str,
         delivery_status: str,
-        delivery_time: str,
         delivery_truck: int,
+        delivery_time: sqlite3.Time,
     ):
         """Initialize the Package instance.
 
@@ -42,11 +43,11 @@ class Package:
             state (str): The package state.
             zip (str): The package zip code.
             weight_kilo (int): The package KILO weight.
-            delivery_deadline (str): The package delivery deadline.
+            delivery_deadline (sqlite3.Time): The package delivery deadline.
             special_notes (str): The package special notes.
             delivery_status (str): The package delivery status.
-            delivery_time (str): The package delivery time.
             delivery_truck (int): The package delivery truck.
+            delivery_time (sqlite3.Time): The package delivery time.
 
         Returns:
             Package: A Package instance.
@@ -61,8 +62,8 @@ class Package:
         self.delivery_deadline = delivery_deadline
         self.special_notes = special_notes
         self.delivery_status = delivery_status
-        self.delivery_time = delivery_time
         self.delivery_truck = delivery_truck
+        self.delivery_time = delivery_time
 
     def to_list(self):
         return [
@@ -75,6 +76,6 @@ class Package:
             self.delivery_deadline,
             self.special_notes,
             self.delivery_status,
-            self.delivery_time,
             self.delivery_truck,
+            self.delivery_time,
         ]

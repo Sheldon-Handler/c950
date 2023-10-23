@@ -17,31 +17,6 @@ import sqlite3
 # Import Package from package
 from package import Package
 
-# Create connection to "identifier.sqlite" database
-packages = sqlite3.connect("../data/identifier.sqlite")
-# Set row_factory to sqlite3.Row
-packages.row_factory = sqlite3.Row
-# Set row_factory in cursor() to sqlite3.Row
-packages.cursor().row_factory = sqlite3.Row
-
-# Create 'package' table in 'identifier.sqlite' database if it does not exist.
-packages.execute(
-    "CREATE TABLE IF NOT EXISTS package (\n"
-    "                              package_id INT PRIMARY KEY,\n"
-    "                              address VARCHAR,\n"
-    "                              city VARCHAR,\n"
-    "                              state VARCHAR,\n"
-    "                              zip VARCHAR,\n"
-    "                              weight INT,\n"
-    "                              deadline VARCHAR,\n"
-    "                              note VARCHAR,\n"
-    "                              status VARCHAR)"
-)
-# Commit changes to 'identifier.sqlite' database
-packages.commit()
-
-packages.row_factory(__cursor=packages.cursor(), __row=Package.package_id)
-
 
 # PackageDAO class
 class PackageDAO:
@@ -57,6 +32,7 @@ class PackageDAO:
 
         self.packages = sqlite3.connect("../data/identifier.sqlite")
         self.packages.row_factory.register_adapter(Package)
+        self.packages.row_factory = sqlite3.Row
 
         self.packages.cursor().executescript(
             "CREATE TABLE IF NOT EXISTS package (\n"
@@ -69,23 +45,46 @@ class PackageDAO:
             "                              deadline VARCHAR,\n"
             "                              note VARCHAR,\n"
             "                              status VARCHAR,\n"
-            "                              delivery_time VARCHAR,\n"
-            "                              delivery_truck INT\n"
+            "                              delivery_truck INT,\n"
+            "                              delivery_time VARCHAR\n"
             "                              )"
+        )
+
+    def package_factory(self, cursor, row):
+        """Returns a Package object from a sqlite3.Row object.
+
+        Args:
+            cursor (sqlite3.Cursor): The cursor object.
+            row (sqlite3.Row): The row object.
+
+        Returns:
+            Package: A Package object.
+        """
+
+        return Package(
+            row["package_id"],
+            row["address"],
+            row["city"],
+            row["state"],
+            row["zip"],
+            row["weight"],
+            row["deadline"],
+            row["note"],
+            row["status"],
+            row["delivery_truck"],
+            row["delivery_time"],
         )
 
     def get_packages(self) -> list:
         """Returns all packages from the 'package' table in
         'identifier.sqlite'."""
 
-        self.packages.row_factory = sqlite3.Row
+        self.packages.row_factory = self.package_factory
 
         return self.packages.cursor().execute("SELECT * FROM package").fetchall()
 
     def add_package(self, package: Package):
         """Adds a Package to the package table in packages.db."""
-
-        self.packages.row_factory.append(package)
 
         try:
             self.packages.execute(
@@ -100,8 +99,8 @@ class PackageDAO:
                     package.delivery_deadline,
                     package.special_notes,
                     package.delivery_status,
-                    package.delivery_time,
                     package.delivery_truck,
+                    package.delivery_time,
                 ),
             )
             self.packages.commit()
@@ -123,7 +122,7 @@ class PackageDAO:
         # Remove with given package ID from 'package' table in 'identifier.sqlite' database.
         try:
             self.packages.execute(
-                "DELETE FROM package WHERE package_id = ?", package_id
+                "DELETE FROM package WHERE package_id = ?", parameters=package_id
             )
             self.packages.commit()
         except sqlite3.Error as e:
@@ -142,7 +141,7 @@ class PackageDAO:
         # Update package in database with given package object values
         self.packages.execute(
             "UPDATE package SET address = ?, city = ?, state = ?, zip = ?, deadline = ?, "
-            "weight = ?, note = ?, status = ? WHERE package_id = ?",
+            "weight = ?, note = ?, delivery_status = ?, delivery_time = ?, delivery_truck = ? WHERE package_id = ?",
             (
                 package.address,
                 package.city,
@@ -151,7 +150,9 @@ class PackageDAO:
                 package.delivery_deadline,
                 package.weight_kilo,
                 package.special_notes,
-                package.status,
+                package.delivery_status,
+                package.delivery_time,
+                package.delivery_truck,
                 package.package_id,
             ),
         )
