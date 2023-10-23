@@ -1,5 +1,3 @@
-"""Module for Package namedtuple and PackageList class."""
-
 #  MIT License
 #
 #  Copyright (c) 2023 Sheldon Handler
@@ -10,88 +8,73 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# Import namedtuple from collections
-from collections import namedtuple
 
-# Package namedtuple
-Package = namedtuple(
-    "Package",
-    [
-        "package_id",
-        "address",
-        "city",
-        "state",
-        "zip",
-        "weight",
-        "delivery_deadline",
-        "special_notes",
-        "status",
-    ],
-)
+class Package:
+    """This class represents a package object with attributes representing the
+    details of the package.
 
-
-# PackageList class
-class PackageList(list):
-    """A list of Package objects.
-
-    Attributes:
-        package_list (list): A list of Package objects.
+    See Also:
+        https://docs.python.org/3/library/dataclasses.html
     """
 
-    def __init__(self):
-        """Initialize the PackageList instance.
+    # Constructor
+    def __init__(
+        self,
+        package_id: int,
+        address: str,
+        city: str,
+        state: str,
+        zip: str,
+        weight_kilo: int,
+        delivery_deadline: str,
+        special_notes: str,
+        delivery_status: str,
+        delivery_time: str,
+        delivery_truck: int,
+    ):
+        """Initialize the Package instance.
 
         Args:
-            self (PackageList): The PackageList instance to initialize.
+            self (Package): The Package instance to initialize.
+            package_id (int): The package ID.
+            address (str): The package address.
+            city (str): The package city.
+            state (str): The package state.
+            zip (str): The package zip code.
+            weight_kilo (int): The package KILO weight.
+            delivery_deadline (str): The package delivery deadline.
+            special_notes (str): The package special notes.
+            delivery_status (str): The package delivery status.
+            delivery_time (str): The package delivery time.
+            delivery_truck (int): The package delivery truck.
 
         Returns:
-            PackageList: A PackageList instance.
-        """
-        super().__init__()
-
-    def append(self, package: Package):
-        """Append a Package object to the package_list if a Package object with
-        the same package_id is not already in the package_list.
-
-        Args:
-            self (PackageList): The PackageList instance to append to.
-            package (Package): The Package object to append.
-
-        Returns:
-            None
+            Package: A Package instance.
         """
 
-        # Check if package is of type Package
-        if not isinstance(package, Package):
-            # Raise TypeError if package is not of type Package
-            raise TypeError("package must be of type Package.")
-        # Check if the list contains a Package with the same package_id
-        elif package.package_id in self:
-            # Raise ValueError if the list contains a Package with the same package_id
-            raise ValueError("Package with package_id already exists.")
-        # Otherwise
-        else:
-            # Append package to the list
-            super().append(package)
+        self.package_id = package_id
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.weight_kilo = weight_kilo
+        self.delivery_deadline = delivery_deadline
+        self.special_notes = special_notes
+        self.delivery_status = delivery_status
+        self.delivery_time = delivery_time
+        self.delivery_truck = delivery_truck
 
-    # Method to delete the Package with the given package_id from package_list
-    def delete(self, package_id: int):
-        """Delete a Package object with the given package_id from the
-        package_list.
-
-        Args:
-            self (PackageList): The PackageList instance to delete from.
-            package_id (str): The package_id of the Package object to delete.
-
-        Returns:
-            None
-        """
-
-        # Check if package_id is in the package_list
-        for package in self:
-            # If package_id matches package.package_id
-            if package.package_id == package_id:
-                # Delete package from package_list
-                super().remove(package)
-                # Break out of loop
-                break
+    def to_list(self):
+        return [
+            self.package_id,
+            self.address,
+            self.city,
+            self.state,
+            self.zip,
+            self.weight_kilo,
+            self.delivery_deadline,
+            self.special_notes,
+            self.delivery_status,
+            self.delivery_time,
+            self.delivery_truck,
+        ]

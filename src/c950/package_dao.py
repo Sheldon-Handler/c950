@@ -55,9 +55,8 @@ class PackageDAO:
     def __init__(self):
         """Initializes the Packages class."""
 
-        self.packages = sqlite3.connect("identifier.sqlite")
-        self.packages.row_factory = sqlite3.Row
-        self.packages.cursor().row_factory = sqlite3.Row
+        self.packages = sqlite3.connect("../data/identifier.sqlite")
+        self.packages.row_factory.register_adapter(Package)
 
         self.packages.cursor().executescript(
             "CREATE TABLE IF NOT EXISTS package (\n"
@@ -69,7 +68,10 @@ class PackageDAO:
             "                              weight INT,\n"
             "                              deadline VARCHAR,\n"
             "                              note VARCHAR,\n"
-            "                              status VARCHAR)"
+            "                              status VARCHAR,\n"
+            "                              delivery_time VARCHAR,\n"
+            "                              delivery_truck INT\n"
+            "                              )"
         )
 
     def get_packages(self) -> list:
@@ -83,9 +85,11 @@ class PackageDAO:
     def add_package(self, package: Package):
         """Adds a Package to the package table in packages.db."""
 
+        self.packages.row_factory.append(package)
+
         try:
-            self.cursor.execute(
-                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            self.packages.execute(
+                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
                     package.package_id,
                     package.address,
@@ -95,11 +99,13 @@ class PackageDAO:
                     package.weight_kilo,
                     package.delivery_deadline,
                     package.special_notes,
-                    package.status,
+                    package.delivery_status,
+                    package.delivery_time,
+                    package.delivery_truck,
                 ),
             )
             self.packages.commit()
-        except sqlite3.IntegrityError as e:
+        except sqlite3.SQLITE_ERROR as e:
             raise e
 
     def remove_package(self, package_id: int):
