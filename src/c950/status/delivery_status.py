@@ -27,6 +27,9 @@ class DeliveryStatus(enum.Enum):
         AT_HUB: Enum constant for package at hub
         EN_ROUTE: Enum constant for package en route
         DELIVERED: Enum constant for package delivered
+
+    Returns:
+        DeliveryStatus: A DeliveryStatus Enum class instance.
     """
 
     # Set the order of the enum constants
