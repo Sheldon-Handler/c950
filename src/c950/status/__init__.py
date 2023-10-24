@@ -1,3 +1,6 @@
+"""This package contains the modules for working with the status of a package
+and the status of a truck."""
+
 #  MIT License
 #
 #  Copyright (c) 2023 Sheldon Handler

@@ -1,3 +1,6 @@
+"""This module contains the TruckStatus Enum class to represent the status of a
+truck."""
+
 #  MIT License
 #
 #  Copyright (c) 2023 Sheldon Handler

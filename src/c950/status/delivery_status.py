@@ -1,8 +1,5 @@
-"""This module defines the enum classes for package status and truck status.
-
-See Also:
-    https://docs.python.org/3/library/enum.html
-"""
+"""This module contains the DeliveryStatus Enum class to represent the delivery
+status of a package."""
 
 #  MIT License
 #
