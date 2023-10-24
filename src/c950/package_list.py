@@ -22,7 +22,10 @@ class PackageList(list):
     """A list of Package objects.
 
     Attributes:
-        package_list (list): A list of Package objects.
+        csvwriter (CsvHandler): A CsvHandler instance for package.csv.
+
+    See Also:
+        https://docs.python.org/3/tutorial/datastructures.html
     """
 
     def __init__(self):
@@ -52,6 +55,38 @@ class PackageList(list):
             ],
         )
 
+    def get_package(self, package_id: int) -> Package:
+        """Method to retrieve a Package by package_id from PackageList.
+
+        Args:
+            self (PackageList): The PackageList instance to search.
+            package_id (int): The package_id of the item to search for.
+
+        Returns:
+            Package: The Package with the given package_id.
+        """
+
+        for package in self:
+            if package.package_id == package_id:
+                return package
+        raise KeyError("Package with package_id not found.")
+
+    def get_index(self, package_id: int) -> int:
+        """Method to retrieve the index of a Package by package_id from
+        PackageList.
+
+        Args:
+            self (PackageList): The PackageList instance to search.
+            package_id (int): The package_id of the item to search for.
+
+        Returns:
+            int: The index of the Package with the given package_id.
+        """
+        for package in self:
+            if package.package_id == package_id:
+                return self.index(package)
+        raise KeyError("Package with package_id not found.")
+
     def append(self, package: Package):
         """Append a Package object to the package_list if a Package object with
         the same package_id is not already in the package_list.
@@ -75,48 +110,43 @@ class PackageList(list):
         # Otherwise
         else:
             # Append package to the list
-            super().append(list(package))
+            super().append(package)
             # Write PackageList to CSV file
             self.csvwriter.write(self)
 
-    def find(self, package_id: int) -> list:
-        """
-        Args:
-            package_id (int): The package_id of the Package to find.
-
-        Returns:
-            list: The Package object as a list with the given package_id.
-        """
-
-        # Iterate over packages in the list
-        for package in self:
-            # Check if package.package_id is equal to package_id
-            if package.package_id == package_id:
-                # Return package
-                return package
-
     # Method to delete the Package with the given package_id from package_list
-    def delete(self, package_id: int):
+    def delete(self, package_id: int) -> None:
         """Delete a Package object with the given package_id from the
-        package_list.
+        PackageList.
 
         Args:
             self (PackageList): The PackageList instance to delete from.
-            package_id (str): The package_id of the Package object to delete.
+            package_id (int): The package_id of the Package object to delete.
+
+        Returns:
+            None
+        """
+        # Delete the Package with the given package_id
+        del self[self.get_index(package_id)]
+
+    # Method to update the Package with the given package_id in package_list
+    def update(self, package: Package):
+        """Update a Package object with the given package_id in the
+        package_list.
+
+        Args:
+            package_id (int): id of the package to update
+            package (Package): the package with the updated information
 
         Returns:
             None
         """
 
-        # Find the Package with the given package_id
-        package_found = self.find(package_id)
-        # Check if package_found is None
-        if package_found == None:
-            # Raise ValueError if package_found is None
-            raise ValueError("Package not found.")
-        # Otherwise
-        else:
-            # Remove package_found from the list
-            super().remove(package_found)
+        # Get the index of the Package with the given package_id
+        index = self.get_index(package.package_id)
+        # Check if index is not None
+        if index is not None:
+            # Update the Package at the given index
+            self[index] = package
             # Write PackageList to CSV file
             self.csvwriter.write(self)

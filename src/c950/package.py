@@ -11,31 +11,43 @@
 import enum
 import dataclasses
 import time
+from collections import namedtuple
+from typing import overload
+
+import truck
 
 
-class DeliveryStatus(enum.Enum):
-    """This enum class represents the delivery status of a package.
-
-    Attributes:
-        NOT_AVAILABLE (int): The package is not available.
-        AT_HUB (int): The package is at the hub.
-        EN_ROUTE (int): The package is en route.
-        DELIVERED (int): The package has been delivered.
-
-    See Also:
-        https://docs.python.org/3/library/enum.html
-    """
-
-    NOT_AVAILABLE = 0
-    AT_HUB = 1
-    EN_ROUTE = 2
-    DELIVERED = 3
+# Package dataclass to store package information.
+#
+# Args:
+#     cls_name (str): The name of the class to create.
+#     fields (list): A list of attributes representing the information to store in the class instance.
+#
+# Returns:
+#     Package: A Package dataclass.
 
 
-@dataclasses.dataclass
+Package = dataclasses.make_dataclass(
+    "Package",
+    [
+        ("package_id", int, dataclasses.field(hash=True)),
+        ("address", str, dataclasses.field()),
+        ("city", str, dataclasses.field()),
+        ("state", str, dataclasses.field()),
+        ("zip", str, dataclasses.field()),
+        ("weight_kilo", int, dataclasses.field()),
+        ("delivery_deadline", time, dataclasses.field()),
+        ("special_notes", str, dataclasses.field()),
+        ("delivery_status", DeliveryStatus, dataclasses.field()),
+        ("delivery_truck", truck, dataclasses.field()),
+        ("delivery_time", time, dataclasses.field()),
+    ],
+)
+
+
+@overload
 class Package:
-    """This class represents a package object with attributes representing the
-    details of the package.
+    """This class represents a package to be delivered.
 
     Attributes:
         package_id (int): The package id.
@@ -46,23 +58,80 @@ class Package:
         weight_kilo (int): The package weight in kilos.
         delivery_deadline (time): The package delivery deadline.
         special_notes (str): The package special notes.
-        delivery_status (str): The package delivery status.
-        delivery_truck (int): The package delivery truck.
+        delivery_status (DeliveryStatus): The package delivery status.
+        delivery_truck (truck): The package delivery truck.
         delivery_time (time): The package delivery time.
-
-    See Also:
-        https://docs.python.org/3/library/dataclasses.html
-        https://docs.python.org/3/library/time.html
     """
 
-    package_id: int
-    address: str
-    city: str
-    state: str
-    zip: str
-    weight_kilo: int
-    delivery_deadline: time
-    special_notes: str
-    delivery_status: DeliveryStatus
-    delivery_truck: int
-    delivery_time: time
+    # Constructor
+    def __init__(
+        self,
+        package_id: int,
+        address: str,
+        city: str,
+        state: str,
+        zip: str,
+        weight_kilo: int,
+        delivery_deadline: time,
+        special_notes: str,
+        delivery_status: DeliveryStatus,
+        delivery_truck: truck,
+        delivery_time: time,
+    ):
+        """Initialize a Package object.
+
+        Args:
+            package_id (int): The ID of the package
+            address (str): The address to delivery the package to.
+            city (str): The city to delivery the package to.
+            state (str): The state to delivery the package to.
+            zip (str): The zip code to delivery the package to.
+            weight_kilo (int): The weight of the package in KILO's.
+            delivery_deadline (time): The deadline to deliver the package.
+            special_notes (str): The special notes for the package delivery.
+            delivery_status (DeliveryStatus): The delivery status of the package.
+            delivery_truck (truck.Truck): The truck assigned to deliver the package
+            delivery_time (time): The time that the package was delivered.
+        """
+
+        # Setting the attributes of the package
+        self.package_id = package_id
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.weight_kilo = weight_kilo
+        self.delivery_deadline = delivery_deadline
+        self.special_notes = special_notes
+        self.delivery_status = delivery_status
+        self.delivery_truck = delivery_truck
+        self.delivery_time = delivery_time
+
+    # String representation of the package
+    def __str__(self):
+        """This method returns the string representation of the package.
+
+        Args:
+            self (Package): The package to represent.
+
+        Returns:
+            str: A string representation of the package.
+        """
+
+        # Return the string representation of the package
+        return f"Package ID: {self.package_id}, Address: {self.address}, City: {self.city}, State: {self.state}, Zip: {self.zip}, Weight: {self.weight_kilo}, Deadline: {self.delivery_deadline}, Notes: {self.special_notes}, Status: {self.delivery_status}, Truck: {self.delivery_truck}, Delivery Time: {self.delivery_time}"
+
+    # Hash value of the package
+    def __hash__(self):
+        """This method returns the hash value of the package. The package ID is
+        used as the hash value.
+
+        Args:
+            self (Package): The package to hash.
+
+        Returns:
+            int: The hash value of the package.
+        """
+
+        # Return the hash value of the package
+        return hash(self.package_id)
