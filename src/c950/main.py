@@ -22,39 +22,8 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-from package_dao import PackageDAO
 import package
+import status
 
-print("Hello, World!")
-
-# new_item = Package(
-#     1,
-#     "123 Main Street",
-#     "Salt Lake City",
-#     "UT",
-#     "84111",
-#     10,
-#     "EOD",
-#     "Some note",
-#     "AT_HUB",
-# )
-
-new_status = package.DeliveryStatus.NOT_AVAILABLE
+new_status = status.delivery_status.DeliveryStatus.NOT_AVAILABLE
 print(new_status)
-
-new_package = package.Package(
-    package_id=1,
-    address="123 Main Street",
-    city="Salt Lake City",
-    state="UT",
-    zip="84111",
-    weight_kilo=10,
-    delivery_deadline="EOD",
-    special_notes="Some note",
-    delivery_status="AT_HUB",
-    delivery_truck=None,
-    delivery_time=None,
-)
-
-
-new_package.delivery_status = package.DeliveryStatus.AT_HUB

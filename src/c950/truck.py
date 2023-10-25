@@ -1,5 +1,5 @@
-"""This Python module defines a Status Enum class to represent the status of
-the truck, and a truck dataclass to store the truck information."""
+"""This Python module defines a Truck class to represent a truck and its
+information."""
 
 #  MIT License
 #
@@ -11,14 +11,13 @@ the truck, and a truck dataclass to store the truck information."""
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# Import dataclass from dataclasses
-import dataclasses
-import enum
+# Import status package
+import status
 
 
 # Truck class
 class Truck:
-    """This class represents a truck and its information.
+    """This class represents a truck object and its information.
 
     Attributes:
         truck_id (int): The ID of the truck.
@@ -29,13 +28,27 @@ class Truck:
 
     Returns:
         Truck: A Truck class instance.
+
+    Examples:
+        >>> new_truck = Truck(
+        ...     truck_id=1,
+        ...     truck_status=status.truck_status.TruckStatus.AT_HUB,
+        ...     packages_assigned=[],
+        ...     packages_loaded=[],
+        ...     packages_delivered=[],
+        ... )
+        >>> new_truck.truck_status
+        TruckStatus.AT_HUB
+        >>> new_truck.truck_status = status.truck_status.TruckStatus.EN_ROUTE
+        >>> new_truck.truck_status
+        TruckStatus.EN_ROUTE
     """
 
     # Constructor
     def __init__(
         self,
         truck_id: int,
-        truck_status: TruckStatus,
+        truck_status: status.truck_status.TruckStatus,
         packages_assigned: list,
         packages_loaded: list,
         packages_delivered: list,
