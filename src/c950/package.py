@@ -1,3 +1,16 @@
+"""This module provides the Package class to store package information."""
+#  MIT License
+#
+#  Copyright (c) 2023 Sheldon Handler
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+import collections
+
 #  MIT License
 #
 #  Copyright (c) 2023 Sheldon Handler
@@ -12,10 +25,27 @@ import time
 import status
 import truck
 
+Package = collections.namedtuple(
+    typename="Package",
+    field_names=[
+        "package_id",
+        "address",
+        "city",
+        "state",
+        "zip",
+        "weight_kilo",
+        "delivery_deadline",
+        "special_notes",
+        "delivery_status",
+        "delivery_truck",
+        "delivery_time",
+    ],
+)
+
 
 # Package class to store package information.
 class Package:
-    """This class represents a package and stores its information.
+    """This class represents a package for and stores its information.
 
     Attributes:
         package_id (int): The package id.
