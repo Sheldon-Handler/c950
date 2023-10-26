@@ -60,10 +60,10 @@ class HashTable:
         """
 
         index = self.hash(key)
-        node = self.table[index]
+        new_node = self.table[index]
 
-        while node is not None and node.key != key:
-            node = node.next
+        while new_node is not None and new_node.key != key:
+            new_node = new_node.next
 
         if node is None:
             new_node = node.Node(key, value)
