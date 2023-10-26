@@ -1,135 +1,98 @@
-from functools import reduce
-
-
-class HashTable:
+class ChainingHashTable(list):
     """
-    A Chained Hash Table with a fixed size of 10.
-
-    This class represents a chained hash table, where each slot in the table can hold multiple key-value pairs in case of collisions. The size of the hash table is fixed at 10.
+    A chaining hash table implemented as a subclass of list.
 
     Args:
-        None
+        size (int): The size of the hash table.
 
     Attributes:
         size (int): The size of the hash table.
-        table (list): The list of buckets to store key-value pairs.
     """
 
-    def __init__(self):
+    def __init__(self, size):
         """
-        Initialize the hash table with a fixed size of 10.
+        Initialize the chaining hash table with a given size.
 
         Args:
-            None
+            size (int): The size of the hash table.
         """
-        self.size = 10
-        self.table = [[] for _ in range(self.size)
+        super().__init__([] * size)
+        self.size = size
+
+    def _hash_function(self, key):
+        """
+        Calculate the hash index for a given key.
+
+        Args:
+            key: The key to be hashed.
+
+        Returns:
+            int: The hash index.
+        """
+        return hash(key) % self.size
 
     def insert(self, key, value):
         """
         Insert a key-value pair into the hash table.
 
-        This method inserts a key-value pair into the hash table, creating sublists if the key is greater than or equal to the size of the hash table. It also handles collisions.
-
         Args:
-            key (int): The key to insert.
-            value: The corresponding value to insert.
-
-        Returns:
-            None
+            key: The key.
+            value: The value.
         """
-        if key >= self.size:
-            self._resize(key)
-        index = key % self.size
-        self.table[index].append((key, value))
+        index = self._hash_function(key)
+        for i, (existing_key, existing_value) in enumerate(self[index]):
+            if existing_key == key:
+                self[index][i] = (key, value)
+                break
+        else:
+            self[index].append((key, value))
 
     def get(self, key):
         """
-        Retrieve the value associated with a key from the hash table.
-
-        This method retrieves the value associated with a key from the hash table using the custom_hash method to determine the index.
+        Get the value associated with a key from the hash table.
 
         Args:
-            key (int): The key to retrieve.
+            key: The key.
 
         Returns:
-            Any: The value associated with the key.
-
-        Raises:
-            KeyError: If the key is not found in the hash table.
+            The value associated with the key or None if the key is not found.
         """
-        index = key % self.size
-        for k, value in self.table[index]:
-            if k == key:
-                return value
-        raise KeyError(f"Key '{key}' not found in the hash table")
+        index = self._hash_function(key)
+        for existing_key, existing_value in self[index]:
+            if existing_key == key:
+                return existing_value
+        return None
 
-    def delete(self, key):
+    def remove(self, key):
         """
-        Delete a key-value pair from the hash table.
-
-        This method deletes a key-value pair from the hash table using the custom_hash method to determine the index.
+        Remove a key-value pair from the hash table.
 
         Args:
-            key (int): The key to delete.
-
-        Returns:
-            None
-
-        Raises:
-            KeyError: If the key is not found in the hash table.
+            key: The key to be removed.
         """
-        index = key % self.size
-        for pair in self.table[index]:
-            if pair[0] == key:
-                self.table[index].remove(pair)
-                return
-        raise KeyError(f"Key '{key}' not found in the hash table")
+        index = self._hash_function(key)
+        self[index] = [(k, v) for k, v in self[index] if k != key]
 
-    def _resize(self, key):
+    def display(self):
         """
-        Resize the hash table to the specified size.
-
-        This method resizes the hash table to the specified size and rehashes the existing key-value pairs into the new table using functional programming style.
-
-        Args:
-            key (int): The key that prompted the resizing.
-
-        Returns:
-            None
+        Display the contents of the hash table.
         """
-        new_size = max(key, self.size * 2)
-        new_table = [[] for _ in range(new_size)]
-
-        rehash = lambda kv, size: new_table[kv[0] % size].append(kv)
-        reduce(rehash, reduce(lambda x, y: x + y, self.table), new_size)
-
-        self.size, self.table = new_size, new_table
-
-    def _rehash(self):
-        """
-        Rehash the hash table.
-
-        This method rehashes the hash table using functional programming style.
-
-        Args:
-            None
-
-        Returns:
-            None
-        """
-        rehash = lambda kv, size: self.table[kv[0] % size].append(kv)
-        reduce(rehash, reduce(lambda x, y: x + y, self.table), self.size)
+        for i, bucket in enumerate(self):
+            if bucket:
+                print(f"Bucket {i}: {bucket}")
 
 # Example usage:
-ht = HashTable()
-ht.insert(5, "apple")
-ht.insert(7, "banana")
-ht.insert(15, "cherry")
-ht.insert(25, "appel")
+hash_table = ChainingHashTable(10)
 
-print(ht.get(5))  # Output: "apple"
-print(ht.get(7))  # Output: "banana"
+hash_table.insert("apple", 5)
+hash_table.insert("banana", 3)
+hash_table.insert("cherry", 8)
+hash_table.insert("date", 2)
 
-ht.delete(7)
-print(ht.get(7))  # This will raise a KeyError
+hash_table.display()
+
+print("Value of 'banana':", hash_table.get("banana"))
+print("Value of 'grape':", hash_table.get("grape"))
+
+hash_table.remove("cherry")
+hash_table.display()

@@ -22,8 +22,10 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-import package
-import status
 
-new_status = status.delivery_status.DeliveryStatus.NOT_AVAILABLE
-print(new_status)
+
+# new_status = status.delivery_status.DeliveryStatus.NOT_AVAILABLE
+# print(new_status)
+
+if __name__ == "__main__":
+    print(hash(10**10))
