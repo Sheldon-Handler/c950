@@ -31,11 +31,8 @@ class DeliveryStatus(enum.Enum):
 
     # Set the order of the enum constants
     __order__ = "NOT_AVAILABLE AT_HUB EN_ROUTE DELIVERED"
-    # Set enum constant for package not available
+    # Set enum constants
     NOT_AVAILABLE = 0
-    # Set enum constant for package at hub
     AT_HUB = 1
-    # Set enum constant for package en route
     EN_ROUTE = 3
-    # Set enum constant for package delivered
     DELIVERED = 4

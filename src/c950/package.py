@@ -117,3 +117,24 @@ class Package:
         self.delivery_status = delivery_status
         self.delivery_truck = delivery_truck
         self.delivery_time = delivery_time
+
+        def to_list(self):
+            """
+            Method to return a list of the package attributes.
+
+            Returns:
+                list: A list of the package attributes.
+            """
+            return [
+                self.package_id,
+                self.address,
+                self.city,
+                self.state,
+                self.zip,
+                self.weight_kilo,
+                self.delivery_deadline,
+                self.special_notes,
+                self.delivery_status,
+                self.delivery_truck,
+                self.delivery_time,
+            ]

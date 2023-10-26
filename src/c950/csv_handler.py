@@ -37,11 +37,6 @@ class CsvHandler:
         https://docs.python.org/3/library/csv.html
     """
 
-    # Attribute for filename
-    filename: str
-    # Attribute for header
-    header: list[str] = list[""]
-
     # Constructor
     def __init__(self, filename: str, header: list = list[""]):
         """Initialize the CsvHandler instance.

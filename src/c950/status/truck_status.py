@@ -11,7 +11,6 @@ truck."""
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# Import enum
 import enum
 
 
@@ -29,11 +28,10 @@ class TruckStatus(enum.Enum):
         TruckStatus: A TruckStatus Enum class instance.
     """
 
-    # Set enum constant for truck at hub
+    # Set the order of the enum constants
+    __order__ = "AT_HUB EN_ROUTE RETURNING FINISHED"
+    # Set enum constants
     AT_HUB = 0
-    # Set enum constant for truck en route
     EN_ROUTE = 1
-    # Set enum constant for truck returning
     RETURNING = 2
-    # Set enum constant for truck finished
     FINISHED = 3

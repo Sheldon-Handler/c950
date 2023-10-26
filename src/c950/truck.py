@@ -53,7 +53,7 @@ class Truck:
         packages_loaded: list,
         packages_delivered: list,
     ):
-        """Initialize the truck object with the given arguments.
+        """Initialize the truck instance and sets the truck attributes with the given values.
 
         Args:
             self (Truck): The truck object.
@@ -67,13 +67,18 @@ class Truck:
             Truck: A Truck class instance.
         """
 
-        # Set truck_id field
         self.truck_id = truck_id
-        # Set truck_status field
         self.truck_status = truck_status
-        # Set packages_assigned field
         self.packages_assigned = packages_assigned
-        # Set packages_loaded field
         self.packages_loaded = packages_loaded
-        # Set packages_delivered field
         self.packages_delivered = packages_delivered
+
+    def to_list(self):
+        """
+        Method to return a list of the truck attributes.
+
+        Returns:
+            list: A list of the truck attributes.
+        """
+
+        return [self.truck_id, self.truck_status, self.packages_assigned, self.packages_loaded, self.packages_delivered]
