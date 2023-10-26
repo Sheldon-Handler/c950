@@ -52,13 +52,17 @@ class PackageDAO:
 
     def get_packages(self) -> list:
         """Returns all packages from the 'package' table in
-        'identifier.sqlite'."""
+        'identifier.sqlite'. Raises an exception if there is an error.
 
-        rows = self.packages.cursor.execute("SELECT * FROM package").fetchall()
+        Returns:
+            list: A list of all packages from the 'package' table in
+                'identifier.sqlite'.
+        """
 
-        return self.packages.execute("SELECT * FROM package").fetchall()
-
-
+        try:
+            return self.packages.cursor().execute("SELECT * FROM package").fetchall()
+        except sqlite3.Error as e:
+            raise e
 
     def add_package(self, package: Package):
         """Adds a Package to the package table in packages.db."""
@@ -115,21 +119,23 @@ class PackageDAO:
             None
         """
 
-        # Update package in database with given package object values
-        self.packages.execute(
-            "UPDATE package SET address = ?, city = ?, state = ?, zip = ?, delivery_deadline = ?, weight_kilo = ?, note = ?, status = ?, truck = ?, delivery_time = ? WHERE package_id = ?",
-            (
-                package.address,
-                package.city,
-                package.state,
-                package.zip,
-                package.delivery_deadline,
-                package.weight_kilo,
-                package.special_notes,
-                package.delivery_status,
-                package.delivery_truck,
-                package.delivery_time,
-                package.package_id,
-            ),
-        )
-        self.packages.commit()
+        try:
+            self.packages.execute(
+                "UPDATE package SET address = ?, city = ?, state = ?, zip = ?, delivery_deadline = ?, weight_kilo = ?, note = ?, status = ?, truck = ?, delivery_time = ? WHERE package_id = ?",
+                (
+                    package.address,
+                    package.city,
+                    package.state,
+                    package.zip,
+                    package.delivery_deadline,
+                    package.weight_kilo,
+                    package.special_notes,
+                    package.delivery_status,
+                    package.delivery_truck,
+                    package.delivery_time,
+                    package.package_id,
+                ),
+            )
+            self.packages.commit()
+        except Exception as e:
+            raise e

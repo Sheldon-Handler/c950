@@ -1,154 +1,135 @@
-"""This module contains the HashTable class to represent a hash table."""
-
-#  MIT License
-#
-#  Copyright (c) 2023 Sheldon Handler
-#
-#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-#
-#  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
-#
-#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-import node
+from functools import reduce
 
 
-# HashTable class to store key-value pairs
 class HashTable:
-    """This class is a custom hash table implementation using chaining to
-    resolve collisions. It is used to store key-value pairs.
+    """
+    A Chained Hash Table with a fixed size of 10.
+
+    This class represents a chained hash table, where each slot in the table can hold multiple key-value pairs in case of collisions. The size of the hash table is fixed at 10.
 
     Args:
-        size (int): The size of the hash table.
+        None
 
     Attributes:
         size (int): The size of the hash table.
-        table (list): The hash table, implemented as an array of linked lists.
+        table (list): The list of buckets to store key-value pairs.
     """
 
-    def __init__(self, size: int = 10):
-        """This method initializes the hash table.
-
-        Args:
-            self (HashTable): The hash table self-reference.
-            size (int): The number of elements in the hash table.
+    def __init__(self):
         """
-        self.size = size
-        self.table = [None] * size
-
-    def hash(self, key):
-        """Hashes the given key to a hash value.
+        Initialize the hash table with a fixed size of 10.
 
         Args:
-            key: The key to hash.
-
-        Returns:
-            int: The hash value.
+            None
         """
+        self.size = 10
+        self.table = [[] for _ in range(self.size)
 
-        return key % self.size
+    def insert(self, key, value):
+        """
+        Insert a key-value pair into the hash table.
 
-    def set(self, key, value):
-        """Sets the value for the given key in the hash table.
+        This method inserts a key-value pair into the hash table, creating sublists if the key is greater than or equal to the size of the hash table. It also handles collisions.
 
         Args:
-            key: The key to set the value for.
-            value: The value to set.
+            key (int): The key to insert.
+            value: The corresponding value to insert.
 
         Returns:
             None
         """
-
-        index = self.hash(key)
-        new_node = self.table[index]
-
-        while new_node is not None and new_node.key != key:
-            new_node = new_node.next
-
-        if node is None:
-            new_node = node.Node(key, value)
-            self.table[index] = new_node
-        else:
-            node.value = value
+        if key >= self.size:
+            self._resize(key)
+        index = key % self.size
+        self.table[index].append((key, value))
 
     def get(self, key):
-        """Gets the value for the given key in the hash table.
+        """
+        Retrieve the value associated with a key from the hash table.
+
+        This method retrieves the value associated with a key from the hash table using the custom_hash method to determine the index.
 
         Args:
-            key: The key to get the value for.
+            key (int): The key to retrieve.
 
         Returns:
-            Any: The value for the given key, or None if the key does not exist.
+            Any: The value associated with the key.
+
+        Raises:
+            KeyError: If the key is not found in the hash table.
         """
+        index = key % self.size
+        for k, value in self.table[index]:
+            if k == key:
+                return value
+        raise KeyError(f"Key '{key}' not found in the hash table")
 
-        index = self.hash(key)
-        node = self.table[index]
+    def delete(self, key):
+        """
+        Delete a key-value pair from the hash table.
 
-        while node is not None and node.key != key:
-            node = node.next
-
-        if node is None:
-            return None
-        else:
-            return node.value
-
-    def remove(self, key):
-        """Removes the key-value pair for the given key from the hash table.
+        This method deletes a key-value pair from the hash table using the custom_hash method to determine the index.
 
         Args:
-            key: The key to remove the key-value pair for.
+            key (int): The key to delete.
 
         Returns:
-            Any: The value of the removed key-value pair, or None if the key does not exist.
+            None
+
+        Raises:
+            KeyError: If the key is not found in the hash table.
         """
+        index = key % self.size
+        for pair in self.table[index]:
+            if pair[0] == key:
+                self.table[index].remove(pair)
+                return
+        raise KeyError(f"Key '{key}' not found in the hash table")
 
-        index = self.hash(key)
-        node = self.table[index]
-        previous_node = None
+    def _resize(self, key):
+        """
+        Resize the hash table to the specified size.
 
-        while node is not None and node.key != key:
-            previous_node = node
-            node = node.next
+        This method resizes the hash table to the specified size and rehashes the existing key-value pairs into the new table using functional programming style.
 
-        if node is None:
-            return None
-        else:
-            if previous_node is None:
-                self.table[index] = node.next
-            else:
-                previous_node.next = node.next
-
-            return node.value
-
-    def __str__(self):
-        """Returns a string representation of the hash table.
+        Args:
+            key (int): The key that prompted the resizing.
 
         Returns:
-            str: A string representation of the hash table.
+            None
         """
+        new_size = max(key, self.size * 2)
+        new_table = [[] for _ in range(new_size)]
 
-        string = ""
-        for i in range(self.size):
-            node = self.table[i]
-            while node is not None:
-                string += str(node.key) + ":" + str(node.value) + "\n"
-                node = node.next
+        rehash = lambda kv, size: new_table[kv[0] % size].append(kv)
+        reduce(rehash, reduce(lambda x, y: x + y, self.table), new_size)
 
-        return string
+        self.size, self.table = new_size, new_table
 
+    def _rehash(self):
+        """
+        Rehash the hash table.
 
-if __name__ == "__main__":
-    h = HashTable()
-    h.set(1, "a")
-    h.set(2, "b")
-    h.set(3, "c")
+        This method rehashes the hash table using functional programming style.
 
-    print(h.get(1))
-    print(h.get(2))
-    print(h.get(3))
+        Args:
+            None
 
-    h.remove(2)
+        Returns:
+            None
+        """
+        rehash = lambda kv, size: self.table[kv[0] % size].append(kv)
+        reduce(rehash, reduce(lambda x, y: x + y, self.table), self.size)
 
-    print(h.get(2))
+# Example usage:
+ht = HashTable()
+ht.insert(5, "apple")
+ht.insert(7, "banana")
+ht.insert(15, "cherry")
+ht.insert(25, "appel")
 
-    print(h)
+print(ht.get(5))  # Output: "apple"
+print(ht.get(7))  # Output: "banana"
+
+ht.delete(7)
+print(ht.get(7))  # This will raise a KeyError
