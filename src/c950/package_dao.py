@@ -75,8 +75,8 @@ class PackageDAO:
                     package.weight_kilo,
                     package.delivery_deadline,
                     package.special_notes,
-                    package.status,
-                    package.truck,
+                    package.delivery_status,
+                    package.delivery_truck,
                     package.delivery_time,
                 ),
             )
@@ -99,7 +99,7 @@ class PackageDAO:
         # Remove with given package ID from 'package' table in 'identifier.sqlite' database.
         try:
             self.packages.execute(
-                "DELETE FROM package WHERE package_id = ?", package_id
+                "DELETE FROM package WHERE package_id = ?", str(package_id)
             )
             self.packages.commit()
         except sqlite3.Error as e:
@@ -126,8 +126,8 @@ class PackageDAO:
                 package.delivery_deadline,
                 package.weight_kilo,
                 package.special_notes,
-                package.status,
-                package.truck,
+                package.delivery_status,
+                package.delivery_truck,
                 package.delivery_time,
                 package.package_id,
             ),
