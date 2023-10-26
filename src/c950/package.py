@@ -25,25 +25,8 @@ import time
 import status
 import truck
 
-Package = collections.namedtuple(
-    typename="Package",
-    field_names=[
-        "package_id",
-        "address",
-        "city",
-        "state",
-        "zip",
-        "weight_kilo",
-        "delivery_deadline",
-        "special_notes",
-        "delivery_status",
-        "delivery_truck",
-        "delivery_time",
-    ],
-)
 
-
-# Package class to store package information.
+# Package class to store information about a package.
 class Package:
     """This class represents a package for and stores its information.
 
