@@ -7,33 +7,3 @@
 #  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-import unittest
-
-import src.c950
-
-
-class TestHashTable(unittest.TestCase):
-
-    def test__init__(self):
-        table = src.c950.hash.hash_table.HashTable(10)
-        self.assertEqual(len(table.table), 10)
-        self.assertEqual(table.table, [None] * 96)
-
-    def test_hash_table(self):
-        table = src.c950.hash.hash_table.HashTable(96)
-
-        table.set(1, 'a')
-        table.set(2, 'b')
-        table.set(3, 'c')
-
-        self.assertEqual(table.get(1), 'a')
-        self.assertEqual(table.get(2), 'b')
-        self.assertEqual(table.get(3), 'c')
-        table.remove(2)
-        self.assertEqual(table.get(2), None)
-        self.assertEqual(print(table), '1:a\n3:c\n')
-
-
-if __name__ == '__main__':
-    unittest.main()

@@ -1,6 +1,6 @@
 """This module contains the HashTable class.
 """
-
+import bisect
 
 class HashTable:
     """
@@ -80,9 +80,20 @@ class HashTable:
         Returns:
             None
         """
-
-        index = self.hash(key)
-        self.table[index].append((key, value))
+        # Get the index of the bucket for the key
+        bucket = self.hash(key)
+        # Check if the key already exists in the hash table
+        for i, (k, v) in enumerate(self.table[bucket]):
+            # If the key already exists, replace the value
+            if k == key:
+                # Replace the value
+                self.table[bucket][i] = (key, value)
+                # Exit the function
+                return
+        # Otherwise, append the key-value pair to the bucket
+        self.table[bucket].append((key, value))
+        # Then, sort the bucket in ascending order
+        self.table[bucket].sort()
 
     def get(self, key) -> any:
         """
@@ -94,11 +105,15 @@ class HashTable:
         Returns:
             any: The value for the given key, or None if the key does not exist.
         """
-
-        index = self.hash(key)
-        for k, v in self.table[index]:
+        # Get the index of the bucket for the key
+        bucket = self.hash(key)
+        # Iterate through the bucket to find the key
+        for k, v in self.table[bucket]:
+            # If the key exists, return the value
             if k == key:
+                # Return the value
                 return v
+        # Otherwise, return None
         return None
 
     def remove(self, key) -> None:
@@ -112,11 +127,14 @@ class HashTable:
             None
         """
 
-        index = self.hash(key)
-        for i, (k, v) in enumerate(self.table[index]):
+        # Get the index of the bucket for the key
+        bucket = self.hash(key)
+        for i, (k, v) in enumerate(self.table[bucket]):
             if k == key:
-                self.table[index].pop(i)
+                self.table[bucket].pop(i)
                 return
+
+    def __bina
 
     def __str__(self) -> str:
         """
