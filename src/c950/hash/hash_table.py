@@ -127,14 +127,40 @@ class HashTable:
             None
         """
 
-        # Get the index of the bucket for the key
-        bucket = self.hash(key)
-        for i, (k, v) in enumerate(self.table[bucket]):
-            if k == key:
-                self.table[bucket].pop(i)
-                return
+        bucket = self.hash(key)  # Index of the bucket containing the key-value pair
 
-    def __bina
+        item_to_delete = self.__binary_search__(key)  # Find the index of the key in the bucket
+
+        if item_to_delete is not None:  # If the key is found in the bucket
+            self.table[bucket].pop(item_to_delete)  # Remove the key-value pair from the bucket
+
+    def __binary_search__(self, key):
+        """
+        Perform a binary search on a sorted array to find the target element.
+
+        Args:
+            key: The key to find in the hash table.
+
+        Returns:
+            int: The index of the target element in the array, or None if the element is not found.
+        """
+        bucket = self.hash(key)  # Index of the bucket containing the key-value pair
+
+        low = 0  # The low pointer in the search range. Initially, this is the first index.
+
+        high = len(self.table[bucket]) - 1  # The high pointer in the search range. Initially, this is the last index.
+
+        while low <= high:  # Iterate through the bucket to find the key
+            mid = (low + high) // 2  # Calculate the middle index between the previous search range
+
+            if self.table[bucket][mid] < key:
+                low = mid + 1  # Adjust the 'low' pointer
+            elif self.table[bucket][mid] > key:
+                high = mid - 1  # Adjust the 'high' pointer
+            else:  # If the key is found
+                return mid  # Return the index of the key
+
+        return None  # If the element was not found in the array. Return None.
 
     def __str__(self) -> str:
         """
