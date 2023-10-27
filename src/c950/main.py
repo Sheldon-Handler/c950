@@ -27,5 +27,4 @@
 # new_status = status.delivery_status.DeliveryStatus.NOT_AVAILABLE
 # print(new_status)
 
-if __name__ == "__main__":
-    print(hash(10**10))
+

@@ -1,98 +1,162 @@
-class ChainingHashTable(list):
+"""This module contains the HashTable class.
+"""
+
+
+class HashTable:
     """
-    A chaining hash table implemented as a subclass of list.
+    A hash table implementation that uses chaining to prevent hash collisions.
 
     Args:
         size (int): The size of the hash table.
 
     Attributes:
-        size (int): The size of the hash table.
+        table (list): The hash table.
+
+    Methods:
+        hash: Hashes the given key to a hash value.
+        set: Sets the value for the given key in the hash table.
+        get: Gets the value for the given key in the hash table.
+        remove: Removes the key-value pair for the given key from the hash table.
+        __str__: Returns a string representation of the hash table.
+
+    Returns:
+        HashTable: A HashTable class instance.
+
+    Examples:
+        >>> table = HashTable()
+        >>> table.set(1, 'Example Value 1')
+        >>> table.set(2, 'Example Value 2')
+        >>> table.set(3, 'Example Value 3')
+        >>> print(table.get(1))
+        Example Value 1
+        >>> print(table.get(2))
+        Example Value 2
+        >>> print(table.get(3))
+        Example Value 3
+        >>> table.remove(2)
+        >>> print(table.get(2))
+        None
+        >>> print(table)
+        1:Example Value 1
+        3:Example Value 3
     """
 
-    def __init__(self, size):
+    def __init__(self, size: int = 10) -> None:
         """
-        Initialize the chaining hash table with a given size.
+        Initializes a HashTable object.
 
         Args:
-            size (int): The size of the hash table.
-        """
-        super().__init__([] * size)
-        self.size = size
-
-    def _hash_function(self, key):
-        """
-        Calculate the hash index for a given key.
-
-        Args:
-            key: The key to be hashed.
+            size (int): The initial size of the hash table parent list. Defaults to 10.
 
         Returns:
-            int: The hash index.
+            None
         """
-        return hash(key) % self.size
 
-    def insert(self, key, value):
-        """
-        Insert a key-value pair into the hash table.
+        self.table = []
+        for i in range(size):
+            self.table.append([])
 
-        Args:
-            key: The key.
-            value: The value.
+    def hash(self, key) -> int:
         """
-        index = self._hash_function(key)
-        for i, (existing_key, existing_value) in enumerate(self[index]):
-            if existing_key == key:
-                self[index][i] = (key, value)
-                break
-        else:
-            self[index].append((key, value))
-
-    def get(self, key):
-        """
-        Get the value associated with a key from the hash table.
+        Hashes the given key to a hash value.
 
         Args:
-            key: The key.
+            key: The key to hash.
 
         Returns:
-            The value associated with the key or None if the key is not found.
+            int: The hash value.
         """
-        index = self._hash_function(key)
-        for existing_key, existing_value in self[index]:
-            if existing_key == key:
-                return existing_value
+
+        return hash(key) % len(self.table)
+
+    def set(self, key, value) -> None:
+        """
+        Sets the value for the given key in the hash table.
+
+        Args:
+            key: The key to set the value for.
+            value: The value to set.
+
+        Returns:
+            None
+        """
+
+        index = self.hash(key)
+        self.table[index].append((key, value))
+
+    def get(self, key) -> any:
+        """
+        Gets the value for the given key in the hash table.
+
+        Args:
+            key: The key to get the value for.
+
+        Returns:
+            any: The value for the given key, or None if the key does not exist.
+        """
+
+        index = self.hash(key)
+        for k, v in self.table[index]:
+            if k == key:
+                return v
         return None
 
-    def remove(self, key):
+    def remove(self, key) -> None:
         """
-        Remove a key-value pair from the hash table.
+        Removes the key-value pair for the given key from the hash table.
 
         Args:
-            key: The key to be removed.
+            key: The key to remove the key-value pair for.
+
+        Returns:
+            None
         """
-        index = self._hash_function(key)
-        self[index] = [(k, v) for k, v in self[index] if k != key]
 
-    def display(self):
+        index = self.hash(key)
+        for i, (k, v) in enumerate(self.table[index]):
+            if k == key:
+                self.table[index].pop(i)
+                return
+
+    def __str__(self) -> str:
         """
-        Display the contents of the hash table.
+        Returns a string representation of the hash table.
+
+        Returns:
+            str: A string representation of the hash table.
         """
-        for i, bucket in enumerate(self):
-            if bucket:
-                print(f"Bucket {i}: {bucket}")
 
-# Example usage:
-hash_table = ChainingHashTable(10)
+        table_size = len(self.table)
+        string = ''
+        for i in range(table_size):
+            for k, v in self.table[i]:
+                string += str(k) + ':' + str(v) + '\n'
 
-hash_table.insert("apple", 5)
-hash_table.insert("banana", 3)
-hash_table.insert("cherry", 8)
-hash_table.insert("date", 2)
+        return string
 
-hash_table.display()
 
-print("Value of 'banana':", hash_table.get("banana"))
-print("Value of 'grape':", hash_table.get("grape"))
+if __name__ == '__main__':
+    table = HashTable(96)
 
-hash_table.remove("cherry")
-hash_table.display()
+    table.set(1, 'a')
+    table.set(13, 'b')
+    table.set(3, 'c')
+    table.set(18, 't')
+    table.set(12, 'tc')
+    table.set(35, 'tm')
+    table.set(9, 'bq')
+    table.set(7, 'pr')
+    table.set(2, 'db')
+    table.set(4, 'testr')
+    table.set(5, 'test')
+    table.set(6, 'ltest')
+
+    print(table.get(1))
+    print(table.get(12))
+    print(table.get(24))
+
+    table.remove(12)
+
+    print(table.get(2))
+
+    print(table)
