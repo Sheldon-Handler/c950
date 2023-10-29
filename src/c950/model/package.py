@@ -22,7 +22,7 @@ import collections
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import time
-import status
+import delivery_status
 import truck
 
 
@@ -39,7 +39,7 @@ class Package:
         weight_kilo (int): The package weight in kilos.
         delivery_deadline (time): The package delivery deadline.
         special_notes (str): The package special notes.
-        delivery_status (DeliveryStatus): The package delivery status.
+        delivery_status (delivery_status.delivery_status): The package delivery status.
         delivery_truck (truck): The package delivery truck.
         delivery_time (time): The package delivery time.
 
@@ -59,13 +59,13 @@ class Package:
         ...     weight_kilo=10,
         ...     delivery_deadline="EOD",
         ...     special_notes="Some note",
-        ...     delivery_status=status.delivery_status.DeliveryStatus.AT_HUB,
+        ...     delivery_status=delivery_status.DeliveryStatus.AT_HUB,
         ...     delivery_truck=None,
         ...     delivery_time=None,
         ... )
         >>> new_package.delivery_status
         DeliveryStatus.AT_HUB
-        >>> new_package.delivery_status = status.delivery_status.DeliveryStatus.DELIVERED
+        >>> new_package.delivery_status = delivery_status.DeliveryStatus.DELIVERED
         >>> new_package.delivery_status
         DeliveryStatus.DELIVERED
     """
@@ -81,7 +81,7 @@ class Package:
             weight_kilo: int,
             delivery_deadline: time,
             special_notes: str,
-            delivery_status: status.delivery_status.DeliveryStatus,
+            delivery_status: delivery_status.DeliveryStatus,
             delivery_truck: truck,
             delivery_time: time,
     ):
@@ -97,7 +97,7 @@ class Package:
             weight_kilo (int): The weight of the package in KILO's.
             delivery_deadline (time): The deadline to deliver the package.
             special_notes (str): The special notes for the package delivery.
-            delivery_status (status.delivery_status.DeliveryStatus): The delivery status of the package.
+            delivery_status (delivery_status.DeliveryStatus): The delivery status of the package.
             delivery_truck (truck.Truck): The truck assigned to deliver the package
             delivery_time (time): The time that the package was delivered.
 
@@ -123,7 +123,7 @@ class Package:
             Method to return a list of the package attributes.
 
             Returns:
-                list: A list of the package attributes.
+                list: The package attributes as a list.
             """
             return [
                 self.package_id,

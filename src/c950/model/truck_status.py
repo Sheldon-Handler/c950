@@ -30,7 +30,7 @@ class TruckStatus(enum.Enum):
 
     # Set the order of the enum constants
     __order__ = "AT_HUB EN_ROUTE RETURNING FINISHED"
-    # Set enum constants
+
     AT_HUB = 0
     EN_ROUTE = 1
     RETURNING = 2

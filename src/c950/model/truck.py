@@ -12,7 +12,7 @@ information."""
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # Import status package
-import status
+import truck_status
 
 
 # Truck class
@@ -32,14 +32,14 @@ class Truck:
     Examples:
         >>> new_truck = Truck(
         ...     truck_id=1,
-        ...     truck_status=status.truck_status.TruckStatus.AT_HUB,
+        ...     truck_status=truck_status.TruckStatus.AT_HUB,
         ...     packages_assigned=[],
         ...     packages_loaded=[],
         ...     packages_delivered=[],
         ... )
         >>> new_truck.truck_status
         TruckStatus.AT_HUB
-        >>> new_truck.truck_status = status.truck_status.TruckStatus.EN_ROUTE
+        >>> new_truck.truck_status = truck_status.TruckStatus.EN_ROUTE
         >>> new_truck.truck_status
         TruckStatus.EN_ROUTE
     """
@@ -48,7 +48,7 @@ class Truck:
     def __init__(
             self,
             truck_id: int,
-            truck_status: status.truck_status.TruckStatus,
+            truck_status: truck_status.TruckStatus,
             packages_assigned: list,
             packages_loaded: list,
             packages_delivered: list,

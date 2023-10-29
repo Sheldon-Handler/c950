@@ -15,7 +15,6 @@ status of a package."""
 import enum
 
 
-# DeliveryStatus Enum class
 class DeliveryStatus(enum.Enum):
     """This Enum represents the delivery status of a package.
 
@@ -31,7 +30,7 @@ class DeliveryStatus(enum.Enum):
 
     # Set the order of the enum constants
     __order__ = "NOT_AVAILABLE AT_HUB EN_ROUTE DELIVERED"
-    # Set enum constants
+
     NOT_AVAILABLE = 0
     AT_HUB = 1
     EN_ROUTE = 3

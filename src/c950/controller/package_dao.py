@@ -15,7 +15,7 @@
 import sqlite3
 
 # Import Package from package
-from package import Package
+import c950
 
 
 # PackageDAO class
@@ -31,7 +31,7 @@ class PackageDAO:
         """Initializes the Packages class."""
 
         self.packages = sqlite3.connect("../data/identifier.sqlite")
-        self.packages.row_factory.register_adapter(Package)
+        self.packages.row_factory.register_adapter(c950.model.package.Package)
         self.packages.row_factory = sqlite3.Row
 
         self.packages.cursor().executescript(
