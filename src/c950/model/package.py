@@ -72,18 +72,18 @@ class Package:
 
     # Constructor
     def __init__(
-        self,
-        package_id: int,
-        address: str,
-        city: str,
-        state: str,
-        zip: str,
-        weight_kilo: int,
-        delivery_deadline: time,
-        special_notes: str,
-        delivery_status: status.delivery_status.DeliveryStatus,
-        delivery_truck: truck,
-        delivery_time: time,
+            self,
+            package_id: int,
+            address: str,
+            city: str,
+            state: str,
+            zip: str,
+            weight_kilo: int,
+            delivery_deadline: time,
+            special_notes: str,
+            delivery_status: status.delivery_status.DeliveryStatus,
+            delivery_truck: truck,
+            delivery_time: time,
     ):
         """Initialize a Package object.
 

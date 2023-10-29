@@ -46,12 +46,12 @@ class Truck:
 
     # Constructor
     def __init__(
-        self,
-        truck_id: int,
-        truck_status: status.truck_status.TruckStatus,
-        packages_assigned: list,
-        packages_loaded: list,
-        packages_delivered: list,
+            self,
+            truck_id: int,
+            truck_status: status.truck_status.TruckStatus,
+            packages_assigned: list,
+            packages_loaded: list,
+            packages_delivered: list,
     ):
         """Initialize the truck instance and sets the truck attributes with the given values.
 

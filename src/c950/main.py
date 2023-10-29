@@ -23,8 +23,5 @@
 #  SOFTWARE.
 
 
-
 # new_status = status.delivery_status.DeliveryStatus.NOT_AVAILABLE
 # print(new_status)
-
-
