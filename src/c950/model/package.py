@@ -138,3 +138,22 @@ class Package:
                 self.delivery_truck,
                 self.delivery_time,
             ]
+
+
+if __name__ == "__main__":
+    new_package = Package(
+        package_id=1,
+        address="123 Main Street",
+        city="Salt Lake City",
+        state="UT",
+        zip="84111",
+        weight_kilo=10,
+        delivery_deadline="EOD",
+        special_notes="Some note",
+        delivery_status=delivery_status.DeliveryStatus.AT_HUB,
+        delivery_truck=None,
+        delivery_time=None,
+    )
+    print(new_package)
+    new_package.delivery_status = delivery_status.DeliveryStatus.DELIVERED
+    print(new_package)

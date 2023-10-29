@@ -31,8 +31,6 @@ class PackageDAO:
         """Initializes the Packages class."""
 
         self.packages = sqlite3.connect("../data/identifier.sqlite")
-        self.packages.row_factory.register_adapter(c950.model.package.Package)
-        self.packages.row_factory = sqlite3.Row
 
         self.packages.cursor().executescript(
             "CREATE TABLE IF NOT EXISTS package (\n"
@@ -64,8 +62,12 @@ class PackageDAO:
         except sqlite3.Error as e:
             raise e
 
-    def add_package(self, package: Package):
-        """Adds a Package to the package table in packages.db."""
+    def add_package(self, package: c950.model.package.Package):
+        """Adds a Package to the package table in packages.db.
+
+        Args:
+            package (PackageDAO): The package to add.
+        """
 
         try:
             self.packages.execute(
@@ -109,7 +111,7 @@ class PackageDAO:
         except sqlite3.Error as e:
             raise e
 
-    def update_package(self, package: Package):
+    def update_package(self, package: c950.model.package.Package):
         """Updates a Package in the packages table in packages.db.
         Args:
             self (PackageDAO): The PackageDAO object self-reference.
@@ -139,3 +141,7 @@ class PackageDAO:
             self.packages.commit()
         except Exception as e:
             raise e
+
+
+if __name__ == "__main__":
+    pass

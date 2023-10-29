@@ -1,12 +1,12 @@
 [project]
 name = "c950"
-version = "1.0.0"
+version = "0.1.0"
 description = "Data Structures and Algorithms II"
 authors = [
-    { name = "Sheldon Handler", email = "shandl8@wgu.edu" },
+    { name = "Sheldon Handler", email = "57599804+Sheldon-Handler@users.noreply.github.com" },
 ]
 dependencies = []
-requires-python = ">=3.7"
+requires-python = ">= 3.7"
 readme = "README.md"
 license = { text = "MIT" }
 
