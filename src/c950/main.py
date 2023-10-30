@@ -12,4 +12,4 @@
 
 import model
 
-print(model.package.Package.__dict__.keys())
+print(model.__dict__.keys())

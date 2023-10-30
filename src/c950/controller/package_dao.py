@@ -71,7 +71,7 @@ class PackageDAO:
             self.cursor.execute(
                 "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
-                    package.package_id,
+                    package.id,
                     package.address,
                     package.city,
                     package.state,
@@ -133,7 +133,7 @@ class PackageDAO:
                     package.delivery_status,
                     package.delivery_truck,
                     package.delivery_time,
-                    package.package_id,
+                    package.id,
                 ),
             )
             self.cursor.commit()

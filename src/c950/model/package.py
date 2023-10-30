@@ -20,7 +20,7 @@ class Package:
     """This class represents a package for and stores its information.
 
     Attributes:
-        package_id (int): The package id.
+        id (int): The package id.
         address (str): The package address.
         city (str): The package city.
         state (str): The package state.
@@ -29,7 +29,7 @@ class Package:
         delivery_deadline (time): The package delivery deadline.
         special_notes (str): The package special notes.
         delivery_status (delivery_status.DeliveryStatus): The package delivery status.
-        delivery_truck (truck): The package delivery truck.
+        truck (truck): The package delivery truck.
         delivery_time (time): The package delivery time.
 
     Returns:
@@ -37,7 +37,7 @@ class Package:
 
     Examples:
         >>> new_package = Package(
-        ...     package_id=1,
+        ...     id=1,
         ...     address="123 Main Street",
         ...     city="Salt Lake City",
         ...     state="UT",
@@ -46,7 +46,7 @@ class Package:
         ...     delivery_deadline="EOD",
         ...     special_notes="Some note",
         ...     delivery_status=delivery_status.DeliveryStatus.AT_HUB,
-        ...     delivery_truck=None,
+        ...     truck=None,
         ...     delivery_time=None,
         ... )
         >>> new_package.delivery_status
@@ -58,7 +58,7 @@ class Package:
 
     def __init__(
         self,
-        package_id: int,
+        id: int,
         address: str,
         city: str,
         state: str,
@@ -67,14 +67,14 @@ class Package:
         delivery_deadline: time,
         special_notes: str,
         delivery_status: delivery_status.DeliveryStatus,
-        delivery_truck: truck,
+        truck: truck.Truck,
         delivery_time: time,
     ):
         """Initialize a Package object.
 
         Args:
             self (Package): The Package object.
-            package_id (int): The ID of the package
+            id (int): The ID of the package
             address (str): The address to delivery the package to.
             city (str): The city to delivery the package to.
             state (str): The state to delivery the package to.
@@ -83,7 +83,7 @@ class Package:
             delivery_deadline (time): The deadline to deliver the package.
             special_notes (str): The special notes for the package delivery.
             delivery_status (delivery_status.DeliveryStatus): The delivery status of the package.
-            delivery_truck (truck.Truck): The truck assigned to deliver the package
+            truck (truck.Truck): The truck assigned to deliver the package
             delivery_time (time): The time that the package was delivered.
 
         Returns:
@@ -91,7 +91,7 @@ class Package:
         """
 
         # Setting the attribute values of the package
-        self.package_id = package_id
+        self.id = id
         self.address = address
         self.city = city
         self.state = state
@@ -100,7 +100,7 @@ class Package:
         self.delivery_deadline = delivery_deadline
         self.special_notes = special_notes
         self.delivery_status = delivery_status
-        self.delivery_truck = delivery_truck
+        self.truck = truck
         self.delivery_time = delivery_time
 
     def to_list(self):
@@ -110,7 +110,7 @@ class Package:
             list: The package attributes as a list.
         """
         return [
-            self.package_id,
+            self.id,
             self.address,
             self.city,
             self.state,
@@ -119,14 +119,14 @@ class Package:
             self.delivery_deadline,
             self.special_notes,
             self.delivery_status,
-            self.delivery_truck,
+            self.truck,
             self.delivery_time,
         ]
 
 
 if __name__ == "__main__":
     new_package = Package(
-        package_id=1,
+        id=1,
         address="123 Main Street",
         city="Salt Lake City",
         state="UT",
@@ -135,7 +135,7 @@ if __name__ == "__main__":
         delivery_deadline="EOD",
         special_notes="Some note",
         delivery_status=delivery_status.DeliveryStatus.AT_HUB,
-        delivery_truck=None,
+        truck=None,
         delivery_time=None,
     )
     print(new_package)

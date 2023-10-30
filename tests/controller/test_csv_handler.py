@@ -10,7 +10,7 @@
 
 import unittest
 
-from src import c950
+import c950
 
 
 class TestCsvHandler(unittest.TestCase):

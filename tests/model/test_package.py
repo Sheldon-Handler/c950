@@ -17,7 +17,7 @@ class TestPackage(unittest.TestCase):
     def test_package(self):
         package = c950.model.package.Package(1, "123 Main Street", "Salt Lake City", "UT", "84111", 10, "EOD",
                                              "Some note", src.c950.status.delivery_status.DeliveryStatus.AT_HUB)
-        self.assertEqual(package.package_id, 1)
+        self.assertEqual(package.id, 1)
         self.assertEqual(package.address, "123 Main Street")
         self.assertEqual(package.city, "Salt Lake City")
         self.assertEqual(package.state, "UT")

@@ -10,5 +10,5 @@
 
 import sqlite3
 
-connection = sqlite3.connect("../data/identifier.sqlite")
+connection = sqlite3.connect("../../../data/identifier.sqlite")
 cursor = connection.cursor()

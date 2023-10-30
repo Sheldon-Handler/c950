@@ -14,6 +14,8 @@ import controller
 import hash
 import model
 import view
+import main
+
 
 # Define packages_csv_file variable
 packages_csv_file = "../data/packages.csv"
