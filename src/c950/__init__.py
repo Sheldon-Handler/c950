@@ -11,20 +11,11 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import main
-import package_list
+import sqlite_handler
 import controller
 import hash
 import model
 import view
-import sys
-import os
 
 # Define packages_csv_file variable
 packages_csv_file = "../data/packages.csv"
-
-test = '../tests'
-src = '../src'
-sys.path.insert(0, os.path.abspath(os.path.join(src, test)))
-
-import antigravity
-import unittest

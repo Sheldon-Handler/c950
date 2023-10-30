@@ -1,5 +1,3 @@
-"""This module contains the main function for the program."""
-
 #  MIT License
 #
 #  Copyright (c) 2023 Sheldon Handler
@@ -10,7 +8,8 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import sqlite3
 from src import c950
 
-if __name__ == "__main__":
-    print(c950.model.package.Package.__dict__.keys())
+# connection = sqlite3.connect("../data/identifier.sqlite")
+# cursor = connection.cursor()
