@@ -10,38 +10,112 @@
 
 import unittest
 
-import c950
+from src import c950
 
 
 class TestCsvHandler(unittest.TestCase):
     def test_write(self):
-        csv_handler = c950.controller.csv_handler.CsvHandler(filename="../resources/data/test.csv",
-                                                             header=["package_id", "address", "city", "state",
-                                                                     "zip_code", "weight", "deadline", "note",
-                                                                     "status"])
+        csv_handler = c950.controller.csv_handler.CsvHandler(
+            filename="../resources/data/test.csv",
+            header=[
+                "package_id",
+                "address",
+                "city",
+                "state",
+                "zip_code",
+                "weight",
+                "deadline",
+                "note",
+                "status",
+            ],
+        )
 
-        csv_handler.write([[1, "123 Main Street", "Salt Lake City", "UT", "84111", 10, "EOD", "Some note",
-                            c950.model.package_status.PackageStatus.AT_HUB],
-                           [2, "123 Main Street", "Salt Lake City", "UT", "84111", 10, "EOD", "Some note",
-                            c950.status.delivery_status.DeliveryStatus.DELIVERED]])
+        csv_handler.write(
+            [
+                [
+                    1,
+                    "123 Main Street",
+                    "Salt Lake City",
+                    "UT",
+                    "84111",
+                    10,
+                    "EOD",
+                    "Some note",
+                    c950.model.delivery_status.DeliveryStatus.AT_HUB,
+                ],
+                [
+                    2,
+                    "123 Main Street",
+                    "Salt Lake City",
+                    "UT",
+                    "84111",
+                    10,
+                    "EOD",
+                    "Some note",
+                    c950.model.delivery_status.DeliveryStatus.DELIVERED,
+                ],
+            ]
+        )
 
         with open("../resources/data/test.csv", "r") as file:
             data = file.readlines()
-            self.assertEqual(data[0], "package_id,address,city,state,zip_code,weight,deadline,note,status\n")
-            self.assertEqual(data[1], "1,123 Main Street,Salt Lake City,UT,84111,10,EOD,Some note,AT_HUB\n")
-            self.assertEqual(data[2], "2,123 Main Street,Salt Lake City,UT,84111,10,EOD,Some note,DELIVERED\n")
+            self.assertEqual(
+                data[0],
+                "package_id,address,city,state,zip_code,weight,deadline,note,status\n",
+            )
+            self.assertEqual(
+                data[1],
+                "1,123 Main Street,Salt Lake City,UT,84111,10,EOD,Some note,AT_HUB\n",
+            )
+            self.assertEqual(
+                data[2],
+                "2,123 Main Street,Salt Lake City,UT,84111,10,EOD,Some note,DELIVERED\n",
+            )
 
     def test_read(self):
-        csv_handler = c950.controller.csv_handler.CsvHandler("../resources/data/test.csv",
-                                                             header=["package_id", "address", "city", "state", "zip",
-                                                                     "weight_kilo", "deadline", "note", "status"])
+        csv_handler = c950.controller.csv_handler.CsvHandler(
+            "../resources/data/test.csv",
+            header=[
+                "package_id",
+                "address",
+                "city",
+                "state",
+                "zip",
+                "weight_kilo",
+                "deadline",
+                "note",
+                "status",
+            ],
+        )
 
-        self.assertEqual(csv_handler.read(), [
-            ["1", "123 Main Street", "Salt Lake City", "UT", "84111", "10", "EOD", "Some note",
-             c950.model.delivery_status.DeliveryStatus.AT_HUB],
-            ["2", "123 Main Street", "Salt Lake City", "UT", "84111", "10", "EOD", "Some note",
-             src.c950.status.delivery_status.DeliveryStatus.DELIVERED.name]])
+        self.assertEqual(
+            csv_handler.read(),
+            [
+                [
+                    "1",
+                    "123 Main Street",
+                    "Salt Lake City",
+                    "UT",
+                    "84111",
+                    "10",
+                    "EOD",
+                    "Some note",
+                    c950.model.delivery_status.DeliveryStatus.AT_HUB,
+                ],
+                [
+                    "2",
+                    "123 Main Street",
+                    "Salt Lake City",
+                    "UT",
+                    "84111",
+                    "10",
+                    "EOD",
+                    "Some note",
+                    c950.model.delivery_status.DeliveryStatus.DELIVERED.name,
+                ],
+            ],
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

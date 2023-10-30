@@ -12,5 +12,4 @@
 
 from src import c950
 
-if __name__ == "__main__":
-    print(c950.model.package.Package.__dict__.keys())
+print(c950.model.package.Package.__dict__.keys())

@@ -26,24 +26,3 @@ def create_table(table_name, object_type: object):
 
     database.commit()
     return database
-
-
-def add(database, item, table_name):
-    """Adds the given item to the database.
-
-    Args:
-        database (sqlite3.Connection): The database to add the item to.
-        item (object): The item to add to the database.
-
-    Returns:
-        int: The ID of the item that was added to the database.
-
-    Examples:
-        >>> add(database, truck)
-        1
-    """
-
-    cursor = database.cursor()
-    cursor.execute("INSERT INTO truck_status VALUES (?, ?)", (item.id, item.status))
-    database.commit()
-    return cursor.lastrowid

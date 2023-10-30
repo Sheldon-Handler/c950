@@ -135,28 +135,3 @@ class CsvHandler:
 # output_data = [["Name", "Age"], ["Alice", 30], ["Bob", 25]]
 # output_csv_handler = CsvHandler("output.csv")
 # output_csv_handler.write(output_data)
-
-
-def write_csv(filename: str, data: list[list]):
-    """This function writes the data to the CSV file.
-
-    Args:
-        filename (str): The name of the CSV file to write to.
-        data (list[list]): A list of rows, where each row is represented as a list of values.
-
-    Example:
-        data = [["Name", "Age"], ["Alice", 30], ["Bob", 25]]
-        write_csv("output.csv", data)
-
-    See Also:
-        https://docs.python.org/3/library/csv.html
-        https://docs.python.org/3/library/list.html
-        https://docs.python.org/3/library/functions.html#open
-    """
-
-    # open file in write mode
-    with open(filename, mode="w", newline="") as file:
-        # Create csv writer instance for file with excel dialect
-        writer = csv.writer(file, dialect="excel")
-        # Write data to file
-        writer.writerows(data)

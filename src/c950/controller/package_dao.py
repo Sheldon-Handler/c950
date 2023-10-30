@@ -12,7 +12,6 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import sqlite3
-
 from src import c950
 
 
@@ -22,7 +21,7 @@ class PackageDAO:
 
     Attributes:
         packages (sqlite3.Connection): The connection to the "identifier.sqlite" database.
-        cursor (sqlite3.Cursor): The cursor for the "identifier.sqlite" database.
+        cursor (): The cursor for the "identifier.sqlite" database.
     """
 
     def __init__(self, cursor=c950.sqlite_handler.cursor):
@@ -30,7 +29,7 @@ class PackageDAO:
 
         self.cursor = cursor
 
-        c950.sqlite_handler.cursor.execute(
+        self.cursor.execute(
             "CREATE TABLE IF NOT EXISTS package (\n"
             "                              package_id INT PRIMARY KEY,\n"
             "                              address VARCHAR,\n"
@@ -45,7 +44,7 @@ class PackageDAO:
             "                              delivery_time VARCHAR\n"
             "                              )"
         )
-        c950.sqlite_handler.cursor.commit()
+        self.cursor.commit()
 
     def get_packages(self) -> list:
         """Returns all packages from the 'package' table in
@@ -57,9 +56,7 @@ class PackageDAO:
         """
 
         try:
-            return (
-                c950.sqlite_handler.cursor().execute("SELECT * FROM package").fetchall()
-            )
+            return self.cursor().execute("SELECT * FROM package").fetchall()
         except sqlite3.Error as e:
             raise e
 
@@ -71,7 +68,7 @@ class PackageDAO:
         """
 
         try:
-            c950.sqlite_handler.cursor.execute(
+            self.cursor.execute(
                 "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
                     package.package_id,
@@ -87,7 +84,7 @@ class PackageDAO:
                     package.delivery_time,
                 ),
             )
-            c950.sqlite_handler.cursor.commit()
+            self.cursor.commit()
         except sqlite3.SQLITE_ERROR as e:
             raise e
 
@@ -105,10 +102,10 @@ class PackageDAO:
 
         # Remove with given package ID from 'package' table in 'identifier.sqlite' database.
         try:
-            c950.sqlite_handler.cursor.execute(
+            self.cursor.execute(
                 "DELETE FROM package WHERE package_id = ?", str(package_id)
             )
-            c950.sqlite_handler.cursor.commit()
+            self.cursor.commit()
         except sqlite3.Error as e:
             raise e
 
@@ -123,7 +120,7 @@ class PackageDAO:
         """
 
         try:
-            c950.sqlite_handler.cursor.execute(
+            self.cursor.execute(
                 "UPDATE package SET address = ?, city = ?, state = ?, zip = ?, delivery_deadline = ?, weight_kilo = ?, note = ?, status = ?, truck = ?, delivery_time = ? WHERE package_id = ?",
                 (
                     package.address,
@@ -139,10 +136,6 @@ class PackageDAO:
                     package.package_id,
                 ),
             )
-            c950.sqlite_handler.cursor.commit()
+            self.cursor.commit()
         except Exception as e:
             raise e
-
-
-if __name__ == "__main__":
-    pass

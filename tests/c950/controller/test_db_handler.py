@@ -8,22 +8,13 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+import unittest
 
-def get_truck_status(truck_id: int) -> int:
-    """Returns the status of the truck with the given ID.
 
-    Args:
-        truck_id (int): The ID of the truck.
+class TestDBHandler(unittest.TestCase):
+    def test_something(self):
+        self.assertEqual(True, False)  # add assertion here
 
-    Returns:
-        int: The status of the truck.
 
-    Examples:
-        >>> get_truck_status(1)
-        1
-    """
-    with open("src/c950/data/truck_status.csv") as truck_status_file:
-        truck_status_reader = csv.reader(truck_status_file, delimiter=",")
-        for row in truck_status_reader:
-            if int(row[0]) == truck_id:
-                return int(row[1])
+if __name__ == "__main__":
+    unittest.main()
