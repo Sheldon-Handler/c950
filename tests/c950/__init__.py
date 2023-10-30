@@ -12,4 +12,3 @@ import controller
 import hash
 import model
 import view
-import test_main

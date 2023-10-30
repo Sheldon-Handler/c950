@@ -1,5 +1,6 @@
 """This Python module defines a Truck class to represent a truck and its
 information."""
+import this
 
 #  MIT License
 #
@@ -56,7 +57,6 @@ class Truck:
         """Initialize the truck instance and sets the truck attributes with the given values.
 
         Args:
-            self (Truck): The truck object.
             truck_id (int): The ID of the truck.
             truck_status (TruckStatus): The status of the truck.
             packages_assigned (list): The list of packages assigned for the truck to deliver.

@@ -12,7 +12,7 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import sqlite3
-from src import c950
+import sqlite_handler
 
 
 class PackageDAO:
@@ -24,10 +24,10 @@ class PackageDAO:
         cursor (): The cursor for the "identifier.sqlite" database.
     """
 
-    def __init__(self, cursor=c950.sqlite_handler.cursor):
+    def __init__(self):
         """Initializes the Packages class."""
 
-        self.cursor = cursor
+        self.cursor = sqlite_handler.cursor
 
         self.cursor.execute(
             "CREATE TABLE IF NOT EXISTS package (\n"

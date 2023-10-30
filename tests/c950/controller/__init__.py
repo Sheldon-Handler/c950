@@ -10,3 +10,5 @@
 
 import test_csv_handler
 import test_db_handler
+import test_package_dao
+import test_sqlite_handler
