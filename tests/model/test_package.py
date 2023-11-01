@@ -9,15 +9,22 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import unittest
-import c950
 
 
 class TestPackage(unittest.TestCase):
-
     def test_package(self):
-        package = c950.model.package.Package(1, "123 Main Street", "Salt Lake City", "UT", "84111", 10, "EOD",
-                                             "Some note", src.c950.status.delivery_status.DeliveryStatus.AT_HUB)
-        self.assertEqual(package.package_id, 1)
+        package = model.package.Package(
+            1,
+            "123 Main Street",
+            "Salt Lake City",
+            "UT",
+            "84111",
+            10,
+            "EOD",
+            "Some note",
+            c950.c950.status.delivery_status.DeliveryStatus.AT_HUB,
+        )
+        self.assertEqual(package.id, 1)
         self.assertEqual(package.address, "123 Main Street")
         self.assertEqual(package.city, "Salt Lake City")
         self.assertEqual(package.state, "UT")
@@ -25,8 +32,10 @@ class TestPackage(unittest.TestCase):
         self.assertEqual(package.weight_kilo, 10)
         self.assertEqual(package.delivery_deadline, "EOD")
         self.assertEqual(package.special_notes, "Some note")
-        self.assertEqual(package.delivery_status, c950.model.delivery_status.DeliveryStatus.AT_HUB)
+        self.assertEqual(
+            package.delivery_status, model.delivery_status.DeliveryStatus.AT_HUB
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

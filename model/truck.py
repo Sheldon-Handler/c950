@@ -1,6 +1,5 @@
 """This Python module defines a Truck class to represent a truck and its
 information."""
-import this
 
 #  MIT License
 #

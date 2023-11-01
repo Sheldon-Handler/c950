@@ -10,12 +10,10 @@
 
 import unittest
 
-from src import c950
-
 
 class TestCsvHandler(unittest.TestCase):
     def test_write(self):
-        csv_handler = c950.controller.csv_handler.CsvHandler(
+        csv_handler = controller.csv_handler.CsvHandler(
             filename="../resources/data/test.csv",
             header=[
                 "package_id",
@@ -41,7 +39,7 @@ class TestCsvHandler(unittest.TestCase):
                     10,
                     "EOD",
                     "Some note",
-                    c950.model.delivery_status.DeliveryStatus.AT_HUB,
+                    model.delivery_status.DeliveryStatus.AT_HUB,
                 ],
                 [
                     2,
@@ -52,7 +50,7 @@ class TestCsvHandler(unittest.TestCase):
                     10,
                     "EOD",
                     "Some note",
-                    c950.model.delivery_status.DeliveryStatus.DELIVERED,
+                    model.delivery_status.DeliveryStatus.DELIVERED,
                 ],
             ]
         )
@@ -73,7 +71,7 @@ class TestCsvHandler(unittest.TestCase):
             )
 
     def test_read(self):
-        csv_handler = c950.controller.csv_handler.CsvHandler(
+        csv_handler = controller.csv_handler.CsvHandler(
             "../resources/data/test.csv",
             header=[
                 "package_id",
@@ -100,7 +98,7 @@ class TestCsvHandler(unittest.TestCase):
                     "10",
                     "EOD",
                     "Some note",
-                    c950.model.delivery_status.DeliveryStatus.AT_HUB,
+                    model.delivery_status.DeliveryStatus.AT_HUB,
                 ],
                 [
                     "2",
@@ -111,7 +109,7 @@ class TestCsvHandler(unittest.TestCase):
                     "10",
                     "EOD",
                     "Some note",
-                    c950.model.delivery_status.DeliveryStatus.DELIVERED.name,
+                    model.delivery_status.DeliveryStatus.DELIVERED.name,
                 ],
             ],
         )
