@@ -97,9 +97,7 @@ class HashTable:
         for i, (k, v) in enumerate(self.table[bucket]):
             # If the key already exists, replace the value
             if k == key:
-                # Replace the value
                 self.table[bucket][i] = (key, value)
-                # Exit the function
                 return
         # Otherwise, append the key-value pair to the bucket
         self.table[bucket].append((key, value))
@@ -122,7 +120,6 @@ class HashTable:
         for k, v in self.table[bucket]:
             # If the key exists, return the value
             if k == key:
-                # Return the value
                 return v
         # Otherwise, return None
         return None
@@ -140,10 +137,14 @@ class HashTable:
 
         bucket = self.hash(key)  # Index of the bucket containing the key-value pair
 
-        item_to_delete = self.__binary_search__(key)  # Find the index of the key in the bucket
+        item_to_delete = self.__binary_search__(
+            key
+        )  # Find the index of the key in the bucket
 
         if item_to_delete is not None:  # If the key is found in the bucket
-            self.table[bucket].pop(item_to_delete)  # Remove the key-value pair from the bucket
+            self.table[bucket].pop(
+                item_to_delete
+            )  # Remove the key-value pair from the bucket
 
     def __binary_search__(self, key):
         """
@@ -159,10 +160,14 @@ class HashTable:
 
         low = 0  # The low pointer in the search range. Initially, this is the first index.
 
-        high = len(self.table[bucket]) - 1  # The high pointer in the search range. Initially, this is the last index.
+        high = (
+            len(self.table[bucket]) - 1
+        )  # The high pointer in the search range. Initially, this is the last index.
 
         while low <= high:  # Iterate through the bucket to find the key
-            mid = (low + high) // 2  # Calculate the middle index between the previous search range
+            mid = (
+                low + high
+            ) // 2  # Calculate the middle index between the previous search range
 
             if self.table[bucket][mid] < key:
                 low = mid + 1  # Adjust the 'low' pointer
@@ -182,36 +187,9 @@ class HashTable:
         """
 
         table_size = len(self.table)
-        string = ''
+        string = ""
         for i in range(table_size):
             for k, v in self.table[i]:
-                string += str(k) + ':' + str(v) + '\n'
+                string += str(k) + ":" + str(v) + "\n"
 
         return string
-
-
-if __name__ == '__main__':
-    table = HashTable(96)
-
-    table.set(1, 'a')
-    table.set(13, 'b')
-    table.set(3, 'c')
-    table.set(18, 't')
-    table.set(12, 'tc')
-    table.set(35, 'tm')
-    table.set(9, 'bq')
-    table.set(7, 'pr')
-    table.set(2, 'db')
-    table.set(4, 'testr')
-    table.set(5, 'test')
-    table.set(6, 'ltest')
-
-    print(table.get(1))
-    print(table.get(12))
-    print(table.get(24))
-
-    table.remove(12)
-
-    print(table.get(2))
-
-    print(table)
