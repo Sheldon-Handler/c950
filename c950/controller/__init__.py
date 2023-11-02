@@ -10,4 +10,9 @@
 
 import csv_handler
 import package_dao
-import sqlite_handler
+import sqlite3
+
+connection = sqlite3.connect("../data/identifier.sqlite")
+connection.row_factory = sqlite3.Row
+connection.cursor().row_factory = sqlite3.Row
+cursor = connection.cursor()

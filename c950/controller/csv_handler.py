@@ -124,14 +124,3 @@ class CsvHandler:
             writer.writerow(self.header)
             # Write data to file
             writer.writerows(data)
-
-
-# Example usage:
-# csv_handler = CsvHandler("data.csv")
-# data = csv_handler.read()
-# for row in data:
-#     print(row)
-#
-# output_data = [["Name", "Age"], ["Alice", 30], ["Bob", 25]]
-# output_csv_handler = CsvHandler("output.csv")
-# output_csv_handler.write(output_data)

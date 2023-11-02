@@ -5,7 +5,15 @@ def create_database():
     conn = sqlite3.connect("../data/identifier.sqlite")
 
     conn.cursor().executescript(
-        """                            
+        """
+    CREATE TABLE IF NOT EXISTS address (
+        id INTEGER PRIMARY KEY,
+        address TEXT,
+        city TEXT,
+        state TEXT,
+        zip TEXT
+    );
+    
     CREATE TABLE IF NOT EXISTS truck (
         id INTEGER PRIMARY KEY,
         packages TEXT,

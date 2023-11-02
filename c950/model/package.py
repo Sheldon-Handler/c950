@@ -13,14 +13,14 @@
 import enum
 import dataclasses
 import time
-import c950
+
+from c950.model.truck import Truck
 
 
 class DeliveryStatus(enum.Enum):
     """Enum dataclass to represent the delivery status of a package.
 
     Attributes:
-        __order__ (str): The order of the enum constants.
         NOT_AVAILABLE: Enum constant for package not available
         AT_HUB: Enum constant for package at hub
         EN_ROUTE: Enum constant for package en route
@@ -66,5 +66,5 @@ class Package:
     delivery_deadline: time
     special_notes: str
     delivery_status: DeliveryStatus
-    truck: c950.model.truck.Truck
+    truck: Truck
     delivery_time: time

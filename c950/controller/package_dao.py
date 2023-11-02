@@ -12,10 +12,13 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import sqlite3
-import c950
+
+from c950.model.package import Package
+import sqlite3.dbapi2
+from __init__ import cursor
 
 
-def get_packages(self) -> list:
+def get_packages() -> list:
     """Returns all packages from the 'package' table in
     'identifier.sqlite'. Raises an exception if there is an error.
 
@@ -25,68 +28,130 @@ def get_packages(self) -> list:
     """
 
     try:
-        return self.cursor().execute("SELECT * FROM package").fetchall()
+        return cursor().execute("SELECT * FROM package").fetchall()
     except sqlite3.Error as e:
         raise e
 
 
-def add_package(self, package: c950.model.package.Package):
+def add_packages(list_of_packages: list):
+    """Inserts a list of packages into the package table in packages.db.
+
+    Args:
+        list_of_packages (list): A list of packages to insert.
+    """
+
+    # Check if all elements in list_of_packages are Package objects.
+    if not all(isinstance(package, Package) for package in list_of_packages):
+        raise TypeError("list_of_packages must only contain Package objects.")
+    else:
+        cursor.executemany(
+            "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            list_of_packages,
+        )
+
+
+def add_package(package: Package):
     """Adds a Package to the package table in packages.db.
 
     Args:
-        package (PackageDAO): The package to add.
+        package (Package): The package to add.
     """
-    self.cursor.execute(
-        "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        (
-            package.id,
-            package.address,
-            package.city,
-            package.state,
-            package.zip,
-            package.delivery_deadline,
-            package.weight_kilo,
-            package.special_notes,
-            package.delivery_status.value,
-            package.truck,
-            package.delivery_time,
-        ),
-    )
+
+    if not isinstance(package, Package):
+        raise TypeError("package must be a Package object.")
+    else:
+        cursor.execute(
+            "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (
+                package.id,
+                package.address,
+                package.city,
+                package.state,
+                package.zip,
+                package.delivery_deadline,
+                package.weight_kilo,
+                package.special_notes,
+                package.delivery_status.value,
+                package.truck,
+                package.delivery_time,
+            ),
+        )
+        cursor.commit()
 
 
-def remove_package(self, package_id: int):
+def remove_package(package: Package or int):
     """Removes a Package from the "package" table in the
     "identifier.sqlite" database.
 
     Args:
         self (PackageDAO): The PackageDAO object self-reference.
-        package_id (int): The package ID of the package to remove.
+        package (int or Package): The package to remove.
 
     Returns:
         None
     """
 
-    # Remove with given package ID from 'package' table in 'identifier.sqlite' database.
-    try:
-        self.cursor.execute("DELETE FROM package WHERE package_id = ?", str(package_id))
-        self.cursor.commit()
-    except sqlite3.Error as e:
-        raise e
+    if isinstance(package, Package):
+        cursor.execute("DELETE FROM package WHERE package_id = ?", package.id).commit()
+    elif isinstance(package, int):
+        cursor.execute("DELETE FROM package WHERE package_id = ?", package).commit()
+    else:
+        raise TypeError("package must be an int or Package object.")
 
 
-def update_package(self, package: c950.model.package.Package):
-    """Updates a Package in the packages table in packages.db.
+def remove_packages(packages: list):
+    """Removes a list of Packages from the "package" table in the
+    "identifier.sqlite" database.
+
     Args:
-        self (PackageDAO): The PackageDAO object self-reference.
+        packages (list): The list of packages to remove.
+
+    Returns:
+        None
+    """
+
+    # Check if all elements in packages are Package objects or int Package id's.
+    if not all(isinstance(package, Package or int) for package in packages):
+        raise TypeError(
+            "package must be a list of Package objects and/or int Package id's."
+        )
+
+    # Set all Package objects to their id's.
+    for i in range(len(packages)):
+        if isinstance(packages[i], Package):
+            packages[i] = packages[i].id
+
+    cursor.executemany("DELETE FROM package WHERE package_id = ?", packages).commit()
+
+
+def update_package(package: Package):
+    """Updates a Package in the package table.
+
+    Args:
         package (Package): The Package object to update.
 
     Returns:
         None
     """
+    if not isinstance(package, Package):
+        raise TypeError("package must be a Package object.")
 
     try:
-        self.cursor.execute(
-            "UPDATE package SET address = ?, city = ?, state = ?, zip = ?, delivery_deadline = ?, weight_kilo = ?, note = ?, status = ?, truck = ?, delivery_time = ? WHERE package_id = ?",
+        cursor.execute(
+            """
+            UPDATE package
+            SET address = ?,
+                city = ?,
+                state = ?,
+                zip = ?,
+                delivery_deadline = ?,
+                weight_kilo = ?,
+                special_notes = ?,
+                status = ?,
+                truck = ?,
+                delivery_time = ?
+            WHERE package_id = ?;
+            """,
             (
                 package.address,
                 package.city,
@@ -96,11 +161,11 @@ def update_package(self, package: c950.model.package.Package):
                 package.weight_kilo,
                 package.special_notes,
                 package.delivery_status,
-                package.delivery_truck,
+                package.truck.id,
                 package.delivery_time,
                 package.id,
             ),
         )
-        self.cursor.commit()
-    except Exception as e:
+        cursor.commit()
+    except sqlite3.Error as e:
         raise e
