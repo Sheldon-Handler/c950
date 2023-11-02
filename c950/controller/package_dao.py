@@ -12,130 +12,95 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import sqlite3
-import sqlite_handler
+import c950
 
 
-class PackageDAO:
-    """PackageDAO class to store Package class in 'package' table of
-    'identifier.sqlite' database.
+def get_packages(self) -> list:
+    """Returns all packages from the 'package' table in
+    'identifier.sqlite'. Raises an exception if there is an error.
 
-    Attributes:
-        packages (sqlite3.Connection): The connection to the "identifier.sqlite" database.
-        cursor (): The cursor for the "identifier.sqlite" database.
+    Returns:
+        list: A list of all packages from the 'package' table in
+            'identifier.sqlite'.
     """
 
-    def __init__(self):
-        """Initializes the Packages class."""
+    try:
+        return self.cursor().execute("SELECT * FROM package").fetchall()
+    except sqlite3.Error as e:
+        raise e
 
-        self.cursor = sqlite_handler.cursor
 
+def add_package(self, package: c950.model.package.Package):
+    """Adds a Package to the package table in packages.db.
+
+    Args:
+        package (PackageDAO): The package to add.
+    """
+    self.cursor.execute(
+        "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (
+            package.id,
+            package.address,
+            package.city,
+            package.state,
+            package.zip,
+            package.delivery_deadline,
+            package.weight_kilo,
+            package.special_notes,
+            package.delivery_status.value,
+            package.truck,
+            package.delivery_time,
+        ),
+    )
+
+
+def remove_package(self, package_id: int):
+    """Removes a Package from the "package" table in the
+    "identifier.sqlite" database.
+
+    Args:
+        self (PackageDAO): The PackageDAO object self-reference.
+        package_id (int): The package ID of the package to remove.
+
+    Returns:
+        None
+    """
+
+    # Remove with given package ID from 'package' table in 'identifier.sqlite' database.
+    try:
+        self.cursor.execute("DELETE FROM package WHERE package_id = ?", str(package_id))
+        self.cursor.commit()
+    except sqlite3.Error as e:
+        raise e
+
+
+def update_package(self, package: c950.model.package.Package):
+    """Updates a Package in the packages table in packages.db.
+    Args:
+        self (PackageDAO): The PackageDAO object self-reference.
+        package (Package): The Package object to update.
+
+    Returns:
+        None
+    """
+
+    try:
         self.cursor.execute(
-            "CREATE TABLE IF NOT EXISTS package (\n"
-            "                              package_id INT PRIMARY KEY,\n"
-            "                              address VARCHAR,\n"
-            "                              city VARCHAR,\n"
-            "                              state VARCHAR,\n"
-            "                              zip VARCHAR,\n"
-            "                              weight_KILO INT,\n"
-            "                              delivery_deadline VARCHAR,\n"
-            "                              special_notes VARCHAR,\n"
-            "                              status VARCHAR,\n"
-            "                              truck INT,\n"
-            "                              delivery_time VARCHAR\n"
-            "                              )"
+            "UPDATE package SET address = ?, city = ?, state = ?, zip = ?, delivery_deadline = ?, weight_kilo = ?, note = ?, status = ?, truck = ?, delivery_time = ? WHERE package_id = ?",
+            (
+                package.address,
+                package.city,
+                package.state,
+                package.zip,
+                package.delivery_deadline,
+                package.weight_kilo,
+                package.special_notes,
+                package.delivery_status,
+                package.delivery_truck,
+                package.delivery_time,
+                package.id,
+            ),
         )
         self.cursor.commit()
-
-    def get_packages(self) -> list:
-        """Returns all packages from the 'package' table in
-        'identifier.sqlite'. Raises an exception if there is an error.
-
-        Returns:
-            list: A list of all packages from the 'package' table in
-                'identifier.sqlite'.
-        """
-
-        try:
-            return self.cursor().execute("SELECT * FROM package").fetchall()
-        except sqlite3.Error as e:
-            raise e
-
-    def add_package(self, package: c950.model.package.Package):
-        """Adds a Package to the package table in packages.db.
-
-        Args:
-            package (PackageDAO): The package to add.
-        """
-
-        try:
-            self.cursor.execute(
-                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (
-                    package.id,
-                    package.address,
-                    package.city,
-                    package.state,
-                    package.zip,
-                    package.weight_kilo,
-                    package.delivery_deadline,
-                    package.special_notes,
-                    package.delivery_status,
-                    package.delivery_truck,
-                    package.delivery_time,
-                ),
-            )
-            self.cursor.commit()
-        except sqlite3.SQLITE_ERROR as e:
-            raise e
-
-    def remove_package(self, package_id: int):
-        """Removes a Package from the "package" table in the
-        "identifier.sqlite" database.
-
-        Args:
-            self (PackageDAO): The PackageDAO object self-reference.
-            package_id (int): The package ID of the package to remove.
-
-        Returns:
-            None
-        """
-
-        # Remove with given package ID from 'package' table in 'identifier.sqlite' database.
-        try:
-            self.cursor.execute(
-                "DELETE FROM package WHERE package_id = ?", str(package_id)
-            )
-            self.cursor.commit()
-        except sqlite3.Error as e:
-            raise e
-
-    def update_package(self, package: c950.model.package.Package):
-        """Updates a Package in the packages table in packages.db.
-        Args:
-            self (PackageDAO): The PackageDAO object self-reference.
-            package (Package): The Package object to update.
-
-        Returns:
-            None
-        """
-
-        try:
-            self.cursor.execute(
-                "UPDATE package SET address = ?, city = ?, state = ?, zip = ?, delivery_deadline = ?, weight_kilo = ?, note = ?, status = ?, truck = ?, delivery_time = ? WHERE package_id = ?",
-                (
-                    package.address,
-                    package.city,
-                    package.state,
-                    package.zip,
-                    package.delivery_deadline,
-                    package.weight_kilo,
-                    package.special_notes,
-                    package.delivery_status,
-                    package.delivery_truck,
-                    package.delivery_time,
-                    package.id,
-                ),
-            )
-            self.cursor.commit()
-        except Exception as e:
-            raise e
+    except Exception as e:
+        raise e

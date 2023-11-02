@@ -11,16 +11,35 @@ information."""
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# Import status package
-import truck_status
+import dataclasses
+import enum
 
 
-# Truck class
-class Truck:
-    """This class represents a truck object and its information.
+class TruckStatus(enum.Enum):
+    """Enum class to represent the status of a truck.
 
     Attributes:
-        truck_id (int): The ID of the truck.
+        AT_HUB: Enum constant for truck at hub
+        EN_ROUTE: Enum constant for truck en route
+        RETURNING: Enum constant for truck returning
+        FINISHED: Enum constant for truck finished
+
+    Returns:
+        TruckStatus: A TruckStatus Enum class instance.
+    """
+
+    AT_HUB = 0
+    EN_ROUTE = 1
+    RETURNING = 2
+    FINISHED = 3
+
+
+@dataclasses.dataclass
+class Truck:
+    """This dataclass represents a truck instance with its information.
+
+    Attributes:
+        id (int): The ID of the truck.
         truck_status (TruckStatus): The status of the truck.
         packages_assigned (list): The list of packages assigned for the truck to deliver.
         packages_loaded (list): The list of packages currently loaded onto the truck.
@@ -28,56 +47,10 @@ class Truck:
 
     Returns:
         Truck: A Truck class instance.
-
-    Examples:
-        >>> new_truck = Truck(
-        ...     truck_id=1,
-        ...     truck_status=truck_status.TruckStatus.AT_HUB,
-        ...     packages_assigned=[],
-        ...     packages_loaded=[],
-        ...     packages_delivered=[],
-        ... )
-        >>> new_truck.truck_status
-        TruckStatus.AT_HUB
-        >>> new_truck.truck_status = truck_status.TruckStatus.EN_ROUTE
-        >>> new_truck.truck_status
-        TruckStatus.EN_ROUTE
     """
 
-    # Constructor
-    def __init__(
-            self,
-            truck_id: int,
-            truck_status: truck_status.TruckStatus,
-            packages_assigned: list,
-            packages_loaded: list,
-            packages_delivered: list,
-    ):
-        """Initialize the truck instance and sets the truck attributes with the given values.
-
-        Args:
-            truck_id (int): The ID of the truck.
-            truck_status (TruckStatus): The status of the truck.
-            packages_assigned (list): The list of packages assigned for the truck to deliver.
-            packages_loaded (list): The list of packages currently loaded onto the truck.
-            packages_delivered (list): The list of packages delivered by the truck.
-
-        Returns:
-            Truck: A Truck class instance.
-        """
-
-        self.truck_id = truck_id
-        self.truck_status = truck_status
-        self.packages_assigned = packages_assigned
-        self.packages_loaded = packages_loaded
-        self.packages_delivered = packages_delivered
-
-    def to_list(self):
-        """
-        Method to return a list of the truck attributes.
-
-        Returns:
-            list: A list of the truck attributes.
-        """
-
-        return [self.truck_id, self.truck_status, self.packages_assigned, self.packages_loaded, self.packages_delivered]
+    id: int
+    truck_status: TruckStatus
+    packages_assigned: list
+    packages_loaded: list
+    packages_delivered: list
