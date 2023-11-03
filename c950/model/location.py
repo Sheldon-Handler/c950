@@ -2,7 +2,7 @@ import dataclasses
 
 
 @dataclasses.dataclass
-class Address:
+class Location:
     """This dataclass represents an address instance with its information.
 
     Attributes:

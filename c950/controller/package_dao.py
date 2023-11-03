@@ -18,6 +18,27 @@ import sqlite3.dbapi2
 from __init__ import cursor
 
 
+def get_package(package_id: int) -> Package:
+    """Returns a Package from the 'package' table in 'identifier.sqlite'.
+    Raises an exception if there is an error.
+
+    Args:
+        package_id (int): The package_id of the Package to return.
+
+    Returns:
+        Package: The Package with the specified package_id.
+    """
+
+    try:
+        return (
+            cursor()
+            .execute("SELECT * FROM package WHERE package_id = ?", package_id)
+            .fetchone()
+        )
+    except sqlite3.Error as e:
+        raise e
+
+
 def get_packages() -> list:
     """Returns all packages from the 'package' table in
     'identifier.sqlite'. Raises an exception if there is an error.
@@ -33,6 +54,38 @@ def get_packages() -> list:
         raise e
 
 
+def add_package(package: Package):
+    """Adds a Package to the package table in packages.db.
+
+    Args:
+        package (Package): The package to add.
+    """
+
+    if not isinstance(package, Package):
+        raise TypeError("package must be a Package object.")
+    else:
+        try:
+            cursor.execute(
+                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    package.id,
+                    package.address,
+                    package.city,
+                    package.state,
+                    package.zip,
+                    package.delivery_deadline,
+                    package.weight_kilo,
+                    package.special_notes,
+                    package.delivery_status.value,
+                    package.truck,
+                    package.delivery_time,
+                ),
+            )
+            cursor.commit()
+        except sqlite3.Error as e:
+            raise e
+
+
 def add_packages(list_of_packages: list):
     """Inserts a list of packages into the package table in packages.db.
 
@@ -44,39 +97,14 @@ def add_packages(list_of_packages: list):
     if not all(isinstance(package, Package) for package in list_of_packages):
         raise TypeError("list_of_packages must only contain Package objects.")
     else:
-        cursor.executemany(
-            "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            list_of_packages,
-        )
-
-
-def add_package(package: Package):
-    """Adds a Package to the package table in packages.db.
-
-    Args:
-        package (Package): The package to add.
-    """
-
-    if not isinstance(package, Package):
-        raise TypeError("package must be a Package object.")
-    else:
-        cursor.execute(
-            "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            (
-                package.id,
-                package.address,
-                package.city,
-                package.state,
-                package.zip,
-                package.delivery_deadline,
-                package.weight_kilo,
-                package.special_notes,
-                package.delivery_status.value,
-                package.truck,
-                package.delivery_time,
-            ),
-        )
-        cursor.commit()
+        try:
+            cursor.executemany(
+                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                list_of_packages,
+            )
+            cursor.commit()
+        except sqlite3.Error as e:
+            raise e
 
 
 def remove_package(package: Package or int):
@@ -84,7 +112,6 @@ def remove_package(package: Package or int):
     "identifier.sqlite" database.
 
     Args:
-        self (PackageDAO): The PackageDAO object self-reference.
         package (int or Package): The package to remove.
 
     Returns:
