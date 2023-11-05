@@ -40,6 +40,20 @@ def get_location_by_zip(zip: str) -> list:
     return _to_list_of_locations(location_list)
 
 
+def find_matching_locations(location: Location) -> Location:
+    """
+    Finds locations that match the given location.
+
+    Returns:
+        Location: A Location object with the matching location details.
+    """
+    for item in get_locations():
+        if item.address == location.address and item.city == location.city and item.state == location.state and item.zip == location.zip:
+            return item.id
+
+    return None
+
+
 def _to_list_of_locations(location_list: list) -> list:
     """
     Takes a location list where each location attribute is a sublist
@@ -49,7 +63,7 @@ def _to_list_of_locations(location_list: list) -> list:
         location_list (list): List of location details.
 
     Returns:
-
+        list: List of Location objects.
     """
     locations = []
 

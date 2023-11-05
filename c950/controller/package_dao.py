@@ -196,3 +196,16 @@ def update_package(package: Package):
         cursor.commit()
     except sqlite3.Error as e:
         raise e
+
+
+def location_handling():
+    try:
+        cursor.execute(
+            """
+            SELECT DISTINCT address, city, state, zip
+            FROM package
+            """
+        ).fetchall()
+
+    except sqlite3.Error as e:
+        raise e

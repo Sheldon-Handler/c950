@@ -1,14 +1,20 @@
-[tool.poetry]
+[project]
 name = "c950"
-version = "0.1.0"
-description = ""
-authors = ["Sheldon Handler <57599804+Sheldon-Handler@users.noreply.github.com>"]
+version = "1.0.0"
+authors = [
+    { name = "Sheldon Handler", email = "57599804+Sheldon-Handler@users.noreply.github.com" },
+]
+description = "Data Structures and Algorithms II"
 readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
 
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[project.urls]
+"Homepage" = "https://github.com/Sheldon-Handler/c950"
+"Bug Tracker" = "https://github.com/Sheldon-Handler/c950/issues"
+"Workflow" = "https://github.com/Sheldon-Handler/c950/actions"
