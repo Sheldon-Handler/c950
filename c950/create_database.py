@@ -10,7 +10,7 @@ def create_database():
         id INTEGER PRIMARY KEY,
         packages TEXT,
         miles TEXT,
-        time TEXT
+        time TEXT,
         truck_status INTEGER CHECK(truck_status >= 0 AND truck_status <= 3)
     );
     
@@ -23,9 +23,9 @@ def create_database():
         deadline TIME,
         weight TEXT,
         status TEXT,
-        notes TEXT
+        notes TEXT,
         delivery_status INTEGER CHECK(delivery_status >= 0 AND delivery_status <= 3),
-        truck INTEGER FOREIGN KEY (truck) REFERENCES truck (id)
+        truck INTEGER REFERENCES truck (id),
         delivery_time TIME
     );
     """

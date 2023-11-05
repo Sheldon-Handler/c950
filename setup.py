@@ -1,6 +1,8 @@
-import distutils.core
 import os
+import distutils.core
 import distutils.extension
+
+distutils.extension.Extension(pk)
 
 
 def find_packages(directory: str) -> list:

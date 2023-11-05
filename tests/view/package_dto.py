@@ -1,5 +1,3 @@
-"""This module contains the main function for the program."""
-
 #  MIT License
 #
 #  Copyright (c) 2023 Sheldon Handler
@@ -9,7 +7,15 @@
 #  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
 
-import create_database
+import unittest
 
-create_database.create_database()
+
+class MyTestCase(unittest.TestCase):
+    def test_something(self):
+        self.assertEqual(True, False)  # add assertion here
+
+
+if __name__ == '__main__':
+    unittest.main()
