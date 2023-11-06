@@ -3,19 +3,19 @@
 
 #  MIT License
 #
-#  Copyright (c) <year> <copyright holders>
+#  Copyright (c) 2023 Sheldon Handler
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
 #  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
 
 import sqlite3
 
 from c950.model.package import Package
-import sqlite3.dbapi2
-from __init__ import cursor
+from __init__ import connection, cursor
 
 
 def get_package(package_id: int) -> Package:
@@ -28,13 +28,15 @@ def get_package(package_id: int) -> Package:
     Returns:
         Package: The Package with the specified package_id.
     """
+    cursor.row_factory = package_factory
+    connection.register_adapter(Package, package_factory)
 
     try:
-        return (
-            cursor()
-            .execute("SELECT * FROM package WHERE package_id = ?", package_id)
-            .fetchone()
-        )
+        package = connection.execute(
+            "SELECT * FROM package WHERE package_id = ?", package_id
+        ).fetchone()
+        connection.row_factory.register_adapter(Package, package_factory)
+
     except sqlite3.Error as e:
         raise e
 
@@ -49,9 +51,16 @@ def get_packages() -> list:
     """
 
     try:
-        return cursor().execute("SELECT * FROM package").fetchall()
+        rows = cursor.execute("SELECT * FROM package").fetchall()
     except sqlite3.Error as e:
         raise e
+
+    packages = []
+
+    for row in rows:
+        packages.append(Package(**row))
+
+    return packages
 
 
 def add_package(package: Package):
@@ -66,20 +75,8 @@ def add_package(package: Package):
     else:
         try:
             cursor.execute(
-                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (
-                    package.id,
-                    package.address,
-                    package.city,
-                    package.state,
-                    package.zip,
-                    package.delivery_deadline,
-                    package.weight_kilo,
-                    package.special_notes,
-                    package.delivery_status.value,
-                    package.truck,
-                    package.delivery_time,
-                ),
+                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (package_adapter(package)),
             )
             cursor.commit()
         except sqlite3.Error as e:
@@ -99,7 +96,7 @@ def add_packages(list_of_packages: list):
     else:
         try:
             cursor.executemany(
-                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                 list_of_packages,
             )
             cursor.commit()
@@ -165,30 +162,24 @@ def update_package(package: Package):
 
     try:
         cursor.execute(
-            """
+            __sql="""
             UPDATE package
-            SET address = ?,
-                city = ?,
-                state = ?,
-                zip = ?,
+            SET location = ?,
                 delivery_deadline = ?,
                 weight_kilo = ?,
                 special_notes = ?,
-                status = ?,
+                delivery_status = ?,
                 truck = ?,
                 delivery_time = ?
             WHERE package_id = ?;
             """,
-            (
-                package.address,
-                package.city,
-                package.state,
-                package.zip,
+            parameters=(
+                package.location.id,
                 package.delivery_deadline,
                 package.weight_kilo,
                 package.special_notes,
-                package.delivery_status,
-                package.truck.id,
+                package.delivery_status.value,
+                package.truck,
                 package.delivery_time,
                 package.id,
             ),
@@ -198,14 +189,26 @@ def update_package(package: Package):
         raise e
 
 
-def location_handling():
-    try:
-        cursor.execute(
-            """
-            SELECT DISTINCT address, city, state, zip
-            FROM package
-            """
-        ).fetchall()
+def package_factory(cursor, row):
+    package = Package(**row)
+    return package
 
-    except sqlite3.Error as e:
-        raise e
+
+def package_adapter(package: Package):
+    return (
+        package.id,
+        package.address,
+        package.city,
+        package.state,
+        package.zip,
+        package.delivery_deadline,
+        package.weight_kilo,
+        package.special_notes,
+        package.delivery_status,
+        package.truck,
+        package.delivery_time,
+    )
+
+
+def package_converter(package: list):
+    return Package(*package)
