@@ -13,9 +13,8 @@
 #
 
 import sqlite3
-
 from c950.model.package import Package
-from __init__ import connection, cursor
+from __init__ import cursor
 
 
 def get_package(package_id: int) -> Package:
@@ -28,15 +27,14 @@ def get_package(package_id: int) -> Package:
     Returns:
         Package: The Package with the specified package_id.
     """
+
     cursor.row_factory = package_factory
-    connection.register_adapter(Package, package_factory)
 
     try:
-        package = connection.execute(
-            "SELECT * FROM package WHERE package_id = ?", package_id
+        package = cursor.execute(
+            "SELECT * FROM package WHERE package_id = ?", str(package_id)
         ).fetchone()
-        connection.row_factory.register_adapter(Package, package_factory)
-
+        return package
     except sqlite3.Error as e:
         raise e
 
@@ -49,6 +47,9 @@ def get_packages() -> list:
         list: A list of all packages from the 'package' table in
             'identifier.sqlite'.
     """
+
+    cursor.row_factory = package_factory
+    cursor.register_adapter(Package, package_adapter)
 
     try:
         rows = cursor.execute("SELECT * FROM package").fetchall()
@@ -164,7 +165,10 @@ def update_package(package: Package):
         cursor.execute(
             __sql="""
             UPDATE package
-            SET location = ?,
+            SET address = ?,
+                city = ?,
+                state = ?,
+                zip = ?,
                 delivery_deadline = ?,
                 weight_kilo = ?,
                 special_notes = ?,
@@ -174,11 +178,14 @@ def update_package(package: Package):
             WHERE package_id = ?;
             """,
             parameters=(
-                package.location.id,
+                package.address,
+                package.city,
+                package.state,
+                package.zip,
                 package.delivery_deadline,
                 package.weight_kilo,
                 package.special_notes,
-                package.delivery_status.value,
+                package.delivery_status,
                 package.truck,
                 package.delivery_time,
                 package.id,
@@ -187,6 +194,15 @@ def update_package(package: Package):
         cursor.commit()
     except sqlite3.Error as e:
         raise e
+
+
+def package_db_handler():
+    sqlite_instance = sqlite3
+    connection = sqlite_instance.connect(sqlitedb)
+    sqlite_instance.register_adapter(Package, package_adapter)
+    sqlite_instance.register_converter("Package", package_converter)
+    cursor = connection.cursor()
+    cursor.row_factory = package_factory
 
 
 def package_factory(cursor, row):
@@ -212,3 +228,49 @@ def package_adapter(package: Package):
 
 def package_converter(package: list):
     return Package(*package)
+
+
+def package_row_factory(cursor, row):
+    import sqlite3
+
+    # Define a custom row factory
+    def package_row_factory(cursor, row):
+        result = {}
+
+        result["id"] = row[0]
+        result["address"] = row[1]
+        result["city"] = row[2]
+        result["state"] = row[3]
+        result["zip"] = row[4]
+        result["delivery_deadline"] = row[5]
+        result["weight_kilo"] = row[6]
+        result["special_notes"] = row[7]
+        result["delivery_status"] = row[8]
+        result["truck"] = row[9]
+        result["delivery_time"] = row[10]
+
+        # Fetch the related PackageStatus data
+        cursor.execute(
+            "SELECT id, status_text FROM PackageStatus WHERE id = ?", (row[4],)
+        )
+        status_data = cursor.fetchone()
+        if status_data:
+            result["delivery_status"] = PackageStatus(*status_data)
+        else:
+            result["delivery_status"] = None
+
+        return DeliveryPackage(**result)
+
+    # Create a SQLite connection
+    conn = sqlite3.connect("your_database.db")
+
+    # Set the custom row factory for the connection
+    conn.row_factory = custom_delivery_package_row_factory
+
+    # Create a cursor and execute a query
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM delivery_package")
+
+    # Fetch and print a result
+    result = cursor.fetchone()
+    print(result)

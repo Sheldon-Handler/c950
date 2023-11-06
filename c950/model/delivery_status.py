@@ -9,28 +9,25 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-import dataclasses
+from enum import Enum
+from dataclasses import dataclass
 
 
-@dataclasses.dataclass
-class Location:
-    """This dataclass represents an address instance with its information.
+@dataclass(frozen=True)
+class DeliveryStatus(Enum):
+    """Enum dataclass to represent the delivery status of a package.
 
     Attributes:
-        id (int): The id of the location.
-        name (str): The name of the location.
-        address (str): The address.
-        city (str): The city.
-        state (str): The state.
-        zip (str): The zip code.
+        NOT_AVAILABLE: Enum constant for package not available
+        AT_HUB: Enum constant for package at hub
+        EN_ROUTE: Enum constant for package en route
+        DELIVERED: Enum constant for package delivered
 
     Returns:
-        Location: A Location class instance.
+        DeliveryStatus: A DeliveryStatus Enum class instance.
     """
 
-    id: int
-    name: str
-    address: str
-    city: str
-    state: str
-    zip: str
+    NOT_AVAILABLE = 0
+    AT_HUB = 1
+    EN_ROUTE = 2
+    DELIVERED = 3

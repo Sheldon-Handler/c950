@@ -9,11 +9,12 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import unittest
+import c950
 
 
 class TestCsvHandler(unittest.TestCase):
     def test_write(self):
-        csv_handler = controller.csv_handler.CsvHandler(
+        csv_handler = c950.controller.csv_handler.CsvHandler(
             filename="../resources/data/test.csv",
             header=[
                 "package_id",
@@ -39,7 +40,7 @@ class TestCsvHandler(unittest.TestCase):
                     10,
                     "EOD",
                     "Some note",
-                    model.delivery_status.DeliveryStatus.AT_HUB,
+                    c950.model.delivery_status.DeliveryStatus.AT_HUB,
                 ],
                 [
                     2,
@@ -50,7 +51,7 @@ class TestCsvHandler(unittest.TestCase):
                     10,
                     "EOD",
                     "Some note",
-                    model.delivery_status.DeliveryStatus.DELIVERED,
+                    c950.model.delivery_status.DeliveryStatus.DELIVERED,
                 ],
             ]
         )
@@ -71,7 +72,7 @@ class TestCsvHandler(unittest.TestCase):
             )
 
     def test_read(self):
-        csv_handler = controller.csv_handler.CsvHandler(
+        csv_handler = c950.controller.csv_handler.CsvHandler(
             "../resources/data/test.csv",
             header=[
                 "package_id",
@@ -98,7 +99,7 @@ class TestCsvHandler(unittest.TestCase):
                     "10",
                     "EOD",
                     "Some note",
-                    model.delivery_status.DeliveryStatus.AT_HUB,
+                    c950.model.delivery_status.DeliveryStatus.AT_HUB,
                 ],
                 [
                     "2",
@@ -109,7 +110,7 @@ class TestCsvHandler(unittest.TestCase):
                     "10",
                     "EOD",
                     "Some note",
-                    model.delivery_status.DeliveryStatus.DELIVERED.name,
+                    c950.model.delivery_status.DeliveryStatus.DELIVERED.name,
                 ],
             ],
         )

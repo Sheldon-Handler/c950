@@ -9,28 +9,12 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-import dataclasses
+import location_dao
 
 
-@dataclasses.dataclass
-class Location:
-    """This dataclass represents an address instance with its information.
+def filter_locations_by_params(location, search_params):
+    all_locations = location_dao.get_locations()
 
-    Attributes:
-        id (int): The id of the location.
-        name (str): The name of the location.
-        address (str): The address.
-        city (str): The city.
-        state (str): The state.
-        zip (str): The zip code.
-
-    Returns:
-        Location: A Location class instance.
-    """
-
-    id: int
-    name: str
-    address: str
-    city: str
-    state: str
-    zip: str
+    return all(
+        getattr(location, key, None) == value for key, value in search_params.items()
+    )
