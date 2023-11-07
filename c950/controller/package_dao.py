@@ -13,8 +13,11 @@
 #
 
 import sqlite3
+
 from c950.model.package import Package
+from c950.model.delivery_status import DeliveryStatus
 from __init__ import cursor
+import location_dao
 
 
 def get_package(package_id: int) -> Package:
@@ -77,7 +80,7 @@ def add_package(package: Package):
         try:
             cursor.execute(
                 "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?)",
-                (package_adapter(package)),
+                package.__dict__.values(),
             )
             cursor.commit()
         except sqlite3.Error as e:
@@ -210,38 +213,13 @@ def package_factory(cursor, row):
     return package
 
 
-def package_adapter(package: Package):
-    return (
-        package.id,
-        package.address,
-        package.city,
-        package.state,
-        package.zip,
-        package.delivery_deadline,
-        package.weight_kilo,
-        package.special_notes,
-        package.delivery_status,
-        package.truck,
-        package.delivery_time,
-    )
-
-
-def package_converter(package: list):
-    return Package(*package)
-
-
 def package_row_factory(cursor, row):
-    import sqlite3
-
     # Define a custom row factory
     def package_row_factory(cursor, row):
         result = {}
 
         result["id"] = row[0]
-        result["address"] = row[1]
-        result["city"] = row[2]
-        result["state"] = row[3]
-        result["zip"] = row[4]
+        result["location"] = row[1]
         result["delivery_deadline"] = row[5]
         result["weight_kilo"] = row[6]
         result["special_notes"] = row[7]
@@ -249,28 +227,4 @@ def package_row_factory(cursor, row):
         result["truck"] = row[9]
         result["delivery_time"] = row[10]
 
-        # Fetch the related PackageStatus data
-        cursor.execute(
-            "SELECT id, status_text FROM PackageStatus WHERE id = ?", (row[4],)
-        )
-        status_data = cursor.fetchone()
-        if status_data:
-            result["delivery_status"] = PackageStatus(*status_data)
-        else:
-            result["delivery_status"] = None
-
-        return DeliveryPackage(**result)
-
-    # Create a SQLite connection
-    conn = sqlite3.connect("your_database.db")
-
-    # Set the custom row factory for the connection
-    conn.row_factory = custom_delivery_package_row_factory
-
-    # Create a cursor and execute a query
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM delivery_package")
-
-    # Fetch and print a result
-    result = cursor.fetchone()
-    print(result)
+        result["location"] = DeliveryStatus.get_delivery_status(row[1])

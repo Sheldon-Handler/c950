@@ -10,10 +10,8 @@
 #
 
 from enum import Enum
-from dataclasses import dataclass
 
 
-@dataclass(frozen=True)
 class TruckStatus(Enum):
     """Enum class to represent the status of a truck.
 
@@ -31,3 +29,25 @@ class TruckStatus(Enum):
     EN_ROUTE = 1
     RETURNING = 2
     FINISHED = 3
+
+    @staticmethod
+    def get_truck_status(id: int) -> Enum:
+        """Returns the TruckStatus Enum constant from the id.
+
+        Args:
+            id (int): The id of the TruckStatus Enum constant.
+
+        Returns:
+            Enum: The TruckStatus Enum constant with the specified id.
+        """
+
+        if id == 0:
+            return TruckStatus.AT_HUB
+        elif id == 1:
+            return TruckStatus.EN_ROUTE
+        elif id == 2:
+            return TruckStatus.RETURNING
+        elif id == 3:
+            return TruckStatus.FINISHED
+        else:
+            raise ValueError("Invalid id for TruckStatus")

@@ -11,9 +11,38 @@
 
 from c950.model.location import Location
 from __init__ import cursor
+import sqlite3
 
 
-def get_locations() -> list:
+def set(location: Location) -> None:
+    """
+    This function sets a location in the database.
+
+    Args:
+        location (Location): A Location object.
+    """
+
+    try:
+        cursor.execute(
+            """
+            INSERT INTO location
+            VALUES (?, ?, ?, ?, ?, ?)
+            """,
+            (
+                location.id,
+                location.name,
+                location.address,
+                location.city,
+                location.state,
+                location.zip,
+            ),
+        )
+        cursor.commit()
+    except sqlite3.Error as e:
+        raise e
+
+
+def get_all() -> list:
     cursor.row_factory = location_row_factory
 
     query_result = cursor.execute(
@@ -26,76 +55,37 @@ def get_locations() -> list:
     return query_result
 
 
-def get_location(id: int) -> Location:
-    cursor.row_factory = location_row_factory
-
-    location = cursor.execute(
-        """
-        SELECT *
-        FROM location
-        WHERE id = ?
-        """,
-        id,
-    ).fetchall()
-
-    return location
-
-
-def filter_locations(
+def search_location_matches(
     id: int = None,
     name: str = None,
     address: str = None,
     city: str = None,
     state: str = None,
     zip: str = None,
-):
-    cursor.row_factory = location_row_factory
+) -> list:
+    """
+    Searches for locations that match the given parameters.
 
-    query = "SELECT * FROM location WHERE "
-    conditions = []
-    values = []
+    Args:
+        id (int): The location id.
+        name (str): The location name.
+        address (str): The location address.
+        city (str): The location city.
+        state (str): The location state.
+        zip (str): The location zip code.
 
-    attributes = locals()
-
-    previous_condition_appended = False
-
-    for key, value in attributes.keys(), attributes.values():
-        if value is not None:
-            if previous_condition_appended is True:
-                query += " AND "
-            query += key + " = ?"
-
-            conditions.append(key)
-            values.append(value)
-            previous_condition_appended = True
-
-    result = cursor.execute(query, values).fetchall()
-
-    return result
-
-
-def filter_locations_by_params(location, search_params):
-    return all(
-        getattr(location, key, None) == value for key, value in search_params.items()
-    )
-
-
-def search_locations(search_params):
-    locations = get_locations()
-
-    for locations in locations:
-        if filter_locations_by_params(locations, search_params):
-            return locations
-
-
-def search_location_matches(id, name, address, city, state, zip):
-    list_of_locations = get_locations()
+    Returns:
+        list: A list of locations that match the given parameters.
+    """
+    list_of_locations = get_all()
 
     matching_locations = []
 
     for location in list_of_locations:
         if match_location(location, id, name, address, city, state, zip) is True:
             matching_locations.append(location)
+
+    return matching_locations
 
 
 def match_location(
@@ -107,6 +97,21 @@ def match_location(
     state: str = None,
     zip: str = None,
 ) -> bool:
+    """Checks if a location matches the given parameters. If a parameter is None, than anything will match it.
+
+    Args:
+        location (Location): A location object.
+        id (int): The location id.
+        name (str): The location name.
+        address (str): The location address.
+        city (str): The location city.
+        state (str): The location state.
+        zip (str): The location zip.
+
+    Returns:
+        bool: True if the location matches the parameters, else False.
+    """
+
     if location.__class__ is not Location:
         raise ValueError("Please provide a location.")
     elif (
@@ -120,66 +125,6 @@ def match_location(
         return True
     else:
         return False
-
-
-def find_matching_locations(locations, search_params):
-    filtered_locations = filter(
-        lambda x: filter_locations_by_params(x, search_params), locations
-    )
-    return list(filtered_locations)
-
-
-def find_matching_address_and_zip(location: Location) -> Location:
-    for item in get_locations():
-        if item.address == location.address and item.zip == location.zip:
-            return item.id
-
-
-def _to_list_of_locations(location_list: list) -> list:
-    """
-    Takes a location list where each location attribute is a sublist
-    and returns a list of Location objects.
-
-    Args:
-        location_list (list): List of location details.
-
-    Returns:
-        list: List of Location objects.
-    """
-    locations = []
-
-    for l in location_list:
-        locations.append(location_converter(l))
-
-    return locations
-
-
-def location_adapter(location: Location) -> tuple:
-    """
-    Takes a Location object and returns a tuple of the location details.
-
-    Args:
-        location (Location): A Location object.
-
-    Returns:
-        tuple: A tuple of the location details.
-    """
-
-    return (location.address, location.city, location.state, location.zip)
-
-
-def location_converter(location: list) -> Location:
-    """
-    Takes a Location list and returns it as a Location object.
-
-    Args:
-        location (Location): A Location as a list.
-
-    Returns:
-        Location: Location as a Location object
-    """
-
-    return Location(*location)
 
 
 def location_row_factory(cursor, row):

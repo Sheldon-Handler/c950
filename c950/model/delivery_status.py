@@ -10,12 +10,10 @@
 #
 
 from enum import Enum
-from dataclasses import dataclass
 
 
-@dataclass(frozen=True)
 class DeliveryStatus(Enum):
-    """Enum dataclass to represent the delivery status of a package.
+    """Enum of frozen dataclass to represent the delivery status of a package.
 
     Attributes:
         NOT_AVAILABLE: Enum constant for package not available
@@ -31,3 +29,26 @@ class DeliveryStatus(Enum):
     AT_HUB = 1
     EN_ROUTE = 2
     DELIVERED = 3
+
+    @staticmethod
+    def get_delivery_status(id: int) -> Enum:
+        """Returns a DeliveryStatus Enum constant from an id.
+        Raises a ValueError if the id is invalid.
+
+        Args:
+            id (int): The id of the DeliveryStatus Enum constant to return.
+
+        Returns:
+            Enum: The DeliveryStatus Enum constant with the specified id.
+        """
+
+        if id == 0:
+            return DeliveryStatus.NOT_AVAILABLE
+        elif id == 1:
+            return DeliveryStatus.AT_HUB
+        elif id == 2:
+            return DeliveryStatus.EN_ROUTE
+        elif id == 3:
+            return DeliveryStatus.DELIVERED
+        else:
+            raise ValueError("Invalid id for DeliveryStatus")
