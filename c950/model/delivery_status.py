@@ -8,47 +8,21 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-
+import dataclasses
 from enum import Enum
 
 
-class DeliveryStatus(Enum):
-    """Enum of frozen dataclass to represent the delivery status of a package.
+@dataclasses.dataclass
+class DeliveryStatus:
+    """Dataclass to represent the delivery status of a package.
 
     Attributes:
-        NOT_AVAILABLE: Enum constant for package not available
-        AT_HUB: Enum constant for package at hub
-        EN_ROUTE: Enum constant for package en route
-        DELIVERED: Enum constant for package delivered
+        id (int): The id of the delivery status.
+        name (str): The name of the delivery status.
 
     Returns:
-        DeliveryStatus: A DeliveryStatus Enum class instance.
+        DeliveryStatus: A DeliveryStatus class instance.
     """
 
-    NOT_AVAILABLE = 0
-    AT_HUB = 1
-    EN_ROUTE = 2
-    DELIVERED = 3
-
-    @staticmethod
-    def get_delivery_status(id: int) -> Enum:
-        """Returns a DeliveryStatus Enum constant from an id.
-        Raises a ValueError if the id is invalid.
-
-        Args:
-            id (int): The id of the DeliveryStatus Enum constant to return.
-
-        Returns:
-            Enum: The DeliveryStatus Enum constant with the specified id.
-        """
-
-        if id == 0:
-            return DeliveryStatus.NOT_AVAILABLE
-        elif id == 1:
-            return DeliveryStatus.AT_HUB
-        elif id == 2:
-            return DeliveryStatus.EN_ROUTE
-        elif id == 3:
-            return DeliveryStatus.DELIVERED
-        else:
-            raise ValueError("Invalid id for DeliveryStatus")
+    id: int
+    status: str

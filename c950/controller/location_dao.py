@@ -14,7 +14,7 @@ from __init__ import cursor
 import sqlite3
 
 
-def set(location: Location) -> None:
+def insert(location: Location) -> None:
     """
     This function sets a location in the database.
 
@@ -25,11 +25,10 @@ def set(location: Location) -> None:
     try:
         cursor.execute(
             """
-            INSERT INTO location
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO location (name, address, city, state, zip)
+            VALUES (?, ?, ?, ?, ?)
             """,
             (
-                location.id,
                 location.name,
                 location.address,
                 location.city,
@@ -53,6 +52,23 @@ def get_all() -> list:
     ).fetchall()
 
     return query_result
+
+
+def get(id: int) -> Location:
+    cursor.row_factory = location_row_factory
+
+    try:
+        query_result = cursor.execute(
+            """
+        SELECT *
+        FROM location
+        WHERE id = ?
+        """,
+            id,
+        ).fetchone()
+        return query_result
+    except sqlite3.Error as e:
+        raise e
 
 
 def search_location_matches(

@@ -12,11 +12,12 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import dataclasses
+import sqlite3
 import time
 
 from truck import Truck
-from delivery_status import DeliveryStatus
 from location import Location
+from delivery_status import DeliveryStatus
 
 
 @dataclasses.dataclass
@@ -26,8 +27,8 @@ class Package:
     Attributes:
         id (int): The package id.
         location (Location): The package location.
-        weight_kilo (int): The package weight in kilos.
         delivery_deadline (time): The package delivery deadline.
+        weight_kilo (int): The package weight in kilos.
         special_notes (str): The package special notes.
         delivery_status (DeliveryStatus): The package delivery status.
         truck (truck): The package delivery truck.
@@ -39,8 +40,8 @@ class Package:
 
     id: int
     location: Location
-    weight_kilo: int
     delivery_deadline: time
+    weight_kilo: int
     special_notes: str
     delivery_status: DeliveryStatus
     truck: Truck

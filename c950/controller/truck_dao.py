@@ -8,7 +8,9 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+import sqlite3
 
+from c950.model.truck_status import TruckStatus
 from c950.model.truck import Truck
 from __init__ import cursor
 
@@ -34,19 +36,23 @@ def get_all() -> list:
 
 
 def get(id: int) -> Truck:
-    query_result = cursor.execute(
-        """
-        SELECT *
-        FROM truck
-        WHERE id = ?
-        """,
-        (id),
-    ).fetchone()
+    cursor.row_factory = truck_row_factory
 
-    return Truck(**query_result)
+    try:
+        query_result = cursor.execute(
+            """
+            SELECT *
+            FROM truck
+            WHERE id = ?
+            """,
+            id,
+        ).fetchone()
+        return query_result
+    except sqlite3.Error as e:
+        raise e
 
 
-def set(truck: Truck) -> None:
+def update(truck: Truck) -> None:
     """
     This function sets a truck in the database.
 
@@ -57,18 +63,12 @@ def set(truck: Truck) -> None:
     cursor.execute(
         """
         UPDATE truck
-        SET truck_status = ?,
-        locations_assigned = ?,
-        packages_assigned = ?,
-        packages_loaded = ?,
-        packages_delivered = ?
+        SET truck_status = ?
+        WHERE id = ?
         """,
         (
             truck.truck_status,
-            truck.locations_assigned,
-            truck.packages_assigned,
-            truck.packages_loaded,
-            truck.packages_delivered,
+            truck.id,
         ),
     ).commit()
 
@@ -85,4 +85,7 @@ def truck_row_factory(cursor, row) -> Truck:
         Truck: Truck object from the database.
     """
 
-    return Truck(**row)
+    return Truck(
+        id=row[0],
+        truck_status=TruckStatus.get_truck_status(row[1]),
+    )

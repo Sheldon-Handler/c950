@@ -12,7 +12,10 @@
 import dataclasses
 import time
 from c950.model.truck import Truck
-from c950.model.package import DeliveryStatus
+from c950.model.package import DeliveryStatus, Package
+from c950.controller import package_dao
+from c950.controller import truck_dao
+from c950.controller import location_dao
 
 
 @dataclasses.dataclass
@@ -47,3 +50,37 @@ class PackageDTO:
     delivery_status: DeliveryStatus
     truck: Truck
     delivery_time: time
+
+
+def insert(
+    id: int,
+    address: str,
+    city: str,
+    state: str,
+    zip: str,
+    weight_kilo: int,
+    delivery_deadline: time,
+    special_notes: str,
+    delivery_status: DeliveryStatus,
+    truck: Truck,
+    delivery_time: time,
+):
+    """
+
+    Args:
+        package ():
+
+    Returns:
+
+    """
+
+    location_match_list = location_dao.search_location_matches(
+        id=None, name=None, address=address, city=city, state=state, zip=zip
+    )
+
+    if len(location_match_list) == 0:
+        location_dao.insert(name=None, address=address, city=city, state=state, zip=zip)
+        location_match_list = location_dao.search_location_matches(
+            id=None, name=None, address=address, city=city, state=state, zip=zip
+        )
+    matchingLocation = location_match_list[0]

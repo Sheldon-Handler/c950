@@ -16,8 +16,9 @@ import sqlite3
 
 from c950.model.package import Package
 from c950.model.delivery_status import DeliveryStatus
-from __init__ import cursor
+from __init__ import connection, cursor
 import location_dao
+import truck_dao
 
 
 def get_package(package_id: int) -> Package:
@@ -74,13 +75,24 @@ def add_package(package: Package):
         package (Package): The package to add.
     """
 
+    cursor.row_factory = package_row_factory
+
     if not isinstance(package, Package):
         raise TypeError("package must be a Package object.")
     else:
         try:
             cursor.execute(
-                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?)",
-                package.__dict__.values(),
+                "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    package.id,
+                    package.location.id,
+                    package.delivery_deadline,
+                    package.weight_kilo,
+                    package.special_notes,
+                    package.delivery_status,
+                    package.truck,
+                    package.delivery_time,
+                ),
             )
             cursor.commit()
         except sqlite3.Error as e:
@@ -120,9 +132,9 @@ def remove_package(package: Package or int):
     """
 
     if isinstance(package, Package):
-        cursor.execute("DELETE FROM package WHERE package_id = ?", package.id).commit()
+        cursor.execute("DELETE FROM package WHERE id = ?", package.id).commit()
     elif isinstance(package, int):
-        cursor.execute("DELETE FROM package WHERE package_id = ?", package).commit()
+        cursor.execute("DELETE FROM package WHERE id = ?", package).commit()
     else:
         raise TypeError("package must be an int or Package object.")
 
@@ -149,7 +161,7 @@ def remove_packages(packages: list):
         if isinstance(packages[i], Package):
             packages[i] = packages[i].id
 
-    cursor.executemany("DELETE FROM package WHERE package_id = ?", packages).commit()
+    cursor.executemany("DELETE FROM package WHERE id = ?", packages).commit()
 
 
 def update_package(package: Package):
@@ -168,23 +180,17 @@ def update_package(package: Package):
         cursor.execute(
             __sql="""
             UPDATE package
-            SET address = ?,
-                city = ?,
-                state = ?,
-                zip = ?,
+            SET location = ?,
                 delivery_deadline = ?,
                 weight_kilo = ?,
                 special_notes = ?,
                 delivery_status = ?,
                 truck = ?,
                 delivery_time = ?
-            WHERE package_id = ?;
+            WHERE id = ?;
             """,
             parameters=(
-                package.address,
-                package.city,
-                package.state,
-                package.zip,
+                package.location.id,
                 package.delivery_deadline,
                 package.weight_kilo,
                 package.special_notes,
@@ -199,32 +205,53 @@ def update_package(package: Package):
         raise e
 
 
-def package_db_handler():
-    sqlite_instance = sqlite3
-    connection = sqlite_instance.connect(sqlitedb)
-    sqlite_instance.register_adapter(Package, package_adapter)
-    sqlite_instance.register_converter("Package", package_converter)
-    cursor = connection.cursor()
-    cursor.row_factory = package_factory
+def package_row_factory(cursor, row) -> Package:
+    """
+    This function defines a row factory for the package table.
+    Args:
+        cursor (): The cursor object.
+        row (): The row to convert to a Package object.
+
+    Returns:
+
+    """
+    result = dict()
+
+    result["id"] = row[0]
+    result["location"] = location_dao.get(row[1])
+    result["delivery_deadline"] = row[2]
+    result["weight_kilo"] = row[3]
+    result["special_notes"] = row[4]
+    result["delivery_status"] = row[5]
+    result["truck"] = truck_dao.get(row[6])
+    result["delivery_time"] = row[7]
+
+    return Package(**result)
 
 
-def package_factory(cursor, row):
-    package = Package(**row)
-    return package
+def convert_to_database_list():
+    """Converts a list of Package objects to a list of tuples for insertion
+    into the package table.
 
+    Returns:
+        list: A list of tuples for insertion into the package table.
+    """
 
-def package_row_factory(cursor, row):
-    # Define a custom row factory
-    def package_row_factory(cursor, row):
-        result = {}
+    packages = get_packages()
+    database_list = []
 
-        result["id"] = row[0]
-        result["location"] = row[1]
-        result["delivery_deadline"] = row[5]
-        result["weight_kilo"] = row[6]
-        result["special_notes"] = row[7]
-        result["delivery_status"] = row[8]
-        result["truck"] = row[9]
-        result["delivery_time"] = row[10]
+    for package in packages:
+        database_list.append(
+            (
+                package.id,
+                package.location.id,
+                package.delivery_deadline,
+                package.weight_kilo,
+                package.special_notes,
+                package.delivery_status,
+                package.truck.id,
+                package.delivery_time,
+            )
+        )
 
-        result["location"] = DeliveryStatus.get_delivery_status(row[1])
+    return database_list
