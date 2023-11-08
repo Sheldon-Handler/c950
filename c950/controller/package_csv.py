@@ -1,6 +1,3 @@
-"""This module provides the Package class to store package information."""
-
-
 #  MIT License
 #
 #  Copyright (c) 2023 Sheldon Handler
@@ -10,42 +7,46 @@
 #  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
 
-import dataclasses
-import sqlite3
-import time
-
-from truck import Truck
-from location import Location
-from delivery_status import DeliveryStatus
+import csv_handler
 
 
-@dataclasses.dataclass
-class Package:
-    """This dataclass defines a package instance with its information.
+class PackageCsvController:
+    """
+    This class is a controller for the package csv file.
 
     Attributes:
-        id (int): The package id.
-        location (Location): The package location.
-        delivery_deadline (time): The package delivery deadline.
-        weight_kilo (int): The package weight in kilos.
-        special_notes (str): The package special notes.
-        delivery_status (DeliveryStatus): The package delivery status.
-        truck (truck): The package delivery truck.
-        delivery_time (time): The package delivery time.
-
-    Returns:
-        Package: A Package class instance.
+        csv_handler (CsvHandler): A CsvHandler instance.
     """
 
-    id: int
-    address: str
-    city: str
-    state: str
-    zip: int
-    delivery_deadline: time
-    weight_kilo: int
-    special_notes: str
-    delivery_status: DeliveryStatus
-    truck: Truck
-    delivery_time: time
+    def __init__(self):
+        """
+        Initializes the PackageCsvController class.
+
+        Args:
+            csv_file ():
+        """
+
+    def read(self):
+        """
+        Gets all packages from the csv file.
+
+        Returns:
+            list: A list of all packages.
+        """
+        with open("./data/packages.csv") as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=",")
+            line_count = 0
+            for row in csv_reader:
+                print(row)
+                line_count += 1
+            print(f"Processed {line_count} lines.")
+
+    def set(self):
+        """
+        Sets the csv file with the updated packages.
+
+        """
+        self.csv_handler.set()
+        csv_handler.CsvHandler(packages_csv_file, package_dao.get_packages())

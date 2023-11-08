@@ -85,7 +85,4 @@ def truck_row_factory(cursor, row) -> Truck:
         Truck: Truck object from the database.
     """
 
-    return Truck(
-        id=row[0],
-        truck_status=TruckStatus.get_truck_status(row[1]),
-    )
+    return Truck(id=row[0], truck_status=TruckStatus(row[1]))

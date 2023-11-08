@@ -25,7 +25,6 @@
       <list>
         <option value="$MODULE_DIR$/c950/controller" />
         <option value="$MODULE_DIR$/c950/hash" />
-        <option value="$MODULE_DIR$/c950/model" />
         <option value="$MODULE_DIR$/c950/view" />
         <option value="$MODULE_DIR$/c950" />
         <option value="$MODULE_DIR$/tests/controller" />

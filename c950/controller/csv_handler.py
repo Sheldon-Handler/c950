@@ -38,14 +38,12 @@ class CsvHandler:
     """
 
     # Constructor
-    def __init__(self, filename: str, header: list = list[""]):
+    def __init__(self, filename: str):
         """Initialize the CsvHandler instance.
 
         Args:
-            self (CsvHandler): The CsvHandler instance to initialize.
             filename (str): The name of the CSV file to handle.
-            header (list): The header row of the CSV file.
-
+\
         Returns:
             CsvHandler: A CsvHandler instance for the specified CSV file.
 
@@ -55,11 +53,9 @@ class CsvHandler:
 
         # Set filename attribute
         self.filename = filename
-        # Set header attribute
-        self.header = header
 
     # Method to read CSV file
-    def read(self) -> list[list]:
+    def read(self, cls: type) -> list[list]:
         """Read and return the data from the CSV file.
 
         Reads the data from the CSV file specified during initialization and return it as a
@@ -87,9 +83,7 @@ class CsvHandler:
         # Open file in read mode
         with open(self.filename, mode="r", newline="") as file:
             # Create csv reader instance for file with excel dialect
-            reader = csv.reader(file, dialect="excel")
-            # Skip header row
-            next(reader)
+            reader = csv.reader(file)
             # Iterate over rows in file
             for row in reader:
                 # Append row to data
@@ -119,8 +113,6 @@ class CsvHandler:
         # open file in write mode
         with open(self.filename, mode="w", newline="") as file:
             # Create csv writer instance for file with excel dialect
-            writer = csv.writer(file, dialect="excel")
-            # Write header row
-            writer.writerow(self.header)
+            writer = csv.writer(file)
             # Write data to file
             writer.writerows(data)

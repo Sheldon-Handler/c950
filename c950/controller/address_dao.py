@@ -9,12 +9,33 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-import location_dao
+from csv_handler import CsvHandler
+
+from c950.model.location import Location
 
 
-def filter_locations_by_params(location, search_params):
-    all_locations = location_dao.get_locations()
+def get_location_list():
+    """Returns a list of locations from the location.csv file in ../data/locations.csv"""
 
-    return all(
-        getattr(location, key, None) == value for key, value in search_params.items()
-    )
+    csv_handler = CsvHandler("../data/locations.csv")
+    locations = csv_handler.read()
+
+    for location in locations:
+        location = Location(location[0], location[1], location[2])
+
+
+class AddressDao(CsvHandler):
+    def __init__(self, csv_file):
+        super().__init__(csv_file)
+        self.data = self.read()
+
+
+def setall(csv_hand):
+    """Sets all locations in the location table in the 'identifier.sqlite' database.
+
+    Returns:
+        None
+    """
+
+    csv_handler = CsvHandler("../data/locations.csv")
+    csv_handler.read()

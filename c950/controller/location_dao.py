@@ -143,6 +143,15 @@ def match_location(
         return False
 
 
-def location_row_factory(cursor, row):
+def location_row_factory(cursor, row) -> Location:
+    """Converts a row from the database to a Location object.
+
+    Args:
+        cursor (): The cursor object.
+        row (): The row object from the database to convert to a Location object.
+
+    Returns:
+        Location: A Location object converted from the row object.
+    """
     location = Location(*row)
     return location

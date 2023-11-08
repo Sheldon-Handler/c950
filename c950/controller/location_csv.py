@@ -1,6 +1,3 @@
-"""This module provides the Package class to store package information."""
-
-
 #  MIT License
 #
 #  Copyright (c) 2023 Sheldon Handler
@@ -10,42 +7,39 @@
 #  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
 
-import dataclasses
-import sqlite3
-import time
-
-from truck import Truck
-from location import Location
-from delivery_status import DeliveryStatus
+from c950.model.location import Location
+import csv
 
 
-@dataclasses.dataclass
-class Package:
-    """This dataclass defines a package instance with its information.
+def read_csv(file) -> list[Location]:
+    """
+    This function reads a csv file and returns a list of Location objects.
 
-    Attributes:
-        id (int): The package id.
-        location (Location): The package location.
-        delivery_deadline (time): The package delivery deadline.
-        weight_kilo (int): The package weight in kilos.
-        special_notes (str): The package special notes.
-        delivery_status (DeliveryStatus): The package delivery status.
-        truck (truck): The package delivery truck.
-        delivery_time (time): The package delivery time.
+    Args:
+        file (): The file to read from.
 
     Returns:
-        Package: A Package class instance.
-    """
 
-    id: int
-    address: str
-    city: str
-    state: str
-    zip: int
-    delivery_deadline: time
-    weight_kilo: int
-    special_notes: str
-    delivery_status: DeliveryStatus
-    truck: Truck
-    delivery_time: time
+    """
+    list_of_locations = []
+
+    csv_file = open(file, mode="r", newline="")
+    reader = csv.reader(csv_file)
+
+    for row in reader:
+        list_of_locations.append(Location(int(row[0]), row[1], row[2]))
+
+    csv_file.close()
+
+    return list_of_locations
+
+
+def write_csv(file: str, list_of_locations: list[Location]) -> None:
+    csv_file = open(file, mode="w", newline="")
+    writer = csv.writer(csv_file)
+
+    writer.writerows(list_of_locations.__dict__.values())
+
+    csv_file.close()

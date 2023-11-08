@@ -15,8 +15,7 @@
 import sqlite3
 
 from c950.model.package import Package
-from c950.model.delivery_status import DeliveryStatus
-from __init__ import connection, cursor
+from __init__ import cursor
 import location_dao
 import truck_dao
 
@@ -32,11 +31,11 @@ def get_package(package_id: int) -> Package:
         Package: The Package with the specified package_id.
     """
 
-    cursor.row_factory = package_factory
+    cursor.row_factory = package_row_factory
 
     try:
         package = cursor.execute(
-            "SELECT * FROM package WHERE package_id = ?", str(package_id)
+            "SELECT * FROM package WHERE id = ?", str(package_id)
         ).fetchone()
         return package
     except sqlite3.Error as e:
@@ -52,8 +51,7 @@ def get_packages() -> list:
             'identifier.sqlite'.
     """
 
-    cursor.row_factory = package_factory
-    cursor.register_adapter(Package, package_adapter)
+    cursor.row_factory = package_row_factory
 
     try:
         rows = cursor.execute("SELECT * FROM package").fetchall()
@@ -213,45 +211,54 @@ def package_row_factory(cursor, row) -> Package:
         row (): The row to convert to a Package object.
 
     Returns:
-
+        Package: A Package object created from the given row.
     """
-    result = dict()
 
-    result["id"] = row[0]
-    result["location"] = location_dao.get(row[1])
-    result["delivery_deadline"] = row[2]
-    result["weight_kilo"] = row[3]
-    result["special_notes"] = row[4]
-    result["delivery_status"] = row[5]
-    result["truck"] = truck_dao.get(row[6])
-    result["delivery_time"] = row[7]
+    # Get the location object from the location table.
+    location = location_dao.get(row[1])
+    # Get the truck object from the truck table.
+    truck = truck_dao.get(row[6])
 
-    return Package(**result)
+    # Create a Package object with the row data and foreign key objects.
+    package = Package(
+        id=row[0],
+        location=location,
+        delivery_deadline=row[2],
+        weight_kilo=row[3],
+        special_notes=row[4],
+        delivery_status=row[5],
+        truck=truck,
+        delivery_time=row[7],
+    )
+    # Return the package object.
+    return package
 
 
-def convert_to_database_list():
-    """Converts a list of Package objects to a list of tuples for insertion
-    into the package table.
+def convert_to_attribute_list(package: Package) -> list:
+    """Converts a Package object in a list to a list of attribute values that can be
+    inserted into the package table.
+
+    Args:
+        package (Package): The Package object to convert to a list of attribute values.
 
     Returns:
         list: A list of tuples for insertion into the package table.
     """
 
-    packages = get_packages()
-    database_list = []
-
-    for package in packages:
-        database_list.append(
-            (
-                package.id,
-                package.location.id,
-                package.delivery_deadline,
-                package.weight_kilo,
-                package.special_notes,
-                package.delivery_status,
-                package.truck.id,
-                package.delivery_time,
-            )
-        )
-
-    return database_list
+    # Check if package is a Package object.
+    if not isinstance(package, Package):
+        # Raise an exception if package is not a Package object.
+        raise TypeError("package must be a Package object.")
+    else:
+        # Create a list of the Package object's attributes.
+        attribute_list = [
+            package.id,
+            package.location.id,
+            package.delivery_deadline,
+            package.weight_kilo,
+            package.special_notes,
+            package.delivery_status.value,
+            package.truck.id,
+            package.delivery_time,
+        ]
+        return attribute_list  # Return the list of attribute values.
