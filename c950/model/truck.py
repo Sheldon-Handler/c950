@@ -46,7 +46,9 @@ information."""
 
 from dataclasses import dataclass
 from enum import Enum
+import time
 
+from package import Package
 
 class TruckStatus(Enum):
     """This enum represents the status of a truck.
@@ -81,3 +83,17 @@ class Truck:
 
     id: int
     truck_status: TruckStatus
+    address: str
+    left_hub: time
+    addresses_assigned: list
+    packages_delivered: list
+
+    def load_package(self, package: Package) -> None:
+        """This method loads packages onto the truck.
+
+        Args:
+            packages (list): The list of packages to load onto the truck.
+
+        Returns:
+            None
+        """

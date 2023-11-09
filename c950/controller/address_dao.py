@@ -10,27 +10,19 @@
 #
 
 from csv_handler import CsvHandler
+from c950.model.address import Address
+from __init__ import cursor, connection
+import sqlite3
 
-from c950.model.address import Location
-
-
-def get_location_list():
+def get_all():
     """Returns a list of locations from the location.csv file in ../data/locations.csv"""
 
-    csv_handler = CsvHandler("../data/locations.csv")
-    locations = csv_handler.read()
-
-    for location in locations:
-        location = Location(location[0], location[1], location[2])
+    csv_handler = CsvHandler(c)
 
 
-class AddressDao(CsvHandler):
-    def __init__(self, csv_file):
-        super().__init__(csv_file)
-        self.data = self.read()
 
 
-def setall(csv_hand):
+def set_all(csv_hand):
     """Sets all locations in the location table in the 'identifier.sqlite' database.
 
     Returns:
@@ -39,3 +31,5 @@ def setall(csv_hand):
 
     csv_handler = CsvHandler("../data/locations.csv")
     csv_handler.read()
+
+connection.row_factory = sqlite3.Row

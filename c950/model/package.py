@@ -20,24 +20,6 @@ from truck import Truck
 from address import Address
 
 
-class DeliveryStatus(Enum):
-    """This enum represents the delivery status of a package.
-
-    Attributes:
-        NOT_AVAILABLE (int): The package is not available.
-        AT_HUB (int): The package is at the hub.
-        EN_ROUTE (int): The package is en route.
-        DELIVERED (int): The package has been delivered.
-
-    Returns:
-        DeliveryStatus: A DeliveryStatus enum instance.
-    """
-
-    NOT_AVAILABLE = 0
-    AT_HUB = 1
-    EN_ROUTE = 2
-    DELIVERED = 3
-
 
 @dataclass
 class Package:
@@ -65,6 +47,4 @@ class Package:
     delivery_deadline: time
     weight_kilo: int
     special_notes: str
-    delivery_status: DeliveryStatus
-    truck: Truck
-    delivery_time: time
+

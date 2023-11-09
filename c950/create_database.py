@@ -23,7 +23,7 @@ def create_database() -> None:
 
     conn.cursor().executescript(
         """    
-    CREATE TABLE IF NOT EXISTS location (
+    CREATE TABLE IF NOT EXISTS address (
         id INTEGER,
         name TEXT,
         address TEXT PRIMARY KEY,
@@ -31,7 +31,12 @@ def create_database() -> None:
         
     CREATE TABLE IF NOT EXISTS truck (
         id INTEGER PRIMARY KEY,
-        truck_status INTEGER CHECK (truck_status >= 0 AND truck_status <= 3)
+        truck_status INTEGER CHECK (truck_status >= 0 AND truck_status <= 3),
+        address TEXT REFERENCES address (address),
+        left_hub TIME,
+        packages_assigned: list
+        addresses_assigned LIST REFERENCES address (address),
+        packages_delivered: list
     );
     
     CREATE TABLE IF NOT EXISTS package (
@@ -45,6 +50,7 @@ def create_database() -> None:
         special_notes TEXT,
         delivery_status INTEGER CHECK (delivery_status >= 0 AND delivery_status <= 3),
         truck INTEGER REFERENCES truck (id),
+        loaded_time TIME,
         delivery_time TIME
     );
     """

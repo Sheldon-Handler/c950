@@ -34,7 +34,6 @@
 
 import csv_handler
 import package_dao
-import location_dao
 
 import sqlite3
 

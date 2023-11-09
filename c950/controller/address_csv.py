@@ -8,3 +8,38 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+
+import csv
+from c950.model.address import Address
+
+
+def read_csv(file) -> list[Address]:
+    """
+    This function reads a csv file and returns a list of Location objects.
+
+    Args:
+        file (): The file to read from.
+
+    Returns:
+
+    """
+    list_of_locations = []
+
+    csv_file = open(file, mode="r", newline="")
+    reader = csv.reader(csv_file)
+
+    for row in reader:
+        list_of_locations.append(Address(int(row[0]), row[1], row[2]))
+
+    csv_file.close()
+
+    return list_of_locations
+
+
+def write_csv(file: str, list_of_locations: list[Address]) -> None:
+    csv_file = open(file, mode="w", newline="")
+    writer = csv.writer(csv_file)
+
+    writer.writerows(list_of_locations.__dict__.values())
+
+    csv_file.close()
