@@ -11,6 +11,7 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import csv
+import types
 from dataclasses import dataclass
 
 
@@ -37,7 +38,7 @@ class CsvHandler:
         https://docs.python.org/3/library/csv.html
     """
 
-    def __init__(self, filename: str, cls: type):
+    def __init__(self, filename: str, cls: dataclass):
         """Initialize the CsvHandler instance.
 
         Args:

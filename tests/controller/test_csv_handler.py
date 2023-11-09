@@ -14,7 +14,7 @@ import c950
 
 class TestCsvHandler(unittest.TestCase):
     def test_write(self):
-        csv_handler = c950.controller.csv_handler.CsvHandler(
+        csv_handler = hash.csv_handler.CsvHandler(
             filename="../resources/data/test.csv",
             header=[
                 "package_id",
@@ -72,7 +72,7 @@ class TestCsvHandler(unittest.TestCase):
             )
 
     def test_read(self):
-        csv_handler = c950.controller.csv_handler.CsvHandler(
+        csv_handler = hash.csv_handler.CsvHandler(
             "../resources/data/test.csv",
             header=[
                 "package_id",
