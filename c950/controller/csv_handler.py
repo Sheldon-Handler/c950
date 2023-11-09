@@ -10,8 +10,8 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# Import csv
 import csv
+from dataclasses import dataclass
 
 
 # CsvHandler class for handling CSV files.
@@ -37,13 +37,13 @@ class CsvHandler:
         https://docs.python.org/3/library/csv.html
     """
 
-    # Constructor
-    def __init__(self, filename: str):
+    def __init__(self, filename: str, cls: type):
         """Initialize the CsvHandler instance.
 
         Args:
             filename (str): The name of the CSV file to handle.
-\
+            cls (type): The type of object to create for each row.
+
         Returns:
             CsvHandler: A CsvHandler instance for the specified CSV file.
 
@@ -53,19 +53,18 @@ class CsvHandler:
 
         # Set filename attribute
         self.filename = filename
+        # Set cls attribute for type of object to create for each row
+        self.cls = cls
 
     # Method to read CSV file
-    def read(self, cls: type) -> list[list]:
+    def read(self) -> list:
         """Read and return the data from the CSV file.
 
         Reads the data from the CSV file specified during initialization and return it as a
         list of rows. Does not read the header row.
 
-        Args:
-            self (CsvHandler): The CsvHandler instance to read from.
-
         Returns:
-            list: A list of rows, where each row is represented as a list of strings.
+            list: A list of rows, where each row is converted into an instance of cls.
 
         Example:
             csv_handler = CsvHandler("data.csv")
@@ -86,18 +85,21 @@ class CsvHandler:
             reader = csv.reader(file)
             # Iterate over rows in file
             for row in reader:
-                # Append row to data
-                data_list.append(row)
+                # Append each row to data_list
+                data_list.append(
+                    # Convert each row to instance of cls
+                    self.cls(*row)
+                )
 
-        # Return data
+        # Return data_list
         return data_list
 
     # Method to write data to the CSV file
-    def write(self, data: list[list]) -> None:
-        """This method writes the data to the CSV file.
+    def write(self, data: list[type]) -> None:
+        """This method writes the data to the CSV file. e
 
         Args:
-            data (list[list]): A list of rows, where each row is represented as a list of values.
+            data (list): A list of rows, where each row is represented as an object.
 
         Example:
             csv_handler = CsvHandler("output.csv")
@@ -110,9 +112,17 @@ class CsvHandler:
             https://docs.python.org/3/library/functions.html#open
         """
 
+        # Create an empty list of rows to store data
+        rows = []
+
+        # Iterate over rows in data
+        for row in data:
+            # Convert each row object type to list. Append to rows list.
+            rows.append(list(row.__dict__.values()))
+
         # open file in write mode
         with open(self.filename, mode="w", newline="") as file:
-            # Create csv writer instance for file with excel dialect
+            # Create csv writer instance for the file
             writer = csv.writer(file)
             # Write data to file
-            writer.writerows(data)
+            writer.writerows(rows)

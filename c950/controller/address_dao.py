@@ -14,12 +14,9 @@ from c950.model.address import Address
 from __init__ import cursor, connection
 import sqlite3
 
+
 def get_all():
     """Returns a list of locations from the location.csv file in ../data/locations.csv"""
-
-    csv_handler = CsvHandler(c)
-
-
 
 
 def set_all(csv_hand):
@@ -31,5 +28,6 @@ def set_all(csv_hand):
 
     csv_handler = CsvHandler("../data/locations.csv")
     csv_handler.read()
+
 
 connection.row_factory = sqlite3.Row

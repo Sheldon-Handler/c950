@@ -17,5 +17,6 @@ import view
 import create_database
 import main
 
-# Define packages_csv_file variable
-packages_csv_file = "../data/packages.csv"
+address_csv_file = "../data/address.csv"
+distance_csv_file = "../data/distance.csv"
+package_csv_file = "../data/package.csv"

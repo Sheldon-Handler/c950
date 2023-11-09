@@ -10,7 +10,6 @@
 #
 import sqlite3
 
-from c950.model.truck_status import TruckStatus
 from c950.model.truck import Truck
 from __init__ import cursor
 

@@ -31,29 +31,12 @@ class HashTable:
 
     Returns:
         HashTable: A HashTable class instance.
-
-    Examples:
-        >>> table = HashTable()
-        >>> table.set(1, 'Example Value 1')
-        >>> table.set(2, 'Example Value 2')
-        >>> table.set(3, 'Example Value 3')
-        >>> print(table.get(1))
-        Example Value 1
-        >>> print(table.get(2))
-        Example Value 2
-        >>> print(table.get(3))
-        Example Value 3
-        >>> table.remove(2)
-        >>> print(table.get(2))
-        None
-        >>> print(table)
-        1:Example Value 1
-        3:Example Value 3
     """
 
     def __init__(self, size: int = 10) -> None:
         """
-        Initializes a HashTable object.
+        Initializes a HashTable object. The hash table is initialized as a list of buckets. Each bucket is a list of
+        key-value pairs.
 
         Args:
             size (int): The initial size of the hash table parent list. Defaults to 10.
@@ -62,9 +45,13 @@ class HashTable:
             None
         """
 
-        self.table = []
-        for i in range(size):
-            self.table.append([])
+        self.table = []  # Initialize the hash table as an empty list
+        for i in range(
+            size
+        ):  # For each index in the range of the size of the hash table
+            self.table.append(
+                []
+            )  # Append an empty list to the hash table to create a bucket
 
     def hash(self, key) -> int:
         """
@@ -77,7 +64,7 @@ class HashTable:
             int: The hash value.
         """
 
-        return hash(key) % len(self.table)
+        return hash(key) % len(self.table)  # Hash the key and return the hash value
 
     def set(self, key, value) -> None:
         """
@@ -90,18 +77,30 @@ class HashTable:
         Returns:
             None
         """
-        # Get the index of the bucket for the key
-        bucket = self.hash(key)
-        # Check if the key already exists in the hash table
-        for i, (k, v) in enumerate(self.table[bucket]):
-            # If the key already exists, replace the value
-            if k == key:
-                self.table[bucket][i] = (key, value)
-                return
-        # Otherwise, append the key-value pair to the bucket
-        self.table[bucket].append((key, value))
-        # Then, sort the bucket in ascending order
-        self.table[bucket].sort()
+        bucket = self.hash(key)  # Get the index of the bucket for the key-value pair
+        for i, (k, v) in enumerate(
+            self.table[bucket]
+        ):  # Check if the key exists in the bucket
+            if k == key:  # If the key exists in the bucket
+                self.table[bucket][i] = value  # Replace the value at the key index
+                return  # Exit the function
+        self.table[bucket].append(
+            (key, value)
+        )  # Append the key-value pair to the bucket if the key does not exist
+        self.table[bucket].sort()  # Sort the bucket by key in ascending order
+
+    def set_all(self, keys: list, items: list) -> None:
+        """
+        Sets the value for the given key in the hash table.
+        Args:
+            keys (list): The keys to set the values for.
+            items (list): The values to set.
+
+        Returns:
+            None
+        """
+        for i in range(len(keys)):  # Iterate through each key-value pair
+            self.set(keys[i], items[i])  # Set the key-value pair in the hash table
 
     def get(self, key) -> any:
         """
@@ -113,15 +112,35 @@ class HashTable:
         Returns:
             any: The value for the given key, or None if the key does not exist.
         """
-        # Get the index of the bucket for the key
-        bucket = self.hash(key)
-        # Iterate through the bucket to find the key
-        for k, v in self.table[bucket]:
-            # If the key exists, return the value
-            if k == key:
-                return v
-        # Otherwise, return None
-        return None
+        bucket = self.hash(key)  # Index of the bucket containing the key-value pair
+
+        for k, v in self.table[
+            bucket
+        ]:  # Iterate through each key-value pair in the bucket
+            if k == key:  # If the key exists in the bucket
+                return v  # Return the value
+
+        return None  # If the key does not exist in the bucket, return None
+
+    def get_all(self) -> tuple:
+        """
+        Gets the value for the given key in the hash table.
+
+        Args:
+            keys (list): The keys to get the values for.
+
+        Returns:
+
+        """
+        keys = []  # Create an empty list to store the keys
+        values = []  # Create an empty list to store the values
+
+        for bucket in self.table:  # Iterate through each bucket in the hash table
+            for k, v in bucket:  # Iterate through each key-value pair in the bucket
+                keys.append(k)  # Append each key to the keys list
+                values.append(v)  # Append each value to the values list
+
+        return keys, values  # Return the keys and values lists as a tuple
 
     def remove(self, key) -> None:
         """
@@ -145,8 +164,6 @@ class HashTable:
                 item_to_delete
             )  # Remove the key-value pair from the bucket
 
-
-    # O(log n) time complexity
     def __binary_search__(self, key) -> any:
         """
         Perform a binary search on a sorted array to find the target element.
@@ -182,19 +199,3 @@ class HashTable:
                 return mid  # Return the index of the key
 
         return None  # If the element was not found in the array. Return None.
-
-    def __str__(self) -> str:
-        """
-        Returns a string representation of the hash table.
-
-        Returns:
-            str: A string representation of the hash table.
-        """
-
-        table_size = len(self.table)
-        string = ""
-        for i in range(table_size):
-            for k, v in self.table[i]:
-                string += str(k) + ":" + str(v) + "\n"
-
-        return string

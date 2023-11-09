@@ -1,5 +1,5 @@
 """This module provides the Package class to store package information."""
-
+import dataclasses
 
 #  MIT License
 #
@@ -13,12 +13,29 @@
 
 
 import time
-from dataclasses import dataclass
 from enum import Enum
-
+from dataclasses import dataclass
 from truck import Truck
 from address import Address
 
+
+class DeliveryStatus(Enum):
+    """This enum represents the delivery status of a package.
+
+    Attributes:
+        NOT_AVAILABLE (int): The package is not available.
+        AT_HUB (int): The package is at the hub.
+        EN_ROUTE (int): The package is en route.
+        DELIVERED (int): The package has been delivered.
+
+    Returns:
+        DeliveryStatus: A DeliveryStatus enum instance.
+    """
+
+    NOT_AVAILABLE = 0
+    AT_HUB = 1
+    EN_ROUTE = 2
+    DELIVERED = 3
 
 
 @dataclass
@@ -28,6 +45,9 @@ class Package:
     Attributes:
         id (int): The package id.
         address (Address): The package location.
+        city (str): The package city.
+        state (str): The package state.
+        zip (int): The package zip code.
         delivery_deadline (time): The package delivery deadline.
         weight_kilo (int): The package weight in kilos.
         special_notes (str): The package special notes.
@@ -40,11 +60,14 @@ class Package:
     """
 
     id: int
-    address: str
+    address: Address
     city: str
     state: str
     zip: int
     delivery_deadline: time
     weight_kilo: int
     special_notes: str
-
+    delivery_status: DeliveryStatus
+    truck: Truck
+    loaded_time: time
+    delivery_time: time
