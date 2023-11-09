@@ -45,7 +45,26 @@ information."""
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 from dataclasses import dataclass
-from truck_status import TruckStatus
+from enum import Enum
+
+
+class TruckStatus(Enum):
+    """This enum represents the status of a truck.
+
+    Attributes:
+        NOT_AVAILABLE (int): The truck is not available.
+        AT_HUB (int): The truck is at the hub.
+        EN_ROUTE (int): The truck is en route.
+        RETURNING (int): The truck is returning to the hub.
+
+    Returns:
+        TruckStatus: A TruckStatus enum instance.
+    """
+
+    NOT_AVAILABLE = 0
+    AT_HUB = 1
+    EN_ROUTE = 2
+    RETURNING = 3
 
 
 @dataclass

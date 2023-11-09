@@ -11,22 +11,41 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import dataclasses
-import sqlite3
+
 import time
+from dataclasses import dataclass
+from enum import Enum
 
 from truck import Truck
-from location import Location
-from delivery_status import DeliveryStatus
+from address import Address
 
 
-@dataclasses.dataclass
+class DeliveryStatus(Enum):
+    """This enum represents the delivery status of a package.
+
+    Attributes:
+        NOT_AVAILABLE (int): The package is not available.
+        AT_HUB (int): The package is at the hub.
+        EN_ROUTE (int): The package is en route.
+        DELIVERED (int): The package has been delivered.
+
+    Returns:
+        DeliveryStatus: A DeliveryStatus enum instance.
+    """
+
+    NOT_AVAILABLE = 0
+    AT_HUB = 1
+    EN_ROUTE = 2
+    DELIVERED = 3
+
+
+@dataclass
 class Package:
     """This dataclass defines a package instance with its information.
 
     Attributes:
         id (int): The package id.
-        location (Location): The package location.
+        address (Address): The package location.
         delivery_deadline (time): The package delivery deadline.
         weight_kilo (int): The package weight in kilos.
         special_notes (str): The package special notes.

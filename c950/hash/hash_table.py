@@ -10,8 +10,6 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import hashlib
-
 
 class HashTable:
     """
@@ -28,6 +26,7 @@ class HashTable:
         set: Sets the value for the given key in the hash table.
         get: Gets the value for the given key in the hash table.
         remove: Removes the key-value pair for the given key from the hash table.
+        __binary_search__: Perform a binary search on the hash table to find the specified element.
         __str__: Returns a string representation of the hash table.
 
     Returns:
@@ -146,7 +145,9 @@ class HashTable:
                 item_to_delete
             )  # Remove the key-value pair from the bucket
 
-    def __binary_search__(self, key):
+
+    # O(log n) time complexity
+    def __binary_search__(self, key) -> any:
         """
         Perform a binary search on a sorted array to find the target element.
 
@@ -155,6 +156,10 @@ class HashTable:
 
         Returns:
             int: The index of the target element in the array, or None if the element is not found.
+
+        Notes:
+            average time complexity: O(log n)
+            worst time complexity: O(log n)
         """
         bucket = self.hash(key)  # Index of the bucket containing the key-value pair
 

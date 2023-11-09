@@ -11,7 +11,7 @@
 
 from csv_handler import CsvHandler
 
-from c950.model.location import Location
+from c950.model.address import Location
 
 
 def get_location_list():

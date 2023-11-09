@@ -188,7 +188,10 @@ def update_package(package: Package):
             WHERE id = ?;
             """,
             parameters=(
-                package.location.id,
+                package.address,
+                package.city,
+                package.state,
+                package.zip,
                 package.delivery_deadline,
                 package.weight_kilo,
                 package.special_notes,
@@ -220,16 +223,7 @@ def package_row_factory(cursor, row) -> Package:
     truck = truck_dao.get(row[6])
 
     # Create a Package object with the row data and foreign key objects.
-    package = Package(
-        id=row[0],
-        location=location,
-        delivery_deadline=row[2],
-        weight_kilo=row[3],
-        special_notes=row[4],
-        delivery_status=row[5],
-        truck=truck,
-        delivery_time=row[7],
-    )
+    package = Package(*row)
     # Return the package object.
     return package
 

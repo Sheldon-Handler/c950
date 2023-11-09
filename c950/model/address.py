@@ -8,21 +8,23 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+
 import dataclasses
 
 
 @dataclasses.dataclass
-class TruckStatus:
-    """
-    Dataclass to represent the status of a truck.
+class Address:
+    """This dataclass represents an address instance with its information.
 
     Attributes:
-        id (int): The id of the truck status.
-        status (str): The status of the truck.
+        id (int): The id of the location.
+        name (str): The name of the location.
+        address (str): The address.
 
     Returns:
-        TruckStatus: A TruckStatus class instance.
+        Address: An Address class instance.
     """
 
     id: int
-    status: str
+    name: str
+    address: str

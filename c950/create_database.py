@@ -12,18 +12,21 @@
 import sqlite3
 
 
-def create_database():
+def create_database() -> None:
+    """
+    Creates the database and tables if they do not already exist.
+
+    Returns:
+        None
+    """
     conn = sqlite3.connect("../data/database.sqlite")
 
     conn.cursor().executescript(
         """    
     CREATE TABLE IF NOT EXISTS location (
-        id INTEGER PRIMARY KEY,
+        id INTEGER,
         name TEXT,
-        address TEXT,
-        city TEXT,
-        state TEXT,
-        zip TEXT
+        address TEXT PRIMARY KEY,
     );
         
     CREATE TABLE IF NOT EXISTS truck (
@@ -33,7 +36,10 @@ def create_database():
     
     CREATE TABLE IF NOT EXISTS package (
         id INTEGER PRIMARY KEY,
-        location INTEGER REFERENCES location (id),
+        address TEXT REFERENCES address (address),
+        city TEXT,
+        state TEXT,
+        zip TEXT,
         delivery_deadline TIME,
         weight_kilo TEXT,
         special_notes TEXT,
