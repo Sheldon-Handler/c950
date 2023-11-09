@@ -16,7 +16,6 @@ import sqlite3
 
 from c950.model.package import Package
 from __init__ import cursor
-import location_dao
 import truck_dao
 
 

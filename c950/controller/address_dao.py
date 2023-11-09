@@ -12,6 +12,8 @@
 from __init__ import connection
 import sqlite3
 
+from c950.hash.csv_handler import CsvHandler
+
 
 def get_all():
     """Returns a list of locations from the location.csv file in ../data/locations.csv"""
