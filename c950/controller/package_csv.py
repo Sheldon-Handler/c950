@@ -10,6 +10,8 @@
 #
 
 import csv
+from c950.hash.csv_handler import CsvHandler
+from c950.__init__ import address_csv_file, package_csv_file, distance_csv_file
 
 
 class PackageCsvController:
@@ -49,4 +51,4 @@ class PackageCsvController:
 
         """
         self.csv_handler.set()
-        csv_handler.CsvHandler(packages_csv_file, package_dao.get_packages())
+        CsvHandler(package_csv_file, package_dao.get_packages())

@@ -52,7 +52,7 @@ class Package:
         weight_kilo (int): The package weight in kilos.
         special_notes (str): The package special notes.
         delivery_status (DeliveryStatus): The package delivery status.
-        truck (truck): The package delivery truck.
+        truck_id (int): The id of the package delivery truck.
         delivery_time (time): The package delivery time.
 
     Returns:
@@ -68,6 +68,6 @@ class Package:
     weight_kilo: int
     special_notes: str
     delivery_status: DeliveryStatus
-    truck: Truck
+    truck_id: int
     loaded_time: time
     delivery_time: time

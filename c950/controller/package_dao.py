@@ -82,7 +82,10 @@ def add_package(package: Package):
                 "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                 (
                     package.id,
-                    package.location.id,
+                    package.address,
+                    package.city,
+                    package.state,
+                    package.zip,
                     package.delivery_deadline,
                     package.weight_kilo,
                     package.special_notes,
@@ -246,7 +249,8 @@ def convert_to_attribute_list(package: Package) -> list:
         # Create a list of the Package object's attributes.
         attribute_list = [
             package.id,
-            package.location.id,
+            package.address,
+
             package.delivery_deadline,
             package.weight_kilo,
             package.special_notes,

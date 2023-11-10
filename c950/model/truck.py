@@ -15,9 +15,9 @@ information."""
 
 from dataclasses import dataclass
 from enum import Enum
-import time
+from datetime import datetime
 
-from package import Package
+from package import Package, DeliveryStatus
 
 
 class TruckStatus(Enum):
@@ -54,7 +54,7 @@ class Truck:
     id: int
     truck_status: TruckStatus
     address: str
-    left_hub: time
+    left_hub: datetime.time
     addresses_assigned: list
     packages_loaded: list
     packages_delivered: list
@@ -69,4 +69,22 @@ class Truck:
             None
         """
 
+        # set the truck status to en route
+        package.truck = self.id
+        package.delivery_status = DeliveryStatus.EN_ROUTE
+        package.loaded_time = datetime.now()
         self.packages_loaded.append(package)
+
+    def deliver_package(self, package: Package) -> None:
+        """This method delivers packages from the truck.
+
+        Args:
+            package (Package): The package to deliver from the truck.
+
+        Returns:
+            None
+        """
+
+        package.delivery_status = DeliveryStatus.DELIVERED
+        package.delivery_time = datetime.now()
+        self.packages_delivered.append(package)
