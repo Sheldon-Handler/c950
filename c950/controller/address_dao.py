@@ -9,25 +9,22 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-from __init__ import connection
-import sqlite3
+from csv_handler import CsvHandler
 
-from c950.hash.csv_handler import CsvHandler
+from c950.model.location import Location
 
 
-def get_all():
+def get_location_list():
     """Returns a list of locations from the location.csv file in ../data/locations.csv"""
 
-
-def set_all(csv_hand):
-    """Sets all locations in the location table in the 'identifier.sqlite' database.
-
-    Returns:
-        None
-    """
-
     csv_handler = CsvHandler("../data/locations.csv")
-    csv_handler.read()
+    locations = csv_handler.read()
+
+    for location in locations:
+        location = Location(location[0], location[1], location[2])
 
 
-connection.row_factory = sqlite3.Row
+class AddressDao(CsvHandler):
+    def __init__(self, csv_file):
+        super().__init__(csv_file)
+        self.data = self.read()

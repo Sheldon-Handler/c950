@@ -1,5 +1,4 @@
 """This module provides the Package class to store package information."""
-import dataclasses
 
 #  MIT License
 #
@@ -10,26 +9,23 @@ import dataclasses
 #  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+#
 
 import time
-from enum import Enum
 from dataclasses import dataclass
+from typing import overload
 from truck import Truck
-from address import Address
+from location import Location
 
 
 class DeliveryStatus(Enum):
-    """This enum represents the delivery status of a package.
+    """Enum class representing the delivery status of a package.
 
     Attributes:
         NOT_AVAILABLE (int): The package is not available.
         AT_HUB (int): The package is at the hub.
-        EN_ROUTE (int): The package is en route.
-        DELIVERED (int): The package has been delivered.
-
-    Returns:
-        DeliveryStatus: A DeliveryStatus enum instance.
+        EN_ROUTE (int): The package is on a truck that has left the hub.
+        DELIVERED (int): The package has been delivered to its destination.
     """
 
     NOT_AVAILABLE = 0
@@ -44,30 +40,51 @@ class Package:
 
     Attributes:
         id (int): The package id.
-        address (Address): The package location.
+        address (str): The package address.
         city (str): The package city.
         state (str): The package state.
-        zip (int): The package zip code.
+        zip (str): The package zip code.
         delivery_deadline (time): The package delivery deadline.
         weight_kilo (int): The package weight in kilos.
         special_notes (str): The package special notes.
-        delivery_status (DeliveryStatus): The package delivery status.
-        truck_id (int): The id of the package delivery truck.
-        delivery_time (time): The package delivery time.
 
     Returns:
         Package: A Package class instance.
     """
 
     id: int
-    address: Address
+    address: str
     city: str
     state: str
-    zip: int
+    zip: str
     delivery_deadline: time
     weight_kilo: int
     special_notes: str
+
+
+@overload
+@dataclasses.dataclass
+class Package(Package):
+    """This dataclass defines a package instance with its information.
+
+    Attributes:
+        id (int): The package id.
+        address (str): The package address.
+        city (str): The package city.
+        state (str): The package state.
+        zip (str): The package zip code.
+        delivery_deadline (time): The package delivery deadline.
+        weight_kilo (int): The package weight in kilos.
+        special_notes (str): The package special notes.
+        delivery_status (DeliveryStatus): The package delivery status.
+        truck (truck): The package delivery truck.
+        delivery_time (time): The package delivery time.
+
+    Returns:
+        Package: A Package class instance.
+    """
+
+    super()
     delivery_status: DeliveryStatus
-    truck_id: int
-    loaded_time: time
+    truck: Truck
     delivery_time: time
