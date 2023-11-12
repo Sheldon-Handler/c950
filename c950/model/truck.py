@@ -15,6 +15,8 @@ information."""
 from enum import Enum
 from dataclasses import dataclass
 
+truck_list = []
+
 class TruckStatus(Enum):
     """
     Enum class to represent the different statuses of trucks.
@@ -27,6 +29,7 @@ class TruckStatus(Enum):
     AT_HUB = 1
     EN_ROUTE = 2
     RETURNING = 3
+
 
 @dataclass
 class Truck:

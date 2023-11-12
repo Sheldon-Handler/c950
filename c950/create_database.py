@@ -33,10 +33,7 @@ def create_database() -> None:
         id INTEGER PRIMARY KEY,
         truck_status INTEGER CHECK (truck_status >= 0 AND truck_status <= 3),
         address TEXT REFERENCES address (address),
-        left_hub TIME,
-        packages_assigned: list
-        addresses_assigned LIST REFERENCES address (address),
-        packages_delivered: list
+        left_hub TIME
     );
     
     CREATE TABLE IF NOT EXISTS package (

@@ -37,7 +37,8 @@ class PackageCsvController:
         Returns:
             list: A list of all packages.
         """
-        with open("./data/packages.csv") as csv_file:
+        open(package_csv_file)
+        with open(package_csv_file) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=",")
             line_count = 0
             for row in csv_reader:

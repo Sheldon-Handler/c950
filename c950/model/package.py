@@ -1,5 +1,6 @@
 """This module provides the Package class to store package information."""
-
+import dataclasses
+import datetime
 #  MIT License
 #
 #  Copyright (c) 2023 Sheldon Handler
@@ -11,11 +12,11 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-import time
+import datetime
+from enum import Enum
 from dataclasses import dataclass
 from typing import overload
 from truck import Truck
-from location import Location
 
 
 class DeliveryStatus(Enum):
@@ -47,6 +48,9 @@ class Package:
         delivery_deadline (time): The package delivery deadline.
         weight_kilo (int): The package weight in kilos.
         special_notes (str): The package special notes.
+        delivery_status (DeliveryStatus): The package delivery status.
+        truck_id (int): The package delivery truck ID.
+        delivery_time (time): The package delivery time.
 
     Returns:
         Package: A Package class instance.
@@ -57,34 +61,9 @@ class Package:
     city: str
     state: str
     zip: str
-    delivery_deadline: time
+    delivery_deadline: datetime.time
     weight_kilo: int
     special_notes: str
-
-
-@overload
-@dataclasses.dataclass
-class Package(Package):
-    """This dataclass defines a package instance with its information.
-
-    Attributes:
-        id (int): The package id.
-        address (str): The package address.
-        city (str): The package city.
-        state (str): The package state.
-        zip (str): The package zip code.
-        delivery_deadline (time): The package delivery deadline.
-        weight_kilo (int): The package weight in kilos.
-        special_notes (str): The package special notes.
-        delivery_status (DeliveryStatus): The package delivery status.
-        truck (truck): The package delivery truck.
-        delivery_time (time): The package delivery time.
-
-    Returns:
-        Package: A Package class instance.
-    """
-
-    super()
     delivery_status: DeliveryStatus
-    truck: Truck
-    delivery_time: time
+    truck: int
+    delivery_time: datetime.time

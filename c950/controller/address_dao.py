@@ -9,19 +9,18 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-from csv_handler import CsvHandler
-
-from c950.model.location import Location
+from c950.hash.csv_handler import CsvHandler
+import c950
+from c950.model.address import Address
 
 
 def get_location_list():
-    """Returns a list of locations from the location.csv file in ../data/locations.csv"""
+    """Returns a list of addresses from the address_csv_file."""
 
-    csv_handler = CsvHandler("../data/locations.csv")
-    locations = csv_handler.read()
+    address_list = []
 
-    for location in locations:
-        location = Location(location[0], location[1], location[2])
+    csv_handler = CsvHandler(c950.address_csv_file, Address)
+    return csv_handler.read()
 
 
 class AddressDao(CsvHandler):
