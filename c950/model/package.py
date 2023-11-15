@@ -1,6 +1,5 @@
 """This module provides the Package class to store package information."""
-import dataclasses
-import datetime
+
 #  MIT License
 #
 #  Copyright (c) 2023 Sheldon Handler
@@ -13,26 +12,7 @@ import datetime
 #
 
 import datetime
-from enum import Enum
 from dataclasses import dataclass
-from typing import overload
-from truck import Truck
-
-
-class DeliveryStatus(Enum):
-    """Enum class representing the delivery status of a package.
-
-    Attributes:
-        NOT_AVAILABLE (int): The package is not available.
-        AT_HUB (int): The package is at the hub.
-        EN_ROUTE (int): The package is on a truck that has left the hub.
-        DELIVERED (int): The package has been delivered to its destination.
-    """
-
-    NOT_AVAILABLE = 0
-    AT_HUB = 1
-    EN_ROUTE = 2
-    DELIVERED = 3
 
 
 @dataclass
@@ -45,12 +25,12 @@ class Package:
         city (str): The package city.
         state (str): The package state.
         zip (str): The package zip code.
-        delivery_deadline (time): The package delivery deadline.
+        delivery_deadline (str): The package delivery deadline.
         weight_kilo (int): The package weight in kilos.
         special_notes (str): The package special notes.
-        delivery_status (DeliveryStatus): The package delivery status.
+        delivery_status (str): The package delivery status.
         truck_id (int): The package delivery truck ID.
-        delivery_time (time): The package delivery time.
+        delivery_time (str): The package delivery time.
 
     Returns:
         Package: A Package class instance.
@@ -64,6 +44,6 @@ class Package:
     delivery_deadline: datetime.time
     weight_kilo: int
     special_notes: str
-    delivery_status: DeliveryStatus
-    truck: int
-    delivery_time: datetime.time
+    delivery_status: str = None
+    truck_id: int = None
+    delivery_time: str = None

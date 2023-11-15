@@ -10,7 +10,6 @@
 #
 
 import csv
-from c950.hash.csv_handler import CsvHandler
 from c950.__init__ import address_csv_file, package_csv_file, distance_csv_file
 
 
@@ -46,10 +45,3 @@ class PackageCsvController:
                 line_count += 1
             print(f"Processed {line_count} lines.")
 
-    def set(self):
-        """
-        Sets the csv file with the updated packages.
-
-        """
-        self.csv_handler.set()
-        CsvHandler(package_csv_file, package_dao.get_packages())

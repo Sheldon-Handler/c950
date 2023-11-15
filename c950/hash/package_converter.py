@@ -1,7 +1,7 @@
 import datetime
 
 from c950.model.truck import Truck
-from c950.model.package import Package, DeliveryStatus
+from c950.model.package import Package
 
 from datetime import time
 
@@ -48,9 +48,9 @@ def convert_to_package(package: list):
         delivery_deadline = time(package[5]),
         weight_kilo = int(package[6]),
         special_notes = str(package[7]),
-        delivery_status = DeliveryStatus(package[8]),
-        truck = int(package[9]),
-        delivery_time = time(package[10])
+        delivery_status = (package[8]),
+        truck_id = int(package[9]),
+        delivery_time = str(package[10])
     )
 
     return new_package
