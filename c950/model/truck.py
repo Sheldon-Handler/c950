@@ -14,8 +14,10 @@ information."""
 
 from enum import Enum
 from dataclasses import dataclass
+from algorithm.package_delivery_algorithm import PackageGroup
 
 truck_list = []
+
 
 class TruckStatus(Enum):
     """
@@ -45,3 +47,6 @@ class Truck:
 
     id: int
     truck_status: TruckStatus
+    route: list = None
+    distance_traveled: float = None
+    current_package_group: PackageGroup = None
