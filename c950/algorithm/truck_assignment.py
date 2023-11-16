@@ -13,18 +13,21 @@ def greedy_truck_assignment(
         list[list[int]]: A list of lists, where each inner list represents the route of a single truck.
     """
 
-    # Initialize variables
-    unassigned_packages = set(range(1, len(distance_matrix)))
-    assigned_packages = []
-    truck_routes = [[] for _ in range(num_trucks)]
+    unassigned_packages = set(
+        range(1, len(distance_matrix))
+    )  # Packages are indexed from 1
+    assigned_packages = []  # Packages that have been assigned to a the truck
+    truck_routes = [
+        [] for _ in range(num_trucks)
+    ]  # A list of lists. Each inner list represents route of single truck.
 
-    # Assign packages to trucks using the greedy algorithm
-    while unassigned_packages:
+    while unassigned_packages:  # Assign packages to trucks using the greedy algorithm
         # Find the truck with the shortest distance to an unassigned package
         shortest_distance = float("inf")
         closest_truck = None
         closest_package = None
 
+        # Find the closest truck and package
         for truck_index, truck_route in enumerate(truck_routes):
             for package_index in unassigned_packages:
                 distance = distance_matrix[truck_route[-1]][package_index]
