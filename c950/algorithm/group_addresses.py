@@ -34,4 +34,5 @@ class PackageGroup:
 
 def nearest_location(current_location, location_list):
 
-    for i in location_list:
+    # find the closest location to the current location
+    min(location_list, key=lambda location: distance_matrix[current_location][location])
