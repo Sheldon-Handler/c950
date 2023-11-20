@@ -1,4 +1,4 @@
-def route_packages(distance_matrix):
+def route_packages(distance_matrix, current_delivery_location, capacity):
     """
     Routes package deliveries using a distance matrix.
 
