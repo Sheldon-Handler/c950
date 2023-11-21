@@ -10,38 +10,48 @@
 #
 
 import csv
-from c950.__init__ import address_csv_file, package_csv_file, distance_csv_file
+from c950 import address_csv_file, package_csv_file, distance_csv_file
+from c950.model.package import Package
 
 
-class PackageCsvController:
+def read(file: str) -> list[Package]:
     """
-    This class is a controller for the package csv file.
+    This function reads a csv file and returns a list of Location objects.
 
-    Attributes:
-        csv_handler (CsvHandler): A CsvHandler instance.
+    Args:
+        file (str): The file to read from.
+
+    Returns:
+
+    """
+    packages = []
+
+    csv_file = open(file, mode="r", newline="")
+    reader = csv.reader(csv_file)
+
+    for row in reader:
+        packages.append(Package(*row))
+
+    csv_file.close()
+
+    return packages
+
+
+def write(file: str, packages: list[Package]) -> None:
+    """
+    This function writes a list of Location objects to a csv file.
+
+    Args:
+        file (str): The file to write to.
+        packages (list[Package]): The list of package objects to write.
+
+    Returns:
+
     """
 
-    def __init__(self):
-        """
-        Initializes the PackageCsvController class.
+    csv_file = open(file, mode="w", newline="")
+    writer = csv.writer(csv_file)
 
-        Args:
-            csv_file ():
-        """
+    writer.writerows(packages.__dict__.values())
 
-    def read(self):
-        """
-        Gets all packages from the csv file.
-
-        Returns:
-            list: A list of all packages.
-        """
-        open(package_csv_file)
-        with open(package_csv_file) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=",")
-            line_count = 0
-            for row in csv_reader:
-                print(row)
-                line_count += 1
-            print(f"Processed {line_count} lines.")
-
+    csv_file.close()

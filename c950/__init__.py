@@ -15,6 +15,7 @@ import hash
 import model
 import view
 import create_database
+import defaults
 import main
 
 address_json_file = "../data/address.json"

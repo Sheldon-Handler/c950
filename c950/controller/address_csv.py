@@ -13,7 +13,7 @@ from c950.model.address import Address
 import csv
 
 
-def read_csv(file) -> list[Address]:
+def read(file) -> list[Address]:
     """
     This function reads a csv file and returns a list of Location objects.
 
@@ -36,7 +36,7 @@ def read_csv(file) -> list[Address]:
     return list_of_locations
 
 
-def write_csv(file: str, list_of_locations: list[Address]) -> None:
+def write(file: str, list_of_locations: list[Address]) -> None:
     csv_file = open(file, mode="w", newline="")
     writer = csv.writer(csv_file)
 

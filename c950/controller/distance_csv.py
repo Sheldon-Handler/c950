@@ -9,24 +9,45 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-from c950.hash.csv_handler import CsvHandler
-import c950
-from c950.model.address import Address
+import csv
 
 
-def get_location_list():
-    """Returns a list of addresses from the address_csv_file."""
+def read(file: str) -> list[list]:
+    """
+    This function reads a csv file and returns a list of Location objects.
 
-    address_list = []
+    Args:
+        file (str): The file to read from.
 
-    csv_handler = CsvHandler(c950.address_csv_file, Address)
-    return csv_handler.read()
+    Returns:
+        list[list]: List of distance data from csv file as a distance matrix.
+    """
+    rows = []
+
+    csv_file = open(file, mode="r", newline="")
+    reader = csv.reader(csv_file)
+
+    for row in reader:
+        rows.append(row)
+
+    return rows
 
 
-class AddressDao(CsvHandler):
-    def __init__(self, csv_file):
-        super().__init__(csv_file)
-        self.data = self.read()
+def write(file: str, distances: list[list]) -> None:
+    """
+    This function writes a distance matrix to a csv file.
 
+    Args:
+        file (str): The file to write to.
+        distances (list[list]): The matrix of distances to write.
 
-134
+    Returns:
+
+    """
+
+    csv_file = open(file, mode="w", newline="")
+    writer = csv.writer(csv_file)
+
+    writer.writerows(distances)
+
+    csv_file.close()

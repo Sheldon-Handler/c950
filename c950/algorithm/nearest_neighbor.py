@@ -1,16 +1,30 @@
+#  MIT License
+#
+#  Copyright (c) 2023 Sheldon Handler
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+
+from c950.defaults import *
+import distance_between
 
 
-# Nearest Neighbor Algorithm (Greedy Algorithm)
+# Nearest Neighbor Algorithm (Greedy Algorithm) - Finds the nearest location to the current location.
 ## time complexity: O(n)
 ## space complexity: O(1)
-def nearest_neighbor_index(current_location_index: int, distance_matrix: list[list], visited_location_indices: set, hub_location_index: int = 0) -> int:
+def nearest_neighbor_index(current_location_index: int, hub_location_index = 0, distances: list[list] = distances,
+                           visited_location_indices: set = visited_location_indices) -> int:
     """
     Finds the nearest location to the current location from a list of locations. The nearest location is the location
     with the shortest distance from the current location.
 
     Args:
         current_location_index (int): The index of the current location.
-        distance_matrix (list[list]): A list of lists representing the distance matrix.
+        distances (list[list]): A list of lists representing the distance matrix.
         visited_location_indices (list[int]): A list of indices representing the visited locations.
         hub_location_index (int): The index of the hub location. Defaults to 0.
 
@@ -30,7 +44,7 @@ def nearest_neighbor_index(current_location_index: int, distance_matrix: list[li
     """
 
     # Find the sublist for the current location distance matrix
-    location_sublist = distance_matrix[current_location_index]
+    location_sublist = distances[current_location_index]
 
     # Initialize the nearest location index and distance. Default to the first location in the sublist
     nearest_location_index = 0
@@ -45,7 +59,7 @@ def nearest_neighbor_index(current_location_index: int, distance_matrix: list[li
         if i != current_location_index \
             and i != hub_location_index \
             and i not in visited_location_indices \
-            and nearest_location_distance > location_sublist[i]:
+                and nearest_location_distance > distance_between.get(current_location_index, i):
             # Set nearest_location_distance to the distance to location i in the location_sublist
             nearest_location_distance = location_sublist[i]
             # Set nearest_location_index to the index of location i in the location_sublist
