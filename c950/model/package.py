@@ -28,6 +28,10 @@ class Package:
         delivery_deadline (str): The package delivery deadline.
         weight_kilo (int): The package weight in kilos.
         special_notes (str): The package special notes.
+        machine_readable_delivery_deadline (datetime.time): The package delivery deadline in a format that can be used
+            for calculation of the delivery time.
+        special_notes_attribute_key (str): The package special notes attribute key.
+        special_notes_attribute_value (list or int or str or dict): The package special notes attribute value.
         delivery_status (str): The package delivery status.
         truck_id (int): The package delivery truck ID.
         delivery_time (str): The package delivery time.
@@ -41,9 +45,108 @@ class Package:
     city: str
     state: str
     zip: str
-    delivery_deadline: datetime.time
+    delivery_deadline: str
     weight_kilo: int
     special_notes: str
+    machine_readable_delivery_deadline: datetime.time = None
+    special_notes_attribute_key: str = None
+    special_notes_attribute_value: list or int or str = None
     delivery_status: str = None
     truck_id: int = None
-    delivery_time: str = None
+    delivery_time: datetime.time = None
+
+    def __post_init__(self):
+        """Post initialization method to set the default values for the package instance.
+        This method is called after the __init__ method in the dataclass.
+        """
+        # Handles the delivery deadline for the package.
+        self.time_format()
+
+        # Handles the special notes for the package.
+        self.special_notes_handler()
+
+    def time_format(self):
+        """Takes the delivery_deadline attribute and formats it to save into the machine_readable_delivery_deadline
+        attribute."""
+
+        if self.delivery_deadline == "EOD":
+            self.machine_readable_delivery_deadline = datetime.time(23, 59)
+
+        self.machine_readable_delivery_deadline = (datetime
+                                                   .datetime
+                                                   .strptime(self.delivery_deadline, "%I:%M %p")
+                                                   .time())
+
+    def special_notes_handler(self):
+        """Handles the special notes for the package. Sets the special_notes_attribute_key and
+        special_notes_attribute_value based on the special_notes attribute. This is done by parsing the special_notes
+        string for the string prefix that defines the special note type.
+
+        """
+
+        # If there are no special notes
+        if self.special_notes is None or self.special_notes == "":
+            self.special_notes_attribute_key = ""
+            self.special_notes_attribute_value = ""
+
+        # If the special notes are "Can only be on truck {truck_id}"
+        elif self.special_notes.startswith("Can only be on truck "):
+            self.special_notes_attribute_key = "Can only be on truck"
+            self.special_notes_attribute_value = int(self.special_notes.removeprefix("Can only be on truck "))
+            self.delivery_status = "At Hub"
+
+        # If the special notes are "Delayed on flight---will not arrive to depot until {time}"
+        elif self.special_notes.startswith("Delayed on flight---will not arrive to depot until "):
+            self.special_notes_attribute_key = "Delayed on flight---will not arrive to depot until"
+            self.delivery_status = "Not Available"
+            self.special_notes_attribute_value = (self.special_notes
+                                                  .removeprefix("Delayed on flight---will not arrive to depot until ")
+                                                  .capitalize()
+                                                  .rstrip())
+
+        # If the special notes are "Wrong address listed"
+        elif self.special_notes.startswith("Wrong address listed"):
+            self.special_notes_attribute_key = "Wrong address listed"
+            self.special_notes_attribute_value = self.address
+            # Set the address to an empty string. This will be used to check if the address is correct.
+            self.address = ""
+
+        # If the special notes are "Must be delivered with {list(package_ids) as comma delimited values}"
+        elif self.special_notes.startswith("Must be delivered with "):
+            self.special_notes_attribute_key = "Must be delivered with"
+            self.package_id_list = self.special_notes.removeprefix("Must be delivered with ").strip(" ").split(",")
+            # Convert the package ids to integers
+            self.special_notes_attribute_value = [int(package_id) for package_id in self.package_id_list]
+
+        else:
+            raise ValueError("Invalid special notes value.")
+
+    def update_address(self, correct_address: str):
+        """Updates the address of the package to the correct address."""
+        self.address = correct_address
+
+    def update_delivery_status(self, delivery_status: str) -> None:
+        """Updates the delivery status of the package. If a delivery time is provided, it will also update the
+        delivery time of the package.
+
+        Args:
+            delivery_status (str): The delivery status of the package.
+            delivery_time (str): The delivery time of the package. Defaults to None.
+        """
+
+        if delivery_status == ("Not Available" or "At Hub" or "En Route" or "Delivered"):
+            self.delivery_status = delivery_status
+            print(f"Package {self.id} delivery status updated to {self.delivery_status}.\n")
+        else:
+            raise ValueError("Invalid delivery status value. Please enter either one of the following:\n",
+                             "'Not Available'\n'At Hub'\n'En Route'\n'Delivered'\n")
+
+    def update_delivery_time(self, delivery_time: datetime.time) -> None:
+        """Updates the delivery_time attribute of the package.
+
+        Args:
+            delivery_time (datetime.time): The time that the package was delivered.
+        """
+
+        self.delivery_time = delivery_time
+        print(f"Package {self.id} delivery time updated to {self.delivery_time}.\n")
