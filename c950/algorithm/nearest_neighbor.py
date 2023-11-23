@@ -16,8 +16,12 @@ import distance_between
 # Nearest Neighbor Algorithm (Greedy Algorithm) - Finds the nearest location to the current location.
 ## time complexity: O(n)
 ## space complexity: O(1)
-def nearest_neighbor_index(current_location_index: int, hub_location_index = 0, distances: list[list] = distances,
-                           visited_location_indices: set = visited_location_indices) -> int:
+def nearest_neighbor_index(
+    current_location_index: int,
+    hub_location_index=0,
+    distances: list[list] = distances,
+    visited_location_indices: set = visited_location_indices,
+) -> int:
     """
     Finds the nearest location to the current location from a list of locations. The nearest location is the location
     with the shortest distance from the current location.
@@ -49,17 +53,20 @@ def nearest_neighbor_index(current_location_index: int, hub_location_index = 0, 
     # Initialize the nearest location index and distance. Default to the first location in the sublist
     nearest_location_index = 0
     # Initialize the nearest location distance. Default to the first location in the sublist.
-    nearest_location_distance = float('inf')
+    nearest_location_distance = float("inf")
 
     # Search for the nearest location (the location with the shortest distance)
     for i in location_sublist:  # O(n) - for loop
         # If the current_location_index, hub_location, visited_location_indices are not included when finding
         # the nearest location; and that the currently assigned nearest_location_distance is greater than the distance
         # to location i in the location_sublist.
-        if i != current_location_index \
-            and i != hub_location_index \
-            and i not in visited_location_indices \
-                and nearest_location_distance > distance_between.get(current_location_index, i):
+        if (
+            i != current_location_index
+            and i != hub_location_index
+            and i not in visited_location_indices
+            and nearest_location_distance
+            > distance_between.get(current_location_index, i)
+        ):
             # Set nearest_location_distance to the distance to location i in the location_sublist
             nearest_location_distance = location_sublist[i]
             # Set nearest_location_index to the index of location i in the location_sublist

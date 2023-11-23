@@ -55,7 +55,7 @@ def get(
     elif location_a is type(int):
         location_a = location_a
     else:
-        raise ValueError("location_a must be an Address object or an int.")
+        raise ValueError("location_a must be an object of type Address or int.")
 
     # If location_b is an Address object, convert it to the index of location_b in the address_list
     if location_b is type(Address):
@@ -64,7 +64,7 @@ def get(
     elif location_b is type(int):
         location_b = location_b
     else:
-        raise ValueError("location_b must be an Address object or an int.")
+        raise ValueError("location_b must be an object of type Address or int.")
 
     # Distance between location_a and location_b in sublist of location_a
     location_grid_1 = distances[location_a][location_b]
