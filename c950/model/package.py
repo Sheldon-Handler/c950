@@ -65,18 +65,6 @@ class Package:
         # Handles the special notes for the package.
         self.special_notes_handler()
 
-    def time_format(self):
-        """Takes the delivery_deadline attribute and formats it to save into the machine_readable_delivery_deadline
-        attribute."""
-
-        if self.delivery_deadline == "EOD":
-            self.machine_readable_delivery_deadline = datetime.time(23, 59)
-
-        self.machine_readable_delivery_deadline = (datetime
-                                                   .datetime
-                                                   .strptime(self.delivery_deadline, "%I:%M %p")
-                                                   .time())
-
     def special_notes_handler(self):
         """Handles the special notes for the package. Sets the special_notes_attribute_key and
         special_notes_attribute_value based on the special_notes attribute. This is done by parsing the special_notes
@@ -92,17 +80,26 @@ class Package:
         # If the special notes are "Can only be on truck {truck_id}"
         elif self.special_notes.startswith("Can only be on truck "):
             self.special_notes_attribute_key = "Can only be on truck"
-            self.special_notes_attribute_value = int(self.special_notes.removeprefix("Can only be on truck "))
+            self.special_notes_attribute_value = int(
+                self.special_notes.removeprefix("Can only be on truck ")
+            )
             self.delivery_status = "At Hub"
 
         # If the special notes are "Delayed on flight---will not arrive to depot until {time}"
-        elif self.special_notes.startswith("Delayed on flight---will not arrive to depot until "):
-            self.special_notes_attribute_key = "Delayed on flight---will not arrive to depot until"
+        elif self.special_notes.startswith(
+            "Delayed on flight---will not arrive to depot until "
+        ):
+            self.special_notes_attribute_key = (
+                "Delayed on flight---will not arrive to depot until"
+            )
             self.delivery_status = "Not Available"
-            self.special_notes_attribute_value = (self.special_notes
-                                                  .removeprefix("Delayed on flight---will not arrive to depot until ")
-                                                  .capitalize()
-                                                  .rstrip())
+            self.special_notes_attribute_value = (
+                self.special_notes.removeprefix(
+                    "Delayed on flight---will not arrive to depot until "
+                )
+                .capitalize()
+                .rstrip()
+            )
 
         # If the special notes are "Wrong address listed"
         elif self.special_notes.startswith("Wrong address listed"):
@@ -114,32 +111,55 @@ class Package:
         # If the special notes are "Must be delivered with {list(package_ids) as comma delimited values}"
         elif self.special_notes.startswith("Must be delivered with "):
             self.special_notes_attribute_key = "Must be delivered with"
-            self.package_id_list = self.special_notes.removeprefix("Must be delivered with ").strip(" ").split(",")
+            self.package_id_list = (
+                self.special_notes.removeprefix("Must be delivered with ")
+                .strip(" ")
+                .split(",")
+            )
             # Convert the package ids to integers
-            self.special_notes_attribute_value = [int(package_id) for package_id in self.package_id_list]
+            self.special_notes_attribute_value = [
+                int(package_id) for package_id in self.package_id_list
+            ]
 
         else:
             raise ValueError("Invalid special notes value.")
+
+    def time_format(self):
+        """Takes the delivery_deadline attribute and formats it to save into the machine_readable_delivery_deadline
+        attribute."""
+
+        if self.delivery_deadline == "EOD":
+            self.machine_readable_delivery_deadline = datetime.time(23, 59)
+
+        self.machine_readable_delivery_deadline = datetime.datetime.strptime(
+            self.delivery_deadline, "%I:%M %p"
+        ).time()
 
     def update_address(self, correct_address: str):
         """Updates the address of the package to the correct address."""
         self.address = correct_address
 
-    def update_delivery_status(self, delivery_status: str) -> None:
+    def update_delivery_status(self, delivery_status: str) -> bool:
         """Updates the delivery status of the package. If a delivery time is provided, it will also update the
         delivery time of the package.
 
         Args:
             delivery_status (str): The delivery status of the package.
-            delivery_time (str): The delivery time of the package. Defaults to None.
         """
 
-        if delivery_status == ("Not Available" or "At Hub" or "En Route" or "Delivered"):
+        if delivery_status == (
+            "Not Available" or "At Hub" or "En Route" or "Delivered"
+        ):
             self.delivery_status = delivery_status
-            print(f"Package {self.id} delivery status updated to {self.delivery_status}.\n")
+            print(
+                f"Package {self.id} delivery status updated to {self.delivery_status}.\n"
+            )
+            return True
         else:
-            raise ValueError("Invalid delivery status value. Please enter either one of the following:\n",
-                             "'Not Available'\n'At Hub'\n'En Route'\n'Delivered'\n")
+            raise ValueError(
+                "Invalid delivery status value. Please enter either one of the following:\n",
+                "'Not Available'\n'At Hub'\n'En Route'\n'Delivered'\n",
+            )
 
     def update_delivery_time(self, delivery_time: datetime.time) -> None:
         """Updates the delivery_time attribute of the package.

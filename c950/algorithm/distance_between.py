@@ -16,8 +16,12 @@ from c950.defaults import distances, addresses
 # Calculates the distance between two locations.
 ## time complexity: O(1)
 ## space complexity: O(1)
-def get(location_a: Address or int, location_b: Address or int, distances: list[list] = distances,
-        addresses: list[Address] = addresses) -> float:
+def get(
+    location_a: Address or int,
+    location_b: Address or int,
+    distances: list[list] = distances,
+    addresses: list[Address] = addresses,
+) -> float:
     """
     Calculates the distance between two locations.
 
@@ -48,39 +52,32 @@ def get(location_a: Address or int, location_b: Address or int, distances: list[
     if location_a is type(Address):
         # Get the index of location_a in the address_list
         location_a = addresses.index(location_a)
+    elif location_a is type(int):
+        location_a = location_a
+    else:
+        raise ValueError("location_a must be an Address object or an int.")
 
-    # If location_b is an Address object
+    # If location_b is an Address object, convert it to the index of location_b in the address_list
     if location_b is type(Address):
         # Get the index of location_b in the address_list
         location_b = addresses.index(location_b)
-
-    # Distance between location_a and location_b in the sublist of i
-    location_grid_1 = distances[location_a][location_b]
-    # Flag to determine if location_grid_1 is a valid float
-    location_grid_1_valid = False
-    # If location_grid_1 is a valid float
-    if location_grid_1 is type(float):
-        # Set location_grid_1_valid to True
-        location_grid_1_valid = True
-
-    # Distance between location_b and location_a in the sublist of j
-    location_grid_2 = distances[location_b][location_a]
-    # Flag to determine if location_grid_2 is a valid float
-    location_grid_2_valid = False
-    # If location_grid_2 is a valid float
-    if location_grid_2 is type(float):
-        # Set location_grid_2_valid to True
-        location_grid_2_valid = True
-
-    # If location_grid_1 is a valid float
-    if location_grid_1_valid is True:
-        # Return the distance between location_a and location_b in the sublist of i
-        return location_grid_1
-    # If location_grid_2 is a valid float
-    elif location_grid_2_valid is True:
-        # Return the distance between location_b and location_a in the sublist of j
-        return location_grid_2
-    # If location_grid_1 and location_grid_2 are not valid floats
+    elif location_b is type(int):
+        location_b = location_b
     else:
-        # Raise a ValueError
-        raise ValueError("The distance between location_a and location_b is not in the distance_matrix.")
+        raise ValueError("location_b must be an Address object or an int.")
+
+    # Distance between location_a and location_b in sublist of location_a
+    location_grid_1 = distances[location_a][location_b]
+    # Distance between location_a and location_b in sublist of location_b
+    location_grid_2 = distances[location_b][location_a]
+
+    # Find the distance between location_a and location_b. Find the distance_matrix for the distance between location_a
+    # and location_b in the sublist of location_a and the sublist of location_b.
+    if location_grid_1 is type(float):
+        return location_grid_1
+    elif location_grid_2 is type(float):
+        return location_grid_2
+    else:
+        raise ValueError(
+            "The distance between location_a and location_b is not in the distance_matrix."
+        )
