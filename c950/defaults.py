@@ -8,4 +8,5 @@ starting_location = 0
 addresses = []
 distances = []
 packages = []
+trucks = []
 visited_location_indices = set()

@@ -12,25 +12,7 @@ information."""
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-from enum import Enum
 from dataclasses import dataclass
-from algorithm.package_delivery_algorithm import PackageGroup
-
-truck_list = []
-
-
-class TruckStatus(Enum):
-    """
-    Enum class to represent the different statuses of trucks.
-
-    Attributes:
-
-    """
-
-    NOT_AVAILABLE = 0
-    AT_HUB = 1
-    EN_ROUTE = 2
-    RETURNING = 3
 
 
 @dataclass
@@ -46,7 +28,15 @@ class Truck:
     """
 
     id: int
-    truck_status: TruckStatus
+    truck_status: str
     route: list = None
     distance_traveled: float = None
-    current_package_group: PackageGroup = None
+    packages: list[int] = None
+
+    def update_truck_status(self, truck_status: ) -> None:
+        """Updates the truck status.
+
+        Args:
+            truck_status (TruckStatus): The status of the truck.
+        """
+        self.truck_status = truck_status
