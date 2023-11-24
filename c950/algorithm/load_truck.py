@@ -46,8 +46,6 @@ def load_truck(
 def check_if_package_can_be_loaded(
     package: Package,
     truck_id: int,
-    distances: list[list[float]] = distances,
-    starting_location: int = starting_location,
     truck_capacity: int = truck_capacity,
 ) -> bool:
     """
@@ -158,6 +156,7 @@ def __load_package__(package: Package, truck: Truck):
         space complexity: O(1)
     """
 
-    if truck.truck_status == "At Hub":
+    if truck.truck_status == "At Hub" and len(truck.packages) < truck_capacity:
         package.truck_id = truck.id
         package.update_delivery_status("En Route")
+        truck.packages.append(package.id)

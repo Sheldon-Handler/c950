@@ -33,10 +33,11 @@ class Truck:
     distance_traveled: float = None
     packages: list[int] = None
 
-    def update_truck_status(self, truck_status: ) -> None:
+    def update_truck_status(self, truck_status: str) -> None:
         """Updates the truck status.
 
         Args:
             truck_status (TruckStatus): The status of the truck.
         """
-        self.truck_status = truck_status
+        if truck_status in ["At Hub", "En Route", "Returning", "at location"]:
+            self.truck_status = truck_status
