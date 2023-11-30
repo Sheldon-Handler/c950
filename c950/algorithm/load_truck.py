@@ -22,13 +22,14 @@ def load_truck(
         space complexity: O(1)
     """
 
-
     __packages_that_can_only_be_on_truck__(truck, packages)
 
     for package in packages:
-        if package.special_notes_attribute_key == "Can only be on truck" \
-            and package.special_notes_attribute_value != truck.id \
-                and check_if_package_can_be_loaded(package, truck) is True:
+        if (
+            package.special_notes_attribute_key == "Can only be on truck"
+            and package.special_notes_attribute_value != truck.id
+            and check_if_package_can_be_loaded(package, truck) is True
+        ):
             _load_package(package, truck)
 
 
@@ -116,14 +117,18 @@ def trucks_with_exclusive_packages():
 
     for truck in trucks:
         for package in truck.packages:
-            if package.special_notes_attribute_key == "Can only be on truck"\
-                    and package.special_notes_attribute_value == truck.id:
+            if (
+                package.special_notes_attribute_key == "Can only be on truck"
+                and package.special_notes_attribute_value == truck.id
+            ):
                 _load_package(package, truck)
 
     return trucks_with_exclusive_packages
 
 
-def __packages_that_can_only_be_on_truck__(truck: Truck, packages: list[Package]) -> list[int]:
+def __packages_that_can_only_be_on_truck__(
+    truck: Truck, packages: list[Package]
+) -> list[int]:
     """
     Returns a list of packages that can only be on a specific truck.
 
@@ -143,8 +148,10 @@ def __packages_that_can_only_be_on_truck__(truck: Truck, packages: list[Package]
 
     # Find the packages that can only be on a specific truck and add they're id's to the list
     for package in packages:
-        if package.special_notes_attribute_key == "Can only be on truck" \
-                and package.special_notes_attribute_value == truck.id:
+        if (
+            package.special_notes_attribute_key == "Can only be on truck"
+            and package.special_notes_attribute_value == truck.id
+        ):
             package_ids_that_can_only_be_on_truck.append(package.id)
 
     return package_ids_that_can_only_be_on_truck

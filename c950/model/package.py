@@ -63,8 +63,9 @@ class Package:
         if self.delivery_deadline == "EOD":
             self.machine_readable_delivery_deadline = None
         else:
-            self.machine_readable_delivery_deadline = (datetime.datetime.strptime(
-                self.delivery_deadline, "%I:%M %p").time())
+            self.machine_readable_delivery_deadline = datetime.datetime.strptime(
+                self.delivery_deadline, "%I:%M %p"
+            ).time()
 
         # Handles the special notes for the package.
         self.special_notes_handler()
@@ -156,30 +157,6 @@ class Package:
                 "'Not Available'\n'At Hub'\n'En Route'\n'Delivered'\n",
             )
 
-    def update_delivery_time(self, delivery_time: datetime.time) -> None:
-        """Updates the delivery_time attribute of the package.
-
-        Args:
-            delivery_time (datetime.time): The time that the package was delivered.
-        """
-
-        self.delivery_time = delivery_time
-        print(f"Package {self.id} delivery time updated to {self.delivery_time}.\n")
-
-    def load_onto_truck(self, truck_id: int):
-        """
-        Loads the package onto a truck.
-
-        Args:
-            truck_id (int): The id of the truck to load the package onto.
-
-        Returns:
-            None
-        """
-        self.truck_id = truck_id
-        self.update_delivery_status("En Route")
-        print(f"Package {self.id} loaded onto Truck {self.truck_id}.\n")
-
     def deliver(self, delivery_time: datetime.time = datetime.datetime.now().time()):
         """Delivers the package. Updates the delivery_status and delivery_time attributes.
 
@@ -189,3 +166,44 @@ class Package:
         self.update_delivery_status("Delivered")
         self.delivery_time = delivery_time
         print(f"Package {self.id} delivered at {self.delivery_time}.\n")
+
+
+def get_package_by_id(package_id: int, packages: list[Package]) -> Package:
+    """Returns a package object by its id.
+
+    Args:
+        package_id (int): The id of the package to return.
+        packages (list[Package]): A list of packages.
+
+    Returns:
+        Package: The package object with the id provided.
+
+    Notes:
+        time complexity: O(n)
+        space complexity: O(1)
+    """
+    for package in packages:  # O(n)
+        if package.id == package_id:
+            return package
+
+
+def get_index_of_package_by_id(package_id: int, packages: list[Package]) -> int or None:
+    """Returns the index of a package object by its id.
+
+    Args:
+        package_id (int): The id of the package to return.
+        packages (list[Package]): A list of packages.
+
+    Returns:
+        int: The index of the package object with the id provided.
+
+    Notes:
+        time complexity: O(n)
+        space complexity: O(1)
+    """
+    for package in packages:  # O(n)
+        if package.id == package_id:
+            return packages.index(package)
+
+    print(f"Package with id {package_id} not found.")
+    return None
