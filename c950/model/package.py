@@ -34,7 +34,7 @@ class Package:
         special_notes_attribute_value (list or int or str or dict): The package special notes attribute value.
         delivery_status (str): The package delivery status.
         truck_id (int): The package delivery truck ID.
-        delivery_time (str): The package delivery time.
+        delivery_time (datetime.time): The package delivery time.
 
     Returns:
         Package: A Package class instance.
@@ -59,8 +59,12 @@ class Package:
         """Post initialization method to set the default values for the package instance.
         This method is called after the __init__ method in the dataclass.
         """
-        # Handles the delivery deadline for the package.
-        self.time_format()
+        # Sets the machine_readable_delivery_deadline attribute.
+        if self.delivery_deadline == "EOD":
+            self.machine_readable_delivery_deadline = None
+        else:
+            self.machine_readable_delivery_deadline = (datetime.datetime.strptime(
+                self.delivery_deadline, "%I:%M %p").time())
 
         # Handles the special notes for the package.
         self.special_notes_handler()
@@ -104,6 +108,7 @@ class Package:
         # If the special notes are "Wrong address listed"
         elif self.special_notes.startswith("Wrong address listed"):
             self.special_notes_attribute_key = "Wrong address listed"
+            # Store the incorrect address in the special_notes_attribute_value
             self.special_notes_attribute_value = self.address
             # Set the address to an empty string. This will be used to check if the address is correct.
             self.address = ""
@@ -124,29 +129,19 @@ class Package:
         else:
             raise ValueError("Invalid special notes value.")
 
-    def time_format(self):
-        """Takes the delivery_deadline attribute and formats it to save into the machine_readable_delivery_deadline
-        attribute."""
-
-        if self.delivery_deadline == "EOD":
-            self.machine_readable_delivery_deadline = datetime.time(23, 59)
-
-        self.machine_readable_delivery_deadline = datetime.datetime.strptime(
-            self.delivery_deadline, "%I:%M %p"
-        ).time()
-
-    def update_address(self, correct_address: str):
-        """Updates the address of the package to the correct address."""
-        self.address = correct_address
-
     def update_delivery_status(self, delivery_status: str) -> bool:
         """Updates the delivery status of the package. If a delivery time is provided, it will also update the
         delivery time of the package.
 
         Args:
             delivery_status (str): The delivery status of the package.
+
+        Returns:
+            bool: True if the delivery status was updated successfully. False if the delivery status was not updated
+                successfully.
         """
 
+        # Check that the delivery_status is a valid value.
         if delivery_status == (
             "Not Available" or "At Hub" or "En Route" or "Delivered"
         ):
@@ -170,3 +165,27 @@ class Package:
 
         self.delivery_time = delivery_time
         print(f"Package {self.id} delivery time updated to {self.delivery_time}.\n")
+
+    def load_onto_truck(self, truck_id: int):
+        """
+        Loads the package onto a truck.
+
+        Args:
+            truck_id (int): The id of the truck to load the package onto.
+
+        Returns:
+            None
+        """
+        self.truck_id = truck_id
+        self.update_delivery_status("En Route")
+        print(f"Package {self.id} loaded onto Truck {self.truck_id}.\n")
+
+    def deliver(self, delivery_time: datetime.time = datetime.datetime.now().time()):
+        """Delivers the package. Updates the delivery_status and delivery_time attributes.
+
+        Args:
+            time (datetime.time): The time that the package was delivered. Defaults to the current time.
+        """
+        self.update_delivery_status("Delivered")
+        self.delivery_time = delivery_time
+        print(f"Package {self.id} delivered at {self.delivery_time}.\n")

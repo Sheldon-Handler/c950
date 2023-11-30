@@ -13,6 +13,8 @@ information."""
 #
 
 from dataclasses import dataclass
+from c950.model.package import Package
+from c950.defaults import *
 
 
 @dataclass
@@ -41,3 +43,12 @@ class Truck:
         """
         if truck_status in ["At Hub", "En Route", "Returning", "at location"]:
             self.truck_status = truck_status
+
+    def load_package(self, package: Package) -> None:
+        """Loads a package onto a truck.
+
+        Args:
+            package_id (int): The ID of the package to load onto the truck.
+        """
+        package.load_onto_truck(self.id)
+        self.packages.append(package.id)
