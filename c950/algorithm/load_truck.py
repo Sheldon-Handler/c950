@@ -97,7 +97,7 @@ def check_if_package_can_be_loaded(
 
 
 def __packages_that_can_only_be_on_truck__(
-    truck: Truck = trucks, packages: list[Package] = packages
+    truck: Truck, packages: list[Package] = packages
 ) -> list[Package]:
     """
     Returns a list of packages that can only be on a specific truck.

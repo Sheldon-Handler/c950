@@ -44,3 +44,4 @@ def load_package(
     else:
         packages[package_index].load_onto_truck(truck_id)
         trucks[truck_index].load_package(packages[package_index])
+        return True
