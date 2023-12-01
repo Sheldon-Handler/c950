@@ -1,7 +1,8 @@
+import datetime
 from c950.model.package import Package
 from c950.model.truck import Truck
 from c950.defaults import *
-from c950.algorithm.load_package import _load_package
+from c950.algorithm.load_package import load_package
 
 
 def load_truck(
@@ -30,12 +31,13 @@ def load_truck(
             and package.special_notes_attribute_value != truck.id
             and check_if_package_can_be_loaded(package, truck) is True
         ):
-            _load_package(package, truck)
+            load_package(package.id, truck.id)
 
 
 def check_if_package_can_be_loaded(
     package: Package,
     truck: Truck,
+    current_time: datetime.time = datetime.datetime.now().time(),
 ) -> bool:
     """
     Checks if a package can be loaded onto a truck.
@@ -55,6 +57,7 @@ def check_if_package_can_be_loaded(
     if (
         package.special_notes_attribute_key == "Can only be on truck"
         and package.special_notes_attribute_value != truck.id
+        and truck.id != package.special_notes_attribute_value
     ):
         print(
             f"Package {package.id} cannot be loaded onto Truck {truck.id} at {package.delivery_time}."
@@ -64,6 +67,7 @@ def check_if_package_can_be_loaded(
     elif (
         package.special_notes_attribute_key
         == "Delayed on flight---will not arrive to depot until"
+        and current_time < package.special_notes_attribute_value
     ):
         print(
             f"Package {package.id} cannot be loaded onto Truck {truck.id} at {package.delivery_time}."
@@ -88,47 +92,13 @@ def check_if_package_can_be_loaded(
     elif package.delivery_status == "At Hub" and package.truck_id != (truck.id or None):
         print(f"Package {package.id} is already loaded onto Truck {package.truck_id}.")
         return False
-    elif (
-        package.delivery_status == "At Hub"
-        and package.truck_id == truck.id
-        and package.special_notes_attribute_key != "Wrong address listed"
-    ):
-        print(f"Package {package.id} is already loaded onto Truck {truck.id}.")
-        return False
     else:
         return True
 
 
-def trucks_with_exclusive_packages():
-    """
-    Returns a list of trucks with packages that can only be on a specific truck.
-
-    Args:
-        trucks (list[Truck]): A list of Truck objects.
-        packages (list[Package]): A list of Package objects.
-
-    Returns:
-        list: A list of Truck objects, each containing a list of packages to be delivered.
-
-    Notes:
-        time complexity: O(n^2)
-        space complexity: O(1)
-    """
-
-    for truck in trucks:
-        for package in truck.packages:
-            if (
-                package.special_notes_attribute_key == "Can only be on truck"
-                and package.special_notes_attribute_value == truck.id
-            ):
-                _load_package(package, truck)
-
-    return trucks_with_exclusive_packages
-
-
 def __packages_that_can_only_be_on_truck__(
-    truck: Truck, packages: list[Package]
-) -> list[int]:
+    truck: Truck = trucks, packages: list[Package] = packages
+) -> list[Package]:
     """
     Returns a list of packages that can only be on a specific truck.
 
@@ -144,14 +114,14 @@ def __packages_that_can_only_be_on_truck__(
         space complexity: O(1)
     """
 
-    package_ids_that_can_only_be_on_truck = []
+    packages_that_can_only_be_on_truck = []
 
-    # Find the packages that can only be on a specific truck and add they're id's to the list
-    for package in packages:
+    # Find the packages that can only be on a specific truck and add them to the list
+    for package in packages:  # O(n) - for loop
         if (
             package.special_notes_attribute_key == "Can only be on truck"
             and package.special_notes_attribute_value == truck.id
         ):
-            package_ids_that_can_only_be_on_truck.append(package.id)
+            packages_that_can_only_be_on_truck.append(package)
 
-    return package_ids_that_can_only_be_on_truck
+    return packages_that_can_only_be_on_truck
