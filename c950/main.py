@@ -1,5 +1,4 @@
 """This module contains the main function for the program."""
-import pygubu
 
 #  MIT License
 #
