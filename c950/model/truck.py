@@ -13,7 +13,7 @@ information."""
 #
 
 from dataclasses import dataclass
-from c950.model.package import Package
+from c950.model.package import *
 from c950.defaults import *
 
 
@@ -35,14 +35,25 @@ class Truck:
     distance_traveled: float = None
     packages: list[int] = None
 
-    def update_truck_status(self, truck_status: str) -> None:
+    def update_truck_status(self, truck_status: str) -> bool:
         """Updates the truck status.
 
         Args:
             truck_status (TruckStatus): The status of the truck.
+
+        Returns:
+            bool: True if the truck_status is valid and updated accordingly. Otherwise, raises a ValueError.
         """
-        if truck_status in ["At Hub", "En Route", "Returning", "at location"]:
+        truck_statuses = ["Not Available", "At Hub", "En Route", "Returning"]
+
+        if truck_status in truck_statuses:
             self.truck_status = truck_status
+            print(f"Truck {self.id} status updated to {self.truck_status}.")
+            return True
+        else:
+            raise ValueError(
+                f"Truck status must be one of the following: {truck_statuses}."
+            )
 
     def load_package(self, package: Package) -> None:
         """Loads a package onto a truck.
@@ -52,3 +63,40 @@ class Truck:
         """
         package.load_onto_truck(self.id)
         self.packages.append(package.id)
+
+
+def get_truck_by_id(truck_id: int, trucks: list[Truck] = trucks) -> Truck:
+    """Gets a truck by its ID.
+
+    Args:
+        truck_id (int): The ID of the truck to get.
+        trucks (list): A list of Truck objects.
+
+    Returns:
+        Truck: The truck with the specified ID.
+    """
+    for truck in trucks:
+        if truck.id == truck_id:
+            return truck
+
+    raise ValueError("Truck with id {} not found.".format(truck_id))
+
+
+def get_index_of_truck_by_id(
+    truck_id: int, trucks: list[Truck] = trucks
+) -> int or None:
+    """Gets the index of a truck by its ID.
+
+    Args:
+        truck_id (int): The ID of the truck to get.
+        trucks (list): A list of Truck objects.
+
+    Returns:
+        int: The index of the truck with the specified ID.
+    """
+    for truck in trucks:
+        if truck.id == truck_id:
+            return trucks.index(truck)
+
+    print("Truck with id {} not found.".format(truck_id))
+    return None
