@@ -23,4 +23,3 @@ def _load_package(package: Package, truck: Truck):
         package.truck_id = truck.id
         package.update_delivery_status("En Route")
         truck.packages.append(package.id)
-
