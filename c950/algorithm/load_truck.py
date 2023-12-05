@@ -2,7 +2,6 @@ import datetime
 from c950.model.package import Package
 from c950.model.truck import Truck
 from c950.defaults import *
-from c950.algorithm.load_package import load_package
 
 
 def load_truck(
