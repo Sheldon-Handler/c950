@@ -7,9 +7,10 @@ from c950.defaults import *
 def load_truck(
     truck: Truck,
     packages: list[Package],
+    load_time: datetime.time = datetime.datetime.now().time(),
     distances: list[list[float]] = distances,
     starting_location: int = starting_location,
-    truck_capacity: int = 16,
+    truck_capacity: int = truck_capacity,
 ):
     """
     Loads packages onto trucks for delivery.
@@ -30,7 +31,10 @@ def load_truck(
             and package.special_notes_attribute_value != truck.id
             and check_if_package_can_be_loaded(package, truck) is True
         ):
-            load_package(package.id, truck.id)
+            package.truck_id = truck.id
+            package.delivery_time = load_time
+            package.delivery_status = "En Route"
+            truck.packages.append(package.id)
 
 
 def check_if_package_can_be_loaded(
@@ -124,3 +128,22 @@ def __packages_that_can_only_be_on_truck__(
             packages_that_can_only_be_on_truck.append(package)
 
     return packages_that_can_only_be_on_truck
+
+
+def __load_truck_without_checking__(truck: Truck, package: Package) -> None:
+    """
+    Loads packages onto trucks for delivery.
+
+    Returns:
+        truck: (Truck): The truck to load the package onto.
+        package: (Package): The package to load onto the truck.
+
+    Notes:
+        time complexity: O(1)
+        space complexity: O(1)
+    """
+
+    package.truck_id = truck.id
+    package.delivery_status = "En Route"
+    truck.packages.append(package.id)
+    

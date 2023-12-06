@@ -31,9 +31,9 @@ class Truck:
 
     id: int
     truck_status: str
-    route: list = None
     distance_traveled: float = None
     packages: list[int] = None
+    packages_delivered: list[int] = None
 
     def update_truck_status(self, truck_status: str) -> bool:
         """Updates the truck status.
@@ -54,16 +54,6 @@ class Truck:
             raise ValueError(
                 f"Truck status must be one of the following: {truck_statuses}."
             )
-
-    def load_package(self, package: Package) -> None:
-        """Loads a package onto a truck.
-
-        Args:
-            package_id (int): The ID of the package to load onto the truck.
-        """
-        package.load_onto_truck(self.id)
-        self.packages.append(package.id)
-
 
 def get_truck_by_id(truck_id: int, trucks: list[Truck] = trucks) -> Truck:
     """Gets a truck by its ID.
