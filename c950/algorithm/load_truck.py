@@ -1,4 +1,6 @@
 import datetime
+
+import defaults
 from c950.model.package import Package
 from c950.model.truck import Truck
 from c950.defaults import *
@@ -40,14 +42,15 @@ def load_truck(
 def check_if_package_can_be_loaded(
     package: Package,
     truck: Truck,
-    current_time: datetime.time = datetime.datetime.now().time(),
+    load_time: datetime.time = datetime.datetime.now().time(),
 ) -> bool:
     """
-    Checks if a package can be loaded onto a truck.
+    Checks if the given package can be loaded onto the given truck.
 
     Args:
-        package (Package): A package.
-        truck (Truck): The truck.
+        package (Package): The package to load.
+        truck (Truck): The truck to load the package onto.
+        load_time (datetime.time): The time to load the package. Defaults to current time.
 
     Returns:
         list: A list of Truck objects, each containing a list of packages to be delivered.
@@ -81,21 +84,37 @@ def check_if_package_can_be_loaded(
             f"Package {package.id} cannot be loaded onto Truck {truck.id} because the wrong address is assigned."
         )
         return False
-    elif package.delivery_status == "Delivered":
-        print(
-            f"Package {package.id} has already been delivered from Truck {package.truck_id} at {package.delivery_time}."
-        )
+    elif package.delivery_status == "Not Available":
+        print(f"Package {package.id} is Not Available. Cannot load onto truck {truck.id}")
         return False
     elif package.delivery_status == "En Route":
         print(
             f"Package {package.id} is currently En Route on Truck {package.truck_id}."
         )
         return False
+    elif package.delivery_status == "Delivered":
+        print(
+            f"Package {package.id} has already been delivered from Truck {package.truck_id} at {package.delivery_time}."
+        )
+        return False
     elif package.delivery_status == "At Hub" and package.truck_id != (truck.id or None):
         print(f"Package {package.id} is already loaded onto Truck {package.truck_id}.")
         return False
+    elif len(truck.packages) >= defaults.truck_capacity:
+        print(f"Truck {truck.id} is currently full. Cannot load package {package.id} onto it.")
+        return False
+    elif truck.truck_status == "Not Available" and truck.id != package.truck_id:
+        print(f"Truck {truck.id} is Not Available. Cannot load package {package.id} onto it.")
+        return False
+    elif truck.truck_status == "En Route" and truck.id != package.truck_id:
+        print(f"Truck {truck.id} En Route. Cannot load package {package.id} onto it.")
+        return False
+    elif truck.truck_status == "Returning" and truck.id != package.truck_id:
+        print(f"Truck {truck.id} is not available. Cannot load package {package.id} onto it.")
+        return False
     else:
         return True
+
 
 
 def __packages_that_can_only_be_on_truck__(

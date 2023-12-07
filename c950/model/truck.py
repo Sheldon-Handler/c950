@@ -55,6 +55,7 @@ class Truck:
                 f"Truck status must be one of the following: {truck_statuses}."
             )
 
+
 def get_truck_by_id(truck_id: int, trucks: list[Truck] = trucks) -> Truck:
     """Gets a truck by its ID.
 
