@@ -60,7 +60,6 @@ def check_if_package_can_be_loaded(
     if (
         package.special_notes_attribute_key == "Can only be on truck"
         and package.special_notes_attribute_value != truck.id
-        and truck.id != package.special_notes_attribute_value
     ):
         print(
             f"Package {package.id} cannot be loaded onto Truck {truck.id} at {package.delivery_time}."
