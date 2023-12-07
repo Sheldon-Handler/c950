@@ -116,7 +116,6 @@ def check_if_package_can_be_loaded(
         return True
 
 
-
 def __packages_that_can_only_be_on_truck__(
     truck: Truck, packages: list[Package] = packages
 ) -> list[Package]:
