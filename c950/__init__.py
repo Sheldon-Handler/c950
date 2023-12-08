@@ -17,6 +17,7 @@ import model
 import view
 import defaults
 import main
+import debug
 
 address_json_file = "../data/address.json"
 distance_json_file = "../data/distance.json"

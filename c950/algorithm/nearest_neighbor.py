@@ -11,6 +11,7 @@
 
 from c950.defaults import *
 import distance_between
+from c950 import debug
 
 
 # Nearest Neighbor Algorithm (Greedy Algorithm) - Finds the nearest location to the current location.
@@ -72,5 +73,4 @@ def nearest_neighbor_index(
             # Set nearest_location_index to the index of location i in the location_sublist
             nearest_location_index = i
 
-    # Return the index of the nearest location
     return nearest_location_index
