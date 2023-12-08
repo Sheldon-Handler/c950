@@ -1,4 +1,5 @@
 """This module contains the main function for the program."""
+import tkinter
 
 #  MIT License
 #
@@ -12,13 +13,12 @@
 
 import c950
 import debug
-from tkinter import window, Tk
+from tkinter import *
+import tkhtmlview
 
 
 def main():
     """The main function for the program."""
-
-    T
 
     # Initialize the controller
     controller = c950.controller.Controller()
