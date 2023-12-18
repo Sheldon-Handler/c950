@@ -43,6 +43,7 @@ def check_if_package_can_be_loaded(
     package: Package,
     truck: Truck,
     load_time: datetime.time = datetime.datetime.now().time(),
+    current_time: datetime.time = datetime.datetime.now().time(),
 ) -> bool:
     """
     Checks if the given package can be loaded onto the given truck.
@@ -85,7 +86,9 @@ def check_if_package_can_be_loaded(
         )
         return False
     elif package.delivery_status == "Not Available":
-        print(f"Package {package.id} is Not Available. Cannot load onto truck {truck.id}")
+        print(
+            f"Package {package.id} is Not Available. Cannot load onto truck {truck.id}"
+        )
         return False
     elif package.delivery_status == "En Route":
         print(
@@ -101,16 +104,22 @@ def check_if_package_can_be_loaded(
         print(f"Package {package.id} is already loaded onto Truck {package.truck_id}.")
         return False
     elif len(truck.packages) >= defaults.truck_capacity:
-        print(f"Truck {truck.id} is currently full. Cannot load package {package.id} onto it.")
+        print(
+            f"Truck {truck.id} is currently full. Cannot load package {package.id} onto it."
+        )
         return False
     elif truck.truck_status == "Not Available" and truck.id != package.truck_id:
-        print(f"Truck {truck.id} is Not Available. Cannot load package {package.id} onto it.")
+        print(
+            f"Truck {truck.id} is Not Available. Cannot load package {package.id} onto it."
+        )
         return False
     elif truck.truck_status == "En Route" and truck.id != package.truck_id:
         print(f"Truck {truck.id} En Route. Cannot load package {package.id} onto it.")
         return False
     elif truck.truck_status == "Returning" and truck.id != package.truck_id:
-        print(f"Truck {truck.id} is not available. Cannot load package {package.id} onto it.")
+        print(
+            f"Truck {truck.id} is not available. Cannot load package {package.id} onto it."
+        )
         return False
     else:
         return True
@@ -163,4 +172,3 @@ def __load_truck_without_checking__(truck: Truck, package: Package) -> None:
     package.truck_id = truck.id
     package.delivery_status = "En Route"
     truck.packages.append(package.id)
-    

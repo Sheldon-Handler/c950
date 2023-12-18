@@ -14,7 +14,6 @@ import tkinter
 import c950
 import debug
 from tkinter import *
-import tkhtmlview
 
 
 def main():
