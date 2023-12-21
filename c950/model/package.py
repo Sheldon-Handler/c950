@@ -14,6 +14,8 @@
 import datetime
 from dataclasses import dataclass
 
+import c950.defaults
+
 
 @dataclass
 class Package:
@@ -168,7 +170,9 @@ class Package:
         print(f"Package {self.id} delivered at {self.delivery_time}.\n")
 
 
-def get_package_by_id(package_id: int, packages: list[Package]) -> Package:
+def get_package_by_id(
+    package_id: int, packages: list[Package] = c950.defaults.packages
+) -> Package:
     """Returns a package object by its id.
 
     Args:
@@ -187,7 +191,9 @@ def get_package_by_id(package_id: int, packages: list[Package]) -> Package:
             return package
 
 
-def get_index_of_package_by_id(package_id: int, packages: list[Package]) -> int or None:
+def get_index_of_package_by_id(
+    package_id: int, packages: list[Package] = c950.defaults.packages
+) -> int or None:
     """Returns the index of a package object by its id.
 
     Args:
