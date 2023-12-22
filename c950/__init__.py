@@ -19,10 +19,6 @@ import defaults
 import main
 import debug
 
-address_json_file = "../data/address.json"
-distance_json_file = "../data/distance.json"
-package_json_file = "../data/package.json"
-
 address_csv_file = "../data/address.csv"
 distance_csv_file = "../data/distance.csv"
 package_csv_file = "../data/package.csv"

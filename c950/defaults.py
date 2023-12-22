@@ -9,8 +9,8 @@ addresses = []
 distances = []
 packages = []
 trucks = []
-visited_location_indices = set()
+visited_location_indices = {}
 
-address_csv_file = "data/address.csv"
-distance_csv_file = "data/distance.csv"
-package_csv_file = "data/package.csv"
+address_csv_file = "../data/address.csv"
+distance_csv_file = "../data/distance.csv"
+package_csv_file = "../data/package.csv"

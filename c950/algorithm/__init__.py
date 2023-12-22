@@ -1,3 +1,4 @@
+import deliver_together
 import distance_between
 import load_truck
 import nearest_neighbor

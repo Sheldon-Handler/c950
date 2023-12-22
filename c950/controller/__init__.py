@@ -13,9 +13,3 @@ import address_csv
 import distance_csv
 import json_handler
 import package_csv
-
-import sqlite3
-
-sqlitedb = "../data/database.sqlite"
-connection = sqlite3.connect(sqlitedb)
-cursor = connection.cursor()
