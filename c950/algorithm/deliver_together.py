@@ -1,22 +1,67 @@
-from c950.model.package import Package
 from c950 import packages
+import c950
 
 delivery_groups = list([])
 
 
-def add(package):
-    for package.special_notes_attribute_value in packages:
-        if package.special_notes_attribute_value == package.id:
-            delivery_groups.append(package.id)
-            return
+# def add(package: c950.model.package.Package):
+#     """
+#     Adds a package to a delivery group.
+#
+#     Args:
+#         package:
+#
+#     Returns:
+#
+#     """
+#     for package.special_notes_attribute_value in packages:
+#         if package.special_notes_attribute_value == package.id:
+#             delivery_groups.append(package.id)
+#             return
 
 
-def add_to_delivery_group(package: Package) -> bool:
+def get_delivery_groups() -> list:
+    """
+    Returns the delivery groups.
+
+    Returns:
+        list: The delivery groups.
+
+    Notes:
+        time complexity: O(1)
+        space complexity: O(1)
+    """
+
+    return delivery_groups
+
+
+def set_delivery_groups() -> None:
+    """
+    Sets the delivery groups for packages that must be delivered together.
+
+    Returns:
+        None
+
+    Notes:
+        time complexity: O(n)
+        space complexity: O(1)
+    """
+
+    # Find the packages that must be delivered together and add them to the list
+    for package in packages:  # O(n) - for loop
+        if package.special_notes_attribute_key == "Must be delivered with":
+            add_to_delivery_group(package)
+
+
+def add_to_delivery_group(package: c950.model.package.Package) -> bool:
     """
     Adds a package to a delivery group.
 
     Args:
-        package_id (int): The id of the package to add to a delivery group.
+        package (Package): The package to add to a delivery group.
+
+    Returns:
+        bool: True if the package was added to a delivery group, False if not.
 
     Notes:
         time complexity: O(n^3)

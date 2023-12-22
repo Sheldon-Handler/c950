@@ -3,7 +3,6 @@ from tkinter import ttk
 import csv
 
 import c950
-from c950 import defaults
 
 
 class CSVTableApp:
