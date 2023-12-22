@@ -1,9 +1,9 @@
 import datetime
 
-import defaults
+import c950
+from c950 import truck_capacity, starting_location, distances, packages
 from c950.model.package import Package
 from c950.model.truck import Truck
-from c950.defaults import *
 
 
 def load_truck(
@@ -103,7 +103,7 @@ def check_if_package_can_be_loaded(
     elif package.delivery_status == "At Hub" and package.truck_id != (truck.id or None):
         print(f"Package {package.id} is already loaded onto Truck {package.truck_id}.")
         return False
-    elif len(truck.packages) >= defaults.truck_capacity:
+    elif len(truck.packages) >= c950.truck_capacity:
         print(
             f"Truck {truck.id} is currently full. Cannot load package {package.id} onto it."
         )

@@ -1,5 +1,5 @@
 from c950.model.package import Package
-from c950.defaults import packages
+from c950 import packages
 
 delivery_groups = list([])
 
@@ -26,19 +26,25 @@ def add_to_delivery_group(package: Package) -> bool:
     # Find the delivery group that the package belongs to and add it to the list
     for delivery_group in delivery_groups:  # O(n) - for loop
         # Find the packages that must be delivered together and add them to the list
-        for (other_package_id
-             ) in package.special_notes_attribute_value:  # O(n) - for loop
+        for (
+            other_package_id
+        ) in package.special_notes_attribute_value:  # O(n) - for loop
             # If the package belongs to a delivery group, add it to the delivery group
             for _ in delivery_group:  # O(n) - for loop
                 if other_package_id in delivery_group:
                     delivery_group.append(package.id)
                     print(
-                        "Package with id={} added to delivery group index {}.".
-                        format(package.id, delivery_group))
+                        "Package with id={} added to delivery group index {}.".format(
+                            package.id, delivery_group
+                        )
+                    )
                     return True
                 elif package.id in delivery_group:
-                    print("Package with id={} already in delivery group {}.".
-                          format(package.id, delivery_group))
+                    print(
+                        "Package with id={} already in delivery group {}.".format(
+                            package.id, delivery_group
+                        )
+                    )
                     return False
 
     # If the package does not belong to a delivery group, create a new delivery group
@@ -48,8 +54,10 @@ def add_to_delivery_group(package: Package) -> bool:
     # Add the new delivery group to the list of delivery groups
     delivery_groups.append(new_delivery_group)
     print(
-        "New delivery group created at index {}. Package with id={} added to it."
-        .format(len(delivery_groups) - 1, package.id))
+        "New delivery group created at index {}. Package with id={} added to it.".format(
+            len(delivery_groups) - 1, package.id
+        )
+    )
     return True
 
 

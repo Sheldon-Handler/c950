@@ -1,5 +1,6 @@
 import csv
 
+import c950
 from c950.hash import csv_handler
 from c950.model.package import Package
 from c950 import defaults
@@ -22,6 +23,6 @@ def load_package_csv(csv_file: str) -> list:
     for row in csvhandler:
         package_list.append(Package(*row))
 
-    defaults.packages = package_list
+    c950.packages = package_list
 
     return package_list

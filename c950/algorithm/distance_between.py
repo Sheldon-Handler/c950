@@ -10,7 +10,7 @@
 #
 
 from c950.model.address import Address
-from c950.defaults import distances, addresses
+from c950 import addresses, distances
 
 
 # Calculates the distance between two locations.

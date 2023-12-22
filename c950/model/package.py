@@ -14,6 +14,7 @@
 import datetime
 from dataclasses import dataclass
 
+import c950
 import c950.defaults
 
 
@@ -171,7 +172,7 @@ class Package:
 
 
 def get_package_by_id(
-    package_id: int, packages: list[Package] = c950.defaults.packages
+    package_id: int, packages: list[Package] = c950.packages
 ) -> Package:
     """Returns a package object by its id.
 
@@ -192,7 +193,7 @@ def get_package_by_id(
 
 
 def get_index_of_package_by_id(
-    package_id: int, packages: list[Package] = c950.defaults.packages
+    package_id: int, packages: list[Package] = c950.packages
 ) -> int or None:
     """Returns the index of a package object by its id.
 

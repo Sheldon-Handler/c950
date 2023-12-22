@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 import csv
+
+import c950
 from c950 import defaults
 
 
@@ -47,7 +49,7 @@ class CSVTableApp:
 
 if __name__ == "__main__":
     # Replace 'your_csv_file.csv' with the path to your CSV file
-    csv_file_path = defaults.package_csv_file
+    csv_file_path = c950.package_csv_file
 
     root = tk.Tk()
     app = CSVTableApp(root, csv_file_path)
