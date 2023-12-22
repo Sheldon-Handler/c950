@@ -15,7 +15,6 @@ import controller
 import hash
 import model
 import view
-import defaults
 import main
 import debug
 

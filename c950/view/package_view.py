@@ -3,7 +3,6 @@ import csv
 import c950
 from c950.hash import csv_handler
 from c950.model.package import Package
-from c950 import defaults
 
 
 def load_package_csv(csv_file: str) -> list:

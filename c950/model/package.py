@@ -15,7 +15,6 @@ import datetime
 from dataclasses import dataclass
 
 import c950
-import c950.defaults
 
 
 @dataclass
