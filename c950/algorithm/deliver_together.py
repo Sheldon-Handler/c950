@@ -4,22 +4,6 @@ import c950
 delivery_groups = list([])
 
 
-# def add(package: c950.model.package.Package):
-#     """
-#     Adds a package to a delivery group.
-#
-#     Args:
-#         package:
-#
-#     Returns:
-#
-#     """
-#     for package.special_notes_attribute_value in packages:
-#         if package.special_notes_attribute_value == package.id:
-#             delivery_groups.append(package.id)
-#             return
-
-
 def get_delivery_groups() -> list:
     """
     Returns the delivery groups.
