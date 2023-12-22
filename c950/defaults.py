@@ -10,3 +10,7 @@ distances = []
 packages = []
 trucks = []
 visited_location_indices = set()
+
+address_csv_file = "data/address.csv"
+distance_csv_file = "data/distance.csv"
+package_csv_file = "data/package.csv"

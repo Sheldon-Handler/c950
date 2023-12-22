@@ -14,7 +14,7 @@ import csv
 
 
 # Method to read CSV file
-def read(self, filename: str) -> list:
+def read(filename: str) -> list:
     """Read and return the data from the CSV file.
 
     Reads the data from the CSV file specified during initialization and return it as a
@@ -37,7 +37,7 @@ def read(self, filename: str) -> list:
     data_list = []
 
     # Open file in read mode
-    with open(self.filename, mode="r", newline="") as file:
+    with open(filename, mode="r", newline="") as file:
         # Create csv reader instance for file with excel dialect
         reader = csv.reader(file)
         # Iterate over rows in file
@@ -50,10 +50,11 @@ def read(self, filename: str) -> list:
 
 
 # Method to write data to the CSV file
-def write(self, data: list) -> None:
+def write(filename: str, data: list) -> None:
     """This method writes the data to the CSV file.
 
     Args:
+        filename (str): The name of the CSV file to write to.
         data (list): A list of rows, where each row is represented as an object.
 
     Example:
@@ -76,7 +77,7 @@ def write(self, data: list) -> None:
         rows.append(row)
 
     # open file in write mode
-    with open(self.filename, mode="w", newline="") as file:
+    with open(filename, mode="w", newline="") as file:
         # Create csv writer instance for the file
         writer = csv.writer(file)
         # Write data to file
