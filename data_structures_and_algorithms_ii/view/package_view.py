@@ -1,9 +1,12 @@
 import data_structures_and_algorithms_ii
 
 
-def load_package_csv(csv_file: str) -> list:
+def load_package_csv(csv_file) -> list:
     """
     Loads the package csv file.
+
+    Args:
+        csv_file (str): The path to the csv file.
 
     Returns:
         list: A list of all packages.

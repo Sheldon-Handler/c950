@@ -34,7 +34,7 @@ class HashTable:
         HashTable: A HashTable class instance.
     """
 
-    def __init__(self, size: int = 10) -> None:
+    def __init__(self, size=10) -> None:
         """
         Initializes a HashTable object. The hash table is initialized as a list of buckets. Each bucket is a list of
         key-value pairs.

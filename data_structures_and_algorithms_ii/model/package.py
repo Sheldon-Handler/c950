@@ -47,7 +47,7 @@ class Package:
     city: str
     state: str
     zip: str
-    delivery_deadline: datetime.time
+    delivery_deadline: str
     weight_kilo: int
     special_notes: str
     machine_readable_delivery_deadline: datetime.time = None

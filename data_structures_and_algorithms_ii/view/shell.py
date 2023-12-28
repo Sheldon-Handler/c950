@@ -35,7 +35,7 @@ class Shell:
             required=False,
         )
 
-    def correct_address(self, package_id: int, correct_address) -> None:
+    def correct_address(self, package_id, correct_address) -> None:
         """
         Updates the address of a package.
 

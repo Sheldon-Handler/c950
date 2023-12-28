@@ -16,8 +16,8 @@ import data_structures_and_algorithms_ii
 ## time complexity: O(1)
 ## space complexity: O(1)
 def get(
-    location_a: data_structures_and_algorithms_ii.model.address.Address or int,
-    location_b: data_structures_and_algorithms_ii.model.address.Address or int,
+    location_a,
+    location_b,
     distances: list[
         list
     ] = data_structures_and_algorithms_ii.global_variables.distances,
