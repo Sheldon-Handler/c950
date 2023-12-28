@@ -18,20 +18,13 @@ import data_structures_and_algorithms_ii
 def get(
     location_a,
     location_b,
-    distances=data_structures_and_algorithms_ii.global_variables.distances,
-    addresses=data_structures_and_algorithms_ii.global_variables.addresses,
 ) -> float:
     """
     Calculates the distance between two locations.
 
     Args:
-        distance_matrix (list[list]): A two-dimensional list where each element represents
-            the distance between two locations.
-
         location_a (Address): The first address to calculate the distance between.
         location_b (Address): The second address to calculate the distance between.
-        distances (list[list]): A list of lists representing the distance matrix.
-        addresses (list[Address]): A list of Address objects.
 
     Returns:
         float: The distance between the two locations.
@@ -50,7 +43,9 @@ def get(
     # If location_a is an Address object
     if location_a is type(data_structures_and_algorithms_ii.model.address.Address):
         # Get the index of location_a in the address_list
-        location_a = addresses.index(location_a)
+        location_a = data_structures_and_algorithms_ii.global_variables.addresses.index(
+            location_a
+        )
     elif location_a is type(int):
         location_a = location_a
     else:
@@ -59,16 +54,22 @@ def get(
     # If location_b is an Address object, convert it to the index of location_b in the address_list
     if location_b is type(data_structures_and_algorithms_ii.model.address.Address):
         # Get the index of location_b in the address_list
-        location_b = addresses.index(location_b)
+        location_b = data_structures_and_algorithms_ii.global_variables.addresses.index(
+            location_b
+        )
     elif location_b is type(int):
         location_b = location_b
     else:
         raise ValueError("location_b must be an object of type Address or int.")
 
     # Distance between location_a and location_b in sublist of location_a
-    location_grid_1 = distances[location_a][location_b]
+    location_grid_1 = data_structures_and_algorithms_ii.global_variables.distances[
+        location_a
+    ][location_b]
     # Distance between location_a and location_b in sublist of location_b
-    location_grid_2 = distances[location_b][location_a]
+    location_grid_2 = data_structures_and_algorithms_ii.global_variables.distances[
+        location_b
+    ][location_a]
 
     # Find the distance between location_a and location_b. Find the distance_matrix for the distance between location_a
     # and location_b in the sublist of location_a and the sublist of location_b.
