@@ -128,10 +128,8 @@ def check_if_package_can_be_loaded(
 
 
 def __packages_that_can_only_be_on_truck__(
-    truck: data_structures_and_algorithms_ii.model.truck.Truck,
-    packages: list[
-        data_structures_and_algorithms_ii.model.package.Package
-    ] = data_structures_and_algorithms_ii.global_variables.packages,
+    truck,
+    packages=data_structures_and_algorithms_ii.global_variables.packages,
 ) -> list[data_structures_and_algorithms_ii.model.package.Package]:
     """
     Returns a list of packages that can only be on a specific truck.
@@ -162,8 +160,8 @@ def __packages_that_can_only_be_on_truck__(
 
 
 def __load_truck_without_checking__(
-    truck: data_structures_and_algorithms_ii.model.truck.Truck,
-    package: data_structures_and_algorithms_ii.model.package.Package,
+    truck,
+    package,
 ) -> None:
     """
     Loads packages onto trucks for delivery.

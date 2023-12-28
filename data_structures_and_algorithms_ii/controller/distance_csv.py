@@ -15,7 +15,7 @@ import data_structures_and_algorithms_ii.global_variables
 
 
 def read(
-    file: str = data_structures_and_algorithms_ii.global_variables.distance_csv_file,
+    file=data_structures_and_algorithms_ii.global_variables.distance_csv_file,
 ) -> list[list]:
     """
     This function reads a csv file and returns a list of Location objects.
@@ -37,7 +37,7 @@ def read(
     return rows
 
 
-def write(file: str, distances: list[list]) -> None:
+def write(file, distances) -> None:
     """
     This function writes a distance matrix to a csv file.
 

@@ -41,8 +41,8 @@ def read(file) -> list[data_structures_and_algorithms_ii.model.address.Address]:
 
 
 def write(
-    file: str,
-    list_of_locations: list[data_structures_and_algorithms_ii.model.address.Address],
+    file,
+    list_of_locations,
 ) -> None:
     csv_file = open(file, mode="w", newline="")
     writer = csv.writer(csv_file)

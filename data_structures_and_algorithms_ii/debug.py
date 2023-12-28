@@ -19,7 +19,7 @@ class DebugWindow:
         close_window: Closes the debug window.
     """
 
-    def __init__(self, root: tkinter.Tk):
+    def __init__(self, root):
         self.root = root
         self.root.title("Debug Window")
 
@@ -39,7 +39,7 @@ class DebugWindow:
         )
         self.close_button.pack()
 
-    def update_debug_info(self, debug_info: str):
+    def update_debug_info(self, debug_info):
         """
         Updates the debug information in the debug_text text box.
 

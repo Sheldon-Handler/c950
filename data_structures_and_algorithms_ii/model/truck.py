@@ -57,8 +57,8 @@ class Truck:
 
 
 def get_truck_by_id(
-    truck_id: int,
-    trucks: list[Truck] = data_structures_and_algorithms_ii.global_variables.trucks,
+    truck_id,
+    trucks=data_structures_and_algorithms_ii.global_variables.trucks,
 ) -> Truck:
     """Gets a truck by its ID.
 
@@ -77,8 +77,8 @@ def get_truck_by_id(
 
 
 def get_index_of_truck_by_id(
-    truck_id: int,
-    trucks: list[Truck] = data_structures_and_algorithms_ii.global_variables.trucks,
+    truck_id,
+    trucks=data_structures_and_algorithms_ii.global_variables.trucks,
 ) -> int or None:
     """Gets the index of a truck by its ID.
 

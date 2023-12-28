@@ -15,7 +15,7 @@ import csv
 
 
 # Method to read CSV file
-def read(filename: str) -> list:
+def read(filename) -> list:
     """Read and return the data from the CSV file.
 
     Reads the data from the CSV file specified during initialization and return it as a

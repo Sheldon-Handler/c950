@@ -39,7 +39,7 @@ def set_delivery_groups() -> None:
 
 
 def add_to_delivery_group(
-    package: data_structures_and_algorithms_ii.model.package.Package,
+    package,
 ) -> bool:
     """
     Adds a package to a delivery group.
@@ -93,7 +93,7 @@ def add_to_delivery_group(
     return True
 
 
-def search_delivery_groups_for_package_id(package_id: int) -> int or None:
+def search_delivery_groups_for_package_id(package_id) -> int or None:
     """
     Searches for a package id that must be delivered together.
 

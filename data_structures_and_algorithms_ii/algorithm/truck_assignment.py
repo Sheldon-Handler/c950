@@ -1,6 +1,4 @@
-def greedy_truck_assignment(
-    distance_matrix: list[list[float]], packages_per_truck=40, num_trucks=2
-):
+def greedy_truck_assignment(distance_matrix, packages_per_truck=40, num_trucks=2):
     """
     Assigns packages to trucks using a greedy algorithm.
 

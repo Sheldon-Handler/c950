@@ -17,10 +17,10 @@ from global_variables import distances, visited_location_indices
 ## time complexity: O(n)
 ## space complexity: O(1)
 def nearest_neighbor_index(
-    current_location_index: int,
+    current_location_index,
     hub_location_index=0,
-    distances: list[list] = distances,
-    visited_location_indices: set = visited_location_indices,
+    distances=distances,
+    visited_location_indices=visited_location_indices,
 ) -> int:
     """
     Finds the nearest location to the current location from a list of locations. The nearest location is the location

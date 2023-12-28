@@ -4,7 +4,7 @@ import datetime
 
 
 def convert_to_csv_list(
-    package: data_structures_and_algorithms_ii.model.package.Package,
+    package,
 ):
     """Takes a Package object and converts it to a list of strings.
 
@@ -28,7 +28,7 @@ def convert_to_csv_list(
     return csv_list
 
 
-def convert_to_package(package: list):
+def convert_to_package(package):
     """
 
     Args:

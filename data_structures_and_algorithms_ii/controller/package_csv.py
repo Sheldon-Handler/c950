@@ -13,7 +13,7 @@ import csv
 from data_structures_and_algorithms_ii.model.package import Package
 
 
-def read(file: str) -> list[Package]:
+def read(file) -> list[Package]:
     """
     This function reads a csv file and returns a list of Location objects.
 
@@ -36,7 +36,7 @@ def read(file: str) -> list[Package]:
     return packages
 
 
-def write(file: str, packages: list[Package]) -> None:
+def write(file, packages) -> None:
     """
     This function writes a list of Location objects to a csv file.
 
