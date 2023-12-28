@@ -127,11 +127,8 @@ class HashTable:
         """
         Gets the value for the given key in the hash table.
 
-        Args:
-            keys (list): The keys to get the values for.
-
         Returns:
-
+            tuple: A tuple containing the keys and values in the hash table.
         """
         keys = []  # Create an empty list to store the keys
         values = []  # Create an empty list to store the values

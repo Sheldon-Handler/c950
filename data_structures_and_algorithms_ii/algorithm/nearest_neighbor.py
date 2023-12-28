@@ -10,7 +10,7 @@
 #
 
 import distance_between
-from global_variables import distances, visited_location_indices
+import data_structures_and_algorithms_ii
 
 
 # Nearest Neighbor Algorithm (Greedy Algorithm) - Finds the nearest location to the current location.
@@ -19,8 +19,8 @@ from global_variables import distances, visited_location_indices
 def nearest_neighbor_index(
     current_location_index,
     hub_location_index=0,
-    distances=distances,
-    visited_location_indices=visited_location_indices,
+    distances=data_structures_and_algorithms_ii.global_variables.distances,
+    visited_location_indices=data_structures_and_algorithms_ii.global_variables.visited_location_indices,
 ) -> int:
     """
     Finds the nearest location to the current location from a list of locations. The nearest location is the location

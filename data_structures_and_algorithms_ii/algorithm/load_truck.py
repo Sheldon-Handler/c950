@@ -4,14 +4,9 @@ import data_structures_and_algorithms_ii
 
 
 def load_truck(
-    truck: data_structures_and_algorithms_ii.model.truck.Truck,
-    packages: list[data_structures_and_algorithms_ii.model.package.Package],
-    load_time: datetime.time = datetime.datetime.now().time(),
-    distances: list[
-        list[float]
-    ] = data_structures_and_algorithms_ii.global_variables.distances,
-    starting_location: int = data_structures_and_algorithms_ii.global_variables.starting_location,
-    truck_capacity: int = data_structures_and_algorithms_ii.global_variables.truck_capacity,
+    truck,
+    packages,
+    load_time=datetime.datetime.now().time(),
 ):
     """
     Loads packages onto trucks for delivery.
@@ -39,10 +34,9 @@ def load_truck(
 
 
 def check_if_package_can_be_loaded(
-    package: data_structures_and_algorithms_ii.model.package.Package,
-    truck: data_structures_and_algorithms_ii.model.truck.Truck,
-    load_time: datetime.time = datetime.datetime.now().time(),
-    current_time: datetime.time = datetime.datetime.now().time(),
+    package,
+    truck,
+    load_time=datetime.datetime.now().time(),
 ) -> bool:
     """
     Checks if the given package can be loaded onto the given truck.
@@ -72,7 +66,7 @@ def check_if_package_can_be_loaded(
     elif (
         package.special_notes_attribute_key
         == "Delayed on flight---will not arrive to depot until"
-        and current_time < package.special_notes_attribute_value
+        and load_time < package.special_notes_attribute_value
     ):
         print(
             f"Package {package.id} cannot be loaded onto Truck {truck.id} at {package.delivery_time}."

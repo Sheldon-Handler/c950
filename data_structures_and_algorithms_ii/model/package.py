@@ -52,7 +52,7 @@ class Package:
     special_notes: str
     machine_readable_delivery_deadline: datetime.time = None
     special_notes_attribute_key: str = None
-    special_notes_attribute_value: list or int or str = None
+    special_notes_attribute_value: list or int or datetime.time = None
     delivery_status: str = None
     truck_id: int = None
     delivery_time: datetime.time = None
