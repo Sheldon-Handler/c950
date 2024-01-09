@@ -1,4 +1,10 @@
 """This module contains the main function for the program."""
+import tkinter
+
+import data_structures_and_algorithms_ii.view.shell
+import data_structures_and_algorithms_ii.global_variables
+import data_structures_and_algorithms_ii.debug
+import data_structures_and_algorithms_ii.view.package_viewer
 
 #  MIT License
 #
@@ -10,3 +16,14 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+
+newShell = data_structures_and_algorithms_ii.view.shell.Shell()
+newShell.parser.parse_args()
+
+csv_file_path = data_structures_and_algorithms_ii.global_variables.package_csv_file
+
+root = tkinter.Tk()
+app = data_structures_and_algorithms_ii.view.package_viewer.CSVTableApp(
+    root, csv_file_path
+)
+root.mainloop()

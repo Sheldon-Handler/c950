@@ -27,14 +27,6 @@ class Shell:
             required=False,
         )
 
-        self.parser.add_argument(
-            "-",
-            "--",
-            help="Run unit tests",
-            action="store_true",
-            required=False,
-        )
-
     def correct_address(self, package_id, correct_address) -> None:
         """
         Updates the address of a package.
