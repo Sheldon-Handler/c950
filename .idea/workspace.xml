@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixing some things">
-      <change beforePath="$PROJECT_DIR$/idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/c950.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/copyright/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/dictionaries/Sheldon_Handler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/jsLinters/eslint.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/prettier.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/idea/webResources.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixing some things" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +46,6 @@
     "Python.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/Sheldon_Handler/PycharmProjects/data_structures_and_algorithms_ii/tests/algorithm",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
@@ -134,7 +117,31 @@
       <option name="project" value="LOCAL" />
       <updated>1705006405614</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixing some things">
+      <option name="closed" value="true" />
+      <created>1705006694460</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705006694460</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fixing some things">
+      <option name="closed" value="true" />
+      <created>1705006707063</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705006707063</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixing some things">
+      <option name="closed" value="true" />
+      <created>1705006907490</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1705006907490</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
