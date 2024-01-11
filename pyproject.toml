@@ -1,5 +1,5 @@
 [project]
-name = "c950"
+name = "data_structures_and_algorithms_ii"
 version = "1.0.0"
 authors = [
     { name = "Sheldon Handler", email = "57599804+Sheldon-Handler@users.noreply.github.com" },
@@ -15,6 +15,6 @@ classifiers = [
 
 
 [project.urls]
-"Homepage" = "https://github.com/Sheldon-Handler/c950"
-"Bug Tracker" = "https://github.com/Sheldon-Handler/c950/issues"
-"Workflow" = "https://github.com/Sheldon-Handler/c950/actions"
+"Homepage" = "https://github.com/Sheldon-Handler/data_structures_and_algorithms_ii"
+"Bug Tracker" = "https://github.com/Sheldon-Handler/data_structures_and_algorithms_ii/issues"
+"Workflow" = "https://github.com/Sheldon-Handler/data_structures_and_algorithms_ii/actions"
