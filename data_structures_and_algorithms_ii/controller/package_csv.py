@@ -9,11 +9,12 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
+
+import data_structures_and_algorithms_ii
 import csv
-from data_structures_and_algorithms_ii.model.package import Package
 
 
-def read(file) -> list[Package]:
+def read(file) -> list[data_structures_and_algorithms_ii.model.package.Package]:
     """
     This function reads a csv file and returns a list of Location objects.
 
@@ -29,7 +30,7 @@ def read(file) -> list[Package]:
     reader = csv.reader(csv_file)
 
     for row in reader:
-        packages.append(Package(*row))
+        packages.append(data_structures_and_algorithms_ii.model.package.Package(*row))
 
     csv_file.close()
 

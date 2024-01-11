@@ -13,7 +13,7 @@
 
 import tkinter
 
-import data_structures_and_algorithms_ii.view.package_viewer
+import data_structures_and_algorithms_ii
 
 newShell = data_structures_and_algorithms_ii.view.shell.Shell()
 newShell.parser.parse_args()

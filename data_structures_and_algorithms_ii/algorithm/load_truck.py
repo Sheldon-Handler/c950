@@ -9,9 +9,8 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-import datetime
-
 import data_structures_and_algorithms_ii
+import datetime
 
 
 def load_truck(
@@ -29,7 +28,6 @@ def load_truck(
         time complexity: O(n^2)
         space complexity: O(1)
     """
-
     __packages_that_can_only_be_on_truck__(truck, packages)
 
     for package in packages:

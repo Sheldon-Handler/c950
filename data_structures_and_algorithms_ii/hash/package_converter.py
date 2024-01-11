@@ -10,7 +10,6 @@
 #
 
 import data_structures_and_algorithms_ii
-
 import datetime
 
 
@@ -39,14 +38,16 @@ def convert_to_csv_list(
     return csv_list
 
 
-def convert_to_package(package):
+def convert_to_package(
+    package: list,
+) -> data_structures_and_algorithms_ii.model.package.Package:
     """
 
     Args:
-        package ():
+        package (Package): Package to convert from a list to a Package object.
 
     Returns:
-
+        Package: A Package object.
     """
 
     new_package = data_structures_and_algorithms_ii.model.package.Package(
@@ -55,7 +56,7 @@ def convert_to_package(package):
         city=str(package[2]),
         state=str(package[3]),
         zip=str(package[4]),
-        delivery_deadline=datetime.time(package[5]),
+        delivery_deadline=(package[5]),
         weight_kilo=int(package[6]),
         special_notes=str(package[7]),
         delivery_status=(package[8]),
