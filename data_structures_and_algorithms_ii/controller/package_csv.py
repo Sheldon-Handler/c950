@@ -9,23 +9,49 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-[metadata]
-name = data_structures_and_algorithms_ii
-version = 1.0
-author = Sheldon Handler
-author_email = 57599804+Sheldon-Handler@users.noreply.github.com
-description = Data Structures and Algorithms II
-long_description = file: README.md
-long_description_content_type = text/markdown
-classifiers =
-    Programming Language :: Python :: 3
-    Operating System :: OS Independent
-license_files = LICENSE.txt
 
-[options]
-packages = find:
-package_dir = data_structures_and_algorithms_ii
+import data_structures_and_algorithms_ii
+import csv
 
 
-[options.packages.find]
-include = *
+def read(file) -> list[data_structures_and_algorithms_ii.model.package.Package]:
+    """
+    This function reads a csv file and returns a list of Location objects.
+
+    Args:
+        file (str): The file to read from.
+
+    Returns:
+
+    """
+    packages = []
+
+    csv_file = open(file, mode="r", newline="")
+    reader = csv.reader(csv_file)
+
+    for row in reader:
+        packages.append(data_structures_and_algorithms_ii.model.package.Package(*row))
+
+    csv_file.close()
+
+    return packages
+
+
+def write(file, packages) -> None:
+    """
+    This function writes a list of Location objects to a csv file.
+
+    Args:
+        file (str): The file to write to.
+        packages (list[Package]): The list of package objects to write.
+
+    Returns:
+
+    """
+
+    csv_file = open(file, mode="w", newline="")
+    writer = csv.writer(csv_file)
+
+    writer.writerows(packages.__dict__.values())
+
+    csv_file.close()

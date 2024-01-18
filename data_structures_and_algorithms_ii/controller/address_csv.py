@@ -9,23 +9,44 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-[metadata]
-name = data_structures_and_algorithms_ii
-version = 1.0
-author = Sheldon Handler
-author_email = 57599804+Sheldon-Handler@users.noreply.github.com
-description = Data Structures and Algorithms II
-long_description = file: README.md
-long_description_content_type = text/markdown
-classifiers =
-    Programming Language :: Python :: 3
-    Operating System :: OS Independent
-license_files = LICENSE.txt
-
-[options]
-packages = find:
-package_dir = data_structures_and_algorithms_ii
+import data_structures_and_algorithms_ii
+import csv
 
 
-[options.packages.find]
-include = *
+def read(file) -> list[data_structures_and_algorithms_ii.model.address.Address]:
+    """
+    This function reads a csv file and returns a list of Location objects.
+
+    Args:
+        file (): The file to read from.
+
+    Returns:
+
+    """
+    list_of_locations = []
+
+    csv_file = open(file, mode="r", newline="")
+    reader = csv.reader(csv_file)
+
+    for row in reader:
+        list_of_locations.append(
+            data_structures_and_algorithms_ii.model.address.Address(
+                int(row[0]), row[1], row[2]
+            )
+        )
+
+    csv_file.close()
+
+    return list_of_locations
+
+
+def write(
+    file,
+    list_of_locations,
+) -> None:
+    csv_file = open(file, mode="w", newline="")
+    writer = csv.writer(csv_file)
+
+    writer.writerows(list_of_locations.__dict__.values())
+
+    csv_file.close()

@@ -9,23 +9,31 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-[metadata]
-name = data_structures_and_algorithms_ii
-version = 1.0
-author = Sheldon Handler
-author_email = 57599804+Sheldon-Handler@users.noreply.github.com
-description = Data Structures and Algorithms II
-long_description = file: README.md
-long_description_content_type = text/markdown
-classifiers =
-    Programming Language :: Python :: 3
-    Operating System :: OS Independent
-license_files = LICENSE.txt
-
-[options]
-packages = find:
-package_dir = data_structures_and_algorithms_ii
+import data_structures_and_algorithms_ii
 
 
-[options.packages.find]
-include = *
+def load_package_csv(csv_file) -> list:
+    """
+    Loads the package csv file.
+
+    Args:
+        csv_file (str): The path to the csv file.
+
+    Returns:
+        list: A list of all packages.
+    """
+
+    # Declare a list to store packages converted from sublist.
+    package_list = []
+
+    # Read the csv file and store it in a variable.
+    csvhandler = data_structures_and_algorithms_ii.hash.csv_handler.read(csv_file)
+
+    for row in csvhandler:
+        package_list.append(
+            data_structures_and_algorithms_ii.model.package.Package(*row)
+        )
+
+    data_structures_and_algorithms_ii.global_variables.packages = package_list
+
+    return package_list

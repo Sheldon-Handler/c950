@@ -9,23 +9,18 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-[metadata]
-name = data_structures_and_algorithms_ii
-version = 1.0
-author = Sheldon Handler
-author_email = 57599804+Sheldon-Handler@users.noreply.github.com
-description = Data Structures and Algorithms II
-long_description = file: README.md
-long_description_content_type = text/markdown
-classifiers =
-    Programming Language :: Python :: 3
-    Operating System :: OS Independent
-license_files = LICENSE.txt
+addresses = []
+distances = []
+packages = []
+trucks = []
+visited_location_indices = {}
 
-[options]
-packages = find:
-package_dir = data_structures_and_algorithms_ii
+number_of_drivers = 2
+number_of_trucks = 3
+truck_capacity = 16
+truck_speed = 18
+starting_location = 0
 
-
-[options.packages.find]
-include = *
+address_csv_file = "../data/address.csv"
+distance_csv_file = "../data/distance.csv"
+package_csv_file = "../data/package.csv"
