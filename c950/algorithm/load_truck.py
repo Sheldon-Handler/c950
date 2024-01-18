@@ -147,20 +147,20 @@ def __packages_that_can_only_be_on_truck__(
     return packages_that_can_only_be_on_truck
 
 
-def __load_truck_without_checking__(truck: Truck, package: Package) -> None:
-    """
-    Loads packages onto trucks for delivery.
-
-    Returns:
-        truck: (Truck): The truck to load the package onto.
-        package: (Package): The package to load onto the truck.
-
-    Notes:
-        time complexity: O(1)
-        space complexity: O(1)
-    """
-
-    package.truck_id = truck.id
-    package.delivery_status = "En Route"
-    truck.packages.append(package.id)
-    
+# def __load_truck_without_checking__(truck: Truck, package: Package) -> None:
+#     """
+#     Loads packages onto trucks for delivery.
+#
+#     Returns:
+#         truck: (Truck): The truck to load the package onto.
+#         package: (Package): The package to load onto the truck.
+#
+#     Notes:
+#         time complexity: O(1)
+#         space complexity: O(1)
+#     """
+#
+#     package.truck_id = truck.id
+#     package.delivery_status = "En Route"
+#     truck.packages.append(package.id)
+#
