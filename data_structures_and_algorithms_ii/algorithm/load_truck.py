@@ -28,7 +28,6 @@ def load_truck(
         time complexity: O(n^2)
         space complexity: O(1)
     """
-    __packages_that_can_only_be_on_truck__(truck, packages)
 
     for package in packages:
         if (
@@ -130,54 +129,54 @@ def check_if_package_can_be_loaded(
         return True
 
 
-def __packages_that_can_only_be_on_truck__(
-    truck,
-    packages=data_structures_and_algorithms_ii.global_variables.packages,
-) -> list[data_structures_and_algorithms_ii.model.package.Package]:
-    """
-    Returns a list of packages that can only be on a specific truck.
+# def __packages_that_can_only_be_on_truck__(
+#     truck,
+#     packages=data_structures_and_algorithms_ii.global_variables.packages,
+# ) -> list[data_structures_and_algorithms_ii.model.package.Package]:
+#     """
+#     Returns a list of packages that can only be on a specific truck.
+#
+#     Args:
+#         truck: (Truck): The truck to check.
+#         packages (list[Package]): A list of packages.
+#
+#     Returns:
+#         list: A list of packages that can only be on a specific truck.
+#
+#     Notes:
+#         time complexity: O(n)
+#         space complexity: O(1)
+#     """
+#
+#     packages_that_can_only_be_on_truck = []
+#
+#     # Find the packages that can only be on a specific truck and add them to the list
+#     for package in packages:  # O(n) - for loop
+#         if (
+#             package.special_notes_attribute_key == "Can only be on truck"
+#             and package.special_notes_attribute_value == truck.id
+#         ):
+#             packages_that_can_only_be_on_truck.append(package)
+#
+#     return packages_that_can_only_be_on_truck
 
-    Args:
-        truck: (Truck): The truck to check.
-        packages (list[Package]): A list of packages.
 
-    Returns:
-        list: A list of packages that can only be on a specific truck.
-
-    Notes:
-        time complexity: O(n)
-        space complexity: O(1)
-    """
-
-    packages_that_can_only_be_on_truck = []
-
-    # Find the packages that can only be on a specific truck and add them to the list
-    for package in packages:  # O(n) - for loop
-        if (
-            package.special_notes_attribute_key == "Can only be on truck"
-            and package.special_notes_attribute_value == truck.id
-        ):
-            packages_that_can_only_be_on_truck.append(package)
-
-    return packages_that_can_only_be_on_truck
-
-
-def __load_truck_without_checking__(
-    truck,
-    package,
-) -> None:
-    """
-    Loads packages onto trucks for delivery.
-
-    Returns:
-        truck: (Truck): The truck to load the package onto.
-        package: (Package): The package to load onto the truck.
-
-    Notes:
-        time complexity: O(1)
-        space complexity: O(1)
-    """
-
-    package.truck_id = truck.id
-    package.delivery_status = "En Route"
-    truck.packages.append(package.id)
+# def __load_truck_without_checking__(
+#     truck,
+#     package,
+# ) -> None:
+#     """
+#     Loads packages onto trucks for delivery.
+#
+#     Returns:
+#         truck: (Truck): The truck to load the package onto.
+#         package: (Package): The package to load onto the truck.
+#
+#     Notes:
+#         time complexity: O(1)
+#         space complexity: O(1)
+#     """
+#
+#     package.truck_id = truck.id
+#     package.delivery_status = "En Route"
+#     truck.packages.append(package.id)
