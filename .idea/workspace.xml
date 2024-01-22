@@ -53,7 +53,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PythonContentEntriesConfigurable",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -81,6 +81,7 @@
       <workItem from="1705946103130" duration="37000" />
       <workItem from="1705946144548" duration="66000" />
       <workItem from="1705946295438" duration="746000" />
+      <workItem from="1705947051461" duration="398000" />
     </task>
     <task id="LOCAL-00001" summary="Fixing some things">
       <option name="closed" value="true" />
@@ -138,7 +139,23 @@
       <option name="project" value="LOCAL" />
       <updated>1705946986687</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixing some things">
+      <option name="closed" value="true" />
+      <created>1705947116230</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1705947116230</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fixing some things">
+      <option name="closed" value="true" />
+      <created>1705947123316</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705947123316</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
