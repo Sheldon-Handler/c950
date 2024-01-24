@@ -1,5 +1,3 @@
-"""__init__.py file to initialize data_structures_and_algorithms_ii package."""
-
 #  MIT License
 #
 #  Copyright (c) 2024 Sheldon Handler
@@ -11,11 +9,35 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-
 import algorithm
 import controller
 import hash
 import model
 import view
-import global_variables
 import main
+
+import pathlib
+import os
+
+ROOT_DIR = os.path.abspath(os.curdir)
+
+pathlib.Path(__file__).parent.absolute()
+
+__all__ = ["algorithm", "controller", "hash", "model", "view", "main"]
+
+addresses = []
+distances = []
+packages = []
+trucks = []
+visited_location_indices = {}
+
+number_of_drivers = 2
+number_of_trucks = 3
+truck_capacity = 16
+truck_speed = 18
+starting_location = 0
+
+
+address_csv_file = "../data/address.csv"
+distance_csv_file = "../data/distance.csv"
+package_csv_file = "../data/package.csv"

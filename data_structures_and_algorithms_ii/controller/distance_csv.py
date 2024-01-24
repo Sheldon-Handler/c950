@@ -11,11 +11,11 @@
 
 import csv
 
-import data_structures_and_algorithms_ii.global_variables
+import data_structures_and_algorithms_ii
 
 
 def read(
-    file=data_structures_and_algorithms_ii.global_variables.distance_csv_file,
+    file=data_structures_and_algorithms_ii.distance_csv_file,
 ) -> list[list]:
     """
     This function reads a csv file and returns a list of Location objects.

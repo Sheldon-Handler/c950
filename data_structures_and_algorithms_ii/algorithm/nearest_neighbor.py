@@ -19,8 +19,8 @@ import distance_between
 def nearest_neighbor_index(
     current_location_index,
     hub_location_index=0,
-    distances=data_structures_and_algorithms_ii.global_variables.distances,
-    visited_location_indices=data_structures_and_algorithms_ii.global_variables.visited_location_indices,
+    distances=data_structures_and_algorithms_ii.distances,
+    visited_location_indices=data_structures_and_algorithms_ii.visited_location_indices,
 ) -> int:
     """
     Finds the nearest location to the current location from a list of locations. The nearest location is the location

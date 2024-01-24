@@ -12,3 +12,5 @@
 import package_view
 import package_viewer
 import shell
+
+__all__ = ["package_view", "package_viewer", "shell"]

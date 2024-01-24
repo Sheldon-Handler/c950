@@ -39,7 +39,7 @@ def load_truck(
             package.truck_id = truck.id
             package.delivery_time = load_time
             package.delivery_status = "En Route"
-            truck.packages.append(package.id)
+            data_structures_and_algorithms_ii.packages.append(package.id)
 
 
 def check_if_package_can_be_loaded(
@@ -106,8 +106,8 @@ def check_if_package_can_be_loaded(
         print(f"Package {package.id} is already loaded onto Truck {package.truck_id}.")
         return False
     elif (
-        len(truck.packages)
-        >= data_structures_and_algorithms_ii.global_variables.truck_capacity
+        len(data_structures_and_algorithms_ii.packages)
+        >= data_structures_and_algorithms_ii.truck_capacity
     ):
         print(
             f"Truck {truck.id} is currently full. Cannot load package {package.id} onto it."

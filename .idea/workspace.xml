@@ -4,26 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixing workspace.xml and gitignore">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Reformatted whitespace">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/deliver_together.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/deliver_together.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/distance_between.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/distance_between.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/load_truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/load_truck.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/nearest_neighbor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/nearest_neighbor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/address_csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/address_csv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/distance_csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/distance_csv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/package_csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/package_csv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/package_converter.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/package_converter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/global_variables.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/package.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/truck.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_viewer.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_viewer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/shell.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/algorithm/test_deliver_together.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/algorithm/test_deliver_together.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/algorithm/test_distance_between.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/algorithm/test_distance_between.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/algorithm/test_load_truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/algorithm/test_load_truck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/algorithm/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/algorithm/test_deliver_together.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/algorithm/test_distance_between.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/algorithm/test_load_truck.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/controller/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/hash/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/model/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_global_variables.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/view/__init__.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +43,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Setup Script" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -73,14 +83,45 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PythonContentEntriesConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\data_structures_and_algorithms_ii" />
+      <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii" />
       <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\tests\algorithm" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="data_structures_and_algorithms_ii" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_structures_and_algorithms_ii" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_structures_and_algorithms_ii/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -183,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706128639859</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Reformatted whitespace">
+      <option name="closed" value="true" />
+      <created>1706129296559</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706129296559</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +243,7 @@
     <MESSAGE value="Worked on some things" />
     <MESSAGE value="Fixing some things" />
     <MESSAGE value="Fixing workspace.xml and gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing workspace.xml and gitignore" />
+    <MESSAGE value="Reformatted whitespace" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformatted whitespace" />
   </component>
 </project>
