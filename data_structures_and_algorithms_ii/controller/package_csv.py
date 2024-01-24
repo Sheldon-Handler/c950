@@ -10,8 +10,9 @@
 #
 
 
-import data_structures_and_algorithms_ii
 import csv
+
+import data_structures_and_algorithms_ii
 
 
 def read(file) -> list[data_structures_and_algorithms_ii.model.package.Package]:
