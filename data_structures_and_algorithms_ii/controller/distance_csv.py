@@ -11,9 +11,6 @@
 
 import csv
 
-import data_structures_and_algorithms_ii
-
-
 def read(
     file=data_structures_and_algorithms_ii.distance_csv_file,
 ) -> list[list]:

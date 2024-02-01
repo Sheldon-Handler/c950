@@ -11,7 +11,7 @@
 
 import csv
 
-import data_structures_and_algorithms_ii
+#import data_structures_and_algorithms_ii
 
 
 def read(file) -> list[data_structures_and_algorithms_ii.model.address.Address]:
