@@ -15,6 +15,7 @@ import dataclasses
 import datetime
 
 import data_structures_and_algorithms_ii
+import data_structures_and_algorithms_ii.variables
 
 
 @dataclasses.dataclass
@@ -172,7 +173,7 @@ class Package:
 
 def get_package_by_id(
     package_id: int,
-    packages: list[Package] = data_structures_and_algorithms_ii.packages,
+    packages: list[Package] = data_structures_and_algorithms_ii.variables.packages,
 ) -> Package:
     """Returns a package object by its id.
 
@@ -194,7 +195,7 @@ def get_package_by_id(
 
 def get_index_of_package_by_id(
     package_id: int,
-    packages: list[Package] = data_structures_and_algorithms_ii.packages,
+    packages: list[Package] = data_structures_and_algorithms_ii.variables.packages,
 ) -> int or None:
     """Returns the index of a package object by its id.
 

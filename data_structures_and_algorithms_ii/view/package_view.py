@@ -34,6 +34,6 @@ def load_package_csv(csv_file) -> list:
             data_structures_and_algorithms_ii.model.package.Package(*row)
         )
 
-    data_structures_and_algorithms_ii.packages = package_list
+    data_structures_and_algorithms_ii.variables.packages = package_list
 
     return package_list

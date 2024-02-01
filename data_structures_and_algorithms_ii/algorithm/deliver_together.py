@@ -9,6 +9,8 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
+import data_structures_and_algorithms_ii
+
 
 delivery_groups = list([])
 
@@ -41,7 +43,7 @@ def set_delivery_groups() -> None:
     """
 
     # Find the packages that must be delivered together and add them to the list
-    for package in data_structures_and_algorithms_ii.packages:  # O(n) - for loop
+    for package in data_structures_and_algorithms_ii.variables.packages:  # O(n) - for loop
         if package.special_notes_attribute_key == "Must be delivered with":
             add_to_delivery_group(package)
 

@@ -13,12 +13,3 @@ import deliver_together
 import distance_between
 import load_truck
 import nearest_neighbor
-import truck_assignment
-
-__all__ = [
-    "deliver_together",
-    "distance_between",
-    "load_truck",
-    "nearest_neighbor",
-    "truck_assignment",
-]
