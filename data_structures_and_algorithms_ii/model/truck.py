@@ -15,7 +15,6 @@ information."""
 import dataclasses
 
 import data_structures_and_algorithms_ii
-import data_structures_and_algorithms_ii.variables
 
 
 @dataclasses.dataclass
@@ -25,6 +24,9 @@ class Truck:
     Attributes:
         id (int): The ID of the truck.
         truck_status (TruckStatus): The status of the truck.
+        distance_traveled (float): The distance the truck has traveled.
+        packages (list[int]): The list of package IDs the truck is carrying.
+        packages_delivered (list[int]): The list of package IDs the truck has delivered.
 
     Returns:
         Truck: A Truck class instance.

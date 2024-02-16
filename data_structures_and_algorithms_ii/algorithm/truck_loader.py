@@ -21,6 +21,11 @@ def load_truck(
     """
     Loads packages onto trucks for delivery.
 
+    Args:
+        truck (Truck): The truck to load.
+        packages (list[Package]): The packages to load onto the truck.
+        load_time (datetime.time): The time to load the packages. Defaults to current time.
+
     Returns:
         list: A list of Truck objects, each containing a list of packages to be delivered.
 

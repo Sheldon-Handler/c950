@@ -14,7 +14,6 @@ import tkinter as tk
 from tkinter import ttk
 
 import data_structures_and_algorithms_ii
-import data_structures_and_algorithms_ii.variables
 
 
 class CSVTableApp:

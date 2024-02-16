@@ -22,7 +22,7 @@ def read(file) -> list[data_structures_and_algorithms_ii.model.address.Address]:
         file (): The file to read from.
 
     Returns:
-
+        list: A list of Location objects.
     """
     list_of_locations = []
 
@@ -39,15 +39,3 @@ def read(file) -> list[data_structures_and_algorithms_ii.model.address.Address]:
     csv_file.close()
 
     return list_of_locations
-
-
-def write(
-    file,
-    list_of_locations,
-) -> None:
-    csv_file = open(file, mode="w", newline="")
-    writer = csv.writer(csv_file)
-
-    writer.writerows(list_of_locations.__dict__.values())
-
-    csv_file.close()

@@ -23,7 +23,7 @@ def read(file) -> list[data_structures_and_algorithms_ii.model.package.Package]:
         file (str): The file to read from.
 
     Returns:
-
+        list: A list of Location objects.
     """
     packages = []
 

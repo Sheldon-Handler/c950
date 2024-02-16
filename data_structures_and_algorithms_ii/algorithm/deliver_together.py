@@ -107,8 +107,12 @@ def search_delivery_groups_for_package_id(package_id) -> int or None:
     """
     Searches for a package id that must be delivered together.
 
+    Args:
+        package_id (int): The id of the package to search for.
+
     Returns:
-        int: The index of the delivery group that the package belongs to.
+        int or None: The index of the delivery group that the package belongs to. None if the package does not belong
+        to a delivery group.
 
     Notes:
         time complexity: O(n^3)

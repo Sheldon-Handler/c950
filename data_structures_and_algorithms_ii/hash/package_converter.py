@@ -43,6 +43,7 @@ def convert_to_package(
     package: list,
 ) -> data_structures_and_algorithms_ii.model.package.Package:
     """
+    Takes a list and converts it to a Package object.
 
     Args:
         package (Package): Package to convert from a list to a Package object.

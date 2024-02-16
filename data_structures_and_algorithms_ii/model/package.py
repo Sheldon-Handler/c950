@@ -15,7 +15,6 @@ import dataclasses
 import datetime
 
 import data_structures_and_algorithms_ii
-import data_structures_and_algorithms_ii.variables
 
 
 @dataclasses.dataclass
