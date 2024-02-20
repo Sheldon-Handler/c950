@@ -11,4 +11,3 @@
 
 import package_view
 import package_viewer
-import shell
