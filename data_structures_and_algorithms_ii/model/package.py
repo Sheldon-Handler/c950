@@ -50,7 +50,7 @@ class Package:
     delivery_deadline: str
     weight_kilo: int
     special_notes: str
-    machine_readable_delivery_deadline: datetime.time = None
+    machine_readable_delivery_deadline: datetime.time or None = None
     special_notes_attribute_key: str = None
     special_notes_attribute_value: list or int or datetime.time = None
     delivery_status: str = None
@@ -119,14 +119,14 @@ class Package:
         # If the special notes are "Must be delivered with {list(package_ids) as comma delimited values}"
         elif self.special_notes.startswith("Must be delivered with "):
             self.special_notes_attribute_key = "Must be delivered with"
-            self.package_id_list = (
+            package_id_list = (
                 self.special_notes.removeprefix("Must be delivered with ")
                 .strip(" ")
                 .split(",")
             )
             # Convert the package ids to integers
             self.special_notes_attribute_value = [
-                int(package_id) for package_id in self.package_id_list
+                int(package_id) for package_id in package_id_list
             ]
 
         else:
@@ -163,7 +163,7 @@ class Package:
         """Delivers the package. Updates the delivery_status and delivery_time attributes.
 
         Args:
-            time (datetime.time): The time that the package was delivered. Defaults to the current time.
+            delivery_time (datetime.time): The time that the package was delivered. Defaults to the current time.
         """
         self.update_delivery_status("Delivered")
         self.delivery_time = delivery_time

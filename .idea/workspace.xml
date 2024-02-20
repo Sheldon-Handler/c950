@@ -4,28 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Cleaning up code and organizing data structures">
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Organizing data structures">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/deliver_together.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/deliver_together.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/distance_between.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/distance_between.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/nearest_neighbor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/nearest_neighbor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/truck_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/truck_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/csv_handler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/hash_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/package_converter.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/package.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/truck.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/shell.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/variables.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_view.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_viewer.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_gui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +28,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -292,7 +278,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708459242047</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Organizing data structures">
+      <option name="closed" value="true" />
+      <created>1708464228408</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1708464228408</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,6 +303,7 @@
     <MESSAGE value="Cleaned up some things." />
     <MESSAGE value="Remove CSV writer methods." />
     <MESSAGE value="Cleaning up code and organizing data structures" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaning up code and organizing data structures" />
+    <MESSAGE value="Organizing data structures" />
+    <option name="LAST_COMMIT_MESSAGE" value="Organizing data structures" />
   </component>
 </project>
