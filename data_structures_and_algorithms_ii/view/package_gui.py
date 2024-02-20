@@ -59,7 +59,7 @@ class CSVTableApp:
 
 if __name__ == "__main__":
     # Replace 'your_csv_file.csv' with the path to your CSV file
-    csv_file_path = data_structures_and_algorithms_ii.variables.package_csv_file
+    csv_file_path = data_structures_and_algorithms_ii.package_csv_file
 
     root = tk.Tk()
     app = CSVTableApp(root, csv_file_path)

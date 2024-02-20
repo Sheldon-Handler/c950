@@ -4,16 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Remove CSV writer methods.">
-      <change afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/read_csv_file.py" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Cleaning up code and organizing data structures">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/deliver_together.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/deliver_together.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/distance_between.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/distance_between.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/nearest_neighbor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/nearest_neighbor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/algorithm/truck_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/truck_loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/address_csv.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/distance_csv.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/package_csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/csv_handler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/hash_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash/package_converter.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/package.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/model/truck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/shell.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/variables.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/shell.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_viewer.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_gui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +72,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Sheldon_Handler/PycharmProjects/data_structures_and_algorithms_ii/data_structures_and_algorithms_ii/controller/read_file.py",
+    "last_opened_file_path": "C:/Users/Sheldon_Handler/PycharmProjects/data_structures_and_algorithms_ii/data_structures_and_algorithms_ii/__init__.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -72,12 +84,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\data_structures_and_algorithms_ii\model" />
+      <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\data_structures_and_algorithms_ii\view" />
       <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\data_structures_and_algorithms_ii" />
-      <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii" />
-      <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\tests\algorithm" />
+      <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\data_structures_and_algorithms_ii\algorithm" />
+      <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\data_structures_and_algorithms_ii\controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.package_viewer">
+  <component name="RunManager" selected="Python.package_gui">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="data_structures_and_algorithms_ii" />
       <option name="ENV_FILES" value="" />
@@ -101,7 +115,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="package_viewer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="package_gui" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="data_structures_and_algorithms_ii" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -114,7 +128,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_structures_and_algorithms_ii/view/package_viewer.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\data_structures_and_algorithms_ii\view\package_gui.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -125,7 +139,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.package_viewer" />
+        <item itemvalue="Python.package_gui" />
       </list>
     </recent_temporary>
   </component>
@@ -270,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708458107168</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Cleaning up code and organizing data structures">
+      <option name="closed" value="true" />
+      <created>1708459242047</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1708459242047</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +308,7 @@
     <MESSAGE value="Working on imports" />
     <MESSAGE value="Cleaned up some things." />
     <MESSAGE value="Remove CSV writer methods." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove CSV writer methods." />
+    <MESSAGE value="Cleaning up code and organizing data structures" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaning up code and organizing data structures" />
   </component>
 </project>

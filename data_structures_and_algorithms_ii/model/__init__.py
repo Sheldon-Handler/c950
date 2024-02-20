@@ -11,6 +11,6 @@
 
 
 import address
+import hash_table
 import package
 import truck
-

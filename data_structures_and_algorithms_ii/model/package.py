@@ -172,7 +172,7 @@ class Package:
 
 def get_package_by_id(
     package_id: int,
-    packages: list[Package] = data_structures_and_algorithms_ii.variables.packages,
+    packages: list[Package] = data_structures_and_algorithms_ii.packages,
 ) -> Package:
     """Returns a package object by its id.
 
@@ -194,7 +194,7 @@ def get_package_by_id(
 
 def get_index_of_package_by_id(
     package_id: int,
-    packages: list[Package] = data_structures_and_algorithms_ii.variables.packages,
+    packages: list[Package] = data_structures_and_algorithms_ii.packages,
 ) -> int or None:
     """Returns the index of a package object by its id.
 

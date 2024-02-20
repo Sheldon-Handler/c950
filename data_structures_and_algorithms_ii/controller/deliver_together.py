@@ -43,7 +43,7 @@ def set_delivery_groups() -> None:
     """
 
     # Find the packages that must be delivered together and add them to the list
-    for package in data_structures_and_algorithms_ii.variables.packages:  # O(n) - for loop
+    for package in data_structures_and_algorithms_ii.packages:  # O(n) - for loop
         if package.special_notes_attribute_key == "Must be delivered with":
             add_to_delivery_group(package)
 

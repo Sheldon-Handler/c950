@@ -17,10 +17,8 @@ import tkinter
 newShell = shell.Shell()
 newShell.parser.parse_args()
 
-csv_file_path = data_structures_and_algorithms_ii.variables.package_csv_file
+csv_file_path = data_structures_and_algorithms_ii.package_csv_file
 
 root = tkinter.Tk()
-app = data_structures_and_algorithms_ii.view.package_viewer.CSVTableApp(
-    root, csv_file_path
-)
+app = package_viewer.CSVTableApp(root, csv_file_path)
 root.mainloop()
