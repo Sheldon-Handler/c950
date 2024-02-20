@@ -36,23 +36,3 @@ def read(file) -> list[data_structures_and_algorithms_ii.model.package.Package]:
     csv_file.close()
 
     return packages
-
-
-def write(file, packages) -> None:
-    """
-    This function writes a list of Location objects to a csv file.
-
-    Args:
-        file (str): The file to write to.
-        packages (list[Package]): The list of package objects to write.
-
-    Returns:
-
-    """
-
-    csv_file = open(file, mode="w", newline="")
-    writer = csv.writer(csv_file)
-
-    writer.writerows(packages.__dict__.values())
-
-    csv_file.close()

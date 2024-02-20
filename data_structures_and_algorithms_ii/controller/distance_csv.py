@@ -35,23 +35,3 @@ def read(
         rows.append(row)
 
     return rows
-
-
-def write(file, distances) -> None:
-    """
-    This function writes a distance matrix to a csv file.
-
-    Args:
-        file (str): The file to write to.
-        distances (list[list]): The matrix of distances to write.
-
-    Returns:
-
-    """
-
-    csv_file = open(file, mode="w", newline="")
-    writer = csv.writer(csv_file)
-
-    writer.writerows(distances)
-
-    csv_file.close()
