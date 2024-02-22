@@ -11,13 +11,11 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-import dataclasses
 import datetime
 
 import data_structures_and_algorithms_ii
 
 
-@dataclasses.dataclass
 class Package:
     """This dataclass defines a package instance with its information.
 
@@ -57,10 +55,59 @@ class Package:
     truck_id: int = None
     delivery_time: datetime.time = None
 
-    def __post_init__(self):
-        """Post initialization method to set the default values for the package instance.
-        This method is called after the __init__ method in the dataclass.
+    def __init__(
+        self,
+        id: int,
+        address: str,
+        city: str,
+        state: str,
+        zip: str,
+        delivery_deadline: str,
+        weight_kilo: int,
+        special_notes: str,
+        machine_readable_delivery_deadline: datetime.time = None,
+        special_notes_attribute_key: str = None,
+        special_notes_attribute_value: list or int or datetime.time = None,
+        delivery_status: str = None,
+        truck_id: int = None,
+        delivery_time: datetime.time = None,
+    ):
         """
+        Initializes a Package class instance.
+
+        Args:
+            id (int): The package id.
+            address (str): The package address.
+            city (str): The package city.
+            state (str): The package state.
+            zip (str): The package zip code.
+            delivery_deadline (str): The package delivery deadline.
+            weight_kilo (int): The package weight in kilos.
+            special_notes (str): The package special notes.
+            machine_readable_delivery_deadline (datetime.time): The package delivery deadline in a format that can be used
+                for calculation of the delivery time.
+            special_notes_attribute_key (str): The package special notes attribute key.
+            special_notes_attribute_value (list or int or str or dict): The package special notes attribute value.
+            delivery_status (str): The package delivery status.
+            truck_id (int): The package delivery truck ID.
+            delivery_time (datetime.time): The package delivery time.
+        """
+
+        self.id = id
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.delivery_deadline = delivery_deadline
+        self.weight_kilo = weight_kilo
+        self.special_notes = special_notes
+        self.machine_readable_delivery_deadline = machine_readable_delivery_deadline
+        self.special_notes_attribute_key = special_notes_attribute_key
+        self.special_notes_attribute_value = special_notes_attribute_value
+        self.delivery_status = delivery_status
+        self.truck_id = truck_id
+        self.delivery_time = delivery_time
+
         # Sets the machine_readable_delivery_deadline attribute.
         if self.delivery_deadline == "EOD":
             self.machine_readable_delivery_deadline = None
@@ -69,13 +116,12 @@ class Package:
                 self.delivery_deadline, "%I:%M %p"
             ).time()
 
-        # Handles the special notes for the package.
+        # Handles the special notes for the package. Translates them to machine parsable values.
         self.special_notes_handler()
 
     def special_notes_handler(self):
-        """Handles the special notes for the package. Sets the special_notes_attribute_key and
-        special_notes_attribute_value based on the special_notes attribute. This is done by parsing the special_notes
-        string for the string prefix that defines the special note type.
+        """Handles the special notes for the package. Translate special_notes to special_notes_attribute_key and
+        special_notes_attribute_value to enable the program to handle the special notes.
 
         """
 

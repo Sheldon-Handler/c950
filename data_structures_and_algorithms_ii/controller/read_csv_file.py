@@ -3,7 +3,7 @@ import csv
 import data_structures_and_algorithms_ii
 
 
-def package(file) -> list[data_structures_and_algorithms_ii.model.package.Package]:
+def package(file) -> list:
     """
     This function reads a csv file and returns a list of Location objects.
 
@@ -55,7 +55,7 @@ def distance(file) -> list[list]:
     return rows
 
 
-def address(file) -> list[data_structures_and_algorithms_ii.model.address.Address]:
+def address(file) -> list:
     """
     This function reads a csv file and returns a list of Location objects.
 
@@ -76,7 +76,7 @@ def address(file) -> list[data_structures_and_algorithms_ii.model.address.Addres
 
     for row in reader:  # O(n) - for loop
         list_of_locations.append(
-            data_structures_and_algorithms_ii.model.address.Address(
+            data_structures_and_algorithms_ii.__init__.model.address.Address(
                 int(row[0]), row[1], row[2]
             )
         )
@@ -84,3 +84,9 @@ def address(file) -> list[data_structures_and_algorithms_ii.model.address.Addres
     csv_file.close()
 
     return list_of_locations
+
+
+if __name__ == "__main__":
+    print(distance(data_structures_and_algorithms_ii.__init__.distance_csv_file))
+
+    exit(0)

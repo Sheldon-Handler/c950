@@ -12,7 +12,6 @@
 import dataclasses
 
 
-@dataclasses.dataclass
 class Address:
     """This dataclass represents an address instance with its information.
 
@@ -22,9 +21,22 @@ class Address:
         address (str): The address.
 
     Returns:
-        Address: An Address class instance.
+        Address: An Address object instance.
     """
 
     id: int
     name: str
     address: str
+
+    def __init__(self, id: int, name: str, address: str):
+        """
+        Initializes an Address class instance.
+
+        Args:
+            id (int): The id of the location.
+            name (str): The name of the location.
+            address (str): The address.
+        """
+        self.id = id
+        self.name = name
+        self.address = address
