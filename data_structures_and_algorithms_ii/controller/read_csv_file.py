@@ -76,7 +76,7 @@ def address(file) -> list:
 
     for row in reader:  # O(n) - for loop
         list_of_locations.append(
-            data_structures_and_algorithms_ii.__init__.model.address.Address(
+            data_structures_and_algorithms_ii.model.address.Address(
                 int(row[0]), row[1], row[2]
             )
         )
@@ -87,6 +87,6 @@ def address(file) -> list:
 
 
 if __name__ == "__main__":
-    print(distance(data_structures_and_algorithms_ii.__init__.distance_csv_file))
+    print(distance(data_structures_and_algorithms_ii.distance_csv_file))
 
     exit(0)
