@@ -31,5 +31,7 @@ def fill_blank_columns_in_distance_matrix(distance_matrix: [[float]]) -> [[float
         for j in range(max_number_of_columns):  # O(n) - for loop
             if modified_distance_matrix[i][j] is not type(float):
                 modified_distance_matrix[i][j] = modified_distance_matrix[j][i]
+            elif modified_distance_matrix[j][i] is not type(float):
+                modified_distance_matrix[j][i] = modified_distance_matrix[i][j]
 
     return modified_distance_matrix

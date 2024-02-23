@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Cleaned up some things" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed something" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -345,7 +345,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708634365884</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Fixed something">
+      <option name="closed" value="true" />
+      <created>1708638467237</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1708638467237</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,6 +373,7 @@
     <MESSAGE value="Organizing data structures" />
     <MESSAGE value="Fixed type declarations and data structure organizations" />
     <MESSAGE value="Cleaned up some things" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up some things" />
+    <MESSAGE value="Fixed something" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed something" />
   </component>
 </project>
