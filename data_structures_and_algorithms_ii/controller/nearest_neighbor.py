@@ -120,6 +120,57 @@ def nearest_unvisited_neighbor(
     return nearest_location_index
 
 
+def nearest_unvisited_neighbor_index(
+    current_location_index: int,
+    distance_matrix: [[float]],
+    visited_location_indices: [int],
+) -> int:
+    """
+    Finds the nearest location to the current location from a list of locations. The nearest location is the location
+    with the shortest distance from the current location.
+
+    Args:
+        current_location_index (int): index of the current location
+        distance_matrix [[float]]: A list of lists representing the distance matrix.
+        visited_location_indices [int]: A list of indices representing the visited locations.
+
+    Returns:
+        int: The index of the nearest location.
+
+    Notes:
+        linear search (for loop):
+            time complexity:
+                best case = O(n)
+                worst case = O(n)
+                average case = O(n)
+            space complexity:
+                best case = O(1)
+                worst case = O(1)
+                average case = O(1)
+    """
+
+    nearest_location_index = -1
+    distance = float("inf")
+
+    for i in distance_matrix[current_location_index]:  # O(n) - for loop
+        if i not in visited_location_indices:  # O(n) - for loop
+            if (
+                distance_between_address_indices(
+                    distance_matrix, current_location_index, i
+                )
+                < distance
+            ):
+                nearest_location_index = i
+                distance = distance_between_address_indices(
+                    distance_matrix, current_location_index, i
+                )
+
+    if nearest_location_index >= 0:
+        return nearest_location_index
+    else:
+        raise ValueError("No unvisited location found")
+
+
 def distance_between_address_indices(
     distance_matrix: [[float]], location_a: int, location_b: int
 ) -> float:
