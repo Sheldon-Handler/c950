@@ -17,9 +17,8 @@ import dataclasses
 import data_structures_and_algorithms_ii
 
 
-@dataclasses.dataclass
 class Truck:
-    """This dataclass represents a truck instance with its information.
+    """This class represents a truck instance with its information.
 
     Attributes:
         id (int): The ID of the truck.
@@ -32,11 +31,22 @@ class Truck:
         Truck: A Truck class instance.
     """
 
-    id: int
-    truck_status: str
-    distance_traveled: float = None
-    packages: list[int] = None
-    packages_delivered: list[int] = None
+    def __init__(self, id: int, truck_status: str, distance_traveled: float = None, packages: [int] = None, packages_delivered: [int] = None):
+        """
+        Initializes the truck class with its information.
+
+        Args:
+            id:
+            truck_status:
+            distance_traveled:
+            packages:
+            packages_delivered:
+        """
+        self.id = id
+        self.truck_status = truck_status
+        self.distance_traveled = distance_traveled
+        self.packages = packages
+        self.packages_delivered = packages_delivered
 
     def update_truck_status(self, truck_status: str) -> bool:
         """Updates the truck status.

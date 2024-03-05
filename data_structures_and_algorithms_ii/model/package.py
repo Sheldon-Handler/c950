@@ -40,21 +40,6 @@ class Package:
         Package: A Package class instance.
     """
 
-    id: int
-    address: str
-    city: str
-    state: str
-    zip: str
-    delivery_deadline: str
-    weight_kilo: int
-    special_notes: str
-    machine_readable_delivery_deadline: datetime.time or None = None
-    special_notes_attribute_key: str = None
-    special_notes_attribute_value: list or int or datetime.time = None
-    delivery_status: str = None
-    truck_id: int = None
-    delivery_time: datetime.time = None
-
     def __init__(
         self,
         id: int,
