@@ -5,13 +5,13 @@ import data_structures_and_algorithms_ii
 
 def package(file) -> list:
     """
-    This function reads a csv file and returns a list of Location objects.
+    This function reads a csv file and returns a list of Package objects.
 
     Args:
         file (str): The file to read from.
 
     Returns:
-        list: A list of Location objects.
+        list: A list of Package objects.
 
     Notes:
         time complexity: O(n)
@@ -22,7 +22,9 @@ def package(file) -> list:
     csv_file = open(file, mode="r", newline="")
     reader = csv.reader(csv_file)
 
+    # Parse the csv file and create a list of Package objects
     for row in reader:  # O(n) - for loop
+        # Create a Package object and add it to the list of packages
         packages.append(data_structures_and_algorithms_ii.model.package.Package(*row))
 
     csv_file.close()
@@ -49,7 +51,9 @@ def distance(file) -> list[list]:
     csv_file = open(file, mode="r", newline="")
     reader = csv.reader(csv_file)
 
+    # Parse the csv file and create a list of lists representing the distance matrix
     for row in reader:  # O(n) - for loop
+        # Add the row to the list of rows
         rows.append(row)
 
     return rows
@@ -69,13 +73,15 @@ def address(file) -> list:
         time complexity: O(n)
         space complexity: O(n)
     """
-    list_of_locations = []
+    addresses = []
 
     csv_file = open(file, mode="r", newline="")
     reader = csv.reader(csv_file)
 
+    # Parse the csv file and create a list of Address objects
     for row in reader:  # O(n) - for loop
-        list_of_locations.append(
+        # Create an Address object and add it to the list of addresses
+        addresses.append(
             data_structures_and_algorithms_ii.model.address.Address(
                 int(row[0]), row[1], row[2]
             )
@@ -83,7 +89,7 @@ def address(file) -> list:
 
     csv_file.close()
 
-    return list_of_locations
+    return addresses
 
 
 if __name__ == "__main__":
