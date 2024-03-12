@@ -1,0 +1,9 @@
+<changelist name="Fixed_something" date="1710261788085" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Fixed_something/shelved.patch" />
+  <option name="DESCRIPTION" value="Fixed something" />
+  <binary>
+    <option name="BEFORE_PATH" value=".idea/copilot/chatSessions/00000000000.xd" />
+    <option name="AFTER_PATH" value=".idea/copilot/chatSessions/00000000000.xd" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Fixed_something/00000000000.xd" />
+  </binary>
+</changelist>
