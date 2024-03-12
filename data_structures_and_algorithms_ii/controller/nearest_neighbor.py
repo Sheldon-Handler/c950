@@ -226,8 +226,8 @@ def locations_sorted_by_distance_from_current_location(
         space complexity: O(n)
     """
 
-    for i in distance_matrix:
-        if
+    for i in distance_matrix[current_location_index]:
+        distance_between_address_indices(distance_matrix, current_location_index, i)
 
     # Create a list of tuples with the location index and the distance from the current location
     location_distances = [

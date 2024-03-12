@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="">
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Working on something">
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/nearest_neighbor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/controller/nearest_neighbor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -390,7 +391,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710262799986</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Removed unused module">
+      <option name="closed" value="true" />
+      <created>1710270219853</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1710270219853</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Working on something">
+      <option name="closed" value="true" />
+      <created>1710270889981</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1710270889981</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,6 +430,8 @@
     <MESSAGE value="Fixed something" />
     <MESSAGE value="Fixed comments and made read_csv_file.py understandable" />
     <MESSAGE value="Fixed comments and readability in hash_table.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed comments and readability in hash_table.py" />
+    <MESSAGE value="Removed unused module" />
+    <MESSAGE value="Working on something" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on something" />
   </component>
 </project>
