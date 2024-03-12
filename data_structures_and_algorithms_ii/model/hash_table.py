@@ -30,8 +30,9 @@ class HashTable:
         Returns:
             None
         """
-
         self.table = []
+
+        # Initialize the hash table with empty lists
         for i in range(size):
             self.table.append([])
 
@@ -57,6 +58,16 @@ class HashTable:
 
         Returns:
             None
+
+        Notes:
+            time complexity:
+                best case = O(1)
+                worst case = O(n)
+                average case = O(n)
+            space complexity:
+                best case = O(1)
+                worst case = O(1)
+                average case = O(1)
         """
         hash_value = self.hash(key)
 
@@ -66,6 +77,7 @@ class HashTable:
                 self.table[hash_value][i][1] = value
                 return
 
+        # If the key does not exist, append the key-value pair to the hash table
         self.table[hash_value].append((key, value))
 
     def get(self, key) -> any:
@@ -88,12 +100,15 @@ class HashTable:
                 worst case = O(1)
                 average case = O(1)
         """
+        # Hash the key to get the hash value
         hash_value = self.hash(key)
 
+        # Search for the key in the hash table and return the value if found
         for i in self.table[hash_value]:  # O(n) - for loop
             if self.table[hash_value][i][0] == key:
                 return self.table[hash_value][i][1]
 
+        # If the key is not found, return None
         return None
 
     def remove(self, key) -> bool:
@@ -116,11 +131,15 @@ class HashTable:
                 worst case = O(1)
                 average case = O(1)
         """
+        # Hash the key to get the hash value
         hash_value = self.hash(key)
 
+        # Search for the key in the hash table and remove the key-value pair if found
         for i in self.table[hash_value]:  # O(n) - for loop
             if self.table[hash_value][i][0] == key:
                 self.table[hash_value].pop(i)
+                # Return True if the key-value pair was found and removed
                 return True
 
+        # Return False if the key-value pair was not found
         return False
