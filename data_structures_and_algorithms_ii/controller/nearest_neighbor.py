@@ -206,3 +206,37 @@ def distance_between_address_indices(
         raise ValueError(
             "The distance between location_a and location_b is not in the distance_matrix."
         )
+
+
+def locations_sorted_by_distance_from_current_location(
+    current_location_index: int, distance_matrix: [[float]]
+) -> [int]:
+    """
+    Sorts the locations by distance from the current location.
+
+    Args:
+        current_location_index (int): The index of the current location.
+        distance_matrix ([[float]]): A list of lists representing the distance matrix.
+
+    Returns:
+        list: A list of the location indices sorted by distance from the current location.
+
+    Notes:
+        time complexity: O(n^2)
+        space complexity: O(n)
+    """
+
+    for i in distance_matrix:
+        if
+
+    # Create a list of tuples with the location index and the distance from the current location
+    location_distances = [
+        (i, distance_matrix[current_location_index][i])
+        for i in distance_matrix[current_location_index]
+    ]
+
+    # Sort the list of tuples by the distance from the current location
+    location_distances.sort(key=lambda x: x[1])
+
+    # Return a list of the location indices sorted by distance from the current location
+    return [i[0] for i in location_distances]
