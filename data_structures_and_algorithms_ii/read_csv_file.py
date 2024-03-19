@@ -25,7 +25,7 @@ def package(file) -> list:
     # Parse the csv file and create a list of Package objects
     for row in reader:  # O(n) - for loop
         # Create a Package object and add it to the list of packages
-        packages.append(data_structures_and_algorithms_ii.model.package.Package(*row))
+        packages.append(package.Package(*row))
 
     csv_file.close()
 
@@ -81,11 +81,7 @@ def address(file) -> list:
     # Parse the csv file and create a list of Address objects
     for row in reader:  # O(n) - for loop
         # Create an Address object and add it to the list of addresses
-        addresses.append(
-            data_structures_and_algorithms_ii.model.address.Address(
-                int(row[0]), row[1], row[2]
-            )
-        )
+        addresses.append(address.Address(int(row[0]), row[1], row[2]))
 
     csv_file.close()
 
