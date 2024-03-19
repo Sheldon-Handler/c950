@@ -8,7 +8,9 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
-import fileinput
+
+import csv
+import data_structures_and_algorithms_ii
 
 addresses = []
 
@@ -34,19 +36,6 @@ class Address:
             name (str): The name of the location.
             address (str): The address.
         """
-        self.id = id
-        self.name = name
-        self.address = address
-
-def set_addresses(address_csv_file: ) -> None:
-    """
-    Sets the addresses list.
-
-    Args:
-        addresses_list (list[Address]): The list of addresses.
-
-    Returns:
-        None
-    """
-    global addresses
-    addresses = addresses_list
+        self.id = int(id)
+        self.name = str(name)
+        self.address = str(address)

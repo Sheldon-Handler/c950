@@ -81,11 +81,7 @@ def get_addresses(file) -> list:
     # Parse the csv file and create a list of Address objects
     for row in reader:  # O(n) - for loop
         # Create an Address object and add it to the list of addresses
-        addresses.append(
-            data_structures_and_algorithms_ii.address.Address(
-                int(row[0]), row[1], row[2]
-            )
-        )
+        addresses.append(data_structures_and_algorithms_ii.address.Address(*row))
 
     csv_file.close()
 
