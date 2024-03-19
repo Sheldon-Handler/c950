@@ -8,10 +8,13 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+import fileinput
+
+addresses = []
 
 
 class Address:
-    """This dataclass represents an address instance with its information.
+    """This class represents an address instance with its information.
 
     Attributes:
         id (int): The id of the location.
@@ -34,3 +37,16 @@ class Address:
         self.id = id
         self.name = name
         self.address = address
+
+def set_addresses(address_csv_file: ) -> None:
+    """
+    Sets the addresses list.
+
+    Args:
+        addresses_list (list[Address]): The list of addresses.
+
+    Returns:
+        None
+    """
+    global addresses
+    addresses = addresses_list

@@ -10,6 +10,7 @@
 #
 
 import argparse
+import data_structures_and_algorithms_ii
 
 
 class Shell:
@@ -50,4 +51,6 @@ class Shell:
             space complexity: O(1)
         """
         # Get the package by its id, then modify its address
-        package.get_package_by_id(package_id).address = correct_address
+        data_structures_and_algorithms_ii.package.get_package_by_id(
+            package_id
+        ).address = correct_address

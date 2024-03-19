@@ -66,7 +66,7 @@ def nearest_neighbor_index(
             and i != hub_location_index
             and i not in visited_location_indices
             and nearest_location_distance
-            > distance_between_address_indices(current_location_index, i)
+            > distance_between_address_indices(distances, current_location_index, i)
         ):
             # Set nearest_location_distance to the distance to location i in the location_sublist
             nearest_location_distance = location_sublist[i]
@@ -109,10 +109,10 @@ def nearest_unvisited_neighbor(
     nearest_location_distance = float("inf")
 
     # Search for the nearest location that is not in visited_location_indices
-    for i in distance_matrix: # O(n) - for loop
-        if i not in visited_location_indices: # O(n) - in operator
-            for j in distance_matrix[i]: # O(n) - for loop
-                if j not in visited_location_indices: # O(n) - in operator
+    for i in distance_matrix:  # O(n) - for loop
+        if i not in visited_location_indices:  # O(n) - in operator
+            for j in distance_matrix[i]:  # O(n) - for loop
+                if j not in visited_location_indices:  # O(n) - in operator
                     if nearest_location_distance > distance_matrix[i][j]:
                         nearest_location_distance = distance_matrix[i][j]
                         nearest_location_index = i
