@@ -15,7 +15,6 @@ import pathlib
 import address
 import deliver_together
 import hash_table
-import __main__
 import nearest_neighbor
 import package
 import package_gui
@@ -28,8 +27,10 @@ addresses = []
 distances = []
 packages = []
 trucks = []
+
 visited_location_indices = {}
 unvisited_location_indices = {}
+
 number_of_drivers = 2
 number_of_trucks = 3
 truck_capacity = 16

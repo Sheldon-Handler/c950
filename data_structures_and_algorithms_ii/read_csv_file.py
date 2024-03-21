@@ -32,31 +32,35 @@ def get_packages(file) -> list:
     return packages
 
 
-def get_distances(file) -> list[list]:
+def get_distances(file) -> [[float]]:
     """
     This function reads a csv file and returns a list of Location objects.
 
     Args:
-        file (str): The file to read from.
+        file (): The file to read from.
 
     Returns:
         list[list]: List of distance data from csv file as a distance matrix.
 
     Notes:
-        time complexity: O(n)
+        time complexity: O(n^2)
         space complexity: O(n)
     """
-    rows = []
+    csv_reader = csv.reader(file)
+    rows = [row for row in csv_reader] # O(n) - list comprehension
 
-    csv_file = open(file, mode="r", newline="")
-    reader = csv.reader(csv_file)
+    # Fill in empty cells with the corresponding cell value
+    for row in range(len(rows)): # O(n) - for loop
+        for column in range(len(rows[row])): # O(n) - for loop
+            if column == "":
+                rows[row][column] = rows[column][row]
 
-    # Parse the csv file and create a list of lists representing the distance matrix
-    for row in reader:  # O(n) - for loop
-        # Add the row to the list of rows
-        rows.append(row)
+    # Convert the distance matrix to a list of floats
+    distance_matrix = [[float]]
+    for row in rows: # O(n) - for loop
+        distance_matrix.append([float(cell) for cell in row]) # O(n) - for loop
 
-    return rows
+    return distance_matrix
 
 
 def get_addresses(file) -> list:
