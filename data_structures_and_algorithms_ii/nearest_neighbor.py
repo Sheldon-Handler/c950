@@ -9,7 +9,8 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-def sorted_neighbors(distances_list: [float]) -> list:
+
+def sorted_neighbors(distances_list: [float]) -> [int]:
     """
     Sorts a list and returns a list of indexes sorted by the corresponding value in ascending order.
 
@@ -24,18 +25,20 @@ def sorted_neighbors(distances_list: [float]) -> list:
         space complexity: O(n)
     """
     # Create a list of tuples with the index and the value.
-    items_tuples = [(i, distances_list[i]) for i in distances_list] # O(n) - for loop
+    items_tuples = [(i, distances_list[i]) for i in distances_list]  # O(n) - for loop
 
     # Sort the list of tuples by the value.
-    items_tuples.sort(key=lambda x: x[1]) # O(n log n) - sort
+    items_tuples.sort(key=lambda x: x[1])  # O(n log n) - sort
 
     # List of the indices sorted by the value.
-    sorted_indices = [i[0] for i in items_tuples] # O(n) - for loop
+    sorted_indices = [i[0] for i in items_tuples]  # O(n) - for loop
 
     return sorted_indices
 
 
-def nearest_unvisited_neighbor(distances_list: [float], visited_location_indices: [int]) -> int or None:
+def sorted_unvisited_neighbors(
+    distances_list: [float], visited_location_indices: [int]
+) -> [int]:
     """
     Get the nearest unvisited neighbor from a given location.
 
@@ -50,7 +53,10 @@ def nearest_unvisited_neighbor(distances_list: [float], visited_location_indices
         time complexity: O(n^2)
         space complexity: O(1)
     """
-    for i in sorted_neighbors(distances_list): # O(n) - for loop
-        if i not in visited_location_indices: # O(n) - in operator
-            return i
-    return None
+    unvisited_location_indices = []
+
+    for i in sorted_neighbors(distances_list):  # O(n) - for loop
+        if i not in visited_location_indices:  # O(n) - in operator
+            unvisited_location_indices.append(i)
+
+    return unvisited_location_indices
