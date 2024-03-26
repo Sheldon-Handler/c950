@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed the reading of distances from csv file into a [[float]] with all fields filled in">
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Fixed_something.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Fixed_something.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_40_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_40_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_42_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_42_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Renamed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/nearest_neighbor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/nearest_neighbor.py" afterDir="false" />
     </list>
@@ -435,7 +430,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711042580266</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Renamed">
+      <option name="closed" value="true" />
+      <created>1711475554278</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1711475554278</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,6 +466,7 @@
     <MESSAGE value="Converted project to singleton pattern" />
     <MESSAGE value="Fixing csv_file paths" />
     <MESSAGE value="Fixed the reading of distances from csv file into a [[float]] with all fields filled in" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the reading of distances from csv file into a [[float]] with all fields filled in" />
+    <MESSAGE value="Renamed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed" />
   </component>
 </project>
