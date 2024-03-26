@@ -9,9 +9,10 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-def sorted_neighbors(current_row: [float]) -> list:
+
+def neighbors_sorted_by_distance_from_current_location(current_row: [float]) -> list:
     """
-    Get the nearest neighbors from a given location.
+    Get the nearest neighbors from a given location. Sort by distance from the current location.
 
     Args:
         current_row (float): The list of distances from the current location to all other locations.
@@ -53,7 +54,7 @@ def nearest_unvisited_neighbor(current_row: [float], visited_location_indices: [
         time complexity: O(n)
         space complexity: O(1)
     """
-    for i in sorted_neighbors(current_row): # O(n) - for loop
+    for i in neighbors_sorted_by_distance_from_current_location(current_row): # O(n) - for loop
         if i not in visited_location_indices: # O(n) - in operator
             return i
     return None
