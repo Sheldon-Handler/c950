@@ -65,14 +65,7 @@ class Package:
         Initializes a Package class instance.
 
         Args:
-            id (int): The package id.
-            address (str): The package address.
-            city (str): The package city.
-            state (str): The package state.
-            zip (str): The package zip code.
-            delivery_deadline (str): The package delivery deadline.
-            weight_kilo (int): The package weight in kilos.
-            special_notes (str): The package special notes.
+            raw_package (RawPackage): The immutable raw package data associated with this package.
             machine_readable_delivery_deadline (datetime.time): The package delivery deadline in a format that can be used
                 for calculation of the delivery time.
             special_notes_attribute_key (str): The package special notes attribute key.
