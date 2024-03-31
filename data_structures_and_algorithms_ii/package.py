@@ -1,5 +1,3 @@
-"""This module provides the Package class to store package information."""
-import dataclasses
 #  MIT License
 #
 #  Copyright (c) 2024 Sheldon Handler
@@ -12,7 +10,7 @@ import dataclasses
 #
 
 import datetime
-
+import dataclasses
 import data_structures_and_algorithms_ii
 
 
@@ -20,16 +18,17 @@ import data_structures_and_algorithms_ii
 class RawPackage:
     """This dataclass represents a package instance with its information which has not had any data mutated.
 
-        Args:
-            id (int): The package id.
-            address (str): The package address.
-            city (str): The package city.
-            state (str): The package state.
-            zip (str): The package zip code.
-            delivery_deadline (str): The package delivery deadline.
-            weight_kilo (int): The package weight in kilos.
-            special_notes (str): The package special notes.
+    Args:
+        id (int): The package id.
+        address (str): The package address.
+        city (str): The package city.
+        state (str): The package state.
+        zip (str): The package zip code.
+        delivery_deadline (str): The package delivery deadline.
+        weight_kilo (int): The package weight in kilos.
+        special_notes (str): The package special notes.
     """
+
     id: int
     address: str
     city: str
@@ -57,10 +56,16 @@ class Package:
         Package: A Package class instance.
     """
 
-    def __init__(self, raw_package: RawPackage, machine_readable_delivery_deadline: datetime.time = None,
-                 special_notes_attribute_key: str = None,
-                 special_notes_attribute_value: list or int or datetime.time = None, delivery_status: str = None,
-                 truck_id: int = None, delivery_time: datetime.time = None):
+    def __init__(
+        self,
+        raw_package: RawPackage,
+        machine_readable_delivery_deadline: datetime.time = None,
+        special_notes_attribute_key: str = None,
+        special_notes_attribute_value: list or int or datetime.time = None,
+        delivery_status: str = None,
+        truck_id: int = None,
+        delivery_time: datetime.time = None,
+    ):
         """
         Initializes a Package class instance.
 
