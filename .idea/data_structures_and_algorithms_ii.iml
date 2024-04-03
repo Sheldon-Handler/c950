@@ -4,11 +4,4 @@
     <option name="format" value="GOOGLE" />
     <option name="myDocStringFormat" value="Google" />
   </component>
-  <component name="PyNamespacePackagesService">
-    <option name="namespacePackageFolders">
-      <list>
-        <option value="$MODULE_DIR$/data_structures_and_algorithms_ii" />
-      </list>
-    </option>
-  </component>
 </module>
