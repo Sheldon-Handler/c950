@@ -9,9 +9,12 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
+import dataclasses
 
+
+@dataclasses.dataclass(frozen=True, order=True)
 class Address:
-    """This class represents an address instance with its information.
+    """This dataclass represents an address instance with its information.
 
     Attributes:
         id (int): The id of the location.
@@ -22,15 +25,7 @@ class Address:
         Address: An Address object instance.
     """
 
-    def __init__(self, id: int, name: str, address: str):
-        """
-        Initializes an Address class instance.
+    id: int
+    name: str
+    address: str
 
-        Args:
-            id (int): The id of the location.
-            name (str): The name of the location.
-            address (str): The address.
-        """
-        self.id = int(id)
-        self.name = str(name)
-        self.address = str(address)

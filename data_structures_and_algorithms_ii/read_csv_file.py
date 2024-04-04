@@ -63,7 +63,7 @@ def get_distances(file) -> [[float]]:
     return distance_matrix
 
 
-def get_addresses(file) -> list:
+def get_addresses(file) -> data_structures_and_algorithms_ii.hash_table.HashTable:
     """
     This function reads a csv file and returns a list of Location objects.
 
@@ -77,15 +77,14 @@ def get_addresses(file) -> list:
         time complexity: O(n)
         space complexity: O(n)
     """
-    addresses = []
+    addresses = data_structures_and_algorithms_ii.hash_table.HashTable()
 
     csv_file = open(file, mode="r", newline="")
     reader = csv.reader(csv_file)
 
-    # Parse the csv file and create a list of Address objects
-    for row in reader:  # O(n) - for loop
-        # Create an Address object and add it to the list of addresses
-        addresses.append(data_structures_and_algorithms_ii.address.Address(*row))
+    # Parse the csv file and create a hash table of Location objects
+    for row in reader:
+        addresses.set(row[0], data_structures_and_algorithms_ii.address.Address(*row))
 
     csv_file.close()
 
