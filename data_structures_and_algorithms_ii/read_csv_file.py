@@ -3,6 +3,65 @@ import csv
 import data_structures_and_algorithms_ii
 
 
+def get_addresses(file) -> data_structures_and_algorithms_ii.hash_table.HashTable:
+    """
+    This function reads a csv file and returns a list of Location objects.
+
+    Args:
+        file (): The file to read from.
+
+    Returns:
+        list: A list of Location objects.
+
+    Notes:
+        time complexity: O(n)
+        space complexity: O(n)
+    """
+    addresses = data_structures_and_algorithms_ii.hash_table.HashTable()
+
+    csv_file = open(file, mode="r", newline="")
+    reader = csv.reader(csv_file)
+
+    # Parse the csv file and create a hash table of Address objects
+    for row in reader:
+        addresses.set(row[0], data_structures_and_algorithms_ii.address.Address(*row))
+
+    csv_file.close()
+
+    return addresses
+
+
+def get_distances(file) -> [[float]]:
+    """
+    This function reads a csv file and returns a list of Location objects.
+
+    Args:
+        file (): The file to read from.
+
+    Returns:
+        list[list]: List of distance data from csv file as a distance matrix.
+
+    Notes:
+        time complexity: O(n^2)
+        space complexity: O(n)
+    """
+    csv_reader = csv.reader(file)
+    rows = [row for row in csv_reader]  # O(n) - list comprehension
+
+    # Fill in empty cells with the corresponding cell value
+    for row in range(len(rows)):  # O(n) - for loop
+        for column in range(len(rows[row])):  # O(n) - for loop
+            if column == "":
+                rows[row][column] = rows[column][row]
+
+    # Convert the distance matrix to a list of floats
+    distance_matrix = [[float]]
+    for row in rows:  # O(n) - for loop
+        distance_matrix.append([float(cell) for cell in row])  # O(n) - for loop
+
+    return distance_matrix
+
+
 def get_packages(file) -> list:
     """
     This function reads a csv file and returns a list of Package objects.
@@ -30,65 +89,6 @@ def get_packages(file) -> list:
     csv_file.close()
 
     return packages
-
-
-def get_distances(file) -> [[float]]:
-    """
-    This function reads a csv file and returns a list of Location objects.
-
-    Args:
-        file (): The file to read from.
-
-    Returns:
-        list[list]: List of distance data from csv file as a distance matrix.
-
-    Notes:
-        time complexity: O(n^2)
-        space complexity: O(n)
-    """
-    csv_reader = csv.reader(file)
-    rows = [row for row in csv_reader] # O(n) - list comprehension
-
-    # Fill in empty cells with the corresponding cell value
-    for row in range(len(rows)): # O(n) - for loop
-        for column in range(len(rows[row])): # O(n) - for loop
-            if column == "":
-                rows[row][column] = rows[column][row]
-
-    # Convert the distance matrix to a list of floats
-    distance_matrix = [[float]]
-    for row in rows: # O(n) - for loop
-        distance_matrix.append([float(cell) for cell in row]) # O(n) - for loop
-
-    return distance_matrix
-
-
-def get_addresses(file) -> data_structures_and_algorithms_ii.hash_table.HashTable:
-    """
-    This function reads a csv file and returns a list of Location objects.
-
-    Args:
-        file (): The file to read from.
-
-    Returns:
-        list: A list of Location objects.
-
-    Notes:
-        time complexity: O(n)
-        space complexity: O(n)
-    """
-    addresses = data_structures_and_algorithms_ii.hash_table.HashTable()
-
-    csv_file = open(file, mode="r", newline="")
-    reader = csv.reader(csv_file)
-
-    # Parse the csv file and create a hash table of Location objects
-    for row in reader:
-        addresses.set(row[0], data_structures_and_algorithms_ii.address.Address(*row))
-
-    csv_file.close()
-
-    return addresses
 
 
 if __name__ == "__main__":
