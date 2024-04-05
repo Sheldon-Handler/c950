@@ -59,6 +59,7 @@ class Package:
     def __init__(
         self,
         raw_package: RawPackage,
+        correct_address: str = None,
         machine_readable_delivery_deadline: datetime.time = None,
         special_notes_attribute_key: str = None,
         special_notes_attribute_value: list or int or datetime.time = None,
@@ -87,6 +88,12 @@ class Package:
         self.delivery_status = delivery_status
         self.truck_id = truck_id
         self.delivery_time = delivery_time
+
+        # If the correct address is provided, update the address attribute.
+        if special_notes_attribute_key == "Wrong address listed":
+            self.correct_address = None
+        else:
+            data_structures_and_algorithms_ii.addresses.ge
 
         self.machine_readable_delivery_deadline_handler()
         self.special_notes_handler()
