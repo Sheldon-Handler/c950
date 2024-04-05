@@ -1,14 +1,3 @@
-#  MIT License
-#
-#  Copyright (c) 2024 Sheldon Handler
-#
-#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-#
-#  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
-#
-#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#
-
 import datetime
 import dataclasses
 import data_structures_and_algorithms_ii
@@ -72,8 +61,8 @@ class Package:
 
         Args:
             raw_package (RawPackage): The immutable raw package data associated with this package.
-            machine_readable_delivery_deadline (datetime.time): The package delivery deadline in a format that can be used
-                for calculation of the delivery time.
+            machine_readable_delivery_deadline (datetime.time): The package delivery deadline in a format that can be
+            used for calculation of the delivery time.
             special_notes_attribute_key (str): The package special notes attribute key.
             special_notes_attribute_value (list or int or str or dict): The package special notes attribute value.
             delivery_status (str): The package delivery status.
@@ -92,8 +81,6 @@ class Package:
         # If the correct address is provided, update the address attribute.
         if special_notes_attribute_key == "Wrong address listed":
             self.correct_address = None
-        else:
-            data_structures_and_algorithms_ii.addresses.ge
 
         self.machine_readable_delivery_deadline_handler()
         self.special_notes_handler()
