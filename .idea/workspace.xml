@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed package import int __init__.py">
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/deliver_together.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/deliver_together.py" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Got rid of unused remove() method in hash_table.py">
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck_loader.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,7 +422,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712325686775</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Got rid of unused remove() method in hash_table.py">
+      <option name="closed" value="true" />
+      <created>1712326665018</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1712326665018</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +438,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Reformatted whitespace" />
     <MESSAGE value="Moved variables in seperate file. Removed truck_assignment.py since it contained duplicate code" />
     <MESSAGE value="Working on imports" />
     <MESSAGE value="Cleaned up some things." />
@@ -457,6 +462,7 @@
     <MESSAGE value="Reordering and changing things" />
     <MESSAGE value="Removed license from individual files" />
     <MESSAGE value="Fixed package import int __init__.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed package import int __init__.py" />
+    <MESSAGE value="Got rid of unused remove() method in hash_table.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Got rid of unused remove() method in hash_table.py" />
   </component>
 </project>

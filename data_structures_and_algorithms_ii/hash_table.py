@@ -1,6 +1,6 @@
 class HashTable:
     """
-    A hash table class that uses separate chaining to handle collisions.
+    A hash table data structure.
 
     Args:
         size (int): The size of the hash table. Defaults to 10.
@@ -18,11 +18,21 @@ class HashTable:
 
         Returns:
             None
+
+        Notes:
+            time complexity:
+                best case = O(n)
+                worst case = O(n)
+                average case = O(n)
+            space complexity:
+                best case = O(n)
+                worst case = O(n)
+                average case = O(n)
         """
         self.table = []
 
         # Initialize the hash table with empty lists
-        for i in range(size):
+        for i in range(size):  # O(n) - for loop
             self.table.append([])
 
     def hash(self, key) -> int:
