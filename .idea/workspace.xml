@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Moved methods in read_csv_file.py to correct order">
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/address.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/address.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/nearest_neighbor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/nearest_neighbor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Removed license from individual files">
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -401,7 +398,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712323645479</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Reordering and changing things">
+      <option name="closed" value="true" />
+      <created>1712325303340</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1712325303340</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Removed license from individual files">
+      <option name="closed" value="true" />
+      <created>1712325577700</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1712325577700</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,8 +422,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Worked on some things" />
-    <MESSAGE value="Fixing some things" />
     <MESSAGE value="Fixing workspace.xml and gitignore" />
     <MESSAGE value="Reformatted whitespace" />
     <MESSAGE value="Moved variables in seperate file. Removed truck_assignment.py since it contained duplicate code" />
@@ -434,6 +445,8 @@
     <MESSAGE value="Fixed formatting settings" />
     <MESSAGE value="Working on package.py" />
     <MESSAGE value="Moved methods in read_csv_file.py to correct order" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved methods in read_csv_file.py to correct order" />
+    <MESSAGE value="Reordering and changing things" />
+    <MESSAGE value="Removed license from individual files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed license from individual files" />
   </component>
 </project>
