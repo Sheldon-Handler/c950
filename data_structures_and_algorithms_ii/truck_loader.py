@@ -32,7 +32,7 @@ def load_truck(
             package.truck_id = truck.id
             package.delivery_time = load_time
             package.delivery_status = "En Route"
-            data_structures_and_algorithms_ii.packages.append(package.id)
+            data_structures_and_algorithms_ii.packages.set(package.id)
 
 
 def check_if_package_can_be_loaded(

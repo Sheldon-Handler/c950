@@ -34,6 +34,16 @@ class HashTable:
 
         Returns:
             int: The hash value.
+
+        Notes:
+            time complexity:
+                best case = O(1)
+                worst case = O(1)
+                average case = O(1)
+            space complexity:
+                best case = O(1)
+                worst case = O(1)
+                average case = O(1)
         """
         return hash(key) % len(self.table)  # Hash the key and return the hash value
 
@@ -99,36 +109,3 @@ class HashTable:
 
         # If the key is not found, return None
         return None
-
-    def remove(self, key) -> bool:
-        """
-        Removes the key-value pair from the hash table.
-
-        Args:
-            key: The key of the entry to remove.
-
-        Returns:
-            bool: True if the key-value pair was found and removed, False otherwise.
-
-        Notes:
-            time complexity:
-                best case = O(1)
-                worst case = O(n)
-                average case = O(n)
-            space complexity:
-                best case = O(1)
-                worst case = O(1)
-                average case = O(1)
-        """
-        # Hash the key to get the hash value
-        hash_value = self.hash(key)
-
-        # Search for the key in the hash table and remove the key-value pair if found
-        for i in self.table[hash_value]:  # O(n) - for loop
-            if self.table[hash_value][i][0] == key:
-                self.table[hash_value].pop(i)
-                # Return True if the key-value pair was found and removed
-                return True
-
-        # Return False if the key-value pair was not found
-        return False

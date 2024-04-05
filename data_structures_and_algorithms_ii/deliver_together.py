@@ -63,7 +63,7 @@ def add_to_delivery_group(
             # If the package belongs to a delivery group, add it to the delivery group
             for _ in delivery_group:  # O(n) - for loop
                 if other_package_id in delivery_group:
-                    delivery_group.append(package.id)
+                    delivery_group.set(package.id)
                     print(
                         "Package with id={} added to delivery group index {}.".format(
                             package.id, delivery_group
