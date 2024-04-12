@@ -1,10 +1,11 @@
 import csv
+import datetime
 
 import data_structures_and_algorithms_ii
 
 
 def get_addresses(
-    file,
+        file,
 ) -> (data_structures_and_algorithms_ii.hash_table.HashTable, list):
     """
     This function reads a csv file and returns a list of Location objects.
@@ -89,8 +90,19 @@ def get_packages(file) -> list:
 
     # Parse the csv file and create a list of Package objects
     for row in reader:  # O(n) - for loop
+        # Convert the delivery deadline to a time object
+        if row[5] == "EOD":
+            deadline = datetime.time(0, 0) if row[5] == "EOD" else datetime.datetime.time(row[5], "%I:%M %p").strftime("%H:%M")
+        # else:
+        #     deadline = datetime.datetime.strptime(
+        #         row[5], "%I:%M %p"
+        #     ).time()
+
         # Create a Package object and add it to the list of packages
-        packages.append(data_structures_and_algorithms_ii.package.Package(*row))
+        packages.append(
+            data_structures_and_algorithms_ii.package.Package(id=int(row[0]), address=row[1], city=row[2], state=row[3],
+                                                              zip=row[4], delivery_deadline=deadline, weight_kilo=int(row[6]),
+                                                              special_notes=row[7]))
 
     csv_file.close()
 

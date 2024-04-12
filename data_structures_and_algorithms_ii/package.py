@@ -4,7 +4,7 @@ import data_structures_and_algorithms_ii
 
 
 @dataclasses.dataclass(frozen=True, order=True)
-class RawPackage:
+class Package:
     """This dataclass represents a package instance with its information which has not had any data mutated.
 
     Args:
@@ -13,7 +13,7 @@ class RawPackage:
         city (str): The package city.
         state (str): The package state.
         zip (str): The package zip code.
-        delivery_deadline (str): The package delivery deadline.
+        delivery_deadline (datetime.time): The package delivery deadline.
         weight_kilo (int): The package weight in kilos.
         special_notes (str): The package special notes.
     """
@@ -23,101 +23,79 @@ class RawPackage:
     city: str
     state: str
     zip: str
-    delivery_deadline: str
+    delivery_deadline: datetime.time
     weight_kilo: int
     special_notes: str
 
 
-class Package:
+class PackageAttributes:
     """This subclass defines the additional information for a package that. It inherits from the RawPackage class.
 
     Attributes:
-        raw_package (RawPackage): The immutable raw package data associated with this package.
+        package (Package): The immutable raw package data associated with this package.
+        correct_address (str): The correct package address.
         machine_readable_delivery_deadline (datetime.time): The package delivery deadline in a format that can be used
             for calculation of the delivery time.
         special_notes_attribute_key (str): The package special notes attribute key.
-        special_notes_attribute_value (list or int or str or dict): The package special notes attribute value.
+        special_notes_attribute_value (list or int or datetime.time): The package special notes attribute value.
         delivery_status (str): The package delivery status.
         truck_id (int): The package delivery truck ID.
         delivery_time (datetime.time): The package delivery time.
 
     Returns:
-        Package: A Package class instance.
+        PackageAttributes: A Package class instance.
     """
 
-    def __init__(
-        self,
-        raw_package: RawPackage,
-        correct_address: str = None,
-        machine_readable_delivery_deadline: datetime.time = None,
-        special_notes_attribute_key: str = None,
-        special_notes_attribute_value: list or int or datetime.time = None,
-        delivery_status: str = None,
-        truck_id: int = None,
-        delivery_time: datetime.time = None,
-    ):
+    package: Package
+    correct_address: str
+    machine_readable_delivery_deadline: datetime.time
+    special_notes_attribute_key: str
+    special_notes_attribute_value: list or int or datetime.time
+    delivery_status: str
+    truck_id: int
+    delivery_time: datetime.time
+
+    def __init__(self, package: Package):
         """
         Initializes a Package class instance.
 
         Args:
-            raw_package (RawPackage): The immutable raw package data associated with this package.
-            machine_readable_delivery_deadline (datetime.time): The package delivery deadline in a format that can be
-            used for calculation of the delivery time.
-            special_notes_attribute_key (str): The package special notes attribute key.
-            special_notes_attribute_value (list or int or str or dict): The package special notes attribute value.
-            delivery_status (str): The package delivery status.
-            truck_id (int): The package delivery truck ID.
-            delivery_time (datetime.time): The package delivery time.
+            package (Package): The immutable raw package data associated with this package.
         """
 
-        self.raw_package = raw_package
-        self.machine_readable_delivery_deadline = machine_readable_delivery_deadline
-        self.special_notes_attribute_key = special_notes_attribute_key
-        self.special_notes_attribute_value = special_notes_attribute_value
-        self.delivery_status = delivery_status
-        self.truck_id = truck_id
-        self.delivery_time = delivery_time
+        self.package = package
 
-        # If the correct address is provided, update the address attribute.
-        if special_notes_attribute_key == "Wrong address listed":
-            self.correct_address = None
-
-        self.machine_readable_delivery_deadline_handler()
-        self.special_notes_handler()
-
-    def machine_readable_delivery_deadline_handler(self):
-        """Handles the machine readable delivery deadline for the package. Translate the delivery_deadline to a
-        machine_readable_delivery_deadline attribute to enable the program to handle the delivery deadline.
-        """
-        # Sets the machine_readable_delivery_deadline attribute.
-        if self.raw_package.delivery_deadline == "EOD":
-            self.machine_readable_delivery_deadline = None
+        # If the delivery deadline is "EOD", set the machine_readable_delivery_deadline to None.
+        if self.package.delivery_deadline is "EOD":
+            self.machine_readable_delivery_deadline = datetime.time(hour=23, minute=59)
+        # If the delivery deadline is not "EOD", convert the delivery deadline to a datetime.time object.
         else:
             self.machine_readable_delivery_deadline = datetime.datetime.strptime(
-                self.raw_package.delivery_deadline, "%I:%M %p"
+                package.delivery_deadline, "%I:%M %p"
             ).time()
+
+        self.special_notes_handler()
 
     def special_notes_handler(self):
         """Handles the special notes for the package. Translate special_notes to special_notes_attribute_key and
         special_notes_attribute_value to enable the program to handle the special notes.
-
         """
 
         # If there are no special notes
-        if self.raw_package.special_notes == "":
+        if self.package.special_notes == "":
             self.special_notes_attribute_key = ""
             self.special_notes_attribute_value = ""
 
         # If the special notes are "Can only be on truck {truck_id}"
-        elif self.raw_package.special_notes.startswith("Can only be on truck "):
+        elif self.package.special_notes.startswith("Can only be on truck "):
             self.special_notes_attribute_key = "Can only be on truck"
             self.special_notes_attribute_value = int(
-                self.raw_package.special_notes.removeprefix("Can only be on truck ")
+                self.package.special_notes.removeprefix("Can only be on truck ")
             )
             self.delivery_status = "At Hub"
 
         # If the special notes are "Delayed on flight---will not arrive to depot until {time}"
-        elif self.raw_package.special_notes.startswith(
+        elif self.package.special_notes.startswith(
             "Delayed on flight---will not arrive to depot until "
         ):
             self.special_notes_attribute_key = (
@@ -125,7 +103,7 @@ class Package:
             )
             self.delivery_status = "Not Available"
             self.special_notes_attribute_value = (
-                self.raw_package.special_notes.removeprefix(
+                self.package.special_notes.removeprefix(
                     "Delayed on flight---will not arrive to depot until "
                 )
                 .capitalize()
@@ -133,18 +111,18 @@ class Package:
             )
 
         # If the special notes are "Wrong address listed"
-        elif self.raw_package.special_notes.startswith("Wrong address listed"):
+        elif self.package.special_notes.startswith("Wrong address listed"):
             self.special_notes_attribute_key = "Wrong address listed"
             # Store the incorrect address in the special_notes_attribute_value
-            self.special_notes_attribute_value = self.raw_package.address
+            self.special_notes_attribute_value = self.package.address
             # Set the address to an empty string. This will be used to check if the address is correct.
             self.address = ""
 
         # If the special notes are "Must be delivered with {list(package_ids) as comma delimited values}"
-        elif self.raw_package.special_notes.startswith("Must be delivered with "):
+        elif self.package.special_notes.startswith("Must be delivered with "):
             self.special_notes_attribute_key = "Must be delivered with"
             package_id_list = (
-                self.raw_package.special_notes.removeprefix("Must be delivered with ")
+                self.package.special_notes.removeprefix("Must be delivered with ")
                 .strip(" ")
                 .split(",")
             )
@@ -174,7 +152,7 @@ class Package:
         ):
             self.delivery_status = delivery_status
             print(
-                f"Package {self.raw_package.id} delivery status updated to {self.delivery_status}.\n"
+                f"Package {self.package.id} delivery status updated to {self.delivery_status}.\n"
             )
             return True
         else:
@@ -191,40 +169,40 @@ class Package:
         """
         self.update_delivery_status("Delivered")
         self.delivery_time = delivery_time
-        print(f"Package {self.raw_package.id} delivered at {self.delivery_time}.\n")
+        print(f"Package {self.package.id} delivered at {self.delivery_time}.\n")
 
 
 def get_package_by_id(
     package_id: int,
-    packages: list[Package] = data_structures_and_algorithms_ii.packages,
-) -> Package:
+    packages: list[PackageAttributes] = data_structures_and_algorithms_ii.packages,
+) -> PackageAttributes:
     """Returns a package object by its id.
 
     Args:
         package_id (int): The id of the package to return.
-        packages (list[Package]): A list of packages.
+        packages (list[PackageAttributes]): A list of packages.
 
     Returns:
-        Package: The package object with the id provided.
+        PackageAttributes: The package object with the id provided.
 
     Notes:
         time complexity: O(n)
         space complexity: O(1)
     """
     for package in packages:  # O(n)
-        if package.raw_package.id == package_id:
+        if package.package.id == package_id:
             return package
 
 
 def get_index_of_package_by_id(
     package_id: int,
-    packages: list[Package] = data_structures_and_algorithms_ii.packages,
+    packages: list[PackageAttributes] = data_structures_and_algorithms_ii.packages,
 ) -> int or None:
     """Returns the index of a package object by its id.
 
     Args:
         package_id (int): The id of the package to return.
-        packages (list[Package]): A list of packages.
+        packages (list[PackageAttributes]): A list of packages.
 
     Returns:
         int: The index of the package object with the id provided.
@@ -234,7 +212,7 @@ def get_index_of_package_by_id(
         space complexity: O(1)
     """
     for package in packages:  # O(n)
-        if package.raw_package.id == package_id:
+        if package.package.id == package_id:
             return packages.index(package)
 
     print(f"Package with id {package_id} not found.")
