@@ -1,9 +1,7 @@
 import datetime
-import dataclasses
 import data_structures_and_algorithms_ii
 
 
-@dataclasses.dataclass(frozen=True, order=True)
 class Package:
     """This dataclass represents a package instance with its information which has not had any data mutated.
 
@@ -18,14 +16,44 @@ class Package:
         special_notes (str): The package special notes.
     """
 
-    id: int
-    address: str
-    city: str
-    state: str
-    zip: str
-    delivery_deadline: datetime.time
-    weight_kilo: int
-    special_notes: str
+    def __init__(
+        self,
+        id: int or str,
+        address: str,
+        city: str,
+        state: str,
+        zip: str,
+        delivery_deadline: datetime.time or str,
+        weight_kilo: int or str,
+        special_notes: str,
+    ):
+        """
+        Initializes a Package class instance. Converts the string values to the appropriate data types.
+
+        Args:
+            id (int or str): The package id. Converts to an integer if it is a string.
+            address (str): The package address.
+            city (str): The package city.
+            state (str): The package state.
+            zip (str): The package zip code.
+            delivery_deadline (datetime.time or str): The package delivery deadline. Converts to a datetime.time object
+                if it is a string.
+            weight_kilo (int or str): The package weight in kilos. Converts to an integer if it is a string.
+            special_notes (str): The package special notes.
+        """
+        # Converting string values to the appropriate data types
+        self.id = int(id)
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.delivery_deadline = (
+            datetime.time(hour=23, minute=59)
+            if delivery_deadline == "EOD"
+            else datetime.datetime.strptime(delivery_deadline, "%I:%M %p").time()
+        )
+        self.weight_kilo = int(weight_kilo)
+        self.special_notes = special_notes
 
 
 class PackageAttributes:
@@ -57,22 +85,12 @@ class PackageAttributes:
 
     def __init__(self, package: Package):
         """
-        Initializes a Package class instance.
+        Initializes a PackageAttributes class instance.
 
         Args:
-            package (Package): The immutable raw package data associated with this package.
+            package (Package): The package data for this that are associated with these attributes.
         """
-
         self.package = package
-
-        # If the delivery deadline is "EOD", set the machine_readable_delivery_deadline to None.
-        if self.package.delivery_deadline is "EOD":
-            self.machine_readable_delivery_deadline = datetime.time(hour=23, minute=59)
-        # If the delivery deadline is not "EOD", convert the delivery deadline to a datetime.time object.
-        else:
-            self.machine_readable_delivery_deadline = datetime.datetime.strptime(
-                package.delivery_deadline, "%I:%M %p"
-            ).time()
 
         self.special_notes_handler()
 
