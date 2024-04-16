@@ -5,7 +5,7 @@ import data_structures_and_algorithms_ii
 class Package:
     """This dataclass represents a package instance with its information which has not had any data mutated.
 
-    Args:
+    Attributes:
         id (int): The package id.
         address (str): The package address.
         city (str): The package city.
@@ -18,41 +18,35 @@ class Package:
 
     def __init__(
         self,
-        id: int or str,
+        id: int,
         address: str,
         city: str,
         state: str,
         zip: str,
-        delivery_deadline: datetime.time or str,
-        weight_kilo: int or str,
+        delivery_deadline: datetime.time,
+        weight_kilo: int,
         special_notes: str,
     ):
         """
         Initializes a Package class instance. Converts the string values to the appropriate data types.
 
         Args:
-            id (int or str): The package id. Converts to an integer if it is a string.
+            id (int): The package id.
             address (str): The package address.
             city (str): The package city.
             state (str): The package state.
             zip (str): The package zip code.
-            delivery_deadline (datetime.time or str): The package delivery deadline. Converts to a datetime.time object
-                if it is a string.
-            weight_kilo (int or str): The package weight in kilos. Converts to an integer if it is a string.
+            delivery_deadline (datetime.time): The package delivery deadline.
+            weight_kilo (int): The package weight in kilos.
             special_notes (str): The package special notes.
         """
-        # Converting string values to the appropriate data types
-        self.id = int(id)
+        self.id = id
         self.address = address
         self.city = city
         self.state = state
         self.zip = zip
-        self.delivery_deadline = (
-            datetime.time(hour=23, minute=59)
-            if delivery_deadline == "EOD"
-            else datetime.datetime.strptime(delivery_deadline, "%I:%M %p").time()
-        )
-        self.weight_kilo = int(weight_kilo)
+        self.delivery_deadline = delivery_deadline
+        self.weight_kilo = weight_kilo
         self.special_notes = special_notes
 
 

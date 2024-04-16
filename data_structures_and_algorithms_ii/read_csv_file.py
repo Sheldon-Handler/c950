@@ -55,12 +55,16 @@ def get_distances(file) -> [[float]]:
         space complexity: O(n)
     """
     csv_reader = csv.reader(file)
+    # Read the csv file and store the rows in a list
     rows = [row for row in csv_reader]  # O(n) - list comprehension
 
-    # Fill in empty cells with the corresponding cell value
+    # Search for empty cells and fill them with the corresponding cell value
     for row in range(len(rows)):  # O(n) - for loop
-        for column in range(len(rows[row])):  # O(n) - for loop
-            if column == "":
+        for column in range(len(rows)):  # O(n) - for loop
+            # If the cell is empty, fill it with the corresponding cell value
+            if (
+                rows[row][column] is None or rows[row][column] == ""
+            ):  # O(1) - if statement
                 rows[row][column] = rows[column][row]
 
     # Convert the distance matrix to a list of floats
@@ -85,6 +89,7 @@ def get_packages(file) -> list:
         time complexity: O(n)
         space complexity: O(n)
     """
+    # Create an empty list to store the packages
     packages = []
 
     csv_file = open(file, mode="r", newline="")
@@ -92,7 +97,23 @@ def get_packages(file) -> list:
 
     # Parse the csv file and create a list of Package objects
     for row in reader:  # O(n) - for loop
-        packages.append(data_structures_and_algorithms_ii.package.Package(*row))
+        # Create a Package object and add it to the list
+        packages.append(
+            data_structures_and_algorithms_ii.package.Package(
+                id=int(row[0]),
+                address=row[1],
+                city=row[2],
+                state=row[3],
+                zip=row[4],
+                delivery_deadline=(
+                    datetime.time(hour=23, minute=59)
+                    if row[5] == "EOD"
+                    else datetime.datetime.strptime(row[5], "%I:%M %p").time()
+                ),
+                weight_kilo=int(row[6]),
+                special_notes=row[7],
+            )
+        )
 
     csv_file.close()
 
