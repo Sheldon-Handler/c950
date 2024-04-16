@@ -134,7 +134,7 @@ class PackageAttributes:
             # Store the incorrect address in the special_notes_attribute_value
             self.special_notes_attribute_value = self.package.address
             # Set the address to an empty string. This will be used to check if the address is correct.
-            self.address = ""
+            self.package.address = ""
 
         # If the special notes are "Must be delivered with {list(package_ids) as comma delimited values}"
         elif self.package.special_notes.startswith("Must be delivered with "):
