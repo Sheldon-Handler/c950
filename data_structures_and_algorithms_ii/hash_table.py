@@ -35,7 +35,7 @@ class HashTable:
         for i in range(size):  # O(n) - for loop
             self.table.append([])
 
-    def hash(self, key) -> int:
+    def _hash(self, key) -> int:
         """
         Hashes the given key to a hash value.
 
@@ -78,7 +78,7 @@ class HashTable:
                 worst case = O(1)
                 average case = O(1)
         """
-        hash_value = self.hash(key)
+        hash_value = self._hash(key)
 
         # Check if the key already exists, if so, update the value and return
         for i in self.table[hash_value]:  # O(n) - for loop
@@ -110,7 +110,7 @@ class HashTable:
                 average case = O(1)
         """
         # Hash the key to get the hash value
-        hash_value = self.hash(key)
+        hash_value = self._hash(key)
 
         # Search for the key in the hash table and return the value if found
         for i in self.table[hash_value]:  # O(n) - for loop
