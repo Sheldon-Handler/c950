@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Working on fixing">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Fixed_something.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Fixed_something.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_40_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_40_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_42_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_42_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed hash table added _hash() instead of hash(), to avoid confusing the two functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" afterDir="false" />
     </list>
@@ -442,7 +439,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712930844315</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Fixed hash table added _hash() instead of hash(), to avoid confusing the two functions">
+      <option name="closed" value="true" />
+      <created>1713287866284</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1713287866284</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,7 +466,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Working on imports" />
     <MESSAGE value="Cleaned up some things." />
     <MESSAGE value="Remove CSV writer methods." />
     <MESSAGE value="Cleaning up code and organizing data structures" />
@@ -486,6 +490,7 @@
     <MESSAGE value="Fixed package import int __init__.py" />
     <MESSAGE value="Got rid of unused remove() method in hash_table.py" />
     <MESSAGE value="Working on fixing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on fixing" />
+    <MESSAGE value="Fixed hash table added _hash() instead of hash(), to avoid confusing the two functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed hash table added _hash() instead of hash(), to avoid confusing the two functions" />
   </component>
 </project>
