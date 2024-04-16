@@ -5,23 +5,27 @@ import data_structures_and_algorithms_ii
 
 
 def get_addresses(
-    file,
-) -> (data_structures_and_algorithms_ii.hash_table.HashTable, list):
+    file, number_of_buckets: int = 10
+) -> (list, data_structures_and_algorithms_ii.hash_table.HashTable):
     """
     This function reads a csv file and returns a list of Location objects.
 
     Args:
         file (): The file to read from.
+        number_of_buckets (int): The number of buckets for the hash table. Defaults to 10.
 
     Returns:
         list: A list of Location objects.
+        HashTable: A hash table of Location objects.
 
     Notes:
         time complexity: O(n^2)
         space complexity: O(n)
     """
-    address_table = data_structures_and_algorithms_ii.hash_table.HashTable()
     address_list = []
+    address_table = data_structures_and_algorithms_ii.hash_table.HashTable(
+        number_of_buckets
+    )
 
     csv_file = open(file, mode="r", newline="")
     reader = csv.reader(csv_file)
@@ -29,13 +33,11 @@ def get_addresses(
     # Parse the csv file and create a hash table of Address objects
     for row in reader:  # O(n) - for loop
         address_list.append(data_structures_and_algorithms_ii.address.Address(*row))
-        address_table.set(
-            row[1], data_structures_and_algorithms_ii.address.Address(*row)
-        )  # O(n) - setter
+        address_table.set(row[1], row[0])  # O(n) - setter
 
     csv_file.close()
 
-    return address_table, address_list
+    return address_list, address_table
 
 
 def get_distances(file) -> [[float]]:

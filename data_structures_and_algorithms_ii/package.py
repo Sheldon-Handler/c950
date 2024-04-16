@@ -92,6 +92,7 @@ class PackageAttributes:
         """
         self.package = package
 
+        # Call the special_notes_handler method to handle the special notes for the package.
         self.special_notes_handler()
 
     def special_notes_handler(self):
