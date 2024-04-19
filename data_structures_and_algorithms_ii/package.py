@@ -26,6 +26,12 @@ class Package:
         delivery_deadline: datetime.time,
         weight_kilo: int,
         special_notes: str,
+        machine_readable_delivery_deadline: datetime.time,
+        special_notes_attribute_key: str,
+        special_notes_attribute_value: list or int or datetime.time,
+        delivery_status: str,
+        truck_id: int,
+        delivery_time: datetime.time,
     ):
         """
         Initializes a Package class instance. Converts the string values to the appropriate data types.
@@ -48,46 +54,15 @@ class Package:
         self.delivery_deadline = delivery_deadline
         self.weight_kilo = weight_kilo
         self.special_notes = special_notes
-
-
-class PackageAttributes:
-    """This subclass defines the additional information for a package that. It inherits from the RawPackage class.
-
-    Attributes:
-        package (Package): The immutable raw package data associated with this package.
-        correct_address (str): The correct package address.
-        machine_readable_delivery_deadline (datetime.time): The package delivery deadline in a format that can be used
-            for calculation of the delivery time.
-        special_notes_attribute_key (str): The package special notes attribute key.
-        special_notes_attribute_value (list or int or datetime.time): The package special notes attribute value.
-        delivery_status (str): The package delivery status.
-        truck_id (int): The package delivery truck ID.
-        delivery_time (datetime.time): The package delivery time.
-
-    Returns:
-        PackageAttributes: A Package class instance.
-    """
-
-    package: Package
-    correct_address: str
-    machine_readable_delivery_deadline: datetime.time
-    special_notes_attribute_key: str
-    special_notes_attribute_value: list or int or datetime.time
-    delivery_status: str
-    truck_id: int
-    delivery_time: datetime.time
-
-    def __init__(self, package: Package):
-        """
-        Initializes a PackageAttributes class instance.
-
-        Args:
-            package (Package): The package data for this that are associated with these attributes.
-        """
-        self.package = package
+        self.machine_readable_delivery_deadline = machine_readable_delivery_deadline
+        self.special_notes_attribute_key = special_notes_attribute_key
+        self.special_notes_attribute_value = special_notes_attribute_value
+        self.delivery_status = delivery_status
+        self.truck_id = truck_id
+        self.delivery_time = delivery_time
 
         # Call the special_notes_handler method to handle the special notes for the package.
-        self.special_notes_handler()
+        # self.special_notes_handler()
 
     def special_notes_handler(self):
         """Handles the special notes for the package. Translate special_notes to special_notes_attribute_key and
@@ -95,20 +70,20 @@ class PackageAttributes:
         """
 
         # If there are no special notes
-        if self.package.special_notes == "":
+        if self.special_notes == "":
             self.special_notes_attribute_key = ""
             self.special_notes_attribute_value = ""
 
         # If the special notes are "Can only be on truck {truck_id}"
-        elif self.package.special_notes.startswith("Can only be on truck "):
+        elif self.special_notes.startswith("Can only be on truck "):
             self.special_notes_attribute_key = "Can only be on truck"
             self.special_notes_attribute_value = int(
-                self.package.special_notes.removeprefix("Can only be on truck ")
+                self.special_notes.removeprefix("Can only be on truck ")
             )
             self.delivery_status = "At Hub"
 
         # If the special notes are "Delayed on flight---will not arrive to depot until {time}"
-        elif self.package.special_notes.startswith(
+        elif self.special_notes.startswith(
             "Delayed on flight---will not arrive to depot until "
         ):
             self.special_notes_attribute_key = (
@@ -116,7 +91,7 @@ class PackageAttributes:
             )
             self.delivery_status = "Not Available"
             self.special_notes_attribute_value = (
-                self.package.special_notes.removeprefix(
+                self.special_notes.removeprefix(
                     "Delayed on flight---will not arrive to depot until "
                 )
                 .capitalize()
@@ -124,18 +99,18 @@ class PackageAttributes:
             )
 
         # If the special notes are "Wrong address listed"
-        elif self.package.special_notes.startswith("Wrong address listed"):
+        elif self.special_notes.startswith("Wrong address listed"):
             self.special_notes_attribute_key = "Wrong address listed"
             # Store the incorrect address in the special_notes_attribute_value
-            self.special_notes_attribute_value = self.package.address
+            self.special_notes_attribute_value = self.address
             # Set the address to an empty string. This will be used to check if the address is correct.
-            self.package.address = ""
+            self.address = ""
 
         # If the special notes are "Must be delivered with {list(package_ids) as comma delimited values}"
-        elif self.package.special_notes.startswith("Must be delivered with "):
+        elif self.special_notes.startswith("Must be delivered with "):
             self.special_notes_attribute_key = "Must be delivered with"
             package_id_list = (
-                self.package.special_notes.removeprefix("Must be delivered with ")
+                self.special_notes.removeprefix("Must be delivered with ")
                 .strip(" ")
                 .split(",")
             )
@@ -165,7 +140,7 @@ class PackageAttributes:
         ):
             self.delivery_status = delivery_status
             print(
-                f"Package {self.package.id} delivery status updated to {self.delivery_status}.\n"
+                f"Package {self.id} delivery status updated to {self.delivery_status}.\n"
             )
             return True
         else:
@@ -182,4 +157,4 @@ class PackageAttributes:
         """
         self.update_delivery_status("Delivered")
         self.delivery_time = delivery_time
-        print(f"Package {self.package.id} delivered at {self.delivery_time}.\n")
+        print(f"Package {self.id} delivered at {self.delivery_time}.\n")

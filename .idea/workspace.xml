@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed correct_address() method in shell.py">
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Removed redundent unused variable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package_gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +66,7 @@
     "Python.__init__.executor": "Run",
     "Python.__main__.executor": "Run",
     "Python.data_structures_and_algorithms_ii.executor": "Run",
+    "Python.deliver_together.executor": "Run",
     "Python.load_truck.executor": "Run",
     "Python.main (1).executor": "Run",
     "Python.main.executor": "Run",
@@ -129,22 +133,6 @@
       <workItem from="1711904293241" duration="619000" />
       <workItem from="1712176472944" duration="65000" />
       <workItem from="1712176564633" duration="637000" />
-    </task>
-    <task id="LOCAL-00001" summary="Fixing some things">
-      <option name="closed" value="true" />
-      <created>1705004143514</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1705004143514</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Fixing some things">
-      <option name="closed" value="true" />
-      <created>1705006405614</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1705006405614</updated>
     </task>
     <task id="LOCAL-00003" summary="Fixing some things">
       <option name="closed" value="true" />
@@ -522,7 +510,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713541379186</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Fixed package_gui.py">
+      <option name="closed" value="true" />
+      <created>1713541955133</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1713541955133</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Removed redundent unused variable">
+      <option name="closed" value="true" />
+      <created>1713542157360</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1713542157360</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,8 +545,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Removed unused module" />
-    <MESSAGE value="Working on something" />
     <MESSAGE value="Converted project to singleton pattern" />
     <MESSAGE value="Fixing csv_file paths" />
     <MESSAGE value="Fixed the reading of distances from csv file into a [[float]] with all fields filled in" />
@@ -566,6 +568,8 @@
     <MESSAGE value="Removed unused method in truck.py" />
     <MESSAGE value="Fixed file paths and main method" />
     <MESSAGE value="Fixed correct_address() method in shell.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed correct_address() method in shell.py" />
+    <MESSAGE value="Fixed package_gui.py" />
+    <MESSAGE value="Removed redundent unused variable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed redundent unused variable" />
   </component>
 </project>

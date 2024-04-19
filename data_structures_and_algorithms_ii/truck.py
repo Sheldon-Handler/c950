@@ -1,3 +1,5 @@
+import datetime
+
 import data_structures_and_algorithms_ii
 
 
@@ -9,7 +11,7 @@ class Truck:
         truck_status (TruckStatus): The status of the truck.
         distance_traveled (float): The distance the truck has traveled.
         packages (list[int]): The list of package IDs the truck is carrying.
-        packages_delivered (list[int]): The list of package IDs the truck has delivered.
+
 
     Returns:
         Truck: A Truck class instance.
@@ -21,7 +23,6 @@ class Truck:
         truck_status: str,
         distance_traveled: float = None,
         packages: [int] = None,
-        packages_delivered: [int] = None,
     ):
         """
         Initializes the truck class with its information.
@@ -37,7 +38,7 @@ class Truck:
         self.truck_status = truck_status
         self.distance_traveled = distance_traveled
         self.packages = packages
-        self.packages_delivered = packages_delivered
+        self.truck_time = datetime.timedelta(hours=8, minutes=0)
 
     def update_truck_status(self, truck_status: str) -> bool:
         """Updates the truck status.

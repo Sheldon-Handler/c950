@@ -58,6 +58,12 @@ def get_distances(file) -> [[float]]:
     # Read the csv file and store the rows in a list
     rows = [row for row in csv_reader]  # O(n) - list comprehension
 
+    # Convert the distance matrix to a list of floats
+    distance_matrix = [[float]]
+
+    for row in rows:  # O(n) - for loop
+        distance_matrix.append([float(cell) for cell in row])  # O(n) - for loop
+
     # Search for empty cells and fill them with the corresponding cell value
     for row in range(len(rows)):  # O(n) - for loop
         for column in range(len(rows)):  # O(n) - for loop
@@ -66,11 +72,6 @@ def get_distances(file) -> [[float]]:
                 rows[row][column] is None or rows[row][column] == ""
             ):  # O(1) - if statement
                 rows[row][column] = rows[column][row]
-
-    # Convert the distance matrix to a list of floats
-    distance_matrix = [[float]]
-    for row in rows:  # O(n) - for loop
-        distance_matrix.append([float(cell) for cell in row])  # O(n) - for loop
 
     return distance_matrix
 
