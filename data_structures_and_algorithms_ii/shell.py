@@ -27,7 +27,7 @@ class Shell:
             required=False,
         )
 
-    def correct_address(self, package_id, correct_address) -> None:
+    def correct_address(self, package_id: int, correct_address: str) -> None:
         """
         Updates the address of a package.
 
@@ -36,10 +36,8 @@ class Shell:
             correct_address (str): The correct address for the package.
 
         Notes:
-            time complexity: O(n)
+            time complexity: O(1)
             space complexity: O(1)
         """
         # Get the package by its id, then modify its address
-        data_structures_and_algorithms_ii.package.get_package_by_id(
-            package_id
-        ).address = correct_address
+        data_structures_and_algorithms_ii.packages[package_id].address = correct_address

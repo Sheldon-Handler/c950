@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Removed unused method in truck.py">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed file paths and main method">
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/shell.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/shell.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -536,7 +534,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713540138470</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Fixed file paths and main method">
+      <option name="closed" value="true" />
+      <created>1713541130834</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1713541130834</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,7 +561,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed comments and made read_csv_file.py understandable" />
     <MESSAGE value="Fixed comments and readability in hash_table.py" />
     <MESSAGE value="Removed unused module" />
     <MESSAGE value="Working on something" />
@@ -580,6 +585,7 @@
     <MESSAGE value="Removed unused method in address.py" />
     <MESSAGE value="Removed unused method in package.py" />
     <MESSAGE value="Removed unused method in truck.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unused method in truck.py" />
+    <MESSAGE value="Fixed file paths and main method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed file paths and main method" />
   </component>
 </project>
