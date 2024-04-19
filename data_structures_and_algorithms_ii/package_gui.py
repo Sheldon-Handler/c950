@@ -6,7 +6,16 @@ import data_structures_and_algorithms_ii
 
 
 class CSVTableApp:
+    """This class creates a table view of a CSV file."""
+
     def __init__(self, root, csv_file):
+        """
+        Initializes a CSVTableApp class instance.
+
+        Args:
+            root (tk.Tk): The root window.
+            csv_file (str): The path to the CSV file.
+        """
         self.root = root
         self.root.title("CSV Table Viewer")
 
@@ -15,7 +24,16 @@ class CSVTableApp:
 
         with open(csv_file, "r") as file:
             csv_reader = csv.reader(file)
-            header = next(csv_reader)
+            header = [
+                "ID",
+                "Address",
+                "City",
+                "State",
+                "Zip",
+                "Deadline",
+                "Weight Kilo",
+                "Special Notes",
+            ]
             self.tree["columns"] = header
             self.tree.heading("#0", text="Index")
 
@@ -23,7 +41,7 @@ class CSVTableApp:
                 self.tree.heading(col, text=col)
                 self.tree.column(col, anchor=tk.CENTER)
 
-            index = 1
+            index = 0
             for row in csv_reader:
                 self.tree.insert("", index, text=str(index), values=row)
                 index += 1
@@ -38,7 +56,7 @@ class CSVTableApp:
         self.tree.configure(xscrollcommand=x_scrollbar.set)
 
         # Header row
-        self.tree.heading("#0", text="Index")
+        # self.tree.heading("#0", text="Index")
         for col in header:
             self.tree.heading(col, text=col)
             self.tree.column(col, anchor=tk.CENTER)
