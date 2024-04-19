@@ -25,6 +25,6 @@ truck_capacity = 16
 truck_speed = 18
 starting_location = 0
 
-address_csv_file = os.path.relpath("data/address.csv", start=os.pardir)
-distance_csv_file = os.path.relpath("data/distance.csv", start=os.pardir)
-package_csv_file = os.path.relpath("data/package.csv", start=os.pardir)
+address_csv_file = os.path.realpath("../data/address.csv", strict=True)
+distance_csv_file = os.path.realpath("../data/distance.csv", strict=True)
+package_csv_file = os.path.realpath("../data/package.csv", strict=True)

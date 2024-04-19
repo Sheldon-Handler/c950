@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Removed unused method in address.py">
-      <change beforePath="$PROJECT_DIR$/.idea/data_structures_and_algorithms_ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_structures_and_algorithms_ii.iml" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Removed unused method in truck.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,10 +67,12 @@
     "Python.load_truck.executor": "Run",
     "Python.main (1).executor": "Run",
     "Python.main.executor": "Run",
+    "Python.package.executor": "Run",
     "Python.package_gui (1).executor": "Run",
     "Python.package_gui.executor": "Run",
     "Python.package_viewer.executor": "Run",
     "Python.read_csv_file.executor": "Run",
+    "Python.truck.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -101,6 +103,35 @@
       <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\data_structures_and_algorithms_ii\view" />
       <recent name="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\data_structures_and_algorithms_ii\algorithm" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="package_gui" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="data_structures_and_algorithms_ii" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_structures_and_algorithms_ii" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_structures_and_algorithms_ii/package_gui.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.package_gui" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -489,7 +520,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713539810982</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Removed unused method in package.py">
+      <option name="closed" value="true" />
+      <created>1713540083306</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1713540083306</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Removed unused method in truck.py">
+      <option name="closed" value="true" />
+      <created>1713540138470</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1713540138470</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,8 +555,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Cleaned up some things" />
-    <MESSAGE value="Fixed something" />
     <MESSAGE value="Fixed comments and made read_csv_file.py understandable" />
     <MESSAGE value="Fixed comments and readability in hash_table.py" />
     <MESSAGE value="Removed unused module" />
@@ -533,6 +578,8 @@
     <MESSAGE value="Add logic to set address to empty if the wrong address is listed under special notes" />
     <MESSAGE value="Fixed some things" />
     <MESSAGE value="Removed unused method in address.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unused method in address.py" />
+    <MESSAGE value="Removed unused method in package.py" />
+    <MESSAGE value="Removed unused method in truck.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unused method in truck.py" />
   </component>
 </project>
