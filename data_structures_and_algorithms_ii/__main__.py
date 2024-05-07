@@ -1,5 +1,3 @@
-import tkinter
-
 import data_structures_and_algorithms_ii
 
 

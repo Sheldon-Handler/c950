@@ -1,7 +1,5 @@
 import datetime
 
-import data_structures_and_algorithms_ii
-
 
 class Truck:
     """This class represents a truck instance with its information.
