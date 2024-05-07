@@ -3,7 +3,6 @@ import deliver_together
 import hash_table
 import nearest_neighbor
 import package
-import package_gui
 import read_csv_file
 import shell
 import truck
