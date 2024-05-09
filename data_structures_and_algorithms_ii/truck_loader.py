@@ -1,5 +1,6 @@
-import data_structures_and_algorithms_ii
 import datetime
+
+import data_structures_and_algorithms_ii
 
 
 def load_truck(
