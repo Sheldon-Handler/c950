@@ -30,7 +30,6 @@ class Truck:
             truck_status:
             distance_traveled:
             packages:
-            packages_delivered:
         """
         self.id = id
         self.truck_status = truck_status

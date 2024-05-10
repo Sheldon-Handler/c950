@@ -8,6 +8,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="PackageRequirementsSettings">
+    <option name="requirementsPath" value="C:\Users\Sheldon_Handler\PycharmProjects\data_structures_and_algorithms_ii\pyproject.toml" />
+  </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="GOOGLE" />
     <option name="myDocStringFormat" value="Google" />

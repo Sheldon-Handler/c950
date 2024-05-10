@@ -1,7 +1,9 @@
 import csv
 import datetime
 
-import data_structures_and_algorithms_ii
+import data_structures_and_algorithms_ii.address
+import data_structures_and_algorithms_ii.hash_table
+import data_structures_and_algorithms_ii.package
 
 
 def get_addresses(

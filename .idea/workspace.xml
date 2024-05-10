@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Removed shell.py">
+      <change beforePath="$PROJECT_DIR$/.idea/data_structures_and_algorithms_ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_structures_and_algorithms_ii.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/shell.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +38,12 @@
     &quot;assignee&quot;: &quot;Sheldon-Handler&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Sheldon-Handler/data_structures_and_algorithms_ii.git",
-    "accountId": "98eaeaac-bf2f-43d4-8be7-4dbc053e73cb"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Sheldon-Handler/data_structures_and_algorithms_ii.git&quot;,
+    &quot;accountId&quot;: &quot;98eaeaac-bf2f-43d4-8be7-4dbc053e73cb&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -86,13 +85,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Sheldon_Handler/PycharmProjects/data_structures_and_algorithms_ii/.venv/Scripts/pythonw.exe",
+    "last_opened_file_path": "C:/Users/Sheldon_Handler/PycharmProjects/data_structures_and_algorithms_ii/pyproject.toml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable",
+    "settings.editor.selected.configurable": "copyright.profiles",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -139,14 +138,6 @@
       <workItem from="1711904293241" duration="619000" />
       <workItem from="1712176472944" duration="65000" />
       <workItem from="1712176564633" duration="637000" />
-    </task>
-    <task id="LOCAL-00006" summary="Fixing some things">
-      <option name="closed" value="true" />
-      <created>1705946896054</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1705946896054</updated>
     </task>
     <task id="LOCAL-00007" summary="Fixing some things">
       <option name="closed" value="true" />
@@ -532,7 +523,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715282023161</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Removed shell.py">
+      <option name="closed" value="true" />
+      <created>1715282740484</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1715282740484</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,7 +550,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Renamed" />
     <MESSAGE value="Fixed sorting of indexes of nearest neighbors" />
     <MESSAGE value="Fixed formatting settings" />
     <MESSAGE value="Working on package.py" />
@@ -576,6 +574,7 @@
     <MESSAGE value="Removed GUI which is unused" />
     <MESSAGE value="Fixed IDE settings" />
     <MESSAGE value="Commented out special notes handler. Will not be using it" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commented out special notes handler. Will not be using it" />
+    <MESSAGE value="Removed shell.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed shell.py" />
   </component>
 </project>

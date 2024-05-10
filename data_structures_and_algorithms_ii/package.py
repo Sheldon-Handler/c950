@@ -28,9 +28,9 @@ class Package:
         # machine_readable_delivery_deadline: datetime.time,
         # special_notes_attribute_key: str,
         # special_notes_attribute_value: list or int or datetime.time,
-        delivery_status: str,
-        truck_id: int,
-        delivery_time: datetime.time,
+        delivery_status: str = None,
+        truck_id: int = None,
+        delivery_time: datetime.time = None,
     ):
         """
         Initializes a Package class instance. Converts the string values to the appropriate data types.
