@@ -1,5 +1,8 @@
 import datetime
 
+import data_structures_and_algorithms_ii
+import data_structures_and_algorithms_ii.address
+
 
 class Truck:
     """This class represents a truck instance with its information.
@@ -21,6 +24,7 @@ class Truck:
         truck_status: str,
         distance_traveled: float = None,
         packages: [int] = None,
+        capacity: int = data_structures_and_algorithms_ii.truck_capacity,
     ):
         """
         Initializes the truck class with its information.
@@ -57,3 +61,25 @@ class Truck:
             raise ValueError(
                 f"Truck status must be one of the following: {truck_statuses}."
             )
+
+    def load_packages_with_address(
+        self, address: data_structures_and_algorithms_ii.address.Address
+    ) -> bool:
+        """Loads a package onto the truck.
+
+        Args:
+            package_id (int): The ID of the package to load onto the truck.
+
+        Returns:
+            bool: True if the package was loaded successfully. Otherwise, raises a ValueError.
+        """
+
+        for package in data_structures_and_algorithms_ii.packages:  # O(n) - for loop
+            if package.address == address:
+                self.packages.append(package.id)
+                print(f"Package {package.id} loaded onto truck {self.id}.")
+
+                data_structures_and_algorithms_ii.addresses.get(package.address)
+
+            print(f"Package {package_id} loaded onto truck {self.id}.")
+            return True

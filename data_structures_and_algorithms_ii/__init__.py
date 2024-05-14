@@ -7,7 +7,6 @@ packages = []
 trucks = []
 
 visited_location_indices = {}
-unvisited_location_indices = {}
 
 number_of_drivers = 2
 number_of_trucks = 3

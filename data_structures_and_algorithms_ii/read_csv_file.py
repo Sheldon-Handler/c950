@@ -1,9 +1,33 @@
 import csv
 import datetime
 
+import data_structures_and_algorithms_ii.__init__
 import data_structures_and_algorithms_ii.address
 import data_structures_and_algorithms_ii.hash_table
 import data_structures_and_algorithms_ii.package
+
+
+def init():
+    """
+    Initializes the data structures and variables for the program.
+
+    Returns:
+        None
+
+    Notes:
+        time complexity: O(1)
+        space complexity: O(1)
+    """
+
+    data_structures_and_algorithms_ii.addresses = get_addresses(
+        data_structures_and_algorithms_ii.address_csv_file
+    )
+    data_structures_and_algorithms_ii.distances = get_distances(
+        data_structures_and_algorithms_ii.distance_csv_file
+    )
+    data_structures_and_algorithms_ii.packages = get_packages(
+        data_structures_and_algorithms_ii.package_csv_file
+    )
 
 
 def get_addresses(
@@ -39,7 +63,7 @@ def get_addresses(
 
     csv_file.close()
 
-    return address_list, address_table
+    return address_table
 
 
 def get_distances(file) -> [[float]]:
