@@ -96,3 +96,16 @@ class Package:
         self.update_delivery_status("Delivered")
         self.delivery_time = delivery_time
         print(f"Package {self.id} delivered at {self.delivery_time}.\n")
+
+    def __str__(self):
+        return f"Package ID: {self.id}\n" \
+               f"Address: {self.address}\n" \
+               f"City: {self.city}\n" \
+               f"State: {self.state}\n" \
+               f"Zip: {self.zip}\n" \
+               f"Delivery Deadline: {self.delivery_deadline}\n" \
+               f"Weight: {self.weight_kilo} kilos\n" \
+               f"Special Notes: {self.special_notes}\n" \
+               f"Delivery Status: {self.delivery_status}\n" \
+               f"Truck ID: {self.truck_id}\n" \
+               f"Delivery Time: {self.delivery_time}\n"
