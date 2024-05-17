@@ -1,6 +1,5 @@
 import os
 
-
 addresses = []
 distances = []
 packages = []

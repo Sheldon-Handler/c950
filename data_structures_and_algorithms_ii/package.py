@@ -19,18 +19,18 @@ class Package:
     """
 
     def __init__(
-        self,
-        id: int,
-        address: str,
-        city: str,
-        state: str,
-        zip: str,
-        delivery_deadline: datetime.time,
-        weight_kilo: int,
-        special_notes: str,
-        delivery_status: str = None,
-        truck_id: int = None,
-        delivery_time: datetime.time = None,
+            self,
+            id: int,
+            address: str,
+            city: str,
+            state: str,
+            zip: str,
+            delivery_deadline: datetime.time,
+            weight_kilo: int,
+            special_notes: str,
+            delivery_status: str = None,
+            truck_id: int = None,
+            delivery_time: datetime.time = None,
     ):
         """
         Initializes a Package class instance. Converts the string values to the appropriate data types.
@@ -74,7 +74,7 @@ class Package:
 
         # Check that the delivery_status is a valid value.
         if delivery_status == (
-            "Not Available" or "At Hub" or "En Route" or "Delivered"
+                "Not Available" or "At Hub" or "En Route" or "Delivered"
         ):
             self.delivery_status = delivery_status
             print(

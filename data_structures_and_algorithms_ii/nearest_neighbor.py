@@ -25,7 +25,7 @@ def sorted_neighbors(distances_list: [float]) -> [int]:
 
 
 def sorted_unvisited_neighbors(
-    distances_list: [float], visited_location_indices: [int]
+        distances_list: [float], visited_location_indices: [int]
 ) -> [int] or None:
     """
     Get the nearest unvisited neighbor from a given location.

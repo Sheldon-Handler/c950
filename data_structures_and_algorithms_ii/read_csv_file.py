@@ -31,7 +31,7 @@ def init():
 
 
 def get_addresses(
-    file, number_of_buckets: int = 10
+        file, number_of_buckets: int = 10
 ) -> (list, data_structures_and_algorithms_ii.hash_table.HashTable):
     """
     This function reads a csv file and returns a list of Location objects.
@@ -95,7 +95,7 @@ def get_distances(file) -> [[float]]:
         for column in range(len(rows)):  # O(n) - for loop
             # If the cell is empty, fill it with the corresponding cell value
             if (
-                rows[row][column] is None or rows[row][column] == ""
+                    rows[row][column] is None or rows[row][column] == ""
             ):  # O(1) - if statement
                 rows[row][column] = rows[column][row]
 
