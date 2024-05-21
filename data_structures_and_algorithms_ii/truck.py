@@ -19,12 +19,12 @@ class Truck:
     """
 
     def __init__(
-            self,
-            id: int,
-            truck_status: str,
-            distance_traveled: float = None,
-            packages: [int] = None,
-            capacity: int = data_structures_and_algorithms_ii.truck_capacity,
+        self,
+        id: int,
+        truck_status: str,
+        distance_traveled: float = None,
+        packages: [int] = None,
+        capacity: int = data_structures_and_algorithms_ii.truck_capacity,
     ):
         """
         Initializes the truck class with its information.
@@ -63,7 +63,7 @@ class Truck:
             )
 
     def load_packages_with_address(
-            self, address: data_structures_and_algorithms_ii.address.Address
+        self, address: data_structures_and_algorithms_ii.address.Address
     ) -> bool:
         """Loads a package onto the truck.
 
