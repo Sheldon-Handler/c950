@@ -30,10 +30,10 @@ class Truck:
         Initializes the truck class with its information.
 
         Args:
-            id:
-            truck_status:
-            distance_traveled:
-            packages:
+            id: The ID of the truck.
+            truck_status: The status of the truck.
+            distance_traveled: The distance the truck has traveled.
+            packages: The list of package IDs the truck is carrying.
         """
         self.id = id
         self.truck_status = truck_status
@@ -68,18 +68,21 @@ class Truck:
         """Loads a package onto the truck.
 
         Args:
-            package_id (int): The ID of the package to load onto the truck.
+            address (data_structures_and_algorithms_ii.address.Address): The ID of the package to load onto the truck.
 
         Returns:
-            bool: True if the package was loaded successfully. Otherwise, raises a ValueError.
+            bool: True if a package was loaded successfully. Otherwise, raises a ValueError.
         """
+
+        package_loaded = False
 
         for package in data_structures_and_algorithms_ii.packages:  # O(n) - for loop
             if package.address == address:
                 self.packages.append(package.id)
+                package.truck_id = self.id
+                package.delivery_status = "En Route"
                 print(f"Package {package.id} loaded onto truck {self.id}.")
+                address.addresses.get(package.address)
+                package_loaded = True
 
-                data_structures_and_algorithms_ii.addresses.get(package.address)
-
-            print(f"Package {package_id} loaded onto truck {self.id}.")
-            return True
+        return package_loaded

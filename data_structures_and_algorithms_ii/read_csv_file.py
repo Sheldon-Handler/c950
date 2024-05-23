@@ -1,6 +1,7 @@
 import csv
 import datetime
 
+import address
 import data_structures_and_algorithms_ii.__init__
 import data_structures_and_algorithms_ii.address
 import data_structures_and_algorithms_ii.hash_table
@@ -19,7 +20,7 @@ def init():
         space complexity: O(1)
     """
 
-    data_structures_and_algorithms_ii.addresses = get_addresses(
+    address.addresses = get_addresses(
         data_structures_and_algorithms_ii.address_csv_file
     )
     data_structures_and_algorithms_ii.distances = get_distances(
@@ -31,39 +32,32 @@ def init():
 
 
 def get_addresses(
-    file, number_of_buckets: int = 10
+    file,
 ) -> (list, data_structures_and_algorithms_ii.hash_table.HashTable):
     """
     This function reads a csv file and returns a list of Location objects.
 
     Args:
         file (): The file to read from.
-        number_of_buckets (int): The number of buckets for the hash table. Defaults to 10.
 
     Returns:
-        list: A list of Location objects.
-        HashTable: A hash table of Location objects.
+        list: A list of Address objects.
 
     Notes:
         time complexity: O(n^2)
         space complexity: O(n)
     """
     address_list = []
-    address_table = data_structures_and_algorithms_ii.hash_table.HashTable(
-        number_of_buckets
-    )
-
-    csv_file = open(file, mode="r", newline="")
-    reader = csv.reader(csv_file)
-
-    # Parse the csv file and create a hash table of Address objects
-    for row in reader:  # O(n) - for loop
-        address_list.append(data_structures_and_algorithms_ii.address.Address(*row))
-        address_table.set(row[1], row[0])  # O(n) - setter
-
-    csv_file.close()
-
-    return address_table
+    csv_reader = csv.reader(file)
+    # Read the csv file and store the rows in a list
+    for row in csv_reader:
+        address_list.append(
+            data_structures_and_algorithms_ii.address.Address(
+                id=int(row[0]),
+                name=row[1],
+                address=row[2],
+            )
+        )
 
 
 def get_distances(file) -> [[float]]:
@@ -116,6 +110,7 @@ def get_packages(file) -> list:
         time complexity: O(n)
         space complexity: O(n)
     """
+
     # Create an empty list to store the packages
     packages = []
 
@@ -124,11 +119,14 @@ def get_packages(file) -> list:
 
     # Parse the csv file and create a list of Package objects
     for row in reader:  # O(n) - for loop
+
         # Create a Package object and add it to the list
         packages.append(
             data_structures_and_algorithms_ii.package.Package(
                 id=int(row[0]),
-                address=row[1],
+                address=data_structures_and_algorithms_ii.address.get_address(
+                    row[1]
+                ),  # O(n) - function call
                 city=row[2],
                 state=row[3],
                 zip=row[4],
