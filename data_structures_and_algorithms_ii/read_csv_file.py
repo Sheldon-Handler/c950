@@ -124,7 +124,7 @@ def get_packages(file) -> list:
         packages.append(
             data_structures_and_algorithms_ii.package.Package(
                 id=int(row[0]),
-                address=data_structures_and_algorithms_ii.address.get_address(
+                address=data_structures_and_algorithms_ii.address.get_address_from_string(
                     row[1]
                 ),  # O(n) - function call
                 city=row[2],
