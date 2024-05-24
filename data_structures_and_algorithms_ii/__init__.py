@@ -1,10 +1,13 @@
 import os
 
+addresses = []
 distances = []
+packages = []
 trucks = [1, 2, 3]
 driver = [1, 2]
 
 visited_location_indices = {}
+
 
 truck_capacity = 16
 truck_speed = 18

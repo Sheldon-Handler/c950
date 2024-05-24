@@ -1,29 +1,15 @@
 import datetime
 
-from data_structures_and_algorithms_ii.address import Address
+import data_structures_and_algorithms_ii.address
 
 
 class Package:
-    """This dataclass represents a package instance with its information which has not had any data mutated.
-
-    Attributes:
-        id (int): The package id.
-        address (Address): The package address.
-        city (str): The package city.
-        state (str): The package state.
-        zip (str): The package zip code.
-        delivery_deadline (datetime.time): The package delivery deadline.
-        weight_kilo (int): The package weight in kilos.
-        special_notes (str): The package special notes.
-        delivery_status (str): The package delivery status.
-        truck_id (int): The truck id.
-        delivery_time (datetime.time): The package delivery time.
-    """
+    """This dataclass represents a package instance with its information which has not had any data mutated."""
 
     def __init__(
         self,
         id: int,
-        address: Address,
+        address: data_structures_and_algorithms_ii.address.Address,
         city: str,
         state: str,
         zip: str,
