@@ -1,6 +1,7 @@
 import datetime
 
 import data_structures_and_algorithms_ii
+import data_structures_and_algorithms_ii.address
 
 
 class Truck:
@@ -81,7 +82,7 @@ class Truck:
                 package.truck_id = self.id
                 package.delivery_status = "En Route"
                 print(f"Package {package.id} loaded onto truck {self.id}.")
-                address.addresses.get(package.address)
+                data_structures_and_algorithms_ii.addresses.get(package.address)
                 package_loaded = True
 
         return package_loaded
