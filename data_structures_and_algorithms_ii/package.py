@@ -13,7 +13,7 @@ class Package:
         city: str,
         state: str,
         zip: str,
-        delivery_deadline: datetime.time,
+        delivery_deadline: str,
         weight_kilo: int,
         special_notes: str,
         delivery_status: str = None,

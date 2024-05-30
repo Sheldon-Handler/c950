@@ -1,8 +1,7 @@
 import csv
-import datetime
+import os
 
-import address
-import data_structures_and_algorithms_ii.__init__
+import data_structures_and_algorithms_ii
 import data_structures_and_algorithms_ii.address
 import data_structures_and_algorithms_ii.hash_table
 import data_structures_and_algorithms_ii.package
@@ -20,7 +19,7 @@ def init():
         space complexity: O(1)
     """
 
-    address.addresses = get_addresses(
+    data_structures_and_algorithms_ii.address.addresses = get_addresses(
         data_structures_and_algorithms_ii.address_csv_file
     )
     data_structures_and_algorithms_ii.distances = get_distances(
@@ -32,13 +31,13 @@ def init():
 
 
 def get_addresses(
-    file,
-) -> (list, data_structures_and_algorithms_ii.hash_table.HashTable):
+    file: os.path.relpath = data_structures_and_algorithms_ii.address_csv_file,
+) -> list:
     """
-    This function reads a csv file and returns a list of Location objects.
+    This function reads a csv file and returns a list of Address objects.
 
     Args:
-        file (): The file to read from.
+       file (): The file to read from.
 
     Returns:
         list: A list of Address objects.
@@ -47,17 +46,21 @@ def get_addresses(
         time complexity: O(n^2)
         space complexity: O(n)
     """
-    address_list = []
-    csv_reader = csv.reader(file)
+    addresses = []
+    # Open the csv file and read the rows into a list
+    csv_file = open(file, "r")
+    csv_reader = csv.reader(csv_file)  # O(n) - readlines
+
     # Read the csv file and store the rows in a list
-    for row in csv_reader:
-        address_list.append(
+    for i in csv_reader:  # O(n) - for loop
+        addresses.append(
             data_structures_and_algorithms_ii.address.Address(
-                id=int(row[0]),
-                name=row[1],
-                address=row[2],
+                id=int(i[0]), name=str(i[1]), address=str(i[2])
             )
-        )
+        )  # O(1) - function call
+
+    data_structures_and_algorithms_ii.addresses = addresses
+    return addresses
 
 
 def get_distances(file) -> [[float]]:
@@ -112,16 +115,15 @@ def get_packages(file) -> list:
     """
 
     # Create an empty list to store the packages
-    packages = []
+    data_structures_and_algorithms_ii.packages = []
 
-    csv_file = open(file, mode="r", newline="")
-    reader = csv.reader(csv_file)
+    csv_file = open(file, "r")
+    reader = csv.reader(csv_file)  # O(n) - readlines
 
     # Parse the csv file and create a list of Package objects
     for row in reader:  # O(n) - for loop
-
         # Create a Package object and add it to the list
-        packages.append(
+        data_structures_and_algorithms_ii.packages.append(
             data_structures_and_algorithms_ii.package.Package(
                 id=int(row[0]),
                 address=data_structures_and_algorithms_ii.address.get_address_from_string(
@@ -130,19 +132,13 @@ def get_packages(file) -> list:
                 city=row[2],
                 state=row[3],
                 zip=row[4],
-                delivery_deadline=(
-                    datetime.time(hour=23, minute=59)
-                    if row[5] == "EOD"
-                    else datetime.datetime.strptime(row[5], "%I:%M %p").time()
-                ),
+                delivery_deadline=(row[5]),
                 weight_kilo=int(row[6]),
                 special_notes=row[7],
             )
         )
 
-    csv_file.close()
-
-    return packages
+    return data_structures_and_algorithms_ii.packages
 
 
 if __name__ == "__main__":
