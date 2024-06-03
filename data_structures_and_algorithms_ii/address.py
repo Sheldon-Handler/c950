@@ -1,6 +1,3 @@
-import data_structures_and_algorithms_ii
-
-
 class Address:
     """Represents an address object with its information."""
 
@@ -18,29 +15,6 @@ class Address:
         self.name = name
         self.address = address
 
-
-def get_address_from_string(
-    address_string: str, addresses: list = data_structures_and_algorithms_ii.addresses
-) -> Address:
-    """
-    This function searches for an address in the list of Address objects.
-
-    Args:
-        address_string (str): The address string to search for.
-        addresses (list): The list of Address objects.
-
-    Returns:
-        Address: The Address object instance.
-
-    Notes:
-        time complexity: O(n)
-        space complexity: O(1)
-    """
-    # Search for the address in the list of Address objects
-    for address in addresses:  # O(n) - for loop
-        if address_string is address.address:
-            # Return the address if found
-            return address
-
-    # Raise an error if the address is not found
-    raise ValueError(f"Address {address_string} not found.")
+    def __str__(self):
+        """Returns the string representation of the Address object."""
+        return f"ID: {self.id}, Name: {self.name}, Address: {self.address}"

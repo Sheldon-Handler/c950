@@ -59,7 +59,6 @@ def get_addresses(
             )
         )  # O(1) - function call
 
-    data_structures_and_algorithms_ii.addresses = addresses
     return addresses
 
 
@@ -115,20 +114,26 @@ def get_packages(file) -> list:
     """
 
     # Create an empty list to store the packages
-    data_structures_and_algorithms_ii.packages = []
+    packages = []
 
+    # Open the csv file and read the rows into a list
     csv_file = open(file, "r")
     reader = csv.reader(csv_file)  # O(n) - readlines
 
     # Parse the csv file and create a list of Package objects
     for row in reader:  # O(n) - for loop
+
+        matching_address = None
+        for address in data_structures_and_algorithms_ii.addresses:
+            if address.address == row[1]:
+                matching_address = address
+                break
+
         # Create a Package object and add it to the list
-        data_structures_and_algorithms_ii.packages.append(
+        packages.append(
             data_structures_and_algorithms_ii.package.Package(
                 id=int(row[0]),
-                address=data_structures_and_algorithms_ii.address.get_address_from_string(
-                    row[1]
-                ),  # O(n) - function call
+                address=matching_address,
                 city=row[2],
                 state=row[3],
                 zip=row[4],
@@ -138,7 +143,7 @@ def get_packages(file) -> list:
             )
         )
 
-    return data_structures_and_algorithms_ii.packages
+    return packages
 
 
 if __name__ == "__main__":

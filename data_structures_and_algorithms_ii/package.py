@@ -88,7 +88,7 @@ class Package:
     def __str__(self):
         return (
             f"Package ID: {self.id}\n"
-            f"Address: {self.address}\n"
+            f"Address: {self.address.__str__()}\n"
             f"City: {self.city}\n"
             f"State: {self.state}\n"
             f"Zip: {self.zip}\n"
