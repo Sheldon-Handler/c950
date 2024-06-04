@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed distances lists">
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixing print()">
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,14 +166,6 @@
       <workItem from="1711904293241" duration="619000" />
       <workItem from="1712176472944" duration="65000" />
       <workItem from="1712176564633" duration="637000" />
-    </task>
-    <task id="LOCAL-00013" summary="Working on imports">
-      <option name="closed" value="true" />
-      <created>1706820744500</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1706820744500</updated>
     </task>
     <task id="LOCAL-00014" summary="Cleaned up some things.">
       <option name="closed" value="true" />
@@ -559,7 +551,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717524246905</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Fixing print()">
+      <option name="closed" value="true" />
+      <created>1717524699757</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1717524699757</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +578,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Reordering and changing things" />
     <MESSAGE value="Removed license from individual files" />
     <MESSAGE value="Fixed package import int __init__.py" />
     <MESSAGE value="Got rid of unused remove() method in hash_table.py" />
@@ -603,7 +602,8 @@
     <MESSAGE value="Fixed formatting" />
     <MESSAGE value="Fixed some things" />
     <MESSAGE value="Fixed distances lists" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed distances lists" />
+    <MESSAGE value="Fixing print()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing print()" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/data_structures_and_algorithms_ii$__main__.coverage" NAME="__main__ Coverage Results" MODIFIED="1717452845317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_structures_and_algorithms_ii" />

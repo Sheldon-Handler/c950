@@ -112,11 +112,8 @@ class HashTable:
         """
         hash_value = self._hash(key)
 
-        # Check if the key already exists, if so, update the value and return
-        for i in self.table[hash_value]:  # O(n) - for loop
-            if self.table[hash_value][i][0] == key:
-                self.table[hash_value][i][1] = value
-                return
+        if self.table.get(key) is not None:
+            self.table[hash_value] = value
 
         # If the key does not exist, append the key-value pair to the hash table
         self.table[hash_value].append((key, value))

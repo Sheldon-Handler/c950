@@ -151,6 +151,10 @@ def get_packages(
             )
         )
 
+    __hash_table__ = data_structures_and_algorithms_ii.hash_table.HashTable()
+    for package in packages:
+        __hash_table__.set(package.id, package)
+
     return packages
 
 
