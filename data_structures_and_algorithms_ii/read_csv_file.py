@@ -62,7 +62,9 @@ def get_addresses(
     return addresses
 
 
-def get_distances(file) -> [[float]]:
+def get_distances(
+    file: os.path.realpath = data_structures_and_algorithms_ii.distance_csv_file,
+) -> [[float]]:
     """
     This function reads a csv file and returns a list of Location objects.
 
@@ -83,7 +85,7 @@ def get_distances(file) -> [[float]]:
     # Convert the distance matrix to a list of floats
     distance_matrix = [[float]]
 
-    for row in rows:  # O(n) - for loop
+    for row in csv_reader:  # O(n) - for loop
         distance_matrix.append([float(cell) for cell in row])  # O(n) - for loop
 
     # Search for empty cells and fill them with the corresponding cell value
@@ -95,10 +97,13 @@ def get_distances(file) -> [[float]]:
             ):  # O(1) - if statement
                 rows[row][column] = rows[column][row]
 
+    print(distance_matrix)
     return distance_matrix
 
 
-def get_packages(file) -> list:
+def get_packages(
+    file: os.path.realpath = data_structures_and_algorithms_ii.package_csv_file,
+) -> list:
     """
     This function reads a csv file and returns a list of Package objects.
 
