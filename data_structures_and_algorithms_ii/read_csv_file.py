@@ -19,7 +19,7 @@ def init():
         space complexity: O(1)
     """
 
-    data_structures_and_algorithms_ii.address.addresses = get_addresses(
+    data_structures_and_algorithms_ii.addresses = get_addresses(
         data_structures_and_algorithms_ii.address_csv_file
     )
     data_structures_and_algorithms_ii.distances = get_distances(
@@ -85,7 +85,7 @@ def get_distances(
     for row in csv_reader:  # O(n) - for loop
         distance_row = []
         # Convert the string values to float values
-        for column in row:
+        for column in row:  # O(n) - for loop
             if column == "":
                 # If the value is empty, add None to the distance matrix
                 distance_row.append(None)
@@ -96,12 +96,11 @@ def get_distances(
         distance_matrix.append(distance_row)
 
     # Fill in the missing values in the distance matrix
-    for row in range(len(distance_matrix)):
-        for column in range(len(distance_matrix[row])):
+    for row in range(len(distance_matrix)):  # O(n) - for loop
+        for column in range(len(distance_matrix[row])):  # O(n) - for loop
             if distance_matrix[row][column] is None:
                 distance_matrix[row][column] = distance_matrix[column][row]
 
-    print(distance_matrix)
     return distance_matrix
 
 
