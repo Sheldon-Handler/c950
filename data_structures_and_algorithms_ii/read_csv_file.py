@@ -78,24 +78,28 @@ def get_distances(
         time complexity: O(n^2)
         space complexity: O(n)
     """
-    csv_reader = csv.reader(file)
+    distance_matrix = []
+    csv_reader = csv.reader(open(file, "r"))  # O(n) - readlines
+
     # Read the csv file and store the rows in a list
-    rows = [row for row in csv_reader]  # O(n) - list comprehension
-
-    # Convert the distance matrix to a list of floats
-    distance_matrix = [[float]]
-
     for row in csv_reader:  # O(n) - for loop
-        distance_matrix.append([float(cell) for cell in row])  # O(n) - for loop
+        distance_row = []
+        # Convert the string values to float values
+        for column in row:
+            if column == "":
+                # If the value is empty, add None to the distance matrix
+                distance_row.append(None)
+            else:
+                # If the value is not empty, convert it to a float and add it to the distance matrix
+                distance_row.append(float(column))
+        # Add the row to the distance matrix
+        distance_matrix.append(distance_row)
 
-    # Search for empty cells and fill them with the corresponding cell value
-    for row in range(len(rows)):  # O(n) - for loop
-        for column in range(len(rows)):  # O(n) - for loop
-            # If the cell is empty, fill it with the corresponding cell value
-            if (
-                rows[row][column] is None or rows[row][column] == ""
-            ):  # O(1) - if statement
-                rows[row][column] = rows[column][row]
+    # Fill in the missing values in the distance matrix
+    for row in range(len(distance_matrix)):
+        for column in range(len(distance_matrix[row])):
+            if distance_matrix[row][column] is None:
+                distance_matrix[row][column] = distance_matrix[column][row]
 
     print(distance_matrix)
     return distance_matrix
