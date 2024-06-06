@@ -1,8 +1,10 @@
 import os
 
+import data_structures_and_algorithms_ii.hash_table
+
 addresses = []
 distances = []
-packages = []
+packages = data_structures_and_algorithms_ii.hash_table.HashTable()
 trucks = [1, 2, 3]
 driver = [1, 2]
 

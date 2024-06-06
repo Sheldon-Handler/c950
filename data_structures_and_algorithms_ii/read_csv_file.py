@@ -106,7 +106,7 @@ def get_distances(
 
 def get_packages(
     file: os.path.realpath = data_structures_and_algorithms_ii.package_csv_file,
-) -> list:
+) -> data_structures_and_algorithms_ii.hash_table.HashTable:
     """
     This function reads a csv file and returns a list of Package objects.
 
@@ -153,9 +153,9 @@ def get_packages(
 
     __hash_table__ = data_structures_and_algorithms_ii.hash_table.HashTable()
     for package in packages:
-        __hash_table__.set(package.id, package)
+        __hash_table__.add(package.id, package)
 
-    return packages
+    return __hash_table__
 
 
 if __name__ == "__main__":

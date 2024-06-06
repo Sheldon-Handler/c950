@@ -82,14 +82,15 @@ class HashTable:
         hash_value = self._hash(key)
 
         # Search for the key in the hash table and return the value if found
-        for i in self.table[hash_value]:  # O(n) - for loop
-            if self.table[hash_value][i][0] == key:
-                return self.table[hash_value][i][1]
+        for i in range(len(self.table[hash_value])):  # O(n) - for loop
+            item_key, item_value = self.table[hash_value][i]
+            if item_key == key:
+                return self.table[hash_value][i]
 
         # If the key is not found, return None
         return None
 
-    def set(self, key, value) -> None:
+    def add(self, key, value) -> None:
         """
         Sets the value for the given key in the hash table.
 
@@ -112,8 +113,34 @@ class HashTable:
         """
         hash_value = self._hash(key)
 
-        if self.table.get(key) is not None:
-            self.table[hash_value] = value
-
         # If the key does not exist, append the key-value pair to the hash table
         self.table[hash_value].append((key, value))
+
+    def update(self, key, value):
+        """
+        Updates the value for the given key in the hash table.
+
+        Args:
+            key: The key to update.
+            value: The value to update.
+
+        Returns:
+            None
+
+        Notes:
+            time complexity:
+                best case = O(1)
+                worst case = O(n)
+                average case = O(n)
+            space complexity:
+                best case = O(1)
+                worst case = O(1)
+                average case = O(1)
+        """
+        hash_value = self._hash(key)
+
+        # Search for the key in the hash table and update the value if found
+        for i in self.table[hash_value]:
+            if self.table[hash_value][i][0] == key:
+                self.table[hash_value][i] = (key, value)
+                return
