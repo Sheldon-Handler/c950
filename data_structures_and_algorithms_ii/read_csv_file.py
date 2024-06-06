@@ -122,7 +122,7 @@ def get_packages(
     """
 
     # Create an empty list to store the packages
-    packages = []
+    __hash_table__ = data_structures_and_algorithms_ii.hash_table.HashTable()
 
     # Open the csv file and read the rows into a list
     csv_file = open(file, "r")
@@ -132,33 +132,23 @@ def get_packages(
     for row in reader:  # O(n) - for loop
 
         matching_address = None
-        for address in data_structures_and_algorithms_ii.addresses:
-            if address.address == row[1]:
+        for address in range(len(data_structures_and_algorithms_ii.addresses)):
+            if data_structures_and_algorithms_ii.addresses[address].address == row[1]:
                 matching_address = address
                 break
 
         # Create a Package object and add it to the list
-        packages.append(
-            data_structures_and_algorithms_ii.package.Package(
-                id=int(row[0]),
-                address=matching_address,
-                city=row[2],
-                state=row[3],
-                zip=row[4],
-                delivery_deadline=(row[5]),
-                weight_kilo=int(row[6]),
-                special_notes=row[7],
-            )
+        new_package = data_structures_and_algorithms_ii.package.Package(
+            id=int(row[0]),
+            address=matching_address,
+            city=row[2],
+            state=row[3],
+            zip=row[4],
+            delivery_deadline=(row[5]),
+            weight_kilo=int(row[6]),
+            special_notes=row[7],
         )
 
-    __hash_table__ = data_structures_and_algorithms_ii.hash_table.HashTable()
-    for package in packages:
-        __hash_table__.add(package.id, package)
+        __hash_table__.add(new_package.id, new_package)
 
     return __hash_table__
-
-
-if __name__ == "__main__":
-    print(get_distances(data_structures_and_algorithms_ii.distance_csv_file))
-
-    exit(0)

@@ -82,13 +82,38 @@ class HashTable:
         hash_value = self._hash(key)
 
         # Search for the key in the hash table and return the value if found
-        for i in range(len(self.table[hash_value])):  # O(n) - for loop
-            item_key, item_value = self.table[hash_value][i]
+        for i in self.table[hash_value]:  # O(n) - for loop
+            item_key, item_value = i
             if item_key == key:
-                return self.table[hash_value][i]
+                return i[1]
 
         # If the key is not found, return None
         return None
+
+    def get_all(self) -> []:
+        """
+        Gets all the key-value pairs in the hash table.
+
+        Returns:
+            list: A list of key-value pairs in the hash table.
+
+        Notes:
+            time complexity:
+                best case = O(n)
+                worst case = O(n)
+                average case = O(n)
+            space complexity:
+                best case = O(n)
+                worst case = O(n)
+                average case = O(n)
+        """
+        items = []
+        num_items = self.__len__()  # O(n^2) - function call
+
+        for i in range(num_items):
+            items.append(self.get(i + 1))
+
+        return items
 
     def add(self, key, value) -> None:
         """
@@ -113,7 +138,7 @@ class HashTable:
         """
         hash_value = self._hash(key)
 
-        # If the key does not exist, append the key-value pair to the hash table
+        # Append the key-value pair to the hash table
         self.table[hash_value].append((key, value))
 
     def update(self, key, value):
@@ -140,7 +165,31 @@ class HashTable:
         hash_value = self._hash(key)
 
         # Search for the key in the hash table and update the value if found
-        for i in self.table[hash_value]:
+        for i in range(len(self.table[hash_value])):
             if self.table[hash_value][i][0] == key:
-                self.table[hash_value][i] = (key, value)
+                self.table[hash_value][i] = key, value
                 return
+
+    def __len__(self) -> int:
+        """
+        Returns the size of the hash table.
+
+        Returns:
+            int: The size of the hash table.
+
+        Notes:
+            time complexity:
+                best case = O(n)
+                worst case = O(n^2)
+                average case = O(n^2)
+            space complexity:
+                best case = O(1)
+                worst case = O(1)
+                average case = O(1)
+        """
+        size = 0
+
+        for i in self.table:  # O(n) - for loop
+            size += len(i)  # O(n) - len function call
+
+        return size

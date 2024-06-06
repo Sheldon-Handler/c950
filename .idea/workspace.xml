@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="fixing something">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="fixing hash_table">
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/distance.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,14 +169,6 @@
       <workItem from="1711904293241" duration="619000" />
       <workItem from="1712176472944" duration="65000" />
       <workItem from="1712176564633" duration="637000" />
-    </task>
-    <task id="LOCAL-00015" summary="Remove CSV writer methods.">
-      <option name="closed" value="true" />
-      <created>1708458107168</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1708458107168</updated>
     </task>
     <task id="LOCAL-00016" summary="Cleaning up code and organizing data structures">
       <option name="closed" value="true" />
@@ -562,7 +554,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717526840789</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="fixing hash_table">
+      <option name="closed" value="true" />
+      <created>1717690927475</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1717690927475</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,7 +581,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed package import int __init__.py" />
     <MESSAGE value="Got rid of unused remove() method in hash_table.py" />
     <MESSAGE value="Working on fixing" />
     <MESSAGE value="Fixed hash table added _hash() instead of hash(), to avoid confusing the two functions" />
@@ -606,7 +605,8 @@
     <MESSAGE value="Fixed distances lists" />
     <MESSAGE value="Fixing print()" />
     <MESSAGE value="fixing something" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing something" />
+    <MESSAGE value="fixing hash_table" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing hash_table" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/data_structures_and_algorithms_ii$__main__.coverage" NAME="__main__ Coverage Results" MODIFIED="1717452845317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_structures_and_algorithms_ii" />

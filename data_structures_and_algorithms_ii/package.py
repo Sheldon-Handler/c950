@@ -1,7 +1,5 @@
 import datetime
 
-import data_structures_and_algorithms_ii.address
-
 
 class Package:
     """This dataclass represents a package instance with its information which has not had any data mutated."""
@@ -9,7 +7,7 @@ class Package:
     def __init__(
         self,
         id: int,
-        address: data_structures_and_algorithms_ii.address.Address,
+        address: int,
         city: str,
         state: str,
         zip: str,
@@ -25,7 +23,7 @@ class Package:
 
         Args:
             id (int): The package id.
-            address (Address): The package address.
+            address (int): The package address.
             city (str): The package city.
             state (str): The package state.
             zip (str): The package zip code.
