@@ -108,9 +108,9 @@ class HashTable:
                 average case = O(n)
         """
         items = []
-        num_items = self.__len__()  # O(n^2) - function call
+        num_items = self.__len__()  # O(n) - function call
 
-        for i in range(num_items):
+        for i in range(num_items):  # O(n) - for loop
             items.append(self.get(i + 1))
 
         return items
@@ -129,8 +129,8 @@ class HashTable:
         Notes:
             time complexity:
                 best case = O(1)
-                worst case = O(n)
-                average case = O(n)
+                worst case = O(1)
+                average case = O(1)
             space complexity:
                 best case = O(1)
                 worst case = O(1)
@@ -165,7 +165,7 @@ class HashTable:
         hash_value = self._hash(key)
 
         # Search for the key in the hash table and update the value if found
-        for i in range(len(self.table[hash_value])):
+        for i in range(len(self.table[hash_value])):  # O(n) - for loop
             if self.table[hash_value][i][0] == key:
                 self.table[hash_value][i] = key, value
                 return
@@ -180,8 +180,8 @@ class HashTable:
         Notes:
             time complexity:
                 best case = O(n)
-                worst case = O(n^2)
-                average case = O(n^2)
+                worst case = O(n)
+                average case = O(n)
             space complexity:
                 best case = O(1)
                 worst case = O(1)
@@ -190,6 +190,6 @@ class HashTable:
         size = 0
 
         for i in self.table:  # O(n) - for loop
-            size += len(i)  # O(n) - len function call
+            size += len(i)
 
         return size
