@@ -43,13 +43,13 @@ def get_addresses(
         list: A list of Address objects.
 
     Notes:
-        time complexity: O(n^2)
+        time complexity: O(n)
         space complexity: O(n)
     """
     addresses = []
     # Open the csv file and read the rows into a list
     csv_file = open(file, "r")
-    csv_reader = csv.reader(csv_file)  # O(n) - readlines
+    csv_reader = csv.reader(csv_file)
 
     # Read the csv file and store the rows in a list
     for i in csv_reader:  # O(n) - for loop
@@ -57,7 +57,7 @@ def get_addresses(
             data_structures_and_algorithms_ii.address.Address(
                 id=int(i[0]), name=str(i[1]), address=str(i[2])
             )
-        )  # O(1) - function call
+        )
 
     return addresses
 
@@ -69,17 +69,17 @@ def get_distances(
     This function reads a csv file and returns a list of Location objects.
 
     Args:
-        file (): The file to read from.
+        file (os.path.realpath): The file to read from.
 
     Returns:
-        list[list]: List of distance data from csv file as a distance matrix.
+        [[float]]: List of sublists of distance data from csv file as a distance matrix.
 
     Notes:
         time complexity: O(n^2)
-        space complexity: O(n)
+        space complexity: O(n^2)
     """
     distance_matrix = []
-    csv_reader = csv.reader(open(file, "r"))  # O(n) - readlines
+    csv_reader = csv.reader(open(file, "r"))
 
     # Read the csv file and store the rows in a list
     for row in csv_reader:  # O(n) - for loop
@@ -111,13 +111,13 @@ def get_packages(
     This function reads a csv file and returns a list of Package objects.
 
     Args:
-        file (str): The file to read from.
+        file (os.path.realpath): The file to read from.
 
     Returns:
         list: A list of Package objects.
 
     Notes:
-        time complexity: O(n)
+        time complexity: O(n^2)
         space complexity: O(n)
     """
 
@@ -126,18 +126,20 @@ def get_packages(
 
     # Open the csv file and read the rows into a list
     csv_file = open(file, "r")
-    reader = csv.reader(csv_file)  # O(n) - readlines
+    reader = csv.reader(csv_file)
 
     # Parse the csv file and create a list of Package objects
     for row in reader:  # O(n) - for loop
 
         matching_address = None
-        for address in range(len(data_structures_and_algorithms_ii.addresses)):
+        for address in range(
+            len(data_structures_and_algorithms_ii.addresses)
+        ):  # O(n) - for loop
             if data_structures_and_algorithms_ii.addresses[address].address == row[1]:
                 matching_address = address
                 break
 
-        # Create a Package object and add it to the list
+        # Create a Package object
         new_package = data_structures_and_algorithms_ii.package.Package(
             id=int(row[0]),
             address=matching_address,
@@ -149,6 +151,7 @@ def get_packages(
             special_notes=row[7],
         )
 
+        # Add package to hash table
         __hash_table__.add(new_package.id, new_package)
 
     return __hash_table__

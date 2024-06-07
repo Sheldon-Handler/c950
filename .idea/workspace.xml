@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="fixing hash_table">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Fixed_something.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Fixed_something.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_40_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_40_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_42_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_42_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_30_2024_11_48_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_30_2024_11_48_AM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_3_2024_5_02_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_3_2024_5_02_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_12_25_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_4_2024_12_25_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +90,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -174,14 +167,6 @@
       <workItem from="1711904293241" duration="619000" />
       <workItem from="1712176472944" duration="65000" />
       <workItem from="1712176564633" duration="637000" />
-    </task>
-    <task id="LOCAL-00016" summary="Cleaning up code and organizing data structures">
-      <option name="closed" value="true" />
-      <created>1708459242047</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1708459242047</updated>
     </task>
     <task id="LOCAL-00017" summary="Organizing data structures">
       <option name="closed" value="true" />
@@ -567,7 +552,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717690927475</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="fixing hash_table">
+      <option name="closed" value="true" />
+      <created>1717769320286</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1717769320286</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
