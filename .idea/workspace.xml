@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Create GUI for table_app.py">
-      <change beforePath="$PROJECT_DIR$/.idea/data_structures_and_algorithms_ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_structures_and_algorithms_ii.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixing GUI for table_app.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app.py" afterDir="false" />
     </list>
@@ -194,14 +191,6 @@
       <workItem from="1711904293241" duration="619000" />
       <workItem from="1712176472944" duration="65000" />
       <workItem from="1712176564633" duration="637000" />
-    </task>
-    <task id="LOCAL-00018" summary="Fixed type declarations and data structure organizations">
-      <option name="closed" value="true" />
-      <created>1708464828220</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1708464828220</updated>
     </task>
     <task id="LOCAL-00019" summary="Cleaned up some things">
       <option name="closed" value="true" />
@@ -587,7 +576,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718373293348</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Fixing GUI for table_app.py">
+      <option name="closed" value="true" />
+      <created>1718375879378</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1718375879378</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +603,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Working on fixing" />
     <MESSAGE value="Fixed hash table added _hash() instead of hash(), to avoid confusing the two functions" />
     <MESSAGE value="Reorganized hash_table.py" />
     <MESSAGE value="Added logic to get sorted neighbors that are unvisited" />
@@ -631,7 +627,8 @@
     <MESSAGE value="fixing something" />
     <MESSAGE value="fixing hash_table" />
     <MESSAGE value="Create GUI for table_app.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create GUI for table_app.py" />
+    <MESSAGE value="Fixing GUI for table_app.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing GUI for table_app.py" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/data_structures_and_algorithms_ii$__main__.coverage" NAME="__main__ Coverage Results" MODIFIED="1717452845317" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_structures_and_algorithms_ii" />

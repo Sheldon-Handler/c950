@@ -36,14 +36,15 @@ for i in items:
     print(i.__str__())
 
 root = tkinter.Tk()
-root.title("Addresses")
-app = data_structures_and_algorithms_ii.table_app.TableApp(
-    root, data_structures_and_algorithms_ii.addresses
-)
+root.title("Table Example")
 
-root1 = tkinter.Tk()
-root1.title("Packages")
-app1 = data_structures_and_algorithms_ii.table_app.TableApp(root1, items)
+# Add a frame for both tables
+frame = tkinter.Frame(root)
+frame.grid(row=0, column=0)
+
+app1 = data_structures_and_algorithms_ii.table_app.TableApp(
+    frame, data_structures_and_algorithms_ii.addresses, 0
+)
+app2 = data_structures_and_algorithms_ii.table_app.TableApp(frame, items, 1)
 
 root.mainloop()
-root1.mainloop()
