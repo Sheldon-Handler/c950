@@ -1,6 +1,7 @@
 import tkinter
 
 import data_structures_and_algorithms_ii.read_csv_file
+import data_structures_and_algorithms_ii.table_app
 
 # Initialize csv files into lists
 data_structures_and_algorithms_ii.read_csv_file.init()
@@ -36,11 +37,13 @@ for i in items:
 
 root = tkinter.Tk()
 root.title("Addresses")
-app = GUI.TableApp(root, data_structures_and_algorithms_ii.addresses)
+app = data_structures_and_algorithms_ii.table_app.TableApp(
+    root, data_structures_and_algorithms_ii.addresses
+)
 
 root1 = tkinter.Tk()
 root1.title("Packages")
-app1 = GUI.TableApp(root1, items)
+app1 = data_structures_and_algorithms_ii.table_app.TableApp(root1, items)
 
 root.mainloop()
 root1.mainloop()
