@@ -36,15 +36,22 @@ for i in items:
     print(i.__str__())
 
 root = tkinter.Tk()
-root.title("Table Example")
+root.title("Table")
 
 # Add a frame for both tables
 frame = tkinter.Frame(root)
 frame.grid(row=0, column=0)
 
+edit_button = data_structures_and_algorithms_ii.table_app.EditButton(frame, "Edit")
+deliver_button = data_structures_and_algorithms_ii.table_app.Button(frame, "Deliver")
+
 app1 = data_structures_and_algorithms_ii.table_app.TableApp(
-    frame, data_structures_and_algorithms_ii.addresses, 0
+    frame, data_structures_and_algorithms_ii.addresses, 0, button=deliver_button
 )
-app2 = data_structures_and_algorithms_ii.table_app.TableApp(frame, items, 1)
+app2 = data_structures_and_algorithms_ii.table_app.TableApp(
+    frame, items, 1, button=edit_button
+)
+
+# button = data_structures_and_algorithms_ii.table_app.EditButton(frame, "Edit")
 
 root.mainloop()

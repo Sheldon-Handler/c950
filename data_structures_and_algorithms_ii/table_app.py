@@ -1,10 +1,8 @@
 import tkinter
 
-import data_structures_and_algorithms_ii
-
 
 class TableApp:
-    def __init__(self, parent, data, row_offset):
+    def __init__(self, parent, data, row_offset, button):
         self.parent = parent
         self.data = data
         self.rows = len(data)
@@ -40,10 +38,21 @@ class TableApp:
                 row_cells.append(cell)
             self.cells.append(row_cells)
 
-        for i in range(self.rows + 1):  # Adjusted row count to include header row
-            self.frame.grid_rowconfigure(i, weight=1)
-        for j in range(self.cols):
-            self.frame.grid_columnconfigure(j, weight=1)
+        # Add button row
+        self.button = tkinter.Button(
+            self.frame,
+            text="Edit",
+            borderwidth=1,
+            relief="solid",
+            bg="lightgreen",
+            command=button,
+        )
+        self.button.grid(
+            row=self.rows + 1,
+            column=0,
+            sticky="nsew",
+        )
+        self.button.bind("<Button-1>", lambda event: self.button_click())
 
     def select_row(self, row):
         if self.selected_row is not None:
@@ -54,14 +63,35 @@ class TableApp:
             cell.config(bg="lightblue")
         self.selected_row = row
 
-
-def main():
-
-    root = tkinter.Tk()
-    root.title("Table Example")
-    app = TableApp(root, data_structures_and_algorithms_ii.addresses, 0)
-    root.mainloop()
+    def button_click(self):
+        button(self.parent, self.button).button_click()
 
 
-if __name__ == "__main__":
-    main()
+class Button:
+    def __init__(self, parent, button):
+        self.parent = parent
+        self.button = tkinter.Button(parent, text=button, command=self.button_click)
+
+    def button_click(self):
+        print("Button Clicked")
+
+
+class EditButton(Button):
+
+    def __init__(self, parent, button):
+        super().__init__(parent, button)
+        self.button = tkinter.Button(parent, text=button, command=self.button_click)
+
+    def button_click(self):
+        print("Edit Button Clicked")
+
+
+# class DeliverButton:
+#
+#     def __init__(self, parent, button, row_offset):
+#         self.parent = parent
+#         self.button = button
+#         self.button = tkinter.Button(parent, text=button, command=self.button_click, =row_offset)
+#
+#     def button_click(self):
+#         print("Button Clicked")
