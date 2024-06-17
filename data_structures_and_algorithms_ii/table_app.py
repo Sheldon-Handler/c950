@@ -64,34 +64,35 @@ class TableApp:
         self.selected_row = row
 
     def button_click(self):
-        button(self.parent, self.button).button_click()
+        Button(self.parent, self.button).button_click()
 
 
 class Button:
     def __init__(self, parent, button):
         self.parent = parent
-        self.button = tkinter.Button(parent, text=button, command=self.button_click)
+        self.button = button
 
     def button_click(self):
-        print("Button Clicked")
+        pass
 
 
 class EditButton(Button):
 
     def __init__(self, parent, button):
-        super().__init__(parent, button)
-        self.button = tkinter.Button(parent, text=button, command=self.button_click)
+        super().__init__(
+            parent, tkinter.Button(parent, text=button, command=self.button_click)
+        )
 
     def button_click(self):
         print("Edit Button Clicked")
 
 
-# class DeliverButton:
-#
-#     def __init__(self, parent, button, row_offset):
-#         self.parent = parent
-#         self.button = button
-#         self.button = tkinter.Button(parent, text=button, command=self.button_click, =row_offset)
-#
-#     def button_click(self):
-#         print("Button Clicked")
+class DeliverButton(Button):
+
+    def __init__(self, parent, button):
+        super().__init__(
+            parent, tkinter.Button(parent, text=button, command=self.button_click)
+        )
+
+    def button_click(self):
+        print("Deliver Button Clicked")
