@@ -97,5 +97,6 @@ class Package:
             f"Special Notes: {self.special_notes}\n"
             f"Delivery Status: {self.delivery_status}\n"
             f"Truck ID: {self.truck_id}\n"
+            f"Departure Time: {self.departure_time}"
             f"Delivery Time: {self.delivery_time}\n"
         )
