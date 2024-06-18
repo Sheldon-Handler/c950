@@ -1,6 +1,7 @@
 import tkinter
 
 import data_structures_and_algorithms_ii.gui
+import data_structures_and_algorithms_ii.nearest_neighbor
 import data_structures_and_algorithms_ii.read_csv_file
 import data_structures_and_algorithms_ii.truck
 
@@ -71,6 +72,9 @@ new_truck_2 = data_structures_and_algorithms_ii.truck.Truck(2, "At Hub", 0, [], 
 
 data_structures_and_algorithms_ii.trucks = [new_truck_0, new_truck_1, new_truck_2]
 
-data_structures_and_algorithms_ii.trucks[0].load_truck(
-    data_structures_and_algorithms_ii.packages.get(1)
+print(
+    data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
+        data_structures_and_algorithms_ii.distances[0],
+        data_structures_and_algorithms_ii.visited_location_indices,
+    )
 )

@@ -18,7 +18,7 @@ packages = data_structures_and_algorithms_ii.hash_table.HashTable()
 trucks = []
 driver = [1, 2]
 
-visited_location_indices = {}
+visited_location_indices = []
 
 
 truck_capacity = 16

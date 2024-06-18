@@ -6,22 +6,16 @@ def sorted_neighbors(distances_list: [float]) -> [int]:
         distances_list: The list to be sorted.
 
     Returns:
-        A list of indexes where the values are sorted from small to high.
+        A list of indexes whose values are sorted from small to high.
 
     Notes:
         time complexity: O(n log n)
         space complexity: O(n)
     """
-    # Create a list of tuples with the index and the value.
-    items_tuples = [(i, distances_list[i]) for i in distances_list]  # O(n) - for loop
 
-    # Sort the list of tuples by the value.
-    items_tuples.sort(key=lambda x: x[1])  # O(n log n) - sort
+    items_sorted = [i[0] for i in sorted(enumerate(distances_list), key=lambda x: x[1])]
 
-    # List of the indices sorted by the value.
-    sorted_indices = [i[0] for i in items_tuples]  # O(n) - for loop
-
-    return sorted_indices
+    return items_sorted
 
 
 def sorted_unvisited_neighbors(
