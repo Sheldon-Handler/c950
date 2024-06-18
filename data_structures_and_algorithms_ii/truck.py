@@ -24,6 +24,7 @@ class Truck:
         truck_status: str,
         distance_traveled: float = None,
         packages: [int] = None,
+        departure_time: datetime.timedelta = None,
         capacity: int = data_structures_and_algorithms_ii.truck_capacity,
     ):
         """
@@ -39,7 +40,8 @@ class Truck:
         self.truck_status = truck_status
         self.distance_traveled = distance_traveled
         self.packages = packages
-        self.truck_time = datetime.timedelta(hours=8, minutes=0)
+        self.departure_time = departure_time
+        self.truck_time = self.departure_time
 
     def update_truck_status(self, truck_status: str) -> bool:
         """Updates the truck status.
@@ -86,3 +88,21 @@ class Truck:
                 package_loaded = True
 
         return package_loaded
+
+    def load_truck(self, package_id: int) -> bool:
+        """Loads a package onto the truck.
+
+        Args:
+            package_id (int): The ID of the package to load onto the truck.
+
+        Returns:
+            bool: True if a package was loaded successfully. Otherwise, raises a ValueError.
+        """
+
+        package_loaded = False
+
+        package = data_structures_and_algorithms_ii.packages.get(package_id)
+        self.packages.append(package_id)
+        package.truck_id = self.id
+
+        data_structures_and_algorithms_ii.packages.update(package_id, package)

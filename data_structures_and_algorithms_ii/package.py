@@ -16,6 +16,7 @@ class Package:
         special_notes: str,
         delivery_status: str = None,
         truck_id: int = None,
+        departure_time: datetime.time = None,
         delivery_time: datetime.time = None,
     ):
         """
@@ -44,6 +45,7 @@ class Package:
         self.special_notes = special_notes
         self.delivery_status = delivery_status
         self.truck_id = truck_id
+        self.departure_time = departure_time
         self.delivery_time = delivery_time
 
     def update_delivery_status(self, delivery_status: str) -> bool:

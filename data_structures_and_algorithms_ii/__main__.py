@@ -2,6 +2,7 @@ import tkinter
 
 import data_structures_and_algorithms_ii.gui
 import data_structures_and_algorithms_ii.read_csv_file
+import data_structures_and_algorithms_ii.truck
 
 # Initialize csv files into lists
 data_structures_and_algorithms_ii.read_csv_file.init()
@@ -63,3 +64,13 @@ newGUI = data_structures_and_algorithms_ii.gui.SelectableTableWindow(
 )
 
 root.mainloop()
+
+new_truck_0 = data_structures_and_algorithms_ii.truck.Truck(0, "At Hub", 0, [], 0)
+new_truck_1 = data_structures_and_algorithms_ii.truck.Truck(1, "At Hub", 0, [], 0)
+new_truck_2 = data_structures_and_algorithms_ii.truck.Truck(2, "At Hub", 0, [], 0)
+
+data_structures_and_algorithms_ii.trucks = [new_truck_0, new_truck_1, new_truck_2]
+
+data_structures_and_algorithms_ii.trucks[0].load_truck(
+    data_structures_and_algorithms_ii.packages.get(1)
+)

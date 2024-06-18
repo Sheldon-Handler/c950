@@ -8,23 +8,24 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import os
+import datetime
 
-import data_structures_and_algorithms_ii.hash_table
-
-addresses = []
-distances = []
-packages = data_structures_and_algorithms_ii.hash_table.HashTable()
-trucks = []
-driver = [1, 2]
-
-visited_location_indices = {}
+import data_structures_and_algorithms_ii
 
 
-truck_capacity = 16
-truck_speed = 18
-starting_location = 0
+def delivery_time_calculator(
+    distance: float, speed: float = data_structures_and_algorithms_ii.truck_speed
+) -> datetime.time:
+    """Calculates the delivery time based on the distance and speed.
 
-address_csv_file = os.path.realpath("../data/address.csv", strict=True)
-distance_csv_file = os.path.realpath("../data/distance.csv", strict=True)
-package_csv_file = os.path.realpath("../data/package.csv", strict=True)
+    Args:
+        distance (float): The distance to be traveled.
+        speed (float): The speed of the vehicle.
+
+    Returns:
+        datetime.time: The delivery time.
+    """
+    time = distance / speed
+    hours = int(time)
+    minutes = int((time - hours) * 60)
+    return datetime.time(hours, minutes)
