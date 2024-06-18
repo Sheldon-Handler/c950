@@ -1,6 +1,3 @@
-import tkinter
-
-import data_structures_and_algorithms_ii.gui
 import data_structures_and_algorithms_ii.nearest_neighbor
 import data_structures_and_algorithms_ii.read_csv_file
 import data_structures_and_algorithms_ii.truck
@@ -37,7 +34,7 @@ items = data_structures_and_algorithms_ii.packages.get_all()
 for i in items:
     print(i.__str__())
 
-root = tkinter.Tk()
+# root = tkinter.Tk()
 # root.title("Table")
 #
 # # Add a frame for both tables
@@ -60,15 +57,15 @@ root = tkinter.Tk()
 
 # root.mainloop()
 
-newGUI = data_structures_and_algorithms_ii.gui.SelectableTableWindow(
-    root, data_structures_and_algorithms_ii.addresses, items
-)
+# newGUI = data_structures_and_algorithms_ii.gui.SelectableTableWindow(
+#     root, data_structures_and_algorithms_ii.addresses, items
+# )
+#
+# root.mainloop()
 
-root.mainloop()
-
-new_truck_0 = data_structures_and_algorithms_ii.truck.Truck(0, "At Hub", 0, [], 0)
-new_truck_1 = data_structures_and_algorithms_ii.truck.Truck(1, "At Hub", 0, [], 0)
-new_truck_2 = data_structures_and_algorithms_ii.truck.Truck(2, "At Hub", 0, [], 0)
+new_truck_0 = data_structures_and_algorithms_ii.truck.Truck(0, "At Hub", 0, [])
+new_truck_1 = data_structures_and_algorithms_ii.truck.Truck(1, "At Hub", 0, [])
+new_truck_2 = data_structures_and_algorithms_ii.truck.Truck(2, "At Hub", 0, [])
 
 data_structures_and_algorithms_ii.trucks = [new_truck_0, new_truck_1, new_truck_2]
 

@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixing GUI">
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed some things">
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/nearest_neighbor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/nearest_neighbor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,14 +195,6 @@
       <workItem from="1718571684449" duration="626000" />
       <workItem from="1718649965318" duration="1133000" />
       <workItem from="1718651241196" duration="12678000" />
-    </task>
-    <task id="LOCAL-00022" summary="Fixed comments and made read_csv_file.py understandable">
-      <option name="closed" value="true" />
-      <created>1710262484011</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1710262484011</updated>
     </task>
     <task id="LOCAL-00023" summary="Fixed comments and readability in hash_table.py">
       <option name="closed" value="true" />
@@ -590,7 +580,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718664366707</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Fixed some things">
+      <option name="closed" value="true" />
+      <created>1718726841213</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1718726841213</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +624,6 @@
     <MESSAGE value="Removed unused deliver_together.py" />
     <MESSAGE value="Inserting print statements" />
     <MESSAGE value="Fixed formatting" />
-    <MESSAGE value="Fixed some things" />
     <MESSAGE value="Fixed distances lists" />
     <MESSAGE value="Fixing print()" />
     <MESSAGE value="fixing something" />
@@ -634,7 +631,8 @@
     <MESSAGE value="Create GUI for table_app.py" />
     <MESSAGE value="Fixing GUI for table_app.py" />
     <MESSAGE value="Fixing GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing GUI" />
+    <MESSAGE value="Fixed some things" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some things" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/data_structures_and_algorithms_ii$gui.coverage" NAME="gui Coverage Results" MODIFIED="1718659799729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_structures_and_algorithms_ii" />
