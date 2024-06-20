@@ -75,13 +75,35 @@ class Package:
                 "'Not Available'\n'At Hub'\n'En Route'\n'Delivered'\n",
             )
 
-    def deliver(self, delivery_time: datetime.time = datetime.datetime.now().time()):
+    def load_package(self, truck_id: int):
+        """Loads the package onto the truck. Updates the truck_id attribute.
+
+        Args:
+            truck_id (int): The ID of the truck that will carry the package.
+        """
+        self.truck_id = truck_id
+        self.delivery_status = "At Hub"
+        print(f"Package {self.id} loaded onto truck {self.truck_id}.\n")
+
+    def package_departure(self, departure_time: datetime.time):
+        """Sends the truck to deliver the package. Updates departure_time and delivery_status attributes.
+
+        Args:
+            departure_time (datetime.time): The time that the truck will depart to deliver the package.
+        """
+        self.departure_time = departure_time
+        self.delivery_status = "En Route"
+        print(
+            f"Truck {self.truck_id} sent to deliver package {self.id} at {self.departure_time}.\n"
+        )
+
+    def deliver(self, delivery_time: datetime.time):
         """Delivers the package. Updates the delivery_status and delivery_time attributes.
 
         Args:
             delivery_time (datetime.time): The time that the package was delivered. Defaults to the current time.
         """
-        self.update_delivery_status("Delivered")
+        self.delivery_status = "Delivered"
         self.delivery_time = delivery_time
         print(f"Package {self.id} delivered at {self.delivery_time}.\n")
 

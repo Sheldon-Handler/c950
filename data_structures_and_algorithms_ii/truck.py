@@ -64,45 +64,87 @@ class Truck:
                 f"Truck status must be one of the following: {truck_statuses}."
             )
 
-    def load_packages_with_address(
-        self, address: data_structures_and_algorithms_ii.address.Address
-    ) -> bool:
-        """Loads a package onto the truck.
+    # def load_packages_with_address(
+    #     self, address: data_structures_and_algorithms_ii.address.Address
+    # ) -> bool:
+    #     """Loads a package onto the truck.
+    #
+    #     Args:
+    #         address (data_structures_and_algorithms_ii.address.Address): The ID of the package to load onto the truck.
+    #
+    #     Returns:
+    #         bool: True if a package was loaded successfully. Otherwise, raises a ValueError.
+    #     """
+    #
+    #     package_loaded = False
+    #
+    #     for package in data_structures_and_algorithms_ii.packages:  # O(n) - for loop
+    #         if package.address == address:
+    #             self.packages.append(package.id)
+    #             package.truck_id = self.id
+    #             package.delivery_status = "En Route"
+    #             print(f"Package {package.id} loaded onto truck {self.id}.")
+    #             data_structures_and_algorithms_ii.addresses.get(package.address)
+    #             package_loaded = True
+    #
+    #     return package_loaded
 
-        Args:
-            address (data_structures_and_algorithms_ii.address.Address): The ID of the package to load onto the truck.
-
-        Returns:
-            bool: True if a package was loaded successfully. Otherwise, raises a ValueError.
-        """
-
-        package_loaded = False
-
-        for package in data_structures_and_algorithms_ii.packages:  # O(n) - for loop
-            if package.address == address:
-                self.packages.append(package.id)
-                package.truck_id = self.id
-                package.delivery_status = "En Route"
-                print(f"Package {package.id} loaded onto truck {self.id}.")
-                data_structures_and_algorithms_ii.addresses.get(package.address)
-                package_loaded = True
-
-        return package_loaded
-
-    def load_truck(self, package_id: int) -> bool:
+    def load_truck(self, package_id: int) -> None:
         """Loads a package onto the truck.
 
         Args:
             package_id (int): The ID of the package to load onto the truck.
 
         Returns:
-            bool: True if a package was loaded successfully. Otherwise, raises a ValueError.
+            None
+
+        Notes:
+            time complexity:
+                best case = O(1)
+                worst case = O(n)
+                average case = O(n)
+            space complexity:
+                best case = O(1)
+                worst case = O(1)
+                average case = O(1)
         """
+        # Find package in the package hash table
+        package = data_structures_and_algorithms_ii.packages.get(
+            package_id
+        )  # O(n) - hash table get
+        # Run the load_package method on the package
+        package.load_package(self.id)
+        # Update the package in the package hash table
+        data_structures_and_algorithms_ii.packages.update(
+            package_id, package
+        )  # O(n) - hash table update
 
-        package_loaded = False
+    def send_truck(self, departure_time: datetime.time):
+        """Sends the truck to deliver the packages. Updates departure_time and delivery_status attributes of the
+        packages in the truck.
 
-        package = data_structures_and_algorithms_ii.packages.get(package_id)
-        self.packages.append(package_id)
-        package.truck_id = self.id
+        Args:
+            departure_time (datetime.time): The time that the truck will depart to deliver the packages.
 
-        data_structures_and_algorithms_ii.packages.update(package_id, package)
+        Returns:
+            None
+
+        Notes:
+            time complexity:
+                best case = O(n)
+                worst case = O(n^2)
+                average case = O(n^2)
+            space complexity:
+                best case = O(1)
+                worst case = O(1)
+                average case = O(1)
+        """
+        self.truck_status = "En Route"
+        self.departure_time = departure_time
+
+        # Loop through the packages the truck is carrying
+        for i in self.packages:  # O(n) - for loop
+            # Find the package in the package hash table and run the package_departure method
+            data_structures_and_algorithms_ii.packages.get(i).package_departure(
+                departure_time
+            )  # O(n) - hash table get
