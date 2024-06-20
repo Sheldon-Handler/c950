@@ -32,7 +32,7 @@ def init():
 
 def get_addresses(
     file: os.path.relpath = data_structures_and_algorithms_ii.address_csv_file,
-) -> list:
+) -> data_structures_and_algorithms_ii.hash_table.HashTable:
     """
     This function reads a csv file and returns a list of Address objects.
 
@@ -46,17 +46,18 @@ def get_addresses(
         time complexity: O(n)
         space complexity: O(n)
     """
-    addresses = []
+    addresses = data_structures_and_algorithms_ii.hash_table.HashTable()
     # Open the csv file and read the rows into a list
     csv_file = open(file, "r")
     csv_reader = csv.reader(csv_file)
 
     # Read the csv file and store the rows in a list
     for i in csv_reader:  # O(n) - for loop
-        addresses.append(
+        addresses.add(
+            int(i[0]),
             data_structures_and_algorithms_ii.address.Address(
                 id=int(i[0]), name=str(i[1]), address=str(i[2])
-            )
+            ),
         )
 
     return addresses

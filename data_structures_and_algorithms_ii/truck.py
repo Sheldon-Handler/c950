@@ -24,7 +24,10 @@ class Truck:
         truck_status: str,
         distance_traveled: float = None,
         packages: [int] = None,
-        departure_time: datetime.timedelta = None,
+        addresses: [int] = None,
+        departure_time: datetime.time = None,
+        truck_time: datetime.timedelta = None,
+        current_address: int = None,
         capacity: int = data_structures_and_algorithms_ii.truck_capacity,
     ):
         """
@@ -40,8 +43,11 @@ class Truck:
         self.truck_status = truck_status
         self.distance_traveled = distance_traveled
         self.packages = packages
+        self.addresses = addresses
         self.departure_time = departure_time
-        self.truck_time = self.departure_time
+        self.truck_time = truck_time
+        self.current_address = current_address
+        self.capacity = capacity
 
     def update_truck_status(self, truck_status: str) -> bool:
         """Updates the truck status.
@@ -112,14 +118,23 @@ class Truck:
         package = data_structures_and_algorithms_ii.packages.get(
             package_id
         )  # O(n) - hash table get
+        # Run the load_address method on the address
+        data_structures_and_algorithms_ii.addresses.get(package.address).load_address(
+            package.id, self.id
+        )
         # Run the load_package method on the package
         package.load_package(self.id)
+        # Add the package ID to the truck's packages list
+        self.packages.append(package_id)
+        # Add the address to the truck's addresses list
+        if package.address not in self.addresses:  # O(n) - list search
+            self.addresses.append(package.address)
         # Update the package in the package hash table
         data_structures_and_algorithms_ii.packages.update(
             package_id, package
         )  # O(n) - hash table update
 
-    def send_truck(self, departure_time: datetime.time):
+    def depart_truck(self, departure_time: datetime.time):
         """Sends the truck to deliver the packages. Updates departure_time and delivery_status attributes of the
         packages in the truck.
 
@@ -131,7 +146,7 @@ class Truck:
 
         Notes:
             time complexity:
-                best case = O(n)
+                best case = O(n^2)
                 worst case = O(n^2)
                 average case = O(n^2)
             space complexity:
@@ -141,10 +156,24 @@ class Truck:
         """
         self.truck_status = "En Route"
         self.departure_time = departure_time
+        self.truck_time = datetime.timedelta(
+            hours=departure_time.hour, minutes=departure_time.minute
+        )
 
         # Loop through the packages the truck is carrying
-        for i in self.packages:  # O(n) - for loop
+        for i in range(len(self.packages)):  # O(n) - for loop
             # Find the package in the package hash table and run the package_departure method
+            address = data_structures_and_algorithms_ii.packages.get(
+                self.packages[i]
+            ).address
+            # Add the address to the truck's addresses list if it is not already there
+            if address not in self.addresses:  # O(n) - list search
+                self.addresses.append(address)
+            # Update the address in the address hash table
+            data_structures_and_algorithms_ii.addresses.get(address).address_departure(
+                departure_time
+            )
+            # Update the package in the package hash table
             data_structures_and_algorithms_ii.packages.get(i).package_departure(
                 departure_time
             )  # O(n) - hash table get
