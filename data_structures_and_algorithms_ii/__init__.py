@@ -12,7 +12,7 @@ import os
 
 import data_structures_and_algorithms_ii.hash_table
 
-addresses = []
+addresses = data_structures_and_algorithms_ii.hash_table.HashTable()
 distances = []
 packages = data_structures_and_algorithms_ii.hash_table.HashTable()
 trucks = []

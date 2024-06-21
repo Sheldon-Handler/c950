@@ -9,7 +9,7 @@ class Address:
         id: int,
         name: str,
         address: str,
-        packages: [int],
+        packages: [int] = None,
         delivery_status: str = None,
         truck_id: int = None,
         departure_time: datetime.time = None,
@@ -27,6 +27,7 @@ class Address:
         self.id = id
         self.name = name
         self.address = address
+        self.packages = packages
         self.delivery_status = delivery_status
         self.truck_id = truck_id
         self.departure_time = departure_time
