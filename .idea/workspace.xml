@@ -196,14 +196,6 @@
       <workItem from="1718649965318" duration="1133000" />
       <workItem from="1718651241196" duration="12678000" />
     </task>
-    <task id="LOCAL-00028" summary="Fixed the reading of distances from csv file into a [[float]] with all fields filled in">
-      <option name="closed" value="true" />
-      <created>1711042580266</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1711042580266</updated>
-    </task>
     <task id="LOCAL-00029" summary="Renamed">
       <option name="closed" value="true" />
       <created>1711475554278</created>
@@ -588,7 +580,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719335484175</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Fixed something">
+      <option name="closed" value="true" />
+      <created>1719343111735</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1719343111735</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
