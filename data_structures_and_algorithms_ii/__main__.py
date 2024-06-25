@@ -104,10 +104,13 @@ data_structures_and_algorithms_ii.trucks[0].load_truck(16)
 data_structures_and_algorithms_ii.trucks[0].load_truck(13)
 data_structures_and_algorithms_ii.trucks[0].load_truck(20)
 data_structures_and_algorithms_ii.trucks[0].load_truck(21)
+data_structures_and_algorithms_ii.trucks[0].load_truck(1)
+data_structures_and_algorithms_ii.trucks[0].load_truck(29)
+
 
 print(
     data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
-        data_structures_and_algorithms_ii.distances,
-        [20, 21, 13, 6, 17],
+        data_structures_and_algorithms_ii.distances[0],
+        [0, 20, 21, 4, 6, 17, 5, 2],
     )
 )
