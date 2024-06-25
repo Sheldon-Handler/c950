@@ -32,7 +32,7 @@ def init():
 
 def get_addresses(
     file: os.path.relpath = data_structures_and_algorithms_ii.address_csv_file,
-) -> data_structures_and_algorithms_ii.hash_table.HashTable:
+) -> [data_structures_and_algorithms_ii.address.Address]:
     """
     This function reads a csv file and returns a list of Address objects.
 
@@ -46,7 +46,7 @@ def get_addresses(
         time complexity: O(n)
         space complexity: O(n)
     """
-    addresses = data_structures_and_algorithms_ii.hash_table.HashTable()
+    addresses = []
 
     # Open the csv file and read the rows into a list
     csv_file = open(file, "r")
@@ -54,8 +54,8 @@ def get_addresses(
 
     # Read the csv file and store the rows in a list
     for i in csv_reader:  # O(n) - for loop
-        addresses.add(
-            int(i[0]),
+
+        addresses.append(
             data_structures_and_algorithms_ii.address.Address(
                 id=int(i[0]), name=str(i[1]), address=str(i[2])
             ),
@@ -130,16 +130,13 @@ def get_packages(
     csv_file = open(file, "r")
     reader = csv.reader(csv_file)
 
-    address_table = data_structures_and_algorithms_ii.addresses.get_all()
-
     # Parse the csv file and create a list of Package objects
     for row in reader:  # O(n) - for loop
 
-        matching_address = None
-        for address in address_table:  # O(n) - for loop
-            if data_structures_and_algorithms_ii.addresses.get(address) == int(row[0]):
-                matching_address = address
-                break
+        matching_address = -1
+        for i in data_structures_and_algorithms_ii.addresses:
+            if i.address == row[1]:
+                matching_address = i.id
 
         # Create a Package object
         new_package = data_structures_and_algorithms_ii.package.Package(
