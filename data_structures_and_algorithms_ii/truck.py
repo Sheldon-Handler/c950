@@ -23,8 +23,6 @@ class Truck:
         id: int,
         truck_status: str,
         distance_traveled: float = None,
-        packages: [int] = None,
-        addresses: [int] = None,
         departure_time: datetime.time = None,
         truck_time: datetime.timedelta = None,
         current_address: int = None,
@@ -37,13 +35,12 @@ class Truck:
             id: The ID of the truck.
             truck_status: The status of the truck.
             distance_traveled: The distance the truck has traveled.
-            packages: The list of package IDs the truck is carrying.
         """
         self.id = id
         self.truck_status = truck_status
         self.distance_traveled = distance_traveled
-        self.packages = packages
-        self.addresses = addresses
+        self.packages = []
+        self.addresses = []
         self.departure_time = departure_time
         self.truck_time = truck_time
         self.current_address = current_address
@@ -118,17 +115,10 @@ class Truck:
         package = data_structures_and_algorithms_ii.packages.get(
             package_id
         )  # O(n) - hash table get
-        # Run the load_address method on the address
-        data_structures_and_algorithms_ii.addresses.get(package.address).load_address(
-            package.id, self.id
-        )
         # Run the load_package method on the package
         package.load_package(self.id)
         # Add the package ID to the truck's packages list
         self.packages.append(package_id)
-        # Add the address to the truck's addresses list
-        if package.address not in self.addresses:  # O(n) - list search
-            self.addresses.append(package.address)
         # Update the package in the package hash table
         data_structures_and_algorithms_ii.packages.update(
             package_id, package

@@ -41,10 +41,7 @@ def sorted_unvisited_neighbors(
     )  # O(n log n) - function call
 
     for i in sorted_neighbors_list:  # O(n) - for loop
-        if i not in visited_location_indices:  # O(n) - in operator
+        if i not in visited_location_indices:
             unvisited_location_indices.append(i)
 
-    if len(unvisited_location_indices) == 0:
-        return None
-    else:
-        return unvisited_location_indices
+    return unvisited_location_indices

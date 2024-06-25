@@ -40,7 +40,7 @@ class Address:
             f"Truck ID: {self.truck_id}, Departure Time: {self.departure_time}, Delivery Time: {self.delivery_time}"
         )
 
-    def load_address(self, package_id: int, truck_id: int) -> bool:
+    def load_address(self, package_id: int, truck_id: int) -> None:
         """Loads a package onto a truck.
 
         Args:
@@ -51,9 +51,8 @@ class Address:
             bool: True if the address was loaded successfully. False if the address was not loaded successfully.
         """
         self.delivery_status = "At Hub"
-        package_id = package_id
+        self.packages.append(package_id)
         self.truck_id = truck_id
-        return True
 
     def address_departure(self, departure_time: datetime.time) -> bool:
         """Sends the truck to deliver the package.

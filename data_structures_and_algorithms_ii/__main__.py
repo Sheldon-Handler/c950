@@ -69,15 +69,45 @@ for i in items:
 #
 # root.mainloop()
 
-new_truck_0 = data_structures_and_algorithms_ii.truck.Truck(0, "At Hub", 0, [])
-new_truck_1 = data_structures_and_algorithms_ii.truck.Truck(1, "At Hub", 0, [])
-new_truck_2 = data_structures_and_algorithms_ii.truck.Truck(2, "At Hub", 0, [])
-
-data_structures_and_algorithms_ii.trucks = [new_truck_0, new_truck_1, new_truck_2]
+new_truck_0 = data_structures_and_algorithms_ii.truck.Truck(
+    0,
+    "At Hub",
+    0,
+)
+new_truck_1 = data_structures_and_algorithms_ii.truck.Truck(
+    1,
+    "At Hub",
+    0,
+)
+new_truck_2 = data_structures_and_algorithms_ii.truck.Truck(
+    2,
+    "At Hub",
+    0,
+)
 
 print(
     data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
-        data_structures_and_algorithms_ii.distances[0],
-        data_structures_and_algorithms_ii.visited_location_indices,
+        data_structures_and_algorithms_ii.distances,
+        [],
+    ),
+    "\n",
+)
+
+data_structures_and_algorithms_ii.trucks = [new_truck_0, new_truck_1, new_truck_2]
+
+
+# loading truck 0
+data_structures_and_algorithms_ii.trucks[0].load_truck(14)
+data_structures_and_algorithms_ii.trucks[0].load_truck(15)
+data_structures_and_algorithms_ii.trucks[0].load_truck(19)
+data_structures_and_algorithms_ii.trucks[0].load_truck(16)
+data_structures_and_algorithms_ii.trucks[0].load_truck(13)
+data_structures_and_algorithms_ii.trucks[0].load_truck(20)
+data_structures_and_algorithms_ii.trucks[0].load_truck(21)
+
+print(
+    data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
+        data_structures_and_algorithms_ii.distances,
+        [20, 21, 13, 6, 17],
     )
 )

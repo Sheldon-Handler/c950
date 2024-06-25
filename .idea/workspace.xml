@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixing truck delivery and package delivery functions">
-      <change beforePath="$PROJECT_DIR$/.idea/data_structures_and_algorithms_ii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_structures_and_algorithms_ii.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Fixed_something.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Fixed_something.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_40_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_40_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_42_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_12_2024_12_42_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_14_2024_9_25_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_14_2024_9_25_AM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_18_2024_11_39_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_18_2024_11_39_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_18_2024_12_49_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_18_2024_12_49_PM__Changes_.xml" afterDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed something">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/address.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/address.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/nearest_neighbor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/nearest_neighbor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,14 +198,6 @@
       <workItem from="1718571684449" duration="626000" />
       <workItem from="1718649965318" duration="1133000" />
       <workItem from="1718651241196" duration="12678000" />
-    </task>
-    <task id="LOCAL-00026" summary="Converted project to singleton pattern">
-      <option name="closed" value="true" />
-      <created>1710870302861</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1710870302861</updated>
     </task>
     <task id="LOCAL-00027" summary="Fixing csv_file paths">
       <option name="closed" value="true" />
@@ -598,7 +583,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718891847218</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Fixed something">
+      <option name="closed" value="true" />
+      <created>1719331776202</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1719331776202</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,7 +610,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added logic to get sorted neighbors that are unvisited" />
     <MESSAGE value="Add logic to set address to empty if the wrong address is listed under special notes" />
     <MESSAGE value="Removed unused method in address.py" />
     <MESSAGE value="Removed unused method in package.py" />
@@ -642,7 +634,8 @@
     <MESSAGE value="Fixing GUI" />
     <MESSAGE value="Fixed some things" />
     <MESSAGE value="Fixing truck delivery and package delivery functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing truck delivery and package delivery functions" />
+    <MESSAGE value="Fixed something" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed something" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/data_structures_and_algorithms_ii$gui.coverage" NAME="gui Coverage Results" MODIFIED="1718659799729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_structures_and_algorithms_ii" />
