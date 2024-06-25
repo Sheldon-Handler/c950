@@ -6,8 +6,8 @@ import data_structures_and_algorithms_ii.truck
 data_structures_and_algorithms_ii.read_csv_file.init()
 
 
-for i in data_structures_and_algorithms_ii.addresses:
-    print(i)
+# for i in data_structures_and_algorithms_ii.addresses:
+#     print(i)
 
 for i in data_structures_and_algorithms_ii.distances:
     print(i)
@@ -28,6 +28,12 @@ for i in data_structures_and_algorithms_ii.distances:
 #     ),
 # )
 #
+
+addresses = data_structures_and_algorithms_ii.addresses.get_all()
+
+for i in addresses:
+    print(i.__str__())
+
 items = data_structures_and_algorithms_ii.packages.get_all()
 
 
