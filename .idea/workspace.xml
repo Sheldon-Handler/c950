@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed something">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_18_2024_12_49_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_18_2024_12_49_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed address">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/hash_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,12 +40,12 @@
     &quot;assignee&quot;: &quot;Sheldon-Handler&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Sheldon-Handler/data_structures_and_algorithms_ii.git&quot;,
-    &quot;accountId&quot;: &quot;84fc5214-afd9-4cee-bad7-a1f6a3543294&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Sheldon-Handler/data_structures_and_algorithms_ii.git",
+    "accountId": "d90eddc5-281f-481f-8d43-a45bc7e61b59"
   }
-}</component>
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -198,14 +199,6 @@
       <workItem from="1718571684449" duration="626000" />
       <workItem from="1718649965318" duration="1133000" />
       <workItem from="1718651241196" duration="12678000" />
-    </task>
-    <task id="LOCAL-00031" summary="Fixed sorting of indexes of nearest neighbors">
-      <option name="closed" value="true" />
-      <created>1711479768712</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1711479768712</updated>
     </task>
     <task id="LOCAL-00032" summary="Fixed formatting settings">
       <option name="closed" value="true" />
@@ -591,7 +584,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719343772401</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Fixed address">
+      <option name="closed" value="true" />
+      <created>1719348593498</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1719348593498</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +611,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Add logic to set address to empty if the wrong address is listed under special notes" />
     <MESSAGE value="Removed unused method in address.py" />
     <MESSAGE value="Removed unused method in package.py" />
     <MESSAGE value="Removed unused method in truck.py" />
@@ -635,7 +635,8 @@
     <MESSAGE value="Fixed some things" />
     <MESSAGE value="Fixing truck delivery and package delivery functions" />
     <MESSAGE value="Fixed something" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed something" />
+    <MESSAGE value="Fixed address" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed address" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/data_structures_and_algorithms_ii$gui.coverage" NAME="gui Coverage Results" MODIFIED="1718659799729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_structures_and_algorithms_ii" />

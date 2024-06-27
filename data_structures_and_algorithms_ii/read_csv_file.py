@@ -133,7 +133,7 @@ def get_packages(
     # Parse the csv file and create a list of Package objects
     for row in reader:  # O(n) - for loop
 
-        matching_address = -1
+        matching_address = int
         for i in data_structures_and_algorithms_ii.addresses:
             if i.address == row[1]:
                 matching_address = i.id

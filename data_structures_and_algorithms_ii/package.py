@@ -122,3 +122,6 @@ class Package:
             f"Departure Time: {self.departure_time}\n"
             f"Delivery Time: {self.delivery_time}\n"
         )
+
+    def __repr__(self):
+        return f"Package ID: {self.id} Address: {self.address.__str__()}\n"

@@ -34,10 +34,6 @@ for i in data_structures_and_algorithms_ii.addresses:
 
 items = data_structures_and_algorithms_ii.packages.get_all()
 
-
-for i in items:
-    print(i.__str__())
-
 # root = tkinter.Tk()
 # root.title("Table")
 #
@@ -121,24 +117,28 @@ data_structures_and_algorithms_ii.trucks[1].load_truck(5)
 
 truck_2_addresses = [8, 3, 7, 19]
 
+truck_3_addresses = []
+
+loaded_addresses = truck_1_addresses + truck_2_addresses + truck_3_addresses
+
 print(
     data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
         data_structures_and_algorithms_ii.distances[0],
-        truck_1_addresses + truck_2_addresses,
-    )
+        loaded_addresses,
+    ),
+    "\n",
 )
 
 print(data_structures_and_algorithms_ii.trucks[0].packages)
 print(data_structures_and_algorithms_ii.trucks[1].packages)
 
-packages = data_structures_and_algorithms_ii.packages.get_all()
 addresses = truck_1_addresses + truck_2_addresses
 packages_not_loaded = []
 
-for i in packages:
-    for j in addresses:
-        if i.address == j:
-            packages_not_loaded.append(i)
+print(items)
 
-for i in packages_not_loaded:
-    print(i.__str__())
+for i in items:
+    if i[1].address not in loaded_addresses:
+        packages_not_loaded.append(i)
+
+print(packages_not_loaded)

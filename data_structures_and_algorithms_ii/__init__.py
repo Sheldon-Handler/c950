@@ -12,13 +12,16 @@ import os
 
 import data_structures_and_algorithms_ii.hash_table
 
-addresses = data_structures_and_algorithms_ii.hash_table.HashTable()
+addresses = []
 distances = []
 packages = data_structures_and_algorithms_ii.hash_table.HashTable()
 trucks = []
 driver = [1, 2]
 
 visited_location_indices = []
+
+loaded_packages = []
+loaded_addresses = []
 
 
 truck_capacity = 16

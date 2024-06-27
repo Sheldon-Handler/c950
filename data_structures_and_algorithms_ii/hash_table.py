@@ -99,19 +99,23 @@ class HashTable:
 
         Notes:
             time complexity:
-                best case = O(n)
-                worst case = O(n)
-                average case = O(n)
+                best case = O(n^2)
+                worst case = O(n^2)
+                average case = O(n^2)
             space complexity:
                 best case = O(n)
                 worst case = O(n)
                 average case = O(n)
         """
         items = []
-        num_items = self.__len__()  # O(n) - function call
 
-        for i in range(num_items):  # O(n) - for loop
-            items.append(self.get(i + 1))
+        # Get all the key-value pairs in the hash table
+        for i in self.table:  # O(n) - for loop
+            for j in i:  # O(n) - for loop
+                items.append(j)
+
+        # Sort the key-value pairs by key
+        items.sort(key=lambda x: x[0])  # O(n log n) - sort
 
         return items
 
