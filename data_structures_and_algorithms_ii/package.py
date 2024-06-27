@@ -75,6 +75,18 @@ class Package:
                 "'Not Available'\n'At Hub'\n'En Route'\n'Delivered'\n",
             )
 
+    def update_address(self, correct_address_id: int):
+        """
+        Updates the address field to a corrected one.
+
+        Args:
+            correct_address_id (int): The correct address to replace existing address with.
+
+        Returns:
+            None
+        """
+        self.address = correct_address_id
+
     def load_package(self, truck_id: int):
         """Loads the package onto the truck. Updates the truck_id attribute.
 

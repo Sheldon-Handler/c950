@@ -40,7 +40,7 @@ class Truck:
         self.truck_status = truck_status
         self.distance_traveled = distance_traveled
         self.packages = []
-        self.addresses = []
+        self.addresses = [0]
         self.departure_time = departure_time
         self.truck_time = truck_time
         self.current_address = current_address
@@ -119,6 +119,9 @@ class Truck:
         package.load_package(self.id)
         # Add the package ID to the truck's packages list
         self.packages.append(package_id)
+        # Add the address ID to list of addresses
+        self.addresses.append(package.address)
+
         # Update the package in the package hash table
         data_structures_and_algorithms_ii.packages.update(
             package_id, package
