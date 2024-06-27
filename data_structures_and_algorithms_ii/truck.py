@@ -2,6 +2,7 @@ import datetime
 
 import data_structures_and_algorithms_ii
 import data_structures_and_algorithms_ii.address
+import data_structures_and_algorithms_ii.nearest_neighbor
 
 
 class Truck:
@@ -25,8 +26,7 @@ class Truck:
         distance_traveled: float = None,
         departure_time: datetime.time = None,
         truck_time: datetime.timedelta = None,
-        current_address: int = None,
-        capacity: int = data_structures_and_algorithms_ii.truck_capacity,
+        current_address: int = 0,
     ):
         """
         Initializes the truck class with its information.
@@ -43,8 +43,9 @@ class Truck:
         self.addresses = [0]
         self.departure_time = departure_time
         self.truck_time = truck_time
+        self.visited_addresses = [0]
         self.current_address = current_address
-        self.capacity = capacity
+        self.addresses_not_in_this_truck = None
 
     def update_truck_status(self, truck_status: str) -> bool:
         """Updates the truck status.
@@ -154,19 +155,62 @@ class Truck:
         )
 
         # Loop through the packages the truck is carrying
-        for i in range(len(self.packages)):  # O(n) - for loop
-            # Find the package in the package hash table and run the package_departure method
-            address = data_structures_and_algorithms_ii.packages.get(
-                self.packages[i]
-            ).address
-            # Add the address to the truck's addresses list if it is not already there
-            if address not in self.addresses:  # O(n) - list search
-                self.addresses.append(address)
-            # Update the address in the address hash table
-            data_structures_and_algorithms_ii.addresses.get(address).address_departure(
-                departure_time
-            )
+        for i in self.packages:  # O(n) - for loop
             # Update the package in the package hash table
             data_structures_and_algorithms_ii.packages.get(i).package_departure(
                 departure_time
             )  # O(n) - hash table get
+
+        # Find addresses not in this truck
+        self.addresses_not_in_this_truck = []
+        for address in data_structures_and_algorithms_ii.addresses:  # O(n) - for loop
+            if address.id not in self.addresses:
+                self.addresses_not_in_this_truck.append(address.id)
+
+    def sort_addresses(self) -> [int]:
+        """
+
+
+        Returns:
+            [int]: address ID values sorted by distance from current address
+
+        """
+
+        excluded_addresses = self.addresses_not_in_this_truck + self.visited_addresses
+        sorted_addresses = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
+            data_structures_and_algorithms_ii.distances[self.current_address],
+            (self.addresses_not_in_this_truck + self.visited_addresses),
+        )
+
+        print(sorted_addresses)
+
+        return sorted_addresses
+
+    def nearest_address(self) -> int:
+        """
+
+        Returns:
+            int: ID of Address closes to current location
+
+        """
+        return self.sort_addresses()[0]
+
+    def deliver(self, package_id: int, delivery_time: datetime.time):
+        """
+
+        Args:
+            package_id (int): ID of the package to deliver.
+            delivery_time (datetime.time): The time of delivery for the package.
+
+        Returns:
+
+        """
+        nearest_address = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
+            data_structures_and_algorithms_ii.distances[self.current_address],
+            (self.addresses_not_in_this_truck, self.visited_addresses),
+        )
+
+        while len(self.packages) > 0:
+
+            package = data_structures_and_algorithms_ii.packages.get(package_id)
+            package.deliver_package(delivery_time)

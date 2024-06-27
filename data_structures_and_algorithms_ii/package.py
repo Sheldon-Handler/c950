@@ -1,5 +1,7 @@
 import datetime
 
+import data_structures_and_algorithms_ii.hash_table
+
 
 class Package:
     """This dataclass represents a package instance with its information which has not had any data mutated."""
@@ -109,7 +111,7 @@ class Package:
             f"Truck {self.truck_id} sent to deliver package {self.id} at {self.departure_time}.\n"
         )
 
-    def deliver(self, delivery_time: datetime.time):
+    def deliver_package(self, delivery_time: datetime.time):
         """Delivers the package. Updates the delivery_status and delivery_time attributes.
 
         Args:
@@ -119,7 +121,7 @@ class Package:
         self.delivery_time = delivery_time
         print(f"Package {self.id} delivered at {self.delivery_time}.\n")
 
-    def __str__(self):
+    def _str(self):
         return (
             f"Package ID: {self.id}\n"
             f"Address: {self.address.__str__()}\n"
@@ -136,4 +138,23 @@ class Package:
         )
 
     def __repr__(self):
-        return f"Package ID: {self.id} Address: {self.address.__str__()}\n"
+        return f"Package ID: {self.id} Address: {self.address}\n"
+
+
+def get_package_ids_with_address_id(
+    address_id: int,
+    packages: data_structures_and_algorithms_ii.hash_table.HashTable = data_structures_and_algorithms_ii.packages,
+) -> list:
+
+    package_ids_with_matching_addresses = []
+    package_tuples = packages.get_all()
+    temp_list = list(package_tuples)
+    package_list = []
+    for i in package_tuples:
+        package_list.append(list(i))
+
+    for package in package_list:
+        if package[1].address == address_id:
+            package_ids_with_matching_addresses.append(package[1].id)
+
+    return package_ids_with_matching_addresses
