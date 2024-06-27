@@ -114,10 +114,22 @@ data_structures_and_algorithms_ii.trucks[1].load_truck(36)
 data_structures_and_algorithms_ii.trucks[1].load_truck(38)
 data_structures_and_algorithms_ii.trucks[1].load_truck(37)
 data_structures_and_algorithms_ii.trucks[1].load_truck(5)
+data_structures_and_algorithms_ii.trucks[1].load_truck(24)
+data_structures_and_algorithms_ii.trucks[1].load_truck(2)
+data_structures_and_algorithms_ii.trucks[1].load_truck(33)
+data_structures_and_algorithms_ii.trucks[1].load_truck(22)
 
-truck_2_addresses = [8, 3, 7, 19]
+truck_2_addresses = [8, 3, 7, 19, 22, 26]
 
-truck_3_addresses = []
+# loading truck 3
+data_structures_and_algorithms_ii.trucks[2].load_truck(6)
+data_structures_and_algorithms_ii.trucks[2].load_truck(25)
+data_structures_and_algorithms_ii.trucks[2].load_truck(26)
+data_structures_and_algorithms_ii.trucks[2].load_truck(28)
+data_structures_and_algorithms_ii.trucks[2].load_truck(31)
+data_structures_and_algorithms_ii.trucks[2].load_truck(32)
+
+truck_3_addresses = [13, 24, 11, 15]
 
 loaded_addresses = truck_1_addresses + truck_2_addresses + truck_3_addresses
 
@@ -142,3 +154,13 @@ for i in items:
         packages_not_loaded.append(i)
 
 print(packages_not_loaded)
+
+for i in packages_not_loaded:
+    print(i[1].address)
+
+
+print(
+    data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
+        data_structures_and_algorithms_ii.distances[0], loaded_addresses
+    )
+)
