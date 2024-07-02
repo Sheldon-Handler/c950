@@ -26,7 +26,7 @@ class Address:
         """Returns the string representation of the Address object."""
         return f"ID: {self.id}, Name: {self.name}, Address: {self.address}, Packages: {self.packages}"
 
-    def load_address(self, package_id: int, truck_id: int) -> None:
+    def load_address(self, package_id: int) -> None:
         """Loads a package onto a truck.
 
         Args:

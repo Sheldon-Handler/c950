@@ -2,7 +2,9 @@ import datetime
 
 import data_structures_and_algorithms_ii
 import data_structures_and_algorithms_ii.address
+import data_structures_and_algorithms_ii.delivery_time_calculator
 import data_structures_and_algorithms_ii.nearest_neighbor
+import data_structures_and_algorithms_ii.package
 
 
 class Truck:
@@ -25,7 +27,7 @@ class Truck:
         truck_status: str,
         distance_traveled: float = None,
         departure_time: datetime.time = None,
-        truck_time: datetime.timedelta = None,
+        truck_time: datetime.time = None,
         current_address: int = 0,
     ):
         """
@@ -46,6 +48,7 @@ class Truck:
         self.visited_addresses = [0]
         self.current_address = current_address
         self.addresses_not_in_this_truck = None
+        self.addresses_not_yet_delivered = []
 
     def update_truck_status(self, truck_status: str) -> bool:
         """Updates the truck status.
@@ -67,31 +70,6 @@ class Truck:
             raise ValueError(
                 f"Truck status must be one of the following: {truck_statuses}."
             )
-
-    # def load_packages_with_address(
-    #     self, address: data_structures_and_algorithms_ii.address.Address
-    # ) -> bool:
-    #     """Loads a package onto the truck.
-    #
-    #     Args:
-    #         address (data_structures_and_algorithms_ii.address.Address): The ID of the package to load onto the truck.
-    #
-    #     Returns:
-    #         bool: True if a package was loaded successfully. Otherwise, raises a ValueError.
-    #     """
-    #
-    #     package_loaded = False
-    #
-    #     for package in data_structures_and_algorithms_ii.packages:  # O(n) - for loop
-    #         if package.address == address:
-    #             self.packages.append(package.id)
-    #             package.truck_id = self.id
-    #             package.delivery_status = "En Route"
-    #             print(f"Package {package.id} loaded onto truck {self.id}.")
-    #             data_structures_and_algorithms_ii.addresses.get(package.address)
-    #             package_loaded = True
-    #
-    #     return package_loaded
 
     def load_truck(self, package_id: int) -> None:
         """Loads a package onto the truck.
@@ -120,8 +98,11 @@ class Truck:
         package.load_package(self.id)
         # Add the package ID to the truck's packages list
         self.packages.append(package_id)
+
         # Add the address ID to list of addresses
-        self.addresses.append(package.address)
+        if package.address not in self.addresses:  # O(n) - list search
+            self.addresses.append(package.address)
+            self.addresses_not_yet_delivered.append(package.address)
 
         # Update the package in the package hash table
         data_structures_and_algorithms_ii.packages.update(
@@ -150,9 +131,7 @@ class Truck:
         """
         self.truck_status = "En Route"
         self.departure_time = departure_time
-        self.truck_time = datetime.timedelta(
-            hours=departure_time.hour, minutes=departure_time.minute
-        )
+        self.truck_time = departure_time
 
         # Loop through the packages the truck is carrying
         for i in self.packages:  # O(n) - for loop
@@ -169,6 +148,7 @@ class Truck:
 
     def sort_addresses(self) -> [int]:
         """
+        Sorts the addresses by distance from the current address.
 
 
         Returns:
@@ -195,22 +175,63 @@ class Truck:
         """
         return self.sort_addresses()[0]
 
-    def deliver(self, package_id: int, delivery_time: datetime.time):
+    def deliver(self, address_id: int) -> [int]:
         """
 
         Args:
-            package_id (int): ID of the package to deliver.
-            delivery_time (datetime.time): The time of delivery for the package.
+            address_id (int): ID of the address to deliver.
 
         Returns:
 
         """
         nearest_address = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
             data_structures_and_algorithms_ii.distances[self.current_address],
-            (self.addresses_not_in_this_truck, self.visited_addresses),
+            (self.addresses_not_in_this_truck + self.visited_addresses),
         )
 
-        while len(self.packages) > 0:
+        distance_between = data_structures_and_algorithms_ii.distances[
+            self.current_address
+        ][address_id]
 
-            package = data_structures_and_algorithms_ii.packages.get(package_id)
-            package.deliver_package(delivery_time)
+        delivery_time = (
+            data_structures_and_algorithms_ii.delivery_time_calculator.time_updater(
+                self.truck_time, distance_between
+            )
+        )
+
+        package_list = data_structures_and_algorithms_ii.packages.get_all()
+        item_values = [i[1] for i in package_list]
+
+        # Loop through the package IDs to deliver the package
+        for i in item_values:
+            if i.address == address_id and i.id in self.packages:
+                data_structures_and_algorithms_ii.packages.get(i.id).deliver_package(
+                    delivery_time
+                )
+
+        # Update the truck's distance traveled
+        self.distance_traveled += data_structures_and_algorithms_ii.distances[
+            self.current_address
+        ][address_id]
+
+        # Update the truck's truck time
+        self.truck_time = delivery_time
+
+        # Update the truck's current address
+        self.current_address = address_id
+
+        # Update the truck's visited addresses
+        self.visited_addresses.append(address_id)
+
+        # Update the truck's addresses not in this truck
+        self.addresses_not_yet_delivered.remove(address_id)  # O(n) - list remove
+
+    def deliver_all(self):
+        """
+        Delivers all packages in the truck.
+
+        Returns:
+            None
+        """
+        while len(self.addresses_not_yet_delivered) > 0:
+            self.deliver(self.nearest_address())

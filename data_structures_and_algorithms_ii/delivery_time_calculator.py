@@ -29,3 +29,35 @@ def delivery_time_calculator(
     hours = int(time)
     minutes = int((time - hours) * 60)
     return datetime.time(hours, minutes)
+
+
+def time_updater(
+    current_time: datetime.time,
+    distance: float,
+    speed: float = data_structures_and_algorithms_ii.truck_speed,
+) -> datetime.time:
+    """Updates the current time based on the delivery time.
+
+    Args:
+        current_time (datetime.time): The current time.
+        distance (float): The distance to be traveled.
+        speed (float): The speed of the vehicle. Defaults to truck_speed.
+
+    Returns:
+        datetime.time: The updated time.
+    """
+    # Convert the current time to hours
+    current_time_converted = current_time.hour + current_time.minute / 60
+
+    # Calculate the delivery time and convert it to hours
+    delivery_time = delivery_time_calculator(distance, speed)
+    delivery_time_converted = delivery_time.hour + delivery_time.minute / 60
+
+    # Add the current time and delivery time to get the updated time
+    updated_time = current_time_converted + delivery_time_converted
+
+    # Convert the updated time to hours and minutes
+    hours = int(updated_time)
+    minutes = int((updated_time - hours) * 60)
+
+    return datetime.time(hours, minutes)

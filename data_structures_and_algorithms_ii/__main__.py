@@ -169,7 +169,9 @@ data_structures_and_algorithms_ii.trucks[1].sort_addresses()
 
 
 package_sample = (
-    data_structures_and_algorithms_ii.package.get_package_ids_with_address_id(1, items)
+    data_structures_and_algorithms_ii.package.get_package_ids_with_address_id(19, items)
 )
 
 print(package_sample)
+
+data_structures_and_algorithms_ii.trucks[0].deliver_all()

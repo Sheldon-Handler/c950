@@ -117,10 +117,10 @@ class HashTable:
         # Sort the key-value pairs by key
         items.sort(key=lambda x: x[0])  # O(n log n) - sort
 
-        # Extract the values from the key-value pairs
-        item_values = [i[1] for i in items]
+        # # Extract the values from the key-value pairs
+        # item_values = [i[1] for i in items]
 
-        return item_values
+        return items
 
     def add(self, key, value) -> None:
         """
