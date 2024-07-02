@@ -110,10 +110,10 @@ class SelectableTableWindow:
 
         # Create frames for each table
         self.table_frame1 = Frame(self.root)
-        self.table_frame1.pack(side="left", padx=10, pady=10)
+        self.table_frame1.pack(side="left", padx=(50, 50))
 
         self.table_frame2 = Frame(self.root)
-        self.table_frame2.pack(side="left", padx=10, pady=10)
+        self.table_frame2.pack(side="left", padx=(50, 50))
 
         self.create_table_headers(self.table_frame1, ["ID", "Name", "Address"])
         self.create_table_headers(

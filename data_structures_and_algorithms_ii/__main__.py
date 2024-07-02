@@ -1,8 +1,9 @@
 import datetime
+import tkinter
 
 import data_structures_and_algorithms_ii.nearest_neighbor
-import data_structures_and_algorithms_ii.package
 import data_structures_and_algorithms_ii.read_csv_file
+import data_structures_and_algorithms_ii.table_app
 import data_structures_and_algorithms_ii.truck
 
 # Initialize csv files into lists
@@ -56,13 +57,9 @@ data_structures_and_algorithms_ii.trucks[0].load_truck(13)
 data_structures_and_algorithms_ii.trucks[0].load_truck(20)
 data_structures_and_algorithms_ii.trucks[0].load_truck(21)
 data_structures_and_algorithms_ii.trucks[0].load_truck(1)
-data_structures_and_algorithms_ii.trucks[0].load_truck(29)
 data_structures_and_algorithms_ii.trucks[0].load_truck(34)
 data_structures_and_algorithms_ii.trucks[0].load_truck(40)
 data_structures_and_algorithms_ii.trucks[0].load_truck(4)
-data_structures_and_algorithms_ii.trucks[0].load_truck(2)
-data_structures_and_algorithms_ii.trucks[0].load_truck(33)
-data_structures_and_algorithms_ii.trucks[0].load_truck(17)
 
 
 # loading truck 2
@@ -80,6 +77,8 @@ data_structures_and_algorithms_ii.trucks[1].load_truck(8)
 data_structures_and_algorithms_ii.trucks[1].load_truck(30)
 data_structures_and_algorithms_ii.trucks[1].load_truck(23)
 data_structures_and_algorithms_ii.trucks[1].load_truck(12)
+data_structures_and_algorithms_ii.trucks[1].load_truck(17)
+data_structures_and_algorithms_ii.trucks[1].load_truck(29)
 
 
 # loading truck 3
@@ -152,6 +151,9 @@ data_structures_and_algorithms_ii.trucks[0].depart_truck(
 data_structures_and_algorithms_ii.trucks[1].depart_truck(
     datetime.time(hour=8, minute=0)
 )
+data_structures_and_algorithms_ii.trucks[2].depart_truck(
+    datetime.time(hour=9, minute=31)
+)
 
 # packages = data_structures_and_algorithms_ii.packages.get_all()
 #
@@ -161,17 +163,18 @@ data_structures_and_algorithms_ii.trucks[1].depart_truck(
 
 data_structures_and_algorithms_ii.trucks[0].sort_addresses()
 data_structures_and_algorithms_ii.trucks[1].sort_addresses()
-
-# id_matches = data_structures_and_algorithms_ii.package.get_package_ids_with_address_id(
-#     19
-# )
-# print(id_matches)
-
-
-package_sample = (
-    data_structures_and_algorithms_ii.package.get_package_ids_with_address_id(19, items)
-)
-
-print(package_sample)
+data_structures_and_algorithms_ii.trucks[2].sort_addresses()
 
 data_structures_and_algorithms_ii.trucks[0].deliver_all()
+data_structures_and_algorithms_ii.trucks[1].deliver_all()
+data_structures_and_algorithms_ii.trucks[2].deliver_all()
+
+root = tkinter.Tk()
+
+item_tuples = data_structures_and_algorithms_ii.packages.get_all()
+item_values = [i[1] for i in item_tuples]
+
+
+data_structures_and_algorithms_ii.table_app.TableApp(root, item_values, 100)
+
+root.mainloop()

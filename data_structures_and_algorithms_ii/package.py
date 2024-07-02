@@ -119,9 +119,11 @@ class Package:
         """
         self.delivery_status = "Delivered"
         self.delivery_time = delivery_time
-        print(f"Package {self.id} delivered at {self.delivery_time}.\n")
+        print(
+            f"Package {self.id} delivered at {self.delivery_time} on truck {self.truck_id}.\n"
+        )
 
-    def _str(self):
+    def __str__(self):
         return (
             f"Package ID: {self.id}\n"
             f"Address: {self.address.__str__()}\n"
@@ -136,9 +138,6 @@ class Package:
             f"Departure Time: {self.departure_time}\n"
             f"Delivery Time: {self.delivery_time}\n"
         )
-
-    def __repr__(self):
-        return f"Package ID: {self.id} Address: {self.address}\n"
 
 
 def get_package_ids_with_address_id(

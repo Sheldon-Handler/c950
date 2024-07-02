@@ -6,7 +6,7 @@ class Address:
         id: int,
         name: str,
         address: str,
-        packages: [int] = None,
+        packages: [int] = [],
     ):
         """
         Initializes an Address object instance with its information.

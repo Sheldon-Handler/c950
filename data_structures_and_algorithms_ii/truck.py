@@ -47,7 +47,7 @@ class Truck:
         self.truck_time = truck_time
         self.visited_addresses = [0]
         self.current_address = current_address
-        self.addresses_not_in_this_truck = None
+        self.addresses_not_in_this_truck = []
         self.addresses_not_yet_delivered = []
 
     def update_truck_status(self, truck_status: str) -> bool:
@@ -175,6 +175,23 @@ class Truck:
         """
         return self.sort_addresses()[0]
 
+    def return_truck(self):
+        """
+        Brings the truck back to the hub.
+
+        Returns:
+            None
+        """
+        self.truck_status = "Returning"
+        self.truck_time = (
+            data_structures_and_algorithms_ii.delivery_time_calculator.time_updater(
+                self.truck_time,
+                data_structures_and_algorithms_ii.distances[self.current_address][0],
+            )
+        )
+        self.current_address = 0
+        print(f"Truck {self.id} has returned to the hub at {self.truck_time}.\n")
+
     def deliver(self, address_id: int) -> [int]:
         """
 
@@ -204,10 +221,11 @@ class Truck:
 
         # Loop through the package IDs to deliver the package
         for i in item_values:
-            if i.address == address_id and i.id in self.packages:
-                data_structures_and_algorithms_ii.packages.get(i.id).deliver_package(
-                    delivery_time
-                )
+            if i.address == address_id:
+                if i.id in self.packages:
+                    data_structures_and_algorithms_ii.packages.get(
+                        i.id
+                    ).deliver_package(delivery_time)
 
         # Update the truck's distance traveled
         self.distance_traveled += data_structures_and_algorithms_ii.distances[
@@ -235,3 +253,6 @@ class Truck:
         """
         while len(self.addresses_not_yet_delivered) > 0:
             self.deliver(self.nearest_address())
+
+        self.return_truck()
+        self.truck_status = "At Hub"
