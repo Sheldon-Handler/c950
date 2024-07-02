@@ -6,7 +6,6 @@ class Address:
         id: int,
         name: str,
         address: str,
-        packages: [int] = [],
     ):
         """
         Initializes an Address object instance with its information.
@@ -20,7 +19,7 @@ class Address:
         self.id = id
         self.name = name
         self.address = address
-        self.packages = packages
+        self.packages = []
 
     def __str__(self):
         """Returns the string representation of the Address object."""
@@ -31,9 +30,25 @@ class Address:
 
         Args:
             package_id (int): The ID of the package.
-            truck_id (int): The ID of the truck.
 
         Returns:
             bool: True if the address was loaded successfully. False if the address was not loaded successfully.
         """
         self.packages.append(package_id)
+
+
+def load_from_package_list(addresses: [], packages: []) -> None:
+    """Loads the addresses with their respective packages.
+
+    Args:
+        addresses ([]): The list of addresses.
+        packages ([]): The list of packages.
+
+    Returns:
+        None
+    """
+    for i in addresses:
+        for j in packages:
+            if i.id == j.address:
+                i.load_address(j.id)
+                print(f"Package {j.id} loaded to address {i.id}.")

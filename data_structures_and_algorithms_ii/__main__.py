@@ -1,6 +1,7 @@
 import datetime
 import tkinter
 
+import data_structures_and_algorithms_ii.address
 import data_structures_and_algorithms_ii.nearest_neighbor
 import data_structures_and_algorithms_ii.read_csv_file
 import data_structures_and_algorithms_ii.table_app
@@ -20,6 +21,13 @@ for i in data_structures_and_algorithms_ii.addresses:
     print(i.__str__())
 
 items = data_structures_and_algorithms_ii.packages.get_all()
+
+items_list = [i[1] for i in items]
+
+data_structures_and_algorithms_ii.address.load_from_package_list(
+    data_structures_and_algorithms_ii.addresses,
+    items_list,
+)
 
 new_truck_1 = data_structures_and_algorithms_ii.truck.Truck(
     1,
@@ -47,16 +55,6 @@ print(
 
 data_structures_and_algorithms_ii.trucks = [new_truck_1, new_truck_2, new_truck_3]
 
-# Set the load times for each truck
-data_structures_and_algorithms_ii.trucks[0].set_load_time(
-    datetime.time(hour=8, minute=0)
-)
-data_structures_and_algorithms_ii.trucks[1].set_load_time(
-    datetime.time(hour=9, minute=5)
-)
-data_structures_and_algorithms_ii.trucks[2].set_load_time(
-    datetime.time(hour=10, minute=20)
-)
 
 # loading truck 1
 data_structures_and_algorithms_ii.trucks[0].load_truck(14)
@@ -86,19 +84,29 @@ data_structures_and_algorithms_ii.trucks[1].load_truck(2)
 data_structures_and_algorithms_ii.trucks[1].load_truck(33)
 data_structures_and_algorithms_ii.trucks[1].load_truck(8)
 data_structures_and_algorithms_ii.trucks[1].load_truck(29)
-data_structures_and_algorithms_ii.trucks[1].load_truck(6)
-data_structures_and_algorithms_ii.trucks[1].load_truck(25)
+data_structures_and_algorithms_ii.trucks[1].load_truck(
+    6, datetime.time(hour=9, minute=5)
+)
+data_structures_and_algorithms_ii.trucks[1].load_truck(
+    25, datetime.time(hour=9, minute=5)
+)
 data_structures_and_algorithms_ii.trucks[1].load_truck(26)
 data_structures_and_algorithms_ii.trucks[1].load_truck(31)
-data_structures_and_algorithms_ii.trucks[1].load_truck(32)
+data_structures_and_algorithms_ii.trucks[1].load_truck(
+    32, datetime.time(hour=9, minute=5)
+)
 
 
 # loading truck 3
 data_structures_and_algorithms_ii.trucks[2].load_truck(12)
 data_structures_and_algorithms_ii.trucks[2].load_truck(17)
 data_structures_and_algorithms_ii.trucks[2].load_truck(5)
-data_structures_and_algorithms_ii.trucks[2].load_truck(28)
-data_structures_and_algorithms_ii.trucks[2].load_truck(9)
+data_structures_and_algorithms_ii.trucks[2].load_truck(
+    28, datetime.time(hour=9, minute=5)
+)
+data_structures_and_algorithms_ii.trucks[2].load_truck(
+    9, datetime.time(hour=10, minute=20)
+)
 data_structures_and_algorithms_ii.trucks[2].load_truck(27)
 data_structures_and_algorithms_ii.trucks[2].load_truck(35)
 data_structures_and_algorithms_ii.trucks[2].load_truck(7)
@@ -106,54 +114,6 @@ data_structures_and_algorithms_ii.trucks[2].load_truck(39)
 data_structures_and_algorithms_ii.trucks[2].load_truck(10)
 data_structures_and_algorithms_ii.trucks[2].load_truck(11)
 
-
-# print(
-#     data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
-#         data_structures_and_algorithms_ii.distances[0],
-#         loaded_addresses,
-#     ),
-#     "\n",
-# )
-
-# print(data_structures_and_algorithms_ii.trucks[0].packages)
-# print(data_structures_and_algorithms_ii.trucks[1].packages)
-#
-# addresses = truck_1_addresses + truck_2_addresses
-# packages_not_loaded = []
-
-# print(items)
-#
-# for i in items:
-#     if i[1].address not in loaded_addresses:
-#         packages_not_loaded.append(i)
-#
-# print(packages_not_loaded)
-#
-# for i in packages_not_loaded:
-#     print(i[1].address)
-
-
-# print(
-#     data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
-#         data_structures_and_algorithms_ii.distances[0], loaded_addresses
-#     )
-# )
-#
-#
-# loaded_packages = (
-#     data_structures_and_algorithms_ii.trucks[0].packages
-#     + data_structures_and_algorithms_ii.trucks[1].packages
-#     + data_structures_and_algorithms_ii.trucks[2].packages
-# )
-#
-# print("\n Loaded \n", loaded_packages)
-#
-# not_yet_loaded = []
-# for i in items:
-#     if i[0] not in loaded_packages:
-#         not_yet_loaded.append(i)
-#
-# print("\n Not yet loaded: \n", not_yet_loaded)
 
 data_structures_and_algorithms_ii.trucks[0].depart_truck(
     datetime.time(hour=8, minute=0)

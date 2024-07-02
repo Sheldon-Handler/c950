@@ -29,7 +29,7 @@ class Truck:
         departure_time: datetime.time = None,
         truck_time: datetime.time = None,
         current_address: int = 0,
-        load_time: datetime.time = None,
+        # load_time: datetime.time = None,
     ):
         """
         Initializes the truck class with its information.
@@ -51,7 +51,7 @@ class Truck:
         self.current_address = current_address
         self.addresses_not_in_this_truck = []
         self.addresses_not_yet_delivered = []
-        self.load_time = load_time
+        # self.load_time = load_time
 
     def update_truck_status(self, truck_status: str) -> bool:
         """Updates the truck status.
@@ -74,17 +74,21 @@ class Truck:
                 f"Truck status must be one of the following: {truck_statuses}."
             )
 
-    def set_load_time(self, load_time: datetime.time):
-        """
-        Sets the load time of the truck to the current time.
+    # def set_load_time(self, load_time: datetime.time):
+    #     """
+    #     Sets the load time of the truck to the current time.
+    #
+    #     Returns:
+    #         None
+    #     """
+    #     self.load_time = load_time
+    #     self.truck_time = load_time
 
-        Returns:
-            None
-        """
-        self.load_time = load_time
-        self.truck_time = load_time
-
-    def load_truck(self, package_id: int) -> None:
+    def load_truck(
+        self,
+        package_id: int,
+        load_time: datetime.time = datetime.time(hour=8, minute=0),
+    ) -> None:
         """Loads a package onto the truck.
 
         Args:
@@ -108,7 +112,7 @@ class Truck:
             package_id
         )  # O(n) - hash table get
         # Run the load_package method on the package
-        package.load_package(self.id, self.load_time)
+        package.load_package(self.id, load_time)
         # Add the package ID to the truck's packages list
         self.packages.append(package_id)
         # Add the address ID to list of addresses
