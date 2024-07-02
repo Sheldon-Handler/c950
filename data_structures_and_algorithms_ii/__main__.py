@@ -47,6 +47,16 @@ print(
 
 data_structures_and_algorithms_ii.trucks = [new_truck_1, new_truck_2, new_truck_3]
 
+# Set the load times for each truck
+data_structures_and_algorithms_ii.trucks[0].set_load_time(
+    datetime.time(hour=8, minute=0)
+)
+data_structures_and_algorithms_ii.trucks[1].set_load_time(
+    datetime.time(hour=9, minute=5)
+)
+data_structures_and_algorithms_ii.trucks[2].set_load_time(
+    datetime.time(hour=10, minute=20)
+)
 
 # loading truck 1
 data_structures_and_algorithms_ii.trucks[0].load_truck(14)
@@ -60,6 +70,9 @@ data_structures_and_algorithms_ii.trucks[0].load_truck(1)
 data_structures_and_algorithms_ii.trucks[0].load_truck(34)
 data_structures_and_algorithms_ii.trucks[0].load_truck(40)
 data_structures_and_algorithms_ii.trucks[0].load_truck(4)
+data_structures_and_algorithms_ii.trucks[0].load_truck(30)
+data_structures_and_algorithms_ii.trucks[0].load_truck(22)
+data_structures_and_algorithms_ii.trucks[0].load_truck(23)
 
 
 # loading truck 2
@@ -68,26 +81,23 @@ data_structures_and_algorithms_ii.trucks[1].load_truck(18)
 data_structures_and_algorithms_ii.trucks[1].load_truck(36)
 data_structures_and_algorithms_ii.trucks[1].load_truck(38)
 data_structures_and_algorithms_ii.trucks[1].load_truck(37)
-data_structures_and_algorithms_ii.trucks[1].load_truck(5)
 data_structures_and_algorithms_ii.trucks[1].load_truck(24)
 data_structures_and_algorithms_ii.trucks[1].load_truck(2)
 data_structures_and_algorithms_ii.trucks[1].load_truck(33)
-data_structures_and_algorithms_ii.trucks[1].load_truck(22)
 data_structures_and_algorithms_ii.trucks[1].load_truck(8)
-data_structures_and_algorithms_ii.trucks[1].load_truck(30)
-data_structures_and_algorithms_ii.trucks[1].load_truck(23)
-data_structures_and_algorithms_ii.trucks[1].load_truck(12)
-data_structures_and_algorithms_ii.trucks[1].load_truck(17)
 data_structures_and_algorithms_ii.trucks[1].load_truck(29)
+data_structures_and_algorithms_ii.trucks[1].load_truck(6)
+data_structures_and_algorithms_ii.trucks[1].load_truck(25)
+data_structures_and_algorithms_ii.trucks[1].load_truck(26)
+data_structures_and_algorithms_ii.trucks[1].load_truck(31)
+data_structures_and_algorithms_ii.trucks[1].load_truck(32)
 
 
 # loading truck 3
-data_structures_and_algorithms_ii.trucks[2].load_truck(6)
-data_structures_and_algorithms_ii.trucks[2].load_truck(25)
-data_structures_and_algorithms_ii.trucks[2].load_truck(26)
+data_structures_and_algorithms_ii.trucks[2].load_truck(12)
+data_structures_and_algorithms_ii.trucks[2].load_truck(17)
+data_structures_and_algorithms_ii.trucks[2].load_truck(5)
 data_structures_and_algorithms_ii.trucks[2].load_truck(28)
-data_structures_and_algorithms_ii.trucks[2].load_truck(31)
-data_structures_and_algorithms_ii.trucks[2].load_truck(32)
 data_structures_and_algorithms_ii.trucks[2].load_truck(9)
 data_structures_and_algorithms_ii.trucks[2].load_truck(27)
 data_structures_and_algorithms_ii.trucks[2].load_truck(35)
@@ -149,10 +159,10 @@ data_structures_and_algorithms_ii.trucks[0].depart_truck(
     datetime.time(hour=8, minute=0)
 )
 data_structures_and_algorithms_ii.trucks[1].depart_truck(
-    datetime.time(hour=8, minute=0)
+    datetime.time(hour=9, minute=10)
 )
 data_structures_and_algorithms_ii.trucks[2].depart_truck(
-    datetime.time(hour=9, minute=31)
+    datetime.time(hour=10, minute=30)
 )
 
 # packages = data_structures_and_algorithms_ii.packages.get_all()
@@ -169,12 +179,15 @@ data_structures_and_algorithms_ii.trucks[0].deliver_all()
 data_structures_and_algorithms_ii.trucks[1].deliver_all()
 data_structures_and_algorithms_ii.trucks[2].deliver_all()
 
-root = tkinter.Tk()
 
 item_tuples = data_structures_and_algorithms_ii.packages.get_all()
 item_values = [i[1] for i in item_tuples]
 
+root = tkinter.Tk()
 
-data_structures_and_algorithms_ii.table_app.TableApp(root, item_values, 100)
+data_structures_and_algorithms_ii.table_app.TableApp(root, item_values, 10)
+data_structures_and_algorithms_ii.table_app.TableApp(
+    root, data_structures_and_algorithms_ii.addresses, 20
+)
 
 root.mainloop()

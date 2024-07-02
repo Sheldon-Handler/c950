@@ -20,6 +20,7 @@ class Package:
         truck_id: int = None,
         departure_time: datetime.time = None,
         delivery_time: datetime.time = None,
+        load_time: datetime.time = None,
     ):
         """
         Initializes a Package class instance. Converts the string values to the appropriate data types.
@@ -49,6 +50,7 @@ class Package:
         self.truck_id = truck_id
         self.departure_time = departure_time
         self.delivery_time = delivery_time
+        self.load_time = load_time
 
     def update_delivery_status(self, delivery_status: str) -> bool:
         """Updates the delivery status of the package. If a delivery time is provided, it will also update the
@@ -89,14 +91,18 @@ class Package:
         """
         self.address = correct_address_id
 
-    def load_package(self, truck_id: int):
+    def load_package(
+        self, truck_id: int, load_time: datetime.time = datetime.time(hour=8, minute=0)
+    ):
         """Loads the package onto the truck. Updates the truck_id attribute.
 
         Args:
             truck_id (int): The ID of the truck that will carry the package.
+            load_time (datetime.time): The time that the package was loaded onto the truck. Defaults to 8:00 AM.
         """
         self.truck_id = truck_id
         self.delivery_status = "At Hub"
+        self.load_time = load_time
         print(f"Package {self.id} loaded onto truck {self.truck_id}.\n")
 
     def package_departure(self, departure_time: datetime.time):
@@ -137,6 +143,7 @@ class Package:
             f"Truck ID: {self.truck_id}\n"
             f"Departure Time: {self.departure_time}\n"
             f"Delivery Time: {self.delivery_time}\n"
+            f"Load Time: {self.load_time}\n"
         )
 
 
