@@ -136,12 +136,14 @@ def get_packages(
         matching_address = int
         for i in data_structures_and_algorithms_ii.addresses:
             if i.address == row[1]:
-                matching_address = i.id
+                matching_address = i
 
         # Create a Package object
         new_package = data_structures_and_algorithms_ii.package.Package(
             id=int(row[0]),
-            address=matching_address,
+            address_id=matching_address.id,
+            address_name=matching_address.name,
+            address=matching_address.address,
             city=row[2],
             state=row[3],
             zip=row[4],

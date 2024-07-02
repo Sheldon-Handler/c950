@@ -10,15 +10,23 @@ import data_structures_and_algorithms_ii.truck
 # Initialize csv files into lists
 data_structures_and_algorithms_ii.read_csv_file.init()
 
+# Set arrival times for packages that are delayed on flight
+data_structures_and_algorithms_ii.packages.get(6).set_arrival_time(
+    datetime.time(hour=9, minute=5)
+)
+data_structures_and_algorithms_ii.packages.get(25).set_arrival_time(
+    datetime.time(hour=9, minute=5)
+)
+data_structures_and_algorithms_ii.packages.get(28).set_arrival_time(
+    datetime.time(hour=9, minute=5)
+)
+data_structures_and_algorithms_ii.packages.get(32).set_arrival_time(
+    datetime.time(hour=9, minute=5)
+)
 
-for i in data_structures_and_algorithms_ii.distances:
-    print(i)
 
 package_with_wrong_address = data_structures_and_algorithms_ii.packages.get(9)
 package_with_wrong_address.update_address(19)
-
-for i in data_structures_and_algorithms_ii.addresses:
-    print(i.__str__())
 
 items = data_structures_and_algorithms_ii.packages.get_all()
 
@@ -85,15 +93,15 @@ data_structures_and_algorithms_ii.trucks[1].load_truck(33)
 data_structures_and_algorithms_ii.trucks[1].load_truck(8)
 data_structures_and_algorithms_ii.trucks[1].load_truck(29)
 data_structures_and_algorithms_ii.trucks[1].load_truck(
-    6, datetime.time(hour=9, minute=5)
+    6, datetime.time(hour=9, minute=7)
 )
 data_structures_and_algorithms_ii.trucks[1].load_truck(
-    25, datetime.time(hour=9, minute=5)
+    25, datetime.time(hour=9, minute=7)
 )
 data_structures_and_algorithms_ii.trucks[1].load_truck(26)
 data_structures_and_algorithms_ii.trucks[1].load_truck(31)
 data_structures_and_algorithms_ii.trucks[1].load_truck(
-    32, datetime.time(hour=9, minute=5)
+    32, datetime.time(hour=9, minute=7)
 )
 
 
@@ -102,10 +110,10 @@ data_structures_and_algorithms_ii.trucks[2].load_truck(12)
 data_structures_and_algorithms_ii.trucks[2].load_truck(17)
 data_structures_and_algorithms_ii.trucks[2].load_truck(5)
 data_structures_and_algorithms_ii.trucks[2].load_truck(
-    28, datetime.time(hour=9, minute=5)
+    28, datetime.time(hour=9, minute=7)
 )
 data_structures_and_algorithms_ii.trucks[2].load_truck(
-    9, datetime.time(hour=10, minute=20)
+    9, datetime.time(hour=10, minute=22)
 )
 data_structures_and_algorithms_ii.trucks[2].load_truck(27)
 data_structures_and_algorithms_ii.trucks[2].load_truck(35)
@@ -116,13 +124,13 @@ data_structures_and_algorithms_ii.trucks[2].load_truck(11)
 
 
 data_structures_and_algorithms_ii.trucks[0].depart_truck(
-    datetime.time(hour=8, minute=0)
+    datetime.time(hour=8, minute=5)
 )
 data_structures_and_algorithms_ii.trucks[1].depart_truck(
     datetime.time(hour=9, minute=10)
 )
 data_structures_and_algorithms_ii.trucks[2].depart_truck(
-    datetime.time(hour=10, minute=30)
+    datetime.time(hour=10, minute=25)
 )
 
 # packages = data_structures_and_algorithms_ii.packages.get_all()
@@ -145,9 +153,12 @@ item_values = [i[1] for i in item_tuples]
 
 root = tkinter.Tk()
 
-data_structures_and_algorithms_ii.table_app.TableApp(root, item_values, 10)
+data_structures_and_algorithms_ii.table_app.TableApp(root, item_values, 10, 10)
 data_structures_and_algorithms_ii.table_app.TableApp(
-    root, data_structures_and_algorithms_ii.addresses, 20
+    root, data_structures_and_algorithms_ii.addresses, 10, 15
+)
+data_structures_and_algorithms_ii.table_app.TableApp(
+    root, data_structures_and_algorithms_ii.trucks, 15, 10
 )
 
 root.mainloop()

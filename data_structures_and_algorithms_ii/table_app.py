@@ -2,7 +2,7 @@ import tkinter
 
 
 class TableApp:
-    def __init__(self, parent, data, row_offset, button=None):
+    def __init__(self, parent, data, row_offset, column_offset, button=None):
         self.parent = parent
         self.data = data
         self.rows = len(data)
@@ -10,7 +10,7 @@ class TableApp:
 
         # Add frame for the table
         self.frame = tkinter.Frame(parent)
-        self.frame.grid(row=0, column=row_offset)
+        self.frame.grid(row=row_offset, column=column_offset)
 
         # Add header row
         headers = list(data[0].__dict__.keys())

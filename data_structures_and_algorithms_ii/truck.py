@@ -74,25 +74,16 @@ class Truck:
                 f"Truck status must be one of the following: {truck_statuses}."
             )
 
-    # def set_load_time(self, load_time: datetime.time):
-    #     """
-    #     Sets the load time of the truck to the current time.
-    #
-    #     Returns:
-    #         None
-    #     """
-    #     self.load_time = load_time
-    #     self.truck_time = load_time
-
     def load_truck(
         self,
         package_id: int,
-        load_time: datetime.time = datetime.time(hour=8, minute=0),
+        load_time: datetime.time = datetime.time(hour=8, minute=2),
     ) -> None:
         """Loads a package onto the truck.
 
         Args:
             package_id (int): The ID of the package to load onto the truck.
+            load_time (datetime.time): The time the package is loaded onto the truck.
 
         Returns:
             None
@@ -116,10 +107,9 @@ class Truck:
         # Add the package ID to the truck's packages list
         self.packages.append(package_id)
         # Add the address ID to list of addresses
-        if package.address not in self.addresses:  # O(n) - list search
-            self.addresses.append(package.address)
-            self.addresses_not_yet_delivered.append(package.address)
-
+        if package.address_id not in self.addresses:  # O(n) - list search
+            self.addresses.append(package.address_id)
+            self.addresses_not_yet_delivered.append(package.address_id)
         # Update the package in the package hash table
         data_structures_and_algorithms_ii.packages.update(
             package_id, package
@@ -198,7 +188,6 @@ class Truck:
         Returns:
             None
         """
-        self.truck_status = "Returning"
         self.truck_time = (
             data_structures_and_algorithms_ii.delivery_time_calculator.time_updater(
                 self.truck_time,
@@ -206,6 +195,7 @@ class Truck:
             )
         )
         self.current_address = 0
+        self.truck_status = "At Hub"
         print(f"Truck {self.id} has returned to the hub at {self.truck_time}.\n")
 
     def deliver(self, address_id: int) -> [int]:
@@ -237,7 +227,7 @@ class Truck:
 
         # Loop through the package IDs to deliver the package
         for i in item_values:
-            if i.address == address_id:
+            if i.address_id == address_id:
                 if i.id in self.packages:
                     data_structures_and_algorithms_ii.packages.get(
                         i.id
@@ -271,4 +261,3 @@ class Truck:
             self.deliver(self.nearest_address())
 
         self.return_truck()
-        self.truck_status = "At Hub"

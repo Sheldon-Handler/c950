@@ -49,6 +49,6 @@ def load_from_package_list(addresses: [], packages: []) -> None:
     """
     for i in addresses:
         for j in packages:
-            if i.id == j.address:
+            if i.id == j.address_id:
                 i.load_address(j.id)
                 print(f"Package {j.id} loaded to address {i.id}.")
