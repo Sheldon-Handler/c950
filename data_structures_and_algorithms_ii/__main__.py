@@ -1,6 +1,7 @@
 import datetime
 
 import data_structures_and_algorithms_ii.nearest_neighbor
+import data_structures_and_algorithms_ii.package
 import data_structures_and_algorithms_ii.read_csv_file
 import data_structures_and_algorithms_ii.truck
 
@@ -152,14 +153,23 @@ data_structures_and_algorithms_ii.trucks[1].depart_truck(
     datetime.time(hour=8, minute=0)
 )
 
-packages = data_structures_and_algorithms_ii.packages.get_all()
+# packages = data_structures_and_algorithms_ii.packages.get_all()
+#
+# for package in packages:
+#     print(package[1]._str())
 
-for package in packages:
-    print(package[1]._str())
 
 data_structures_and_algorithms_ii.trucks[0].sort_addresses()
+data_structures_and_algorithms_ii.trucks[1].sort_addresses()
 
 # id_matches = data_structures_and_algorithms_ii.package.get_package_ids_with_address_id(
 #     19
 # )
 # print(id_matches)
+
+
+package_sample = (
+    data_structures_and_algorithms_ii.package.get_package_ids_with_address_id(1, items)
+)
+
+print(package_sample)

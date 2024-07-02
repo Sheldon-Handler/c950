@@ -1,7 +1,5 @@
 import datetime
 
-# import data_structures_and_algorithms_ii.hash_table
-
 
 class Package:
     """This dataclass represents a package instance with its information which has not had any data mutated."""
@@ -141,20 +139,23 @@ class Package:
         return f"Package ID: {self.id} Address: {self.address}\n"
 
 
-# def get_package_ids_with_address_id(
-#     address_id: int,
-#     packages: data_structures_and_algorithms_ii.hash_table.HashTable = data_structures_and_algorithms_ii.packages,
-# ) -> list:
-#
-#     package_ids_with_matching_addresses = []
-#     package_tuples = packages.get_all()
-#     temp_list = list(package_tuples)
-#     package_list = []
-#     for i in package_tuples:
-#         package_list.append(list(i))
-#
-#     for package in package_list:
-#         if package[1].address == address_id:
-#             package_ids_with_matching_addresses.append(package[1].id)
-#
-#     return package_ids_with_matching_addresses
+def get_package_ids_with_address_id(
+    address_id: int,
+    packages: [],
+) -> list[int]:
+    """
+
+    Args:
+        address_id ():
+        packages ():
+
+    Returns:
+
+    """
+
+    matching_packages = []
+    for i in packages:
+        if i.address == address_id:
+            matching_packages.append(i.id)
+
+    return matching_packages

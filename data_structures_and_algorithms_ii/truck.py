@@ -176,7 +176,7 @@ class Truck:
 
         """
 
-        excluded_addresses = self.addresses_not_in_this_truck + self.visited_addresses
+        #        excluded_addresses = self.addresses_not_in_this_truck + self.visited_addresses
         sorted_addresses = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
             data_structures_and_algorithms_ii.distances[self.current_address],
             (self.addresses_not_in_this_truck + self.visited_addresses),
