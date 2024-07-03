@@ -74,25 +74,3 @@ class Button:
 
     def button_click(self):
         pass
-
-
-class EditButton(Button):
-
-    def __init__(self, parent, button):
-        super().__init__(
-            parent, tkinter.Button(parent, text=button, command=self.button_click)
-        )
-
-    def button_click(self):
-        print("Edit Button Clicked")
-
-
-class DeliverButton(Button):
-
-    def __init__(self, parent, button):
-        super().__init__(
-            parent, tkinter.Button(parent, text=button, command=self.button_click)
-        )
-
-    def button_click(self):
-        print("Deliver Button Clicked")
