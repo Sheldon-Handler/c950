@@ -153,9 +153,12 @@ item_values = [i[1] for i in item_tuples]
 
 root = tkinter.Tk()
 
-# root.mainloop()
 
-data_structures_and_algorithms_ii.table_app2.packages_table(item_values)
+data_structures_and_algorithms_ii.table_app2.packages_table(item_values, root)
 data_structures_and_algorithms_ii.table_app2.addresses_table(
-    data_structures_and_algorithms_ii.addresses
+    data_structures_and_algorithms_ii.addresses, root
 )
+data_structures_and_algorithms_ii.table_app2.trucks_table(
+    data_structures_and_algorithms_ii.trucks, root
+)
+root.mainloop()

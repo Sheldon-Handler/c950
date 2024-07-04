@@ -11,8 +11,8 @@
 import tkinter
 
 
-def packages_table(package_list: list):
-    root = tkinter.Tk()
+def packages_table(package_list: list, parent):
+    root = parent
     root.title("Packages")
 
     # Define attribute names as labels in the first row
@@ -39,12 +39,9 @@ def packages_table(package_list: list):
             row_cells.append(cell)
         package_cells.append(row_cells)
 
-    # Run the main loop
-    root.mainloop()
 
-
-def addresses_table(address_list: list):
-    root = tkinter.Tk()
+def addresses_table(address_list: list, parent):
+    root = tkinter.Toplevel(parent)
     root.title("Addresses")
 
     # Define attribute names as labels in the first row
@@ -71,5 +68,31 @@ def addresses_table(address_list: list):
             row_cells.append(cell)
         address_cells.append(row_cells)
 
-    # Run the main loop
-    root.mainloop()
+
+def trucks_table(truck_list: list, parent):
+    root = tkinter.Toplevel(parent)
+    root.title("Trucks")
+
+    # Define attribute names as labels in the first row
+    truck_column_names = truck_list[0].__dict__.keys()
+    truck_column_names = list(truck_column_names)
+
+    truck_cells = []
+
+    for col, name in enumerate(truck_column_names):
+        label = tkinter.Label(root, text=name)
+        label.grid(row=0, column=col)
+
+    for i in range(len(truck_list)):
+        row_cells = []
+        for j in range(len(truck_column_names)):
+            cell = tkinter.Label(
+                root,
+                text=getattr(truck_list[i], truck_column_names[j]),
+                borderwidth=1,
+                relief="solid",
+                bg="white",
+            )
+            cell.grid(row=i + 1, column=j, sticky="nsew")
+            row_cells.append(cell)
+        truck_cells.append(row_cells)
