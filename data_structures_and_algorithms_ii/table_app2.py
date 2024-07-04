@@ -11,8 +11,13 @@
 import tkinter
 
 
-def packages_table(package_list: list, parent):
+def button_window(parent):
     root = parent
+    root.title("Main Menu")
+
+
+def packages_table(package_list: list, parent):
+    root = tkinter.Toplevel(parent)
     root.title("Packages")
 
     # Define attribute names as labels in the first row
