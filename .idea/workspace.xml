@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixing some things">
+      <change afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/address.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/address.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/gui.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/package.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/read_csv_file.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,22 +197,6 @@
       <workItem from="1718571684449" duration="626000" />
       <workItem from="1718649965318" duration="1133000" />
       <workItem from="1718651241196" duration="12678000" />
-    </task>
-    <task id="LOCAL-00042" summary="Added logic to get sorted neighbors that are unvisited">
-      <option name="closed" value="true" />
-      <created>1713298414526</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1713298414526</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Add logic to set address to empty if the wrong address is listed under special notes">
-      <option name="closed" value="true" />
-      <created>1713298624711</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1713298624711</updated>
     </task>
     <task id="LOCAL-00044" summary="Fixed some things">
       <option name="closed" value="true" />
@@ -594,7 +574,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719962143259</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Fixing some things">
+      <option name="closed" value="true" />
+      <created>1719964418661</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1719964418661</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Fixing some things">
+      <option name="closed" value="true" />
+      <created>1719965502263</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1719965502263</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

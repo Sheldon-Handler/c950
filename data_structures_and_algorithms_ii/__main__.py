@@ -4,7 +4,7 @@ import tkinter
 import data_structures_and_algorithms_ii.address
 import data_structures_and_algorithms_ii.nearest_neighbor
 import data_structures_and_algorithms_ii.read_csv_file
-import data_structures_and_algorithms_ii.table_app
+import data_structures_and_algorithms_ii.table_app2
 import data_structures_and_algorithms_ii.truck
 
 # Initialize csv files into lists
@@ -153,12 +153,9 @@ item_values = [i[1] for i in item_tuples]
 
 root = tkinter.Tk()
 
-data_structures_and_algorithms_ii.table_app.TableApp(root, item_values, 10, 10)
-data_structures_and_algorithms_ii.table_app.TableApp(
-    root, data_structures_and_algorithms_ii.addresses, 10, 15
-)
-data_structures_and_algorithms_ii.table_app.TableApp(
-    root, data_structures_and_algorithms_ii.trucks, 15, 10
-)
+# root.mainloop()
 
-root.mainloop()
+data_structures_and_algorithms_ii.table_app2.packages_table(item_values)
+data_structures_and_algorithms_ii.table_app2.addresses_table(
+    data_structures_and_algorithms_ii.addresses
+)

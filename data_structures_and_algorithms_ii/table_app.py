@@ -38,21 +38,22 @@ class TableApp:
                 row_cells.append(cell)
             self.cells.append(row_cells)
 
-        # # Add button row
-        # self.button = tkinter.Button(
-        #     self.frame,
-        #     text="Edit",
-        #     borderwidth=1,
-        #     relief="solid",
-        #     bg="lightgreen",
-        #     command=button,
-        # )
-        # self.button.grid(
-        #     row=self.rows + 1,
-        #     column=0,
-        #     sticky="nsew",
-        # )
-        # self.button.bind("<Button-1>", lambda event: self.button_click())
+        if button is not None:
+            # Add button row
+            self.button = tkinter.Button(
+                self.frame,
+                text="Edit",
+                borderwidth=1,
+                relief="solid",
+                bg="lightgreen",
+                command=button,
+            )
+            self.button.grid(
+                row=self.rows + 1,
+                column=0,
+                sticky="nsew",
+            )
+            self.button.bind("<Button-1>", lambda event: self.button_click())
 
     def select_row(self, row):
         if self.selected_row is not None:
@@ -64,13 +65,11 @@ class TableApp:
         self.selected_row = row
 
     def button_click(self):
-        Button(self.parent, self.button).button_click()
+        SearchPackageButton(self.parent, self.button).button_click()
 
 
-class Button:
+class SearchPackageButton:
     def __init__(self, parent, button):
         self.parent = parent
         self.button = button
-
-    def button_click(self):
-        pass
+        button.config(text="Search")
