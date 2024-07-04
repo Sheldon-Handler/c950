@@ -97,6 +97,26 @@ class Package:
         """
         self.address_id = correct_address_id
 
+    def update_delivery_status(self, updated_delivery_status: str) -> None:
+        """Updates the delivery status of the package. If a delivery time is provided, it will also update the
+        delivery time of the package.
+
+        Args:
+            delivery_status (str): The delivery status of the package.
+
+        Returns:
+            None
+        """
+
+        # Check that the delivery_status is a valid value.
+        self.delivery_status = updated_delivery_status
+        print(f"Package {self.id} delivery status updated to {self.delivery_status}.\n")
+        # else:
+        #     raise ValueError(
+        #         "Invalid delivery status value. Please enter either one of the following:\n",
+        #         "'Not Available'\n'At Hub'\n'En Route'\n'Delivered'\n",
+        #     )
+
     def set_arrival_time(self, arrival_time: datetime.time):
         """Sets the arrival time of the package.
 

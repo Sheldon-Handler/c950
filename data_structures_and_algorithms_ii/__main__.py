@@ -161,4 +161,8 @@ data_structures_and_algorithms_ii.table_app2.addresses_table(
 data_structures_and_algorithms_ii.table_app2.trucks_table(
     data_structures_and_algorithms_ii.trucks, root
 )
+
+item_tuples = data_structures_and_algorithms_ii.packages.get_all()
+item_values = [i[1] for i in item_tuples]
+
 root.mainloop()

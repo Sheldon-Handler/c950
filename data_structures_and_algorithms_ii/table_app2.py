@@ -11,9 +11,13 @@
 import tkinter
 
 
-def button_window(parent):
+def button_window(packages_list, addresses_list, trucks_list, parent: tkinter.Tk):
     root = parent
     root.title("Main Menu")
+
+    packages_table(packages_list, root)
+    addresses_table(addresses_list, root)
+    trucks_table(trucks_list, root)
 
 
 def packages_table(package_list: list, parent):
@@ -28,21 +32,27 @@ def packages_table(package_list: list, parent):
 
     for col, name in enumerate(package_column_names):
         label = tkinter.Label(root, text=name)
-        label.grid(row=0, column=col)
+        label.grid(row=2, column=col)
 
-    for i in range(len(package_list)):
-        row_cells = []
-        for j in range(len(package_column_names)):
-            cell = tkinter.Label(
-                root,
-                text=getattr(package_list[i], package_column_names[j]),
-                borderwidth=1,
-                relief="solid",
-                bg="white",
-            )
-            cell.grid(row=i + 1, column=j, sticky="nsew")
-            row_cells.append(cell)
-        package_cells.append(row_cells)
+    def update_table():
+        for i in range(len(package_list)):
+            row_cells = []
+            for j in range(len(package_column_names)):
+                cell = tkinter.Label(
+                    root,
+                    text=getattr(package_list[i], package_column_names[j]),
+                    borderwidth=1,
+                    relief="solid",
+                    bg="white",
+                )
+                cell.grid(row=i + 1, column=j, sticky="nsew")
+                row_cells.append(cell)
+            package_cells.append(row_cells)
+
+    update_table()
+
+    parent.event_generate("<<UpdateTable>>", when="tail")
+    parent.bind("<<UpdateTable>>", update_table)
 
 
 def addresses_table(address_list: list, parent):
