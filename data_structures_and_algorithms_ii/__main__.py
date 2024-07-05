@@ -1,9 +1,9 @@
 import datetime
-import tkinter
 
 import data_structures_and_algorithms_ii.address
 import data_structures_and_algorithms_ii.nearest_neighbor
 import data_structures_and_algorithms_ii.read_csv_file
+import data_structures_and_algorithms_ii.search_function
 import data_structures_and_algorithms_ii.table_app2
 import data_structures_and_algorithms_ii.truck
 
@@ -151,18 +151,16 @@ data_structures_and_algorithms_ii.trucks[2].deliver_all()
 item_tuples = data_structures_and_algorithms_ii.packages.get_all()
 item_values = [i[1] for i in item_tuples]
 
-root = tkinter.Tk()
 
-
-data_structures_and_algorithms_ii.table_app2.packages_table(item_values, root)
-data_structures_and_algorithms_ii.table_app2.addresses_table(
-    data_structures_and_algorithms_ii.addresses, root
-)
-data_structures_and_algorithms_ii.table_app2.trucks_table(
-    data_structures_and_algorithms_ii.trucks, root
+package_list, truck_list = (
+    data_structures_and_algorithms_ii.search_function.package_status_at_time(
+        item_values,
+        data_structures_and_algorithms_ii.trucks,
+        datetime.time(hour=9, minute=10),
+    )
 )
 
-item_tuples = data_structures_and_algorithms_ii.packages.get_all()
-item_values = [i[1] for i in item_tuples]
-
-root.mainloop()
+data_structures_and_algorithms_ii.table_app2.main_window(
+    packages_list=package_list,
+    trucks_list=truck_list,
+)

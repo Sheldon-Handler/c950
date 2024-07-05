@@ -47,11 +47,11 @@ class Truck:
         self.addresses = [0]
         self.departure_time = departure_time
         self.truck_time = truck_time
+        self.return_time = None
         self.visited_addresses = [0]
         self.current_address = current_address
         self.addresses_not_in_this_truck = []
         self.addresses_not_yet_delivered = []
-        # self.load_time = load_time
 
     def update_truck_status(self, truck_status: str) -> bool:
         """Updates the truck status.
@@ -194,6 +194,7 @@ class Truck:
                 data_structures_and_algorithms_ii.distances[self.current_address][0],
             )
         )
+        self.return_time = self.truck_time
         self.current_address = 0
         self.truck_status = "At Hub"
         print(f"Truck {self.id} has returned to the hub at {self.truck_time}.\n")

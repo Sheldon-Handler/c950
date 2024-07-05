@@ -7,11 +7,13 @@
 #  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+import copy
 import datetime
 
 import data_structures_and_algorithms_ii
 import data_structures_and_algorithms_ii.hash_table
 import data_structures_and_algorithms_ii.package
+import data_structures_and_algorithms_ii.truck
 
 
 def package_lookup(
@@ -43,8 +45,12 @@ def package_lookup(
 
 def package_status_at_time(
     packages_list: [data_structures_and_algorithms_ii.package.Package],
+    trucks_list: [data_structures_and_algorithms_ii.truck.Truck],
     time: datetime.time = None,
-) -> [data_structures_and_algorithms_ii.package.Package]:
+) -> (
+    [data_structures_and_algorithms_ii.package.Package],
+    [data_structures_and_algorithms_ii.truck.Truck],
+):
     """
     Returns a list of packages and their statuses at a given time.
 
@@ -55,17 +61,23 @@ def package_status_at_time(
     Returns:
         list: A list of packages and their statuses.
     """
-
-    # Check if the time is None
-    if time is None:
-        # Set the status all to the end of day values
-        for package in packages_list:  # O(n) - for loop
-            package.delivery_status = "Delivered"
+    cloned_packages_list = [copy.deepcopy(package) for package in packages_list]
+    cloned_truck_list = [copy.deepcopy(truck) for truck in trucks_list]
 
     # Check if the time is a datetime.time object
-    elif time.__class__ == datetime.time:
+    if time.__class__ == datetime.time:
+
+        # Set the status of each truck based on the time
+        for truck in cloned_truck_list:  # O(n) - for loop
+            if time < truck.departure_time:
+                truck.status = "At Hub"
+            elif time >= truck.departure_time and time < truck.return_time:
+                truck.status = "En Route"
+            else:
+                truck.status = "At Hub"
+
         # Set the status of each package based on the time
-        for package in packages_list:  # O(n) - for loop
+        for package in cloned_packages_list:  # O(n) - for loop
             if time < package.arrival_time:
                 package.delivery_status = "Not Available"
             elif time < package.load_time:
@@ -77,8 +89,35 @@ def package_status_at_time(
             else:
                 package.delivery_status = "Delivered"
 
-    # If the time is not a datetime.time object, raise an exception
-    else:
-        raise Exception("Invalid time")
+    return cloned_packages_list, cloned_truck_list
 
-    return packages_list
+
+def distance_traveled_at_time(packages_list, truck_list, address_list):
+    """
+    Returns the distance traveled by each truck at a given time.
+
+    Args:
+        packages_list (list): A list of packages.
+        truck_list (list): A list of trucks.
+        address_list (list): A list of addresses.
+
+    Returns:
+        list: A list of trucks and the distance they have traveled.
+    """
+
+    cloned_truck_list = [copy.deepcopy(truck) for truck in truck_list]
+
+    # Set the status of each truck based on the time
+    for truck in range(len(cloned_truck_list)):  # O(n) - for loop
+        if (
+            cloned_truck_list[truck].truck.status == "At Hub"
+            and cloned_truck_list[truck].addresses_not_yet_delivered.__len__() == 0
+        ):
+            truck.distance_traveled = 0
+        elif cloned_truck_list[truck].status == "En Route":
+            for i in range(len(truck.addresses)):  # O(n) - for loop
+                truck.distance_traveled += data_structures_and_algorithms_ii.distances[
+                    truck.visited_addresses[i - 1]
+                ][truck.addresses[i]]
+
+    return cloned_truck_list

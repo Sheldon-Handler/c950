@@ -11,18 +11,23 @@
 import tkinter
 
 
-def button_window(packages_list, addresses_list, trucks_list, parent: tkinter.Tk):
-    root = parent
+def main_window(packages_list: list, trucks_list: list, addresses_list: list = None):
+    root = tkinter.Tk()
+
     root.title("Main Menu")
 
     packages_table(packages_list, root)
-    addresses_table(addresses_list, root)
     trucks_table(trucks_list, root)
+
+    if addresses_list.__class__ == list:
+        addresses_table(addresses_list, root)
+
+    root.mainloop()
 
 
 def packages_table(package_list: list, parent):
-    root = tkinter.Toplevel(parent)
-    root.title("Packages")
+    root = tkinter.PanedWindow(parent)
+    root.pack(fill="both", expand=1)
 
     # Define attribute names as labels in the first row
     package_column_names = package_list[0].__dict__.keys()
@@ -32,32 +37,26 @@ def packages_table(package_list: list, parent):
 
     for col, name in enumerate(package_column_names):
         label = tkinter.Label(root, text=name)
-        label.grid(row=2, column=col)
+        label.grid(row=0, column=col)
 
-    def update_table():
-        for i in range(len(package_list)):
-            row_cells = []
-            for j in range(len(package_column_names)):
-                cell = tkinter.Label(
-                    root,
-                    text=getattr(package_list[i], package_column_names[j]),
-                    borderwidth=1,
-                    relief="solid",
-                    bg="white",
-                )
-                cell.grid(row=i + 1, column=j, sticky="nsew")
-                row_cells.append(cell)
-            package_cells.append(row_cells)
-
-    update_table()
-
-    parent.event_generate("<<UpdateTable>>", when="tail")
-    parent.bind("<<UpdateTable>>", update_table)
+    for i in range(len(package_list)):
+        row_cells = []
+        for j in range(len(package_column_names)):
+            cell = tkinter.Label(
+                root,
+                text=getattr(package_list[i], package_column_names[j]),
+                borderwidth=1,
+                relief="solid",
+                bg="white",
+            )
+            cell.grid(row=i + 1, column=j, sticky="nsew")
+            row_cells.append(cell)
+        package_cells.append(row_cells)
 
 
 def addresses_table(address_list: list, parent):
-    root = tkinter.Toplevel(parent)
-    root.title("Addresses")
+    root = tkinter.PanedWindow(parent)
+    root.pack(fill="both", expand=1)
 
     # Define attribute names as labels in the first row
     address_column_names = address_list[0].__dict__.keys()
@@ -85,8 +84,8 @@ def addresses_table(address_list: list, parent):
 
 
 def trucks_table(truck_list: list, parent):
-    root = tkinter.Toplevel(parent)
-    root.title("Trucks")
+    root = tkinter.PanedWindow(parent)
+    root.pack(fill="both", expand=1)
 
     # Define attribute names as labels in the first row
     truck_column_names = truck_list[0].__dict__.keys()

@@ -33,3 +33,13 @@ def check_deliveries_at_time(start_time: datetime.time, end_time: datetime.time)
     packages_at_hub = []
     packages_en_route = []
     packages_delivered = []
+
+    for package in packages_list:
+        if package.status == "Not Available":
+            packages_not_available.append(package)
+        elif package.status == "At Hub":
+            packages_at_hub.append(package)
+        elif package.status == "En Route":
+            packages_en_route.append(package)
+        elif package.status == "Delivered":
+            packages_delivered.append(package)
