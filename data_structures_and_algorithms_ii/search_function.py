@@ -62,19 +62,19 @@ def package_status_at_time(
         list: A list of packages and their statuses.
     """
     cloned_packages_list = [copy.deepcopy(package) for package in packages_list]
-    cloned_truck_list = [copy.deepcopy(truck) for truck in trucks_list]
+    #    cloned_truck_list = [copy.deepcopy(truck) for truck in trucks_list]
 
     # Check if the time is a datetime.time object
     if time.__class__ == datetime.time:
 
-        # Set the status of each truck based on the time
-        for truck in cloned_truck_list:  # O(n) - for loop
-            if time < truck.departure_time:
-                truck.status = "At Hub"
-            elif time >= truck.departure_time and time < truck.return_time:
-                truck.status = "En Route"
-            else:
-                truck.status = "At Hub"
+        # # Set the status of each truck based on the time
+        # for truck in cloned_truck_list:  # O(n) - for loop
+        #     if time < truck.departure_time:
+        #         truck.status = "At Hub"
+        #     elif time >= truck.departure_time and time < truck.return_time:
+        #         truck.status = "En Route"
+        #     else:
+        #         truck.status = "At Hub"
 
         # Set the status of each package based on the time
         for package in cloned_packages_list:  # O(n) - for loop
@@ -89,7 +89,7 @@ def package_status_at_time(
             else:
                 package.delivery_status = "Delivered"
 
-    return cloned_packages_list, cloned_truck_list
+    return cloned_packages_list
 
 
 def distance_traveled_at_time(packages_list, truck_list, address_list):
@@ -104,20 +104,3 @@ def distance_traveled_at_time(packages_list, truck_list, address_list):
     Returns:
         list: A list of trucks and the distance they have traveled.
     """
-
-    cloned_truck_list = [copy.deepcopy(truck) for truck in truck_list]
-
-    # Set the status of each truck based on the time
-    for truck in range(len(cloned_truck_list)):  # O(n) - for loop
-        if (
-            cloned_truck_list[truck].truck.status == "At Hub"
-            and cloned_truck_list[truck].addresses_not_yet_delivered.__len__() == 0
-        ):
-            truck.distance_traveled = 0
-        elif cloned_truck_list[truck].status == "En Route":
-            for i in range(len(truck.addresses)):  # O(n) - for loop
-                truck.distance_traveled += data_structures_and_algorithms_ii.distances[
-                    truck.visited_addresses[i - 1]
-                ][truck.addresses[i]]
-
-    return cloned_truck_list
