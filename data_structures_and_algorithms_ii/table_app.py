@@ -10,8 +10,16 @@
 import datetime
 import tkinter
 
+import data_structures_and_algorithms_ii.truck
 
-def main_window(packages_list: list, trucks_list: list, hour: int, minute: int):
+
+def main_window(
+    packages_list: list,
+    trucks_list: list,
+    trucks_view_list: list,
+    hour: int,
+    minute: int,
+):
     """
     Creates the main window with the tables of packages and trucks
     Args:
@@ -27,6 +35,7 @@ def main_window(packages_list: list, trucks_list: list, hour: int, minute: int):
 
     packages_table(packages_list, root)
     trucks_table(trucks_list, root)
+    trucks_distance(trucks_view_list, root)
 
     root.mainloop()
 
@@ -109,6 +118,37 @@ def trucks_table(truck_list: list, parent):
             cell = tkinter.Label(
                 root,
                 text=getattr(truck_list[i], truck_column_names[j]),
+                borderwidth=1,
+                relief="solid",
+                bg="white",
+            )
+            cell.grid(row=i + 1, column=j, sticky="nsew")
+            row_cells.append(cell)
+        truck_cells.append(row_cells)
+
+
+def trucks_distance(
+    truck_view_list: [data_structures_and_algorithms_ii.truck.TruckView], parent
+):
+    root = tkinter.PanedWindow(parent)
+    root.pack(fill="both", expand=1)
+
+    # Define attribute names as labels in the first row
+    truck_column_names = truck_view_list[0].__dict__.keys()
+    truck_column_names = list(truck_column_names)
+
+    truck_cells = []
+
+    for col, name in enumerate(truck_column_names):
+        label = tkinter.Label(root, text=name)
+        label.grid(row=0, column=col)
+
+    for i in range(len(truck_view_list)):
+        row_cells = []
+        for j in range(len(truck_column_names)):
+            cell = tkinter.Label(
+                root,
+                text=getattr(truck_view_list[i], truck_column_names[j]),
                 borderwidth=1,
                 relief="solid",
                 bg="white",

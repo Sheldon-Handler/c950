@@ -45,6 +45,7 @@ class Truck:
         self.distance_traveled = distance_traveled
         self.packages = []
         self.addresses = [0]
+        self.packages_delivered = []
         self.departure_time = departure_time
         self.truck_time = truck_time
         self.return_time = None
@@ -189,13 +190,17 @@ class Truck:
         Returns:
             None
         """
+        distance_between = data_structures_and_algorithms_ii.distances[
+            self.current_address
+        ][0]
         self.truck_time = (
             data_structures_and_algorithms_ii.delivery_time_calculator.time_updater(
                 self.truck_time,
-                data_structures_and_algorithms_ii.distances[self.current_address][0],
+                distance_between,
             )
         )
         self.return_time = self.truck_time
+        self.traveled_distances.append(distance_between)
         self.current_address = 0
         self.truck_status = "At Hub"
         print(f"Truck {self.id} has returned to the hub at {self.truck_time}.\n")
@@ -209,10 +214,6 @@ class Truck:
         Returns:
             None
         """
-        nearest_address = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
-            data_structures_and_algorithms_ii.distances[self.current_address],
-            (self.addresses_not_in_this_truck + self.visited_addresses),
-        )
 
         distance_between = data_structures_and_algorithms_ii.distances[
             self.current_address
@@ -234,6 +235,7 @@ class Truck:
                     data_structures_and_algorithms_ii.packages.get(
                         i.id
                     ).deliver_package(delivery_time)
+                    self.packages_delivered.append(i.id)
 
         # Update the truck's distance traveled
         added_distance = data_structures_and_algorithms_ii.distances[
@@ -265,3 +267,16 @@ class Truck:
             self.deliver(self.nearest_address())
 
         self.return_truck()
+
+
+class TruckView:
+    """
+    This class represents a view of the truck at a given time
+    """
+
+    def __init__(self, truck_id: int, distance_traveled: int):
+        self.truck_id = truck_id
+        self.distance_traveled = distance_traveled
+
+    def set_distance_traveled(self, distance_traveled: int):
+        self.distance_traveled = distance_traveled

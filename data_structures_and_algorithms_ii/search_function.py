@@ -90,9 +90,10 @@ def package_status_at_time(
     return cloned_packages_list
 
 
-def distance_traveled_and_packages_status(
+def distance_traveled(
     truck: data_structures_and_algorithms_ii.truck.Truck,
     packages_at_time: [data_structures_and_algorithms_ii.package.Package],
+    time: datetime.time,
 ):
     """
     Returns the distance traveled by each truck at a given time.
@@ -102,7 +103,7 @@ def distance_traveled_and_packages_status(
         packages_at_time (list) : A list of packages at a given time.
 
     Returns:
-        list: A list of trucks and the distance they have traveled.
+        int: distance traveled by the truck.
     """
 
     packages_in_truck = []
@@ -111,27 +112,31 @@ def distance_traveled_and_packages_status(
         if package.truck_id == truck.id:
             packages_in_truck.append(package)
 
-    # Sort the packages by delivery time
-    sorted_packages = sorted(packages_in_truck, key=lambda x: x.delivery_time)
-
-    # Get all the packages that have been delivered
-    sorted_packages_delivered = [
-        package for package in sorted_packages if package.delivery_status == "Delivered"
-    ]  # O(n) - for loop
+    current_address = 0
+    distance_visited = float(0)
 
     # Add all the addresses to a list
-    addresses = [0]
-    for package in sorted_packages_delivered:  # O(n) - for loop
-        if package.address_id not in addresses:  # O(n) - list search
-            addresses.append(package.address_id)
+    delivered_addresses = [0]
+    for package in packages_in_truck:  # O(n) - for loop
+        if package.delivery_status == "Delivered":
+            if package.address_id not in delivered_addresses:  # O(n) - list search
+                delivered_addresses.append(package.address_id)
 
     # Calculate the distance traveled
-    current_address = addresses[0]
-    distance_traveled = 0
-    for address in addresses:  # O(n) - for loop
-        distance_traveled += data_structures_and_algorithms_ii.distances[
-            current_address
-        ][address]
-        current_address = address
+    for i in truck.visited_addresses:
+        # Add the distance between the current address and the next address
+        if i in delivered_addresses:
+            new_distance = float(
+                data_structures_and_algorithms_ii.distances[current_address][i]
+            )
+            distance_visited += float(new_distance)
+            current_address = truck.addresses
 
-    return distance_traveled
+    # Add the distance between the last address and the hub if the truck is at the hub at the given time
+    if time.resolution >= truck.return_time.resolution:
+        new_distance = float(
+            data_structures_and_algorithms_ii.distances[current_address][0]
+        )
+        distance_visited += float(new_distance)
+
+    return distance_visited
