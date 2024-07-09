@@ -1,6 +1,7 @@
 import datetime
 
 import data_structures_and_algorithms_ii.address
+import data_structures_and_algorithms_ii.cmd_input
 import data_structures_and_algorithms_ii.nearest_neighbor
 import data_structures_and_algorithms_ii.read_csv_file
 import data_structures_and_algorithms_ii.search_function
@@ -151,16 +152,15 @@ data_structures_and_algorithms_ii.trucks[2].deliver_all()
 item_tuples = data_structures_and_algorithms_ii.packages.get_all()
 item_values = [i[1] for i in item_tuples]
 
+hour, minute = data_structures_and_algorithms_ii.cmd_input.cmd_input()
 
-package_list, truck_list = (
-    data_structures_and_algorithms_ii.search_function.package_status_at_time(
-        item_values,
-        data_structures_and_algorithms_ii.trucks,
-        datetime.time(hour=9, minute=10),
-    )
+package_list = data_structures_and_algorithms_ii.search_function.package_status_at_time(
+    item_values,
+    data_structures_and_algorithms_ii.trucks,
+    datetime.time(hour=hour, minute=minute),
 )
 
 data_structures_and_algorithms_ii.table_app2.main_window(
     packages_list=package_list,
-    trucks_list=truck_list,
+    trucks_list=data_structures_and_algorithms_ii.trucks,
 )

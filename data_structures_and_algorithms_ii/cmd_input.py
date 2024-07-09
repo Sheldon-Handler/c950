@@ -17,5 +17,15 @@ def cmd_input():
         str: The command line input from the user.
     """
 
-    print("Enter a command: ")
-    option = input("Enter a command: ")
+    hour = input("Enter hour: ")
+
+    if hour.isdigit() and int(hour) < 24 and int(hour) >= 0:
+        hour = int(hour)
+        minute = input("Enter minute: ")
+        if minute.isdigit() and int(minute) < 60 and int(minute) >= 0:
+            minute = int(minute)
+            return hour, minute
+        else:
+            raise ValueError("Invalid input. Please enter a number between 0 and 59.")
+    else:
+        raise ValueError("Invalid input. Please enter a number between 0 and 23.")
