@@ -140,19 +140,31 @@ data_structures_and_algorithms_ii.trucks[2].depart_truck(
 #     print(package[1]._str())
 
 
-data_structures_and_algorithms_ii.trucks[0].sort_addresses()
-data_structures_and_algorithms_ii.trucks[1].sort_addresses()
-data_structures_and_algorithms_ii.trucks[2].sort_addresses()
+# data_structures_and_algorithms_ii.trucks[0].sort_addresses()
+# data_structures_and_algorithms_ii.trucks[1].sort_addresses()
+# data_structures_and_algorithms_ii.trucks[2].sort_addresses()
 
 data_structures_and_algorithms_ii.trucks[0].deliver_all()
 data_structures_and_algorithms_ii.trucks[1].deliver_all()
 data_structures_and_algorithms_ii.trucks[2].deliver_all()
 
+hour, minute = data_structures_and_algorithms_ii.cmd_input.cmd_input()
+
+
+# data_structures_and_algorithms_ii.trucks[0].deliver_until(
+#     datetime.time(hour=hour, minute=minute)
+# )
+# data_structures_and_algorithms_ii.trucks[1].deliver_until(
+#     datetime.time(hour=hour, minute=minute)
+# )
+# data_structures_and_algorithms_ii.trucks[2].deliver_until(
+#     datetime.time(hour=hour, minute=minute)
+# )
+
 
 item_tuples = data_structures_and_algorithms_ii.packages.get_all()
 item_values = [i[1] for i in item_tuples]
 
-hour, minute = data_structures_and_algorithms_ii.cmd_input.cmd_input()
 
 package_list = data_structures_and_algorithms_ii.search_function.package_status_at_time(
     item_values,
