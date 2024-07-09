@@ -5,7 +5,7 @@ import data_structures_and_algorithms_ii.cmd_input
 import data_structures_and_algorithms_ii.nearest_neighbor
 import data_structures_and_algorithms_ii.read_csv_file
 import data_structures_and_algorithms_ii.search_function
-import data_structures_and_algorithms_ii.table_app2
+import data_structures_and_algorithms_ii.table_app
 import data_structures_and_algorithms_ii.truck
 
 # Initialize csv files into lists
@@ -160,7 +160,9 @@ package_list = data_structures_and_algorithms_ii.search_function.package_status_
     datetime.time(hour=hour, minute=minute),
 )
 
-data_structures_and_algorithms_ii.table_app2.main_window(
+data_structures_and_algorithms_ii.table_app.main_window(
     packages_list=package_list,
     trucks_list=data_structures_and_algorithms_ii.trucks,
+    hour=hour,
+    minute=minute,
 )

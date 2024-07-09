@@ -1,75 +1,118 @@
+#  MIT License
+#
+#  Copyright (c) 2024 Sheldon Handler
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+import datetime
 import tkinter
 
 
-class TableApp:
-    def __init__(self, parent, data, row_offset, column_offset, button=None):
-        self.parent = parent
-        self.data = data
-        self.rows = len(data)
-        self.cols = len(data[0].__dict__)
+def main_window(packages_list: list, trucks_list: list, hour: int, minute: int):
+    """
+    Creates the main window with the tables of packages and trucks
+    Args:
+        packages_list (list): A list of packages to display in the table.
+        trucks_list (list): A list of trucks to display in the table.
 
-        # Add frame for the table
-        self.frame = tkinter.Frame(parent)
-        self.frame.grid(row=row_offset, column=column_offset)
+    Returns:
+        None
+    """
+    root = tkinter.Tk()
 
-        # Add header row
-        headers = list(data[0].__dict__.keys())
-        for j, header in enumerate(headers):
-            header_label = tkinter.Label(
-                self.frame, text=header, borderwidth=1, relief="solid"
-            )
-            header_label.grid(row=0, column=j, sticky="nsew")
+    root.title("Packages at " + datetime.time(hour, minute).strftime("%I:%M %p"))
 
-        # Add data rows
-        self.selected_row = None
-        self.cells = []
-        for i in range(self.rows):
-            row_cells = []
-            for j, key in enumerate(data[i].__dict__):
-                cell = tkinter.Label(
-                    self.frame,
-                    text=getattr(data[i], key),
-                    borderwidth=1,
-                    relief="solid",
-                    bg="white",
-                )
-                cell.grid(row=i + 1, column=j, sticky="nsew")
-                cell.bind("<Button-1>", lambda event, row=i: self.select_row(row))
-                row_cells.append(cell)
-            self.cells.append(row_cells)
+    packages_table(packages_list, root)
+    trucks_table(trucks_list, root)
 
-        if button is not None:
-            # Add button row
-            self.button = tkinter.Button(
-                self.frame,
-                text="Edit",
+    root.mainloop()
+
+
+def packages_table(package_list: list, parent):
+    root = tkinter.PanedWindow(parent)
+    root.pack(fill="both", expand=1)
+
+    # Define attribute names as labels in the first row
+    package_column_names = package_list[0].__dict__.keys()
+    package_column_names = list(package_column_names)
+
+    package_cells = []
+
+    for col, name in enumerate(package_column_names):
+        label = tkinter.Label(root, text=name)
+        label.grid(row=0, column=col)
+
+    for i in range(len(package_list)):
+        row_cells = []
+        for j in range(len(package_column_names)):
+            cell = tkinter.Label(
+                root,
+                text=getattr(package_list[i], package_column_names[j]),
                 borderwidth=1,
                 relief="solid",
-                bg="lightgreen",
-                command=button,
+                bg="white",
             )
-            self.button.grid(
-                row=self.rows + 1,
-                column=0,
-                sticky="nsew",
+            cell.grid(row=i + 1, column=j, sticky="nsew")
+            row_cells.append(cell)
+        package_cells.append(row_cells)
+
+
+# def addresses_table(address_list: list, parent):
+#     root = tkinter.PanedWindow(parent)
+#     root.pack(fill="both", expand=1)
+#
+#     # Define attribute names as labels in the first row
+#     address_column_names = address_list[0].__dict__.keys()
+#     address_column_names = list(address_column_names)
+#
+#     address_cells = []
+#
+#     for col, name in enumerate(address_column_names):
+#         label = tkinter.Label(root, text=name)
+#         label.grid(row=0, column=col)
+#
+#     for i in range(len(address_list)):
+#         row_cells = []
+#         for j in range(len(address_column_names)):
+#             cell = tkinter.Label(
+#                 root,
+#                 text=getattr(address_list[i], address_column_names[j]),
+#                 borderwidth=1,
+#                 relief="solid",
+#                 bg="white",
+#             )
+#             cell.grid(row=i + 1, column=j, sticky="nsew")
+#             row_cells.append(cell)
+#         address_cells.append(row_cells)
+
+
+def trucks_table(truck_list: list, parent):
+    root = tkinter.PanedWindow(parent)
+    root.pack(fill="both", expand=1)
+
+    # Define attribute names as labels in the first row
+    truck_column_names = truck_list[0].__dict__.keys()
+    truck_column_names = list(truck_column_names)
+
+    truck_cells = []
+
+    for col, name in enumerate(truck_column_names):
+        label = tkinter.Label(root, text=name)
+        label.grid(row=0, column=col)
+
+    for i in range(len(truck_list)):
+        row_cells = []
+        for j in range(len(truck_column_names)):
+            cell = tkinter.Label(
+                root,
+                text=getattr(truck_list[i], truck_column_names[j]),
+                borderwidth=1,
+                relief="solid",
+                bg="white",
             )
-            self.button.bind("<Button-1>", lambda event: self.button_click())
-
-    def select_row(self, row):
-        if self.selected_row is not None:
-            if self.selected_row != row:
-                for cell in self.cells[self.selected_row]:
-                    cell.config(bg="white")
-        for cell in self.cells[row]:
-            cell.config(bg="lightblue")
-        self.selected_row = row
-
-    def button_click(self):
-        SearchPackageButton(self.parent, self.button).button_click()
-
-
-class SearchPackageButton:
-    def __init__(self, parent, button):
-        self.parent = parent
-        self.button = button
-        button.config(text="Search")
+            cell.grid(row=i + 1, column=j, sticky="nsew")
+            row_cells.append(cell)
+        truck_cells.append(row_cells)
