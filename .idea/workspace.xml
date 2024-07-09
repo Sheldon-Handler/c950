@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Created input">
-      <change afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app_del.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app2.py" beforeDir="false" />
+    <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed input">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/cmd_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/cmd_input.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/search_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/search_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,14 +197,6 @@
       <workItem from="1718571684449" duration="626000" />
       <workItem from="1718649965318" duration="1133000" />
       <workItem from="1718651241196" duration="12678000" />
-    </task>
-    <task id="LOCAL-00051" summary="Removed redundent unused variable">
-      <option name="closed" value="true" />
-      <created>1713542157360</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1713542157360</updated>
     </task>
     <task id="LOCAL-00052" summary="Removed GUI which is unused">
       <option name="closed" value="true" />
@@ -590,7 +582,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720544071026</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Fixed input">
+      <option name="closed" value="true" />
+      <created>1720544511007</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1720544511007</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +609,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed file paths and main method" />
     <MESSAGE value="Fixed correct_address() method in shell.py" />
     <MESSAGE value="Fixed package_gui.py" />
     <MESSAGE value="Removed redundent unused variable" />
@@ -634,7 +633,8 @@
     <MESSAGE value="Fixing things" />
     <MESSAGE value="Fixing some things" />
     <MESSAGE value="Created input" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created input" />
+    <MESSAGE value="Fixed input" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed input" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/data_structures_and_algorithms_ii$gui.coverage" NAME="gui Coverage Results" MODIFIED="1718659799729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_structures_and_algorithms_ii" />

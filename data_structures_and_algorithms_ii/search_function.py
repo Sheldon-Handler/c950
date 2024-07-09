@@ -12,6 +12,7 @@ import datetime
 
 import data_structures_and_algorithms_ii
 import data_structures_and_algorithms_ii.hash_table
+import data_structures_and_algorithms_ii.nearest_neighbor
 import data_structures_and_algorithms_ii.package
 import data_structures_and_algorithms_ii.truck
 
@@ -47,10 +48,7 @@ def package_status_at_time(
     packages_list: [data_structures_and_algorithms_ii.package.Package],
     trucks_list: [data_structures_and_algorithms_ii.truck.Truck],
     time: datetime.time = None,
-) -> (
-    [data_structures_and_algorithms_ii.package.Package],
-    [data_structures_and_algorithms_ii.truck.Truck],
-):
+) -> ([data_structures_and_algorithms_ii.package.Package],):
     """
     Returns a list of packages and their statuses at a given time.
 
@@ -92,15 +90,59 @@ def package_status_at_time(
     return cloned_packages_list
 
 
-def distance_traveled_at_time(packages_list, truck_list, address_list):
+def distance_traveled_and_packages_status_at(
+    truck: data_structures_and_algorithms_ii.truck.Truck,
+    packages_at_time: [data_structures_and_algorithms_ii.package.Package],
+    time: datetime.time,
+):
     """
     Returns the distance traveled by each truck at a given time.
 
     Args:
-        packages_list (list): A list of packages.
-        truck_list (list): A list of trucks.
-        address_list (list): A list of addresses.
+        truck (data_structures_and_algorithms_ii.truck.Truck): The truck to check the distance of.
+        packages_at_time (list) : A list of packages at a given time.
 
     Returns:
         list: A list of trucks and the distance they have traveled.
     """
+    packages_delivered = []
+
+    for package in packages_at_time:  # O(n) - for loop
+        if package.truck_id == truck.id and package.delivery_status == "Delivered":
+            packages_delivered.append(package)
+
+    # Add all the addresses to a list
+    addresses = []
+    for package in packages_delivered:
+        if package.address_id not in addresses:
+            addresses.append(package.address_id)
+
+    # Sort the addresses by distance from the current address
+    current_address = addresses[0]
+    distance_traveled = 0
+    for address in addresses:
+        nearest_address = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
+            data_structures_and_algorithms_ii.distances[truck.current_address],
+            (truck.addresses_not_in_this_truck + truck.visited_addresses),
+        )
+
+    def nearest_address(
+        truck: data_structures_and_algorithms_ii.truck.Truck,
+        current_address: int,
+        addresses_already_entered: [int],
+    ) -> int:
+        """
+
+        Returns:
+            int: ID of Address closes to current location
+
+        Notes:
+            time complexity: O(n^2)
+            space complexity: O(1)
+        """
+        sorted_addresses = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
+            data_structures_and_algorithms_ii.distances[current_address],
+            (truck.addresses_not_in_this_truck + addresses_already_entered),
+        )  # O(n^2) - function call
+
+        return sorted_addresses[0]

@@ -49,6 +49,7 @@ class Truck:
         self.truck_time = truck_time
         self.return_time = None
         self.visited_addresses = [0]
+        self.traveled_distances = []
         self.current_address = current_address
         self.addresses_not_in_this_truck = []
         self.addresses_not_yet_delivered = []
@@ -199,14 +200,14 @@ class Truck:
         self.truck_status = "At Hub"
         print(f"Truck {self.id} has returned to the hub at {self.truck_time}.\n")
 
-    def deliver(self, address_id: int) -> [int]:
+    def deliver(self, address_id: int) -> None:
         """
 
         Args:
             address_id (int): ID of the address to deliver.
 
         Returns:
-
+            None
         """
         nearest_address = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
             data_structures_and_algorithms_ii.distances[self.current_address],
@@ -235,9 +236,11 @@ class Truck:
                     ).deliver_package(delivery_time)
 
         # Update the truck's distance traveled
-        self.distance_traveled += data_structures_and_algorithms_ii.distances[
+        added_distance = data_structures_and_algorithms_ii.distances[
             self.current_address
         ][address_id]
+        self.traveled_distances.append(added_distance)
+        self.distance_traveled += added_distance
 
         # Update the truck's truck time
         self.truck_time = delivery_time
