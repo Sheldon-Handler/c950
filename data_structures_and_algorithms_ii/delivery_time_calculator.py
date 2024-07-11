@@ -24,6 +24,16 @@ def delivery_time_calculator(
 
     Returns:
         datetime.time: The delivery time.
+
+    Notes:
+        time complexity:
+            best case: O(1)
+            worst case: O(1)
+            average case: O(1)
+        space complexity:
+            best case: O(1)
+            worst case: O(1)
+            average case: O(1)
     """
     time = distance / speed
     hours = int(time)
@@ -45,6 +55,16 @@ def time_updater(
 
     Returns:
         datetime.time: The updated time.
+
+    Notes:
+        time complexity:
+            best case: O(1)
+            worst case: O(1)
+            average case: O(1)
+        space complexity:
+            best case: O(1)
+            worst case: O(1)
+            average case: O(1)
     """
     # Convert the current time to hours
     current_time_converted = current_time.hour + current_time.minute / 60

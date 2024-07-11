@@ -23,10 +23,21 @@ def check_deliveries_at_time(start_time: datetime.time, end_time: datetime.time)
 
     Returns:
         list: A list of deliveries that are scheduled between the start and end times.
+
+    Notes:
+        time complexity:
+            best case: O(n^2)
+            worst case: O(n)
+
+        space complexity:
+            best case: O(n)
+            worst case: O(n)
     """
 
-    packages_tuple = data_structures_and_algorithms_ii.packages.get_all()
-    packages_list = [i[1] for i in packages_tuple]
+    packages_tuple = (
+        data_structures_and_algorithms_ii.packages.get_all()
+    )  # O(n^2) - function call
+    packages_list = [i[1] for i in packages_tuple]  # O(n) - for loop
 
     # Get the list of packages for the truck
     packages_not_available = []

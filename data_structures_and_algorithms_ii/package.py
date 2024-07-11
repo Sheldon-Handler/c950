@@ -30,15 +30,20 @@ class Package:
 
         Args:
             id (int): The package id.
-            address_id (int): The package address.
+            address_id (int): The id of the address of the package.
+            address_name (str): The name of the address.
+            address (str): The package address.
             city (str): The package city.
             state (str): The package state.
             zip (str): The package zip code.
             delivery_deadline (datetime.time): The package delivery deadline.
             weight_kilo (int): The package weight in kilos.
             special_notes (str): The package special notes.
-            # delivery_status (str): The package delivery status.
-            truck_id (int): The truck id.
+            delivery_status (str): The package delivery status.
+            truck_id (int): The id of truck assigned to the package.
+            arrival_time (datetime.time): The time when the package arrives at the hub.
+            load_time (datetime.time): The time when the package is loaded onto the truck.
+            departure_time (datetime.time): The time when the truck departs to deliver the package.
             delivery_time (datetime.time): The package delivery time.
         """
         self.id = id
@@ -58,34 +63,7 @@ class Package:
         self.departure_time = departure_time
         self.delivery_time = delivery_time
 
-    # def update_delivery_status(self, delivery_status: str) -> bool:
-    #     """Updates the delivery status of the package. If a delivery time is provided, it will also update the
-    #     delivery time of the package.
-    #
-    #     Args:
-    #         delivery_status (str): The delivery status of the package.
-    #
-    #     Returns:
-    #         bool: True if the delivery status was updated successfully. False if the delivery status was not updated
-    #             successfully.
-    #     """
-    #
-    #     # Check that the delivery_status is a valid value.
-    #     if delivery_status == (
-    #         "Not Available" or "At Hub" or "En Route" or "Delivered"
-    #     ):
-    #         self.delivery_status = delivery_status
-    #         print(
-    #             f"Package {self.id} delivery status updated to {self.delivery_status}.\n"
-    #         )
-    #         return True
-    #     else:
-    #         raise ValueError(
-    #             "Invalid delivery status value. Please enter either one of the following:\n",
-    #             "'Not Available'\n'At Hub'\n'En Route'\n'Delivered'\n",
-    #         )
-
-    def update_address(self, correct_address_id: int):
+    def update_address(self, correct_address_id: int) -> None:
         """
         Updates the address field to a corrected one.
 
@@ -94,6 +72,16 @@ class Package:
 
         Returns:
             None
+
+        Notes:
+            time complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+            space complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
         """
         self.address_id = correct_address_id
 
@@ -102,26 +90,42 @@ class Package:
         delivery time of the package.
 
         Args:
-            delivery_status (str): The delivery status of the package.
+            updated_delivery_status (str): The delivery status to set for the package.
 
         Returns:
             None
-        """
 
-        # Check that the delivery_status is a valid value.
+        Notes:
+            time complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+            space complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+        """
         self.delivery_status = updated_delivery_status
         print(f"Package {self.id} delivery status updated to {self.delivery_status}.\n")
-        # else:
-        #     raise ValueError(
-        #         "Invalid delivery status value. Please enter either one of the following:\n",
-        #         "'Not Available'\n'At Hub'\n'En Route'\n'Delivered'\n",
-        #     )
 
-    def set_arrival_time(self, arrival_time: datetime.time):
+    def set_arrival_time(self, arrival_time: datetime.time) -> None:
         """Sets the arrival time of the package.
 
         Args:
-            arrival_time (datetime.time): The time that the package arrived at the address.
+            arrival_time (datetime.time): The time when package arrives at the hub.
+
+        Returns:
+            None
+
+        Notes:
+            time complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+            space complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
         """
         self.delivery_status = "At Hub"
         self.arrival_time = arrival_time
@@ -129,23 +133,49 @@ class Package:
 
     def load_package(
         self, truck_id: int, load_time: datetime.time = datetime.time(hour=8, minute=2)
-    ):
+    ) -> None:
         """Loads the package onto the truck. Updates the truck_id attribute.
 
         Args:
             truck_id (int): The ID of the truck that will carry the package.
             load_time (datetime.time): The time that the package was loaded onto the truck. Defaults to 8:00 AM.
+
+        Returns:
+            None
+
+        Notes:
+            time complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+            space complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
         """
         self.truck_id = truck_id
         self.delivery_status = "At Hub"
         self.load_time = load_time
         print(f"Package {self.id} loaded onto truck {self.truck_id}.\n")
 
-    def package_departure(self, departure_time: datetime.time):
+    def package_departure(self, departure_time: datetime.time) -> None:
         """Sends the truck to deliver the package. Updates departure_time and delivery_status attributes.
 
         Args:
-            departure_time (datetime.time): The time that the truck will depart to deliver the package.
+            departure_time (datetime.time): The time the truck departs to deliver the package.
+
+        Returns:
+            None
+
+        Notes:
+            time complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+            space complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
         """
         self.departure_time = departure_time
         self.delivery_status = "En Route"
@@ -153,11 +183,24 @@ class Package:
             f"Truck {self.truck_id} sent to deliver package {self.id} at {self.departure_time}.\n"
         )
 
-    def deliver_package(self, delivery_time: datetime.time):
+    def deliver_package(self, delivery_time: datetime.time) -> None:
         """Delivers the package. Updates the delivery_status and delivery_time attributes.
 
         Args:
-            delivery_time (datetime.time): The time that the package was delivered. Defaults to the current time.
+            delivery_time (datetime.time): The time that the package was delivered.
+
+        Returns:
+            None
+
+        Notes:
+            time complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+            space complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
         """
         self.delivery_status = "Delivered"
         self.delivery_time = delivery_time
@@ -165,7 +208,23 @@ class Package:
             f"Package {self.id} delivered at {self.delivery_time} on truck {self.truck_id}.\n"
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """Returns the string representation of the Package object.
+
+        Returns:
+            str: The string representation of the Package object.
+
+        Notes:
+            time complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+            space complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+        """
+
         return (
             f"Package ID: {self.id}\n"
             f"Address ID: {self.address_id.__str__()}\n"
@@ -187,7 +246,7 @@ class Package:
 def get_package_ids_with_address_id(
     address_id: int,
     packages: data_structures_and_algorithms_ii.hash_table.HashTable(),
-) -> list[int]:
+) -> [int]:
     """
     This function returns a list of package ids whose address matches the address id.
 
@@ -196,13 +255,23 @@ def get_package_ids_with_address_id(
         packages (list): list of packages to search through.
 
     Returns:
-        list: list of package ids that match the address id.
+        [int]: list of package ids that match the address id.
+
+    Notes:
+        time complexity:
+            best case: O(n)
+            worst case: O(n)
+            average case: O(n)
+        space complexity:
+            best case: O(n)
+            worst case: O(n)
+            average case: O(n)
     """
+    item_values = [i[1] for i in packages]  # O(n) - list comprehension
 
-    item_values = [i[1] for i in packages]
-
+    # Search for the address id in the packages and return the package id if found
     matching_packages = []
-    for i in item_values:
+    for i in item_values:  # O(n) - for loop
         if i.address == address_id:
             matching_packages.append(i.id)
 

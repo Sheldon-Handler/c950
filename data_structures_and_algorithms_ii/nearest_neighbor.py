@@ -9,11 +9,13 @@ def sorted_neighbors(distances_list: [float]) -> [int]:
         A list of indexes whose values are sorted from small to high.
 
     Notes:
-        time complexity: O(n log n)
+        time complexity: O(n^2 log n)
         space complexity: O(n)
     """
 
-    items_sorted = [i[0] for i in sorted(enumerate(distances_list), key=lambda x: x[1])]
+    items_sorted = [
+        i[0] for i in sorted(enumerate(distances_list), key=lambda x: x[1])
+    ]  # O(n^2 log n)
 
     return items_sorted
 
@@ -32,16 +34,16 @@ def sorted_unvisited_neighbors(
         [int] or None: The index of the nearest unvisited neighbor. None if all locations have been visited.
 
     Notes:
-        time complexity: O(n^2)
-        space complexity: O(1)
+        time complexity: O(n^2 log n)
+        space complexity: O(n)
     """
     unvisited_location_indices = []
     sorted_neighbors_list = sorted_neighbors(
         distances_list
-    )  # O(n log n) - function call
+    )  # O(n^2 log n) - function call
 
     for i in sorted_neighbors_list:  # O(n) - for loop
-        if i not in visited_location_indices:
+        if i not in visited_location_indices:  # O(n) - list search
             unvisited_location_indices.append(i)
 
     return unvisited_location_indices

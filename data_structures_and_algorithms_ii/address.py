@@ -1,3 +1,6 @@
+import data_structures_and_algorithms_ii.package
+
+
 class Address:
     """Represents an address object with its information."""
 
@@ -33,22 +36,34 @@ class Address:
 
         Returns:
             bool: True if the address was loaded successfully. False if the address was not loaded successfully.
+
+        Notes:
+            time complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+            space complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
         """
         self.packages.append(package_id)
 
 
-def load_from_package_list(addresses: [], packages: []) -> None:
+def load_from_package_list(
+    addresses: [Address], packages: [data_structures_and_algorithms_ii.package.Package]
+) -> None:
     """Loads the addresses with their respective packages.
 
     Args:
-        addresses ([]): The list of addresses.
-        packages ([]): The list of packages.
+        addresses ([data_structures_and_algorithms_ii.address.Address]): The list of addresses.
+        packages ([data_structures_and_algorithms_ii.package.Package]): The list of packages.
 
     Returns:
         None
     """
-    for i in addresses:
-        for j in packages:
+    for i in addresses:  # O(n) - for loop
+        for j in packages:  # O(n) - for loop
             if i.id == j.address_id:
                 i.load_address(j.id)
                 print(f"Package {j.id} loaded to address {i.id}.")

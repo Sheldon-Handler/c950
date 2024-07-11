@@ -37,7 +37,7 @@ def get_addresses(
     This function reads a csv file and returns a list of Address objects.
 
     Args:
-       file (): The file to read from.
+       file (os.path.relpath): The file to read from.
 
     Returns:
         list: A list of Address objects.
@@ -54,7 +54,6 @@ def get_addresses(
 
     # Read the csv file and store the rows in a list
     for i in csv_reader:  # O(n) - for loop
-
         addresses.append(
             data_structures_and_algorithms_ii.address.Address(
                 id=int(i[0]), name=str(i[1]), address=str(i[2])
@@ -77,8 +76,14 @@ def get_distances(
         [[float]]: List of sublists of distance data from csv file as a distance matrix.
 
     Notes:
-        time complexity: O(n^2)
-        space complexity: O(n^2)
+        time complexity:
+            best case: O(n^2)
+            worst case: O(n^2)
+            average case: O(n^2)
+        space complexity:
+            best case: O(n^2)
+            worst case: O(n^2)
+            average case: O(n^2)
     """
     distance_matrix = []
     csv_reader = csv.reader(open(file, "r"))
@@ -119,11 +124,17 @@ def get_packages(
         list: A list of Package objects.
 
     Notes:
-        time complexity: O(n^2)
-        space complexity: O(n)
+        time complexity:
+            best case: O(n^2)
+            worst case: O(n^2)
+            average case: O(n^2)
+        space complexity:
+            best case: O(n)
+            worst case: O(n)
+            average case: O(n)
     """
 
-    # Create an empty list to store the packages
+    # Create an empty hash table to store the packages
     __hash_table__ = data_structures_and_algorithms_ii.hash_table.HashTable()
 
     # Open the csv file and read the rows into a list
@@ -134,7 +145,7 @@ def get_packages(
     for row in reader:  # O(n) - for loop
 
         matching_address = int
-        for i in data_structures_and_algorithms_ii.addresses:
+        for i in data_structures_and_algorithms_ii.addresses:  # O(n) - for loop
             if i.address == row[1]:
                 matching_address = i
 

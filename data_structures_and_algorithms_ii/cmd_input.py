@@ -19,6 +19,16 @@ def cmd_input() -> (int, int):
 
     Returns:
         (int, int): The hour and minute as integers.
+
+    Notes:
+        time complexity:
+            best case: O(1)
+            worst case: O(1)
+            average case: O(1)
+        space complexity:
+            best case: O(1)
+            worst case: O(1)
+            average case: O(1)
     """
 
     hour = input("Enter hour: ")

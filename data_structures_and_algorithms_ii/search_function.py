@@ -18,36 +18,8 @@ import data_structures_and_algorithms_ii.package
 import data_structures_and_algorithms_ii.truck
 
 
-def package_lookup(
-    package_id: int,
-    packages: list
-    or data_structures_and_algorithms_ii.hash_table.HashTable = data_structures_and_algorithms_ii.packages,
-) -> data_structures_and_algorithms_ii.package.Package or None:
-    """
-    Looks up a package by its ID.
-
-    Args:
-        package_id (int): The ID of the package to search for
-        packages (list or data_structures_and_algorithms_ii.hash_table.HashTable): A list of packages. Defaults to the global packages list.
-
-    Returns:
-        dict: The package with the specified ID.
-    """
-
-    # Check if the packages are stored in a hash table or a list
-    if packages.__class__ == data_structures_and_algorithms_ii.hash_table.HashTable:
-        return packages.get(package_id)
-    elif packages.__class__ == list:
-        for package in packages:
-            if package.id == package_id:
-                return package
-    else:
-        return None
-
-
 def package_status_at_time(
     packages_list: [data_structures_and_algorithms_ii.package.Package],
-    trucks_list: [data_structures_and_algorithms_ii.truck.Truck],
     time: datetime.time = None,
 ) -> [data_structures_and_algorithms_ii.package.Package]:
     """
@@ -59,20 +31,21 @@ def package_status_at_time(
 
     Returns:
         list: A list of packages and their statuses.
+
+    Notes:
+        time complexity:
+            best case: O(n)
+            worst case: O(n)
+            average case: O(n)
+        space complexity:
+            best case: O(n)
+            worst case: O(n)
+            average case: O(n)
     """
-    cloned_packages_list = copy.deepcopy(packages_list)
+    cloned_packages_list = copy.deepcopy(packages_list)  # O(n) - deep copy
 
     # Check if the time is a datetime.time object
     if time.__class__ == datetime.time:
-
-        # # Set the status of each truck based on the time
-        # for truck in cloned_truck_list:  # O(n) - for loop
-        #     if time < truck.departure_time:
-        #         truck.status = "At Hub"
-        #     elif time >= truck.departure_time and time < truck.return_time:
-        #         truck.status = "En Route"
-        #     else:
-        #         truck.status = "At Hub"
 
         # Set the status of each package based on the time
         for package in cloned_packages_list:  # O(n) - for loop
@@ -94,7 +67,7 @@ def distance_traveled(
     truck: data_structures_and_algorithms_ii.truck.Truck,
     packages_at_time: [data_structures_and_algorithms_ii.package.Package],
     time: datetime.time,
-):
+) -> float:
     """
     Returns the distance traveled by each truck at a given time.
 
@@ -103,55 +76,57 @@ def distance_traveled(
         packages_at_time (list) : A list of packages at a given time.
 
     Returns:
-        int: distance traveled by the truck.
+        float: distance traveled by the truck.
+
+    Notes:
+        time complexity:
+            best case: O(n^2)
+            worst case: O(n^2)
+            average case: O(n^2)
+
+        space complexity:
+            best case: O(n)
+            worst case: O(n)
+            average case: O(n)
     """
 
+    # Add all the packages in the truck to a list
     packages_in_truck = []
-
     for package in packages_at_time:  # O(n) - for loop
         if package.truck_id == truck.id:
-            # new_package = copy.deepcopy(package)
-            # new_package.delivery_time = new_package.delivery_time.resolution
             packages_in_truck.append(package)
-            # print(package.id)
 
-    packages_in_truck = sorted(packages_in_truck, key=lambda x: x.delivery_time)
+    # Sort the packages by delivery time
+    packages_in_truck = sorted(
+        packages_in_truck, key=lambda x: x.delivery_time
+    )  # O(n log n) - sort
 
     # Add all the delivered packages to a list
     delivered_packages = []
     for package in packages_in_truck:  # O(n) - for loop
         if package.delivery_status == "Delivered":
             delivered_packages.append(package)
-    # for package in delivered_packages:
-    #     print(package)
-    # print("\n")
 
     # Add all the addresses of the delivered packages to a list
     delivered_addresses = [0]
     for package in delivered_packages:  # O(n) - for loop
         address_id = package.address_id
-        if address_id not in delivered_addresses:
+        if address_id not in delivered_addresses:  # O(n) - list search
             delivered_addresses.append(address_id)
-    # print(delivered_addresses.__str__())
 
-    # earliest_time = datetime.time(8, 0)
-    #
-    # for address in delivered_addresses:
-    #     if address != 0:
-    #         package = package_lookup(address, packages_in_truck)
-    #         if package.delivery_time < earliest_time:
-    #             earliest_time = package.delivery_time
-
+    # Calculate the distance traveled by the truck
     current_address = 0
     distance_visited = float(0)
 
-    for address_id in delivered_addresses:
+    # Add the distances between the delivered addresses
+    for address_id in delivered_addresses:  # O(n) - for loop
         distance_visited += data_structures_and_algorithms_ii.distances[
             current_address
         ][address_id]
         current_address = address_id
 
-    if truck.return_time >= time:
+    # Add the distance back to the hub if the truck has returned
+    if truck.return_time <= time:
         distance_visited += data_structures_and_algorithms_ii.distances[
             current_address
         ][0]

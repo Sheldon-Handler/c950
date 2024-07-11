@@ -189,6 +189,16 @@ class Truck:
 
         Returns:
             None
+
+        Notes:
+            time complexity:
+                best case = O(n)
+                worst case = O(n)
+                average case = O(n)
+            space complexity:
+                best case = O(1)
+                worst case = O(1)
+                average case = O(1)
         """
         distance_between = data_structures_and_algorithms_ii.distances[
             self.current_address
@@ -197,7 +207,7 @@ class Truck:
             data_structures_and_algorithms_ii.delivery_time_calculator.time_updater(
                 self.truck_time,
                 distance_between,
-            )
+            )  # O(n) - function call
         )
         self.return_time = self.truck_time
         self.traveled_distances.append(distance_between)
@@ -262,8 +272,18 @@ class Truck:
 
         Returns:
             None
+
+        Notes:
+            time complexity:
+                best case = O(n)
+                worst case = O(n)
+                average case = O(n^2)
+            space complexity:
+                best case = O(1)
+                worst case = O(1)
+                average case = O(1)
         """
-        while len(self.addresses_not_yet_delivered) > 0:
+        while len(self.addresses_not_yet_delivered) > 0:  # O(n) - while loop
             self.deliver(self.nearest_address())
 
         self.return_truck()
@@ -274,9 +294,13 @@ class TruckView:
     This class represents a view of the truck at a given time
     """
 
-    def __init__(self, truck_id: int, distance_traveled: int):
-        self.truck_id = truck_id
-        self.distance_traveled = distance_traveled
+    def __init__(self, truck_id: int, distance_traveled: float):
+        """
+        Initializes the TruckView class with the truck ID and distance traveled.
 
-    def set_distance_traveled(self, distance_traveled: int):
+        Args:
+            truck_id (int): The ID of the truck to create a view for.
+            distance_traveled (float): The distance the truck has traveled.
+        """
+        self.truck_id = truck_id
         self.distance_traveled = distance_traveled

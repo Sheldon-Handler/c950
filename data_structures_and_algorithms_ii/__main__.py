@@ -150,15 +150,6 @@ data_structures_and_algorithms_ii.trucks[2].deliver_all()
 
 hour, minute = data_structures_and_algorithms_ii.cmd_input.cmd_input()
 
-
-# # Create a list of truck views
-# truck_view_list = []
-# for truck in data_structures_and_algorithms_ii.trucks:
-#     truck_view = data_structures_and_algorithms_ii.truck.TruckView(
-#         truck.id, truck.traveled_distances
-#     )
-#     truck_view_list.append(truck_view)
-
 item_tuples = data_structures_and_algorithms_ii.packages.get_all()
 item_values = [i[1] for i in item_tuples]
 
@@ -166,18 +157,18 @@ item_values = [i[1] for i in item_tuples]
 package_list_at_time = (
     data_structures_and_algorithms_ii.search_function.package_status_at_time(
         item_values,
-        data_structures_and_algorithms_ii.trucks,
         datetime.time(hour=hour, minute=minute),
     )
 )
 
 distance_traveled_list = []
 truck_view_list = []
-for truck in data_structures_and_algorithms_ii.trucks:
+
+for truck in data_structures_and_algorithms_ii.trucks:  # O(n) - for loop
     distance_traveled = (
         data_structures_and_algorithms_ii.search_function.distance_traveled(
             truck, package_list_at_time, datetime.time(hour=hour, minute=minute)
-        )
+        )  # O(n^2)
     )
 
     truck_view = data_structures_and_algorithms_ii.truck.TruckView(
