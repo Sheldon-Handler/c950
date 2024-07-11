@@ -178,7 +178,6 @@ for truck in data_structures_and_algorithms_ii.trucks:  # O(n) - for loop
 
 data_structures_and_algorithms_ii.table_app.main_window(
     packages_list=package_list_at_time,
-    trucks_list=data_structures_and_algorithms_ii.trucks,
     trucks_view_list=truck_view_list,
     hour=hour,
     minute=minute,
