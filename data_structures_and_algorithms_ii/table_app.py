@@ -15,34 +15,36 @@ import data_structures_and_algorithms_ii.truck
 
 def main_window(
     packages_list: list,
-    trucks_list: list,
     trucks_view_list: list,
     hour: int,
     minute: int,
 ):
     """
     Creates the main window with the tables of packages and trucks
+
     Args:
         packages_list (list): A list of packages to display in the table.
-        trucks_list (list): A list of trucks to display in the table.
+        trucks_view_list (list): A list of truck view to display in the table.
+        hour (int): The hour to display in the title.
+        minute (int): The minute to display in the title
 
     Returns:
         None
     """
-    root = tkinter.Tk()
+    # Create the main window
+    root = tkinter.Tk()  # O(n) - Tk
 
     root.title("Packages at " + datetime.time(hour, minute).strftime("%I:%M %p"))
 
-    packages_table(packages_list, root)
-    # trucks_table(trucks_list, root)
-    trucks_distance(trucks_view_list, root)
+    packages_table(packages_list, root)  # O(n^3) - packages_table
+    trucks_distance(trucks_view_list, root)  # O(n^3) - trucks_distance
 
     root.mainloop()
 
 
 def packages_table(package_list: list, parent):
     root = tkinter.PanedWindow(parent)
-    root.pack(fill="both", expand=1)
+    root.pack(fill="both", expand=1)  # O(n) - pack
 
     # Define attribute names as labels in the first row
     package_column_names = package_list[0].__dict__.keys()
@@ -50,16 +52,18 @@ def packages_table(package_list: list, parent):
 
     package_cells = []
 
-    for col, name in enumerate(package_column_names):
+    for col, name in enumerate(package_column_names):  # O(n) - for loop
         label = tkinter.Label(root, text=name)
         label.grid(row=0, column=col)
 
-    for i in range(len(package_list)):
+    for i in range(len(package_list)):  # O(n) - for loop
         row_cells = []
-        for j in range(len(package_column_names)):
+        for j in range(len(package_column_names)):  # O(n) - for loop
             cell = tkinter.Label(
                 root,
-                text=getattr(package_list[i], package_column_names[j]),
+                text=getattr(
+                    package_list[i], package_column_names[j]
+                ),  # O(n) - get attribute
                 borderwidth=1,
                 relief="solid",
                 bg="white",
@@ -98,57 +102,80 @@ def packages_table(package_list: list, parent):
 #         address_cells.append(row_cells)
 
 
-def trucks_table(truck_list: list, parent):
-    root = tkinter.PanedWindow(parent)
-    root.pack(fill="both", expand=1)
-
-    # Define attribute names as labels in the first row
-    truck_column_names = truck_list[0].__dict__.keys()
-    truck_column_names = list(truck_column_names)
-
-    truck_cells = []
-
-    for col, name in enumerate(truck_column_names):
-        label = tkinter.Label(root, text=name)
-        label.grid(row=0, column=col)
-
-    for i in range(len(truck_list)):
-        row_cells = []
-        for j in range(len(truck_column_names)):
-            cell = tkinter.Label(
-                root,
-                text=getattr(truck_list[i], truck_column_names[j]),
-                borderwidth=1,
-                relief="solid",
-                bg="white",
-            )
-            cell.grid(row=i + 1, column=j, sticky="nsew")
-            row_cells.append(cell)
-        truck_cells.append(row_cells)
+# def trucks_table(truck_list: list, parent):
+#     root = tkinter.PanedWindow(parent)
+#     root.pack(fill="both", expand=1)
+#
+#     # Define attribute names as labels in the first row
+#     truck_column_names = truck_list[0].__dict__.keys()
+#     truck_column_names = list(truck_column_names)
+#
+#     truck_cells = []
+#
+#     for col, name in enumerate(truck_column_names):
+#         label = tkinter.Label(root, text=name)
+#         label.grid(row=0, column=col)
+#
+#     for i in range(len(truck_list)):
+#         row_cells = []
+#         for j in range(len(truck_column_names)):
+#             cell = tkinter.Label(
+#                 root,
+#                 text=getattr(truck_list[i], truck_column_names[j]),
+#                 borderwidth=1,
+#                 relief="solid",
+#                 bg="white",
+#             )
+#             cell.grid(row=i + 1, column=j, sticky="nsew")
+#             row_cells.append(cell)
+#         truck_cells.append(row_cells)
 
 
 def trucks_distance(
-    truck_view_list: [data_structures_and_algorithms_ii.truck.TruckView], parent
-):
-    root = tkinter.PanedWindow(parent)
-    root.pack(fill="both", expand=1)
+    truck_view_list: [data_structures_and_algorithms_ii.truck.TruckView],
+    parent: tkinter.Tk,
+) -> None:
+    """
+    Creates a table of trucks and their distances traveled.
+
+    Args:
+        truck_view_list (data_structures_and_algorithms_ii.truck.TruckView): A list of TruckView objects.
+        parent (tkinter.Tk): The parent window.
+
+    Returns:
+        None
+
+    Notes:
+        time complexity:
+            best case: O(n^3)
+            worst case: O(n^3)
+            average case: O(n^3)
+        space complexity:
+            best case: O(n^3)
+            worst case: O(n^3)
+            average case: O(n^3)
+    """
+    root = tkinter.PanedWindow(parent)  # O(n) - PanedWindow
+    root.pack(fill="both", expand=1)  # O(n) - pack
 
     # Define attribute names as labels in the first row
-    truck_column_names = truck_view_list[0].__dict__.keys()
-    truck_column_names = list(truck_column_names)
+    truck_column_names = truck_view_list[0].__dict__.keys()  # O(n) - get keys
+    truck_column_names = list(truck_column_names)  # O(n) - list conversion
 
     truck_cells = []
 
-    for col, name in enumerate(truck_column_names):
+    for col, name in enumerate(truck_column_names):  # O(n) - for loop
         label = tkinter.Label(root, text=name)
         label.grid(row=0, column=col)
 
-    for i in range(len(truck_view_list)):
+    for i in range(len(truck_view_list)):  # O(n) - for loop
         row_cells = []
-        for j in range(len(truck_column_names)):
+        for j in range(len(truck_column_names)):  # O(n) - for loop
             cell = tkinter.Label(
                 root,
-                text=getattr(truck_view_list[i], truck_column_names[j]),
+                text=getattr(
+                    truck_view_list[i], truck_column_names[j]
+                ),  # O(n) - get attribute
                 borderwidth=1,
                 relief="solid",
                 bg="white",
