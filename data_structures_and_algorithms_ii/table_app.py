@@ -34,7 +34,7 @@ def main_window(
     root.title("Packages at " + datetime.time(hour, minute).strftime("%I:%M %p"))
 
     packages_table(packages_list, root)
-    trucks_table(trucks_list, root)
+    # trucks_table(trucks_list, root)
     trucks_distance(trucks_view_list, root)
 
     root.mainloop()

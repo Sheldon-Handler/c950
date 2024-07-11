@@ -11,6 +11,7 @@ import copy
 import datetime
 
 import data_structures_and_algorithms_ii
+import data_structures_and_algorithms_ii.delivery_time_calculator
 import data_structures_and_algorithms_ii.hash_table
 import data_structures_and_algorithms_ii.nearest_neighbor
 import data_structures_and_algorithms_ii.package
@@ -48,7 +49,7 @@ def package_status_at_time(
     packages_list: [data_structures_and_algorithms_ii.package.Package],
     trucks_list: [data_structures_and_algorithms_ii.truck.Truck],
     time: datetime.time = None,
-) -> ([data_structures_and_algorithms_ii.package.Package],):
+) -> [data_structures_and_algorithms_ii.package.Package]:
     """
     Returns a list of packages and their statuses at a given time.
 
@@ -59,8 +60,7 @@ def package_status_at_time(
     Returns:
         list: A list of packages and their statuses.
     """
-    cloned_packages_list = [copy.deepcopy(package) for package in packages_list]
-    #    cloned_truck_list = [copy.deepcopy(truck) for truck in trucks_list]
+    cloned_packages_list = copy.deepcopy(packages_list)
 
     # Check if the time is a datetime.time object
     if time.__class__ == datetime.time:
@@ -110,33 +110,50 @@ def distance_traveled(
 
     for package in packages_at_time:  # O(n) - for loop
         if package.truck_id == truck.id:
+            # new_package = copy.deepcopy(package)
+            # new_package.delivery_time = new_package.delivery_time.resolution
             packages_in_truck.append(package)
+            # print(package.id)
+
+    packages_in_truck = sorted(packages_in_truck, key=lambda x: x.delivery_time)
+
+    # Add all the delivered packages to a list
+    delivered_packages = []
+    for package in packages_in_truck:  # O(n) - for loop
+        if package.delivery_status == "Delivered":
+            delivered_packages.append(package)
+    # for package in delivered_packages:
+    #     print(package)
+    # print("\n")
+
+    # Add all the addresses of the delivered packages to a list
+    delivered_addresses = [0]
+    for package in delivered_packages:  # O(n) - for loop
+        address_id = package.address_id
+        if address_id not in delivered_addresses:
+            delivered_addresses.append(address_id)
+    # print(delivered_addresses.__str__())
+
+    # earliest_time = datetime.time(8, 0)
+    #
+    # for address in delivered_addresses:
+    #     if address != 0:
+    #         package = package_lookup(address, packages_in_truck)
+    #         if package.delivery_time < earliest_time:
+    #             earliest_time = package.delivery_time
 
     current_address = 0
     distance_visited = float(0)
 
-    # Add all the addresses to a list
-    delivered_addresses = [0]
-    for package in packages_in_truck:  # O(n) - for loop
-        if package.delivery_status == "Delivered":
-            if package.address_id not in delivered_addresses:  # O(n) - list search
-                delivered_addresses.append(package.address_id)
+    for address_id in delivered_addresses:
+        distance_visited += data_structures_and_algorithms_ii.distances[
+            current_address
+        ][address_id]
+        current_address = address_id
 
-    # Calculate the distance traveled
-    for i in truck.visited_addresses:
-        # Add the distance between the current address and the next address
-        if i in delivered_addresses:
-            new_distance = float(
-                data_structures_and_algorithms_ii.distances[current_address][i]
-            )
-            distance_visited += float(new_distance)
-            current_address = truck.addresses
-
-    # Add the distance between the last address and the hub if the truck is at the hub at the given time
-    if time.resolution >= truck.return_time.resolution:
-        new_distance = float(
-            data_structures_and_algorithms_ii.distances[current_address][0]
-        )
-        distance_visited += float(new_distance)
+    if truck.return_time >= time:
+        distance_visited += data_structures_and_algorithms_ii.distances[
+            current_address
+        ][0]
 
     return distance_visited

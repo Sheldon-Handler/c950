@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Fixed some things">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/__main__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/search_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/search_function.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/table_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_structures_and_algorithms_ii/truck.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +170,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5b207ade9991-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.17890.14" />
+        <option value="bundled-python-sdk-975db3bf15a3-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18034.82" />
       </set>
     </attachedChunks>
   </component>
@@ -198,14 +196,6 @@
       <workItem from="1718571684449" duration="626000" />
       <workItem from="1718649965318" duration="1133000" />
       <workItem from="1718651241196" duration="12678000" />
-    </task>
-    <task id="LOCAL-00054" summary="Commented out special notes handler. Will not be using it">
-      <option name="closed" value="true" />
-      <created>1715282023161</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1715282023161</updated>
     </task>
     <task id="LOCAL-00055" summary="Removed shell.py">
       <option name="closed" value="true" />
@@ -591,7 +581,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720555097432</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Fixed some things">
+      <option name="closed" value="true" />
+      <created>1720560986720</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1720560986720</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
