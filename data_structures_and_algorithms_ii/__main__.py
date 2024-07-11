@@ -149,6 +149,7 @@ data_structures_and_algorithms_ii.trucks[1].deliver_all()
 data_structures_and_algorithms_ii.trucks[2].deliver_all()
 
 hour, minute = data_structures_and_algorithms_ii.cmd_input.cmd_input()
+input_time = datetime.time(hour=hour, minute=minute)
 
 item_tuples = data_structures_and_algorithms_ii.packages.get_all()
 item_values = [i[1] for i in item_tuples]
@@ -157,7 +158,7 @@ item_values = [i[1] for i in item_tuples]
 package_list_at_time = (
     data_structures_and_algorithms_ii.search_function.package_status_at_time(
         item_values,
-        datetime.time(hour=hour, minute=minute),
+        input_time,
     )
 )
 
@@ -165,14 +166,23 @@ distance_traveled_list = []
 truck_view_list = []
 
 for truck in data_structures_and_algorithms_ii.trucks:  # O(n) - for loop
+
     distance_traveled = (
         data_structures_and_algorithms_ii.search_function.distance_traveled(
-            truck, package_list_at_time, datetime.time(hour=hour, minute=minute)
+            truck, package_list_at_time, input_time
         )  # O(n^2)
     )
 
+    truck_status = ""
+    if input_time < truck.departure_time:
+        truck_status = "At Hub"
+    elif truck.return_time > input_time:
+        truck_status = "En Route"
+    elif truck.return_time <= input_time:
+        truck_status = "At Hub"
+
     truck_view = data_structures_and_algorithms_ii.truck.TruckView(
-        truck.id, distance_traveled
+        truck.id, distance_traveled, truck_status
     )
     truck_view_list.append(truck_view)
 

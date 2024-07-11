@@ -158,19 +158,23 @@ class Truck:
         """
         Sorts the addresses by distance from the current address.
 
-
         Returns:
             [int]: address ID values sorted by distance from current address
 
+        Notes:
+            time complexity:
+                best case = O(n^2 log n)
+                worst case = O(n^2 log n)
+                average case = O(n^2 log n)
+            space complexity:
+                best case = O(n)
+                worst case = O(n)
+                average case = O(n)
         """
-
-        #        excluded_addresses = self.addresses_not_in_this_truck + self.visited_addresses
-        sorted_addresses = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
+        sorted_addresses = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(  # O(n^2 log n)
             data_structures_and_algorithms_ii.distances[self.current_address],
             (self.addresses_not_in_this_truck + self.visited_addresses),
         )
-
-        print(sorted_addresses)
 
         return sorted_addresses
 
@@ -217,12 +221,23 @@ class Truck:
 
     def deliver(self, address_id: int) -> None:
         """
+        Delivers a package to an address.
 
         Args:
             address_id (int): ID of the address to deliver.
 
         Returns:
             None
+
+        Notes:
+            time complexity:
+                best case = O(n^3)
+                worst case = O(n^3)
+                average case = O(n^3)
+            space complexity:
+                best case = O(n)
+                worst case = O(n)
+                average case = O(n)
         """
 
         distance_between = data_structures_and_algorithms_ii.distances[
@@ -235,15 +250,17 @@ class Truck:
             )
         )
 
-        package_list = data_structures_and_algorithms_ii.packages.get_all()
-        item_values = [i[1] for i in package_list]
+        package_list = (
+            data_structures_and_algorithms_ii.packages.get_all()
+        )  # O(n^2) - function call
+        item_values = [i[1] for i in package_list]  # O(n) - list comprehension
 
         # Loop through the package IDs to deliver the package
-        for i in item_values:
+        for i in item_values:  # O(n) - for loop
             if i.address_id == address_id:
-                if i.id in self.packages:
+                if i.id in self.packages:  # O(n) - list search
                     data_structures_and_algorithms_ii.packages.get(
-                        i.id
+                        i.id  # O(n) - hash table get
                     ).deliver_package(delivery_time)
                     self.packages_delivered.append(i.id)
 
@@ -294,13 +311,15 @@ class TruckView:
     This class represents a view of the truck at a given time
     """
 
-    def __init__(self, truck_id: int, distance_traveled: float):
+    def __init__(self, truck_id: int, distance_traveled: float, truck_status: str):
         """
         Initializes the TruckView class with the truck ID and distance traveled.
 
         Args:
             truck_id (int): The ID of the truck to create a view for.
             distance_traveled (float): The distance the truck has traveled.
+            truck_status (str): The status of the truck.
         """
         self.truck_id = truck_id
         self.distance_traveled = distance_traveled
+        self.truck_status = truck_status

@@ -15,4 +15,15 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# data_structures_and_algorithms_ii
+This code uses a greedy algorithm to solve the problem of routing a vehicle to the nearest next address.
+
+Strengths of the algorithm:
+
+- The algorithm is simple and easy to understand. It goes to the nearest next address.
+- The algorithm is deterministic. It will always return the same result for the same input.
+
+Alternative algorithms:
+
+- Dijkstra's algorithm: This algorithm can be used to find the shortest path from the hub to all addresses. It is more
+  complex than the greedy algorithm, but it can find the most optimal solution in terms of distance.
+- 
