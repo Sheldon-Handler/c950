@@ -3,16 +3,17 @@
 
 import datetime
 
-import data_structures_and_algorithms_ii.address
-import data_structures_and_algorithms_ii.cmd_input
-import data_structures_and_algorithms_ii.nearest_neighbor
-import data_structures_and_algorithms_ii.read_csv_file
-import data_structures_and_algorithms_ii.search_function
-import data_structures_and_algorithms_ii.table_app
-import data_structures_and_algorithms_ii.truck
+import address
+import cmd_input
+import nearest_neighbor
+import read_csv_file
+import search_function
+import table_app
+import truck
+import data_structures_and_algorithms_ii
 
 # Initialize csv files into lists
-data_structures_and_algorithms_ii.read_csv_file.init()
+read_csv_file.init()
 
 # Set arrival times for packages that are delayed on flight
 data_structures_and_algorithms_ii.packages.get(6).set_arrival_time(
@@ -28,7 +29,6 @@ data_structures_and_algorithms_ii.packages.get(32).set_arrival_time(
     datetime.time(hour=9, minute=5)
 )
 
-
 package_with_wrong_address = data_structures_and_algorithms_ii.packages.get(9)
 package_with_wrong_address.update_address(19)
 
@@ -36,29 +36,29 @@ items = data_structures_and_algorithms_ii.packages.get_all()
 
 items_list = [i[1] for i in items]
 
-data_structures_and_algorithms_ii.address.load_from_package_list(
+address.load_from_package_list(
     data_structures_and_algorithms_ii.addresses,
     items_list,
 )
 
-new_truck_1 = data_structures_and_algorithms_ii.truck.Truck(
+new_truck_1 = truck.Truck(
     1,
     "At Hub",
     0,
 )
-new_truck_2 = data_structures_and_algorithms_ii.truck.Truck(
+new_truck_2 = truck.Truck(
     2,
     "At Hub",
     0,
 )
-new_truck_3 = data_structures_and_algorithms_ii.truck.Truck(
+new_truck_3 = truck.Truck(
     3,
     "At Hub",
     0,
 )
 
 print(
-    data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(
+    nearest_neighbor.sorted_unvisited_neighbors(
         data_structures_and_algorithms_ii.distances,
         [],
     ),
@@ -66,7 +66,6 @@ print(
 )
 
 data_structures_and_algorithms_ii.trucks = [new_truck_1, new_truck_2, new_truck_3]
-
 
 # loading truck 1
 data_structures_and_algorithms_ii.trucks[0].load_truck(14)
@@ -83,7 +82,6 @@ data_structures_and_algorithms_ii.trucks[0].load_truck(4)
 data_structures_and_algorithms_ii.trucks[0].load_truck(30)
 data_structures_and_algorithms_ii.trucks[0].load_truck(22)
 data_structures_and_algorithms_ii.trucks[0].load_truck(23)
-
 
 # loading truck 2
 data_structures_and_algorithms_ii.trucks[1].load_truck(3)
@@ -108,7 +106,6 @@ data_structures_and_algorithms_ii.trucks[1].load_truck(
     32, datetime.time(hour=9, minute=7)
 )
 
-
 # loading truck 3
 data_structures_and_algorithms_ii.trucks[2].load_truck(12)
 data_structures_and_algorithms_ii.trucks[2].load_truck(17)
@@ -126,7 +123,6 @@ data_structures_and_algorithms_ii.trucks[2].load_truck(39)
 data_structures_and_algorithms_ii.trucks[2].load_truck(10)
 data_structures_and_algorithms_ii.trucks[2].load_truck(11)
 
-
 data_structures_and_algorithms_ii.trucks[0].depart_truck(
     datetime.time(hour=8, minute=5)
 )
@@ -137,29 +133,18 @@ data_structures_and_algorithms_ii.trucks[2].depart_truck(
     datetime.time(hour=10, minute=25)
 )
 
-# packages = data_structures_and_algorithms_ii.packages.get_all()
-#
-# for package in packages:
-#     print(package[1]._str())
-
-
-# data_structures_and_algorithms_ii.trucks[0].sort_addresses()
-# data_structures_and_algorithms_ii.trucks[1].sort_addresses()
-# data_structures_and_algorithms_ii.trucks[2].sort_addresses()
-
 data_structures_and_algorithms_ii.trucks[0].deliver_all()
 data_structures_and_algorithms_ii.trucks[1].deliver_all()
 data_structures_and_algorithms_ii.trucks[2].deliver_all()
 
-hour, minute = data_structures_and_algorithms_ii.cmd_input.cmd_input()
+hour, minute = cmd_input.cmd_input()
 input_time = datetime.time(hour=hour, minute=minute)
 
 item_tuples = data_structures_and_algorithms_ii.packages.get_all()
 item_values = [i[1] for i in item_tuples]
 
-
 package_list_at_time = (
-    data_structures_and_algorithms_ii.search_function.package_status_at_time(
+    search_function.package_status_at_time(
         item_values,
         input_time,
     )
@@ -170,31 +155,31 @@ truck_view_list = []
 total_distance_traveled_at_time = 0
 total_distance_traveled_by_end_of_day = 0
 
-for truck in data_structures_and_algorithms_ii.trucks:  # O(n) - for loop
+for i in data_structures_and_algorithms_ii.trucks:  # O(n) - for loop
 
     distance_traveled = (
-        data_structures_and_algorithms_ii.search_function.distance_traveled(
-            truck, package_list_at_time, input_time
+        search_function.distance_traveled(
+            i, package_list_at_time, input_time
         )  # O(n^2) - function call
     )
 
     total_distance_traveled_at_time += distance_traveled
-    total_distance_traveled_by_end_of_day += truck.distance_traveled
+    total_distance_traveled_by_end_of_day += i.distance_traveled
 
     truck_status = ""
-    if input_time < truck.departure_time:
+    if input_time < i.departure_time:
         truck_status = "At Hub"
-    elif truck.return_time > input_time:
+    elif i.return_time > input_time:
         truck_status = "En Route"
-    elif truck.return_time <= input_time:
+    elif i.return_time <= input_time:
         truck_status = "At Hub"
 
-    truck_view = data_structures_and_algorithms_ii.truck.TruckView(
-        truck.id, distance_traveled, truck.distance_traveled, truck_status
+    truck_view = truck.TruckView(
+        i.id, distance_traveled, i.distance_traveled, truck_status
     )
     truck_view_list.append(truck_view)
 
-data_structures_and_algorithms_ii.table_app.main_window(
+table_app.main_window(
     packages_list=package_list_at_time,
     trucks_view_list=truck_view_list,
     hour=hour,
