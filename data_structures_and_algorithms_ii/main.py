@@ -30,7 +30,7 @@ __init__.packages.get(32).set_arrival_time(
 )
 
 package_with_wrong_address = __init__.packages.get(9)
-package_with_wrong_address.update_address(19)
+package_with_wrong_address.update_address(19, 10, 20)
 
 items = __init__.packages.get_all()
 

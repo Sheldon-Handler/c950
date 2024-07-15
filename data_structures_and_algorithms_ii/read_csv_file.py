@@ -48,8 +48,8 @@ def get_addresses(
     addresses = []
 
     # Open the csv file and read the rows into a list
-    file = open(file, "r")
-    csv_reader = csv.reader(file)
+    file_open = open(file)
+    csv_reader = csv.reader(file_open)
 
     # Read the csv file and store the rows in a list
     for i in csv_reader:  # O(n) - for loop

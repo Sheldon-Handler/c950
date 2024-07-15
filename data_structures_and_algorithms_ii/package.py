@@ -1,6 +1,42 @@
 import datetime
 
+import address
 import hash_table
+import __init__
+
+
+class ModifiedTime:
+    """This dataclass represents a modified time object with its information which has not had any data mutated."""
+
+    def __init__(self, old_data, hour: int, minute: int):
+        """
+        Initializes a ModifiedTime class instance.
+
+        Args:
+            old_data: The old data before it was mutated.
+            hour (int): The hour of the time.
+            minute (int): The minute of the time.
+        """
+        self.old_data = old_data
+        self.modified_time = datetime.time(hour, minute)
+
+    def __str__(self) -> str:
+        """Returns the string representation of the ModifiedTime object.
+
+        Returns:
+            str: The string representation of the ModifiedTime object.
+
+        Notes:
+            time complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+            space complexity:
+                best case: O(1)
+                worst case: O(1)
+                average case: O(1)
+        """
+        return f"{self.modified_time}\n"
 
 
 class Package:
@@ -24,6 +60,7 @@ class Package:
             load_time: datetime.time = None,
             departure_time: datetime.time = None,
             delivery_time: datetime.time = None,
+            modified_time: ModifiedTime = None,
     ):
         """
         Initializes a Package class instance. Converts the string values to the appropriate data types.
@@ -45,6 +82,7 @@ class Package:
             load_time (datetime.time): The time when the package is loaded onto the truck.
             departure_time (datetime.time): The time when the truck departs to deliver the package.
             delivery_time (datetime.time): The package delivery time.
+            modified_time (ModifiedTime): The time the package was modified.
         """
         self.id = id
         self.address_id = address_id
@@ -62,8 +100,9 @@ class Package:
         self.load_time = load_time
         self.departure_time = departure_time
         self.delivery_time = delivery_time
+        self.modified_time = modified_time
 
-    def update_address(self, correct_address_id: int) -> None:
+    def update_address(self, correct_address_id: int, hour_modified, minute_modified) -> None:
         """
         Updates the address field to a corrected one.
 
@@ -83,7 +122,23 @@ class Package:
                 worst case: O(1)
                 average case: O(1)
         """
-        self.address_id = correct_address_id
+        address_list = __init__.addresses
+
+        correct_address: address.Address = None
+        old_address: address.Address = None
+
+        for i in address_list:
+            if i.id == correct_address_id:
+                correct_address = i
+
+            if i.id == self.address_id:
+                old_address = i
+
+        self.address_id = correct_address.id
+        self.address_name = correct_address.name
+        self.address = correct_address.address
+
+        self.modified_time = ModifiedTime(old_address, hour_modified, minute_modified)
 
     def update_delivery_status(self, updated_delivery_status: str) -> None:
         """Updates the delivery status of the package. If a delivery time is provided, it will also update the
