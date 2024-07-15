@@ -1,10 +1,8 @@
 import datetime
 
-import data_structures_and_algorithms_ii
-import data_structures_and_algorithms_ii.address
-import data_structures_and_algorithms_ii.delivery_time_calculator
-import data_structures_and_algorithms_ii.nearest_neighbor
-import data_structures_and_algorithms_ii.package
+import __init__
+import delivery_time_calculator
+import nearest_neighbor
 
 
 class Truck:
@@ -22,14 +20,14 @@ class Truck:
     """
 
     def __init__(
-        self,
-        id: int,
-        truck_status: str,
-        distance_traveled: float = None,
-        departure_time: datetime.time = None,
-        truck_time: datetime.time = None,
-        current_address: int = 0,
-        # load_time: datetime.time = None,
+            self,
+            id: int,
+            truck_status: str,
+            distance_traveled: float = None,
+            departure_time: datetime.time = None,
+            truck_time: datetime.time = None,
+            current_address: int = 0,
+            # load_time: datetime.time = None,
     ):
         """
         Initializes the truck class with its information.
@@ -77,9 +75,9 @@ class Truck:
             )
 
     def load_truck(
-        self,
-        package_id: int,
-        load_time: datetime.time = datetime.time(hour=8, minute=2),
+            self,
+            package_id: int,
+            load_time: datetime.time = datetime.time(hour=8, minute=2),
     ) -> None:
         """Loads a package onto the truck.
 
@@ -101,7 +99,7 @@ class Truck:
                 average case = O(1)
         """
         # Find package in the package hash table
-        package = data_structures_and_algorithms_ii.packages.get(
+        package = __init__.packages.get(
             package_id
         )  # O(n) - hash table get
         # Run the load_package method on the package
@@ -113,7 +111,7 @@ class Truck:
             self.addresses.append(package.address_id)
             self.addresses_not_yet_delivered.append(package.address_id)
         # Update the package in the package hash table
-        data_structures_and_algorithms_ii.packages.update(
+        __init__.packages.update(
             package_id, package
         )  # O(n) - hash table update
 
@@ -144,13 +142,13 @@ class Truck:
         # Loop through the packages the truck is carrying
         for i in self.packages:  # O(n) - for loop
             # Update the package in the package hash table
-            data_structures_and_algorithms_ii.packages.get(i).package_departure(
+            __init__.packages.get(i).package_departure(
                 departure_time
             )  # O(n) - hash table get
 
         # Find addresses not in this truck
         self.addresses_not_in_this_truck = []
-        for address in data_structures_and_algorithms_ii.addresses:  # O(n) - for loop
+        for address in __init__.addresses:  # O(n) - for loop
             if address.id not in self.addresses:
                 self.addresses_not_in_this_truck.append(address.id)
 
@@ -171,8 +169,8 @@ class Truck:
                 worst case = O(n)
                 average case = O(n)
         """
-        sorted_addresses = data_structures_and_algorithms_ii.nearest_neighbor.sorted_unvisited_neighbors(  # O(n^2 log n)
-            data_structures_and_algorithms_ii.distances[self.current_address],
+        sorted_addresses = nearest_neighbor.sorted_unvisited_neighbors(  # O(n^2 log n)
+            __init__.distances[self.current_address],
             (self.addresses_not_in_this_truck + self.visited_addresses),
         )
 
@@ -204,11 +202,11 @@ class Truck:
                 worst case = O(1)
                 average case = O(1)
         """
-        distance_between = data_structures_and_algorithms_ii.distances[
+        distance_between = __init__.distances[
             self.current_address
         ][0]
         self.truck_time = (
-            data_structures_and_algorithms_ii.delivery_time_calculator.time_updater(
+            delivery_time_calculator.time_updater(
                 self.truck_time,
                 distance_between,
             )  # O(n) - function call
@@ -241,18 +239,18 @@ class Truck:
                 average case = O(n)
         """
 
-        distance_between = data_structures_and_algorithms_ii.distances[
+        distance_between = __init__.distances[
             self.current_address
         ][address_id]
 
         delivery_time = (
-            data_structures_and_algorithms_ii.delivery_time_calculator.time_updater(
+            delivery_time_calculator.time_updater(
                 self.truck_time, distance_between
             )
         )
 
         package_list = (
-            data_structures_and_algorithms_ii.packages.get_all()
+            __init__.packages.get_all()
         )  # O(n^2) - function call
         item_values = [i[1] for i in package_list]  # O(n) - list comprehension
 
@@ -260,13 +258,13 @@ class Truck:
         for i in item_values:  # O(n) - for loop
             if i.address_id == address_id:
                 if i.id in self.packages:  # O(n) - list search
-                    data_structures_and_algorithms_ii.packages.get(
+                    __init__.packages.get(
                         i.id  # O(n) - hash table get
                     ).deliver_package(delivery_time)
                     self.packages_delivered.append(i.id)
 
         # Update the truck's distance traveled
-        added_distance = data_structures_and_algorithms_ii.distances[
+        added_distance = __init__.distances[
             self.current_address
         ][address_id]
         self.traveled_distances.append(added_distance)
@@ -313,11 +311,11 @@ class TruckView:
     """
 
     def __init__(
-        self,
-        truck_id: int,
-        distance_traveled_at_time: float,
-        distance_traveled_by_end_of_day: float,
-        truck_status: str,
+            self,
+            truck_id: int,
+            distance_traveled_at_time: float,
+            distance_traveled_by_end_of_day: float,
+            truck_status: str,
     ):
         """
         Initializes the TruckView class with the truck ID and distance traveled.
@@ -339,9 +337,9 @@ class TotalDistances:
     """
 
     def __init__(
-        self,
-        total_distance_traveled_at_time: float,
-        total_distance_traveled_by_end_of_day: float,
+            self,
+            total_distance_traveled_at_time: float,
+            total_distance_traveled_by_end_of_day: float,
     ):
         """
         Initializes the TotalDistances class with the total distances traveled by the trucks.

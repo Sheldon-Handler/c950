@@ -9,12 +9,11 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import datetime
-
-import data_structures_and_algorithms_ii
+import __init__
 
 
 def delivery_time_calculator(
-    distance: float, speed: float = data_structures_and_algorithms_ii.truck_speed
+        distance: float, speed: float = __init__.truck_speed
 ) -> datetime.time:
     """Calculates the delivery time based on the distance and speed.
 
@@ -42,9 +41,9 @@ def delivery_time_calculator(
 
 
 def time_updater(
-    current_time: datetime.time,
-    distance: float,
-    speed: float = data_structures_and_algorithms_ii.truck_speed,
+        current_time: datetime.time,
+        distance: float,
+        speed: float = __init__.truck_speed,
 ) -> datetime.time:
     """Updates the current time based on the delivery time.
 

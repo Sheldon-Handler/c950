@@ -1,29 +1,29 @@
 import datetime
 
-import data_structures_and_algorithms_ii.hash_table
+import hash_table
 
 
 class Package:
     """This dataclass represents a package instance with its information which has not had any data mutated."""
 
     def __init__(
-        self,
-        id: int,
-        address_id: int,
-        address_name: str,
-        address: str,
-        city: str,
-        state: str,
-        zip: str,
-        delivery_deadline: str,
-        weight_kilo: int,
-        special_notes: str,
-        delivery_status: str = None,
-        truck_id: int = None,
-        arrival_time: datetime.time = datetime.time(hour=8, minute=0),
-        load_time: datetime.time = None,
-        departure_time: datetime.time = None,
-        delivery_time: datetime.time = None,
+            self,
+            id: int,
+            address_id: int,
+            address_name: str,
+            address: str,
+            city: str,
+            state: str,
+            zip: str,
+            delivery_deadline: str,
+            weight_kilo: int,
+            special_notes: str,
+            delivery_status: str = None,
+            truck_id: int = None,
+            arrival_time: datetime.time = datetime.time(hour=8, minute=0),
+            load_time: datetime.time = None,
+            departure_time: datetime.time = None,
+            delivery_time: datetime.time = None,
     ):
         """
         Initializes a Package class instance. Converts the string values to the appropriate data types.
@@ -132,7 +132,7 @@ class Package:
         print(f"Package {self.id} arrived to hub at {self.arrival_time}.\n")
 
     def load_package(
-        self, truck_id: int, load_time: datetime.time = datetime.time(hour=8, minute=2)
+            self, truck_id: int, load_time: datetime.time = datetime.time(hour=8, minute=2)
     ) -> None:
         """Loads the package onto the truck. Updates the truck_id attribute.
 
@@ -244,8 +244,8 @@ class Package:
 
 
 def get_package_ids_with_address_id(
-    address_id: int,
-    packages: data_structures_and_algorithms_ii.hash_table.HashTable(),
+        address_id: int,
+        packages: hash_table.HashTable(),
 ) -> [int]:
     """
     This function returns a list of package ids whose address matches the address id.

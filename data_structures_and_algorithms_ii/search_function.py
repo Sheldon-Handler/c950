@@ -10,18 +10,15 @@
 import copy
 import datetime
 
-import data_structures_and_algorithms_ii
-import data_structures_and_algorithms_ii.delivery_time_calculator
-import data_structures_and_algorithms_ii.hash_table
-import data_structures_and_algorithms_ii.nearest_neighbor
-import data_structures_and_algorithms_ii.package
-import data_structures_and_algorithms_ii.truck
+import __init__
+import package
+import truck
 
 
 def package_status_at_time(
-    packages_list: [data_structures_and_algorithms_ii.package.Package],
-    time: datetime.time = None,
-) -> [data_structures_and_algorithms_ii.package.Package]:
+        packages_list: [package.Package],
+        time: datetime.time = None,
+) -> [package.Package]:
     """
     Returns a list of packages and their statuses at a given time.
 
@@ -64,9 +61,9 @@ def package_status_at_time(
 
 
 def distance_traveled(
-    truck: data_structures_and_algorithms_ii.truck.Truck,
-    packages_at_time: [data_structures_and_algorithms_ii.package.Package],
-    time: datetime.time,
+        truck: truck.Truck,
+        packages_at_time: [package.Package],
+        time: datetime.time,
 ) -> float:
     """
     Returns the distance traveled by each truck at a given time.
@@ -120,14 +117,14 @@ def distance_traveled(
 
     # Add the distances between the delivered addresses
     for address_id in delivered_addresses:  # O(n) - for loop
-        distance_visited += data_structures_and_algorithms_ii.distances[
+        distance_visited += __init__.distances[
             current_address
         ][address_id]
         current_address = address_id
 
     # Add the distance back to the hub if the truck has returned
     if truck.return_time <= time:
-        distance_visited += data_structures_and_algorithms_ii.distances[
+        distance_visited += __init__.distances[
             current_address
         ][0]
 

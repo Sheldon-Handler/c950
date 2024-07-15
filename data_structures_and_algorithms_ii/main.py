@@ -10,34 +10,34 @@ import read_csv_file
 import search_function
 import table_app
 import truck
-import data_structures_and_algorithms_ii
+import __init__
 
 # Initialize csv files into lists
 read_csv_file.init()
 
 # Set arrival times for packages that are delayed on flight
-data_structures_and_algorithms_ii.packages.get(6).set_arrival_time(
+__init__.packages.get(6).set_arrival_time(
     datetime.time(hour=9, minute=5)
 )
-data_structures_and_algorithms_ii.packages.get(25).set_arrival_time(
+__init__.packages.get(25).set_arrival_time(
     datetime.time(hour=9, minute=5)
 )
-data_structures_and_algorithms_ii.packages.get(28).set_arrival_time(
+__init__.packages.get(28).set_arrival_time(
     datetime.time(hour=9, minute=5)
 )
-data_structures_and_algorithms_ii.packages.get(32).set_arrival_time(
+__init__.packages.get(32).set_arrival_time(
     datetime.time(hour=9, minute=5)
 )
 
-package_with_wrong_address = data_structures_and_algorithms_ii.packages.get(9)
+package_with_wrong_address = __init__.packages.get(9)
 package_with_wrong_address.update_address(19)
 
-items = data_structures_and_algorithms_ii.packages.get_all()
+items = __init__.packages.get_all()
 
 items_list = [i[1] for i in items]
 
 address.load_from_package_list(
-    data_structures_and_algorithms_ii.addresses,
+    __init__.addresses,
     items_list,
 )
 
@@ -59,88 +59,88 @@ new_truck_3 = truck.Truck(
 
 print(
     nearest_neighbor.sorted_unvisited_neighbors(
-        data_structures_and_algorithms_ii.distances,
+        __init__.distances,
         [],
     ),
     "\n",
 )
 
-data_structures_and_algorithms_ii.trucks = [new_truck_1, new_truck_2, new_truck_3]
+__init__.trucks = [new_truck_1, new_truck_2, new_truck_3]
 
 # loading truck 1
-data_structures_and_algorithms_ii.trucks[0].load_truck(14)
-data_structures_and_algorithms_ii.trucks[0].load_truck(15)
-data_structures_and_algorithms_ii.trucks[0].load_truck(19)
-data_structures_and_algorithms_ii.trucks[0].load_truck(16)
-data_structures_and_algorithms_ii.trucks[0].load_truck(13)
-data_structures_and_algorithms_ii.trucks[0].load_truck(20)
-data_structures_and_algorithms_ii.trucks[0].load_truck(21)
-data_structures_and_algorithms_ii.trucks[0].load_truck(1)
-data_structures_and_algorithms_ii.trucks[0].load_truck(34)
-data_structures_and_algorithms_ii.trucks[0].load_truck(40)
-data_structures_and_algorithms_ii.trucks[0].load_truck(4)
-data_structures_and_algorithms_ii.trucks[0].load_truck(30)
-data_structures_and_algorithms_ii.trucks[0].load_truck(22)
-data_structures_and_algorithms_ii.trucks[0].load_truck(23)
+__init__.trucks[0].load_truck(14)
+__init__.trucks[0].load_truck(15)
+__init__.trucks[0].load_truck(19)
+__init__.trucks[0].load_truck(16)
+__init__.trucks[0].load_truck(13)
+__init__.trucks[0].load_truck(20)
+__init__.trucks[0].load_truck(21)
+__init__.trucks[0].load_truck(1)
+__init__.trucks[0].load_truck(34)
+__init__.trucks[0].load_truck(40)
+__init__.trucks[0].load_truck(4)
+__init__.trucks[0].load_truck(30)
+__init__.trucks[0].load_truck(22)
+__init__.trucks[0].load_truck(23)
 
 # loading truck 2
-data_structures_and_algorithms_ii.trucks[1].load_truck(3)
-data_structures_and_algorithms_ii.trucks[1].load_truck(18)
-data_structures_and_algorithms_ii.trucks[1].load_truck(36)
-data_structures_and_algorithms_ii.trucks[1].load_truck(38)
-data_structures_and_algorithms_ii.trucks[1].load_truck(37)
-data_structures_and_algorithms_ii.trucks[1].load_truck(24)
-data_structures_and_algorithms_ii.trucks[1].load_truck(2)
-data_structures_and_algorithms_ii.trucks[1].load_truck(33)
-data_structures_and_algorithms_ii.trucks[1].load_truck(8)
-data_structures_and_algorithms_ii.trucks[1].load_truck(29)
-data_structures_and_algorithms_ii.trucks[1].load_truck(
+__init__.trucks[1].load_truck(3)
+__init__.trucks[1].load_truck(18)
+__init__.trucks[1].load_truck(36)
+__init__.trucks[1].load_truck(38)
+__init__.trucks[1].load_truck(37)
+__init__.trucks[1].load_truck(24)
+__init__.trucks[1].load_truck(2)
+__init__.trucks[1].load_truck(33)
+__init__.trucks[1].load_truck(8)
+__init__.trucks[1].load_truck(29)
+__init__.trucks[1].load_truck(
     6, datetime.time(hour=9, minute=7)
 )
-data_structures_and_algorithms_ii.trucks[1].load_truck(
+__init__.trucks[1].load_truck(
     25, datetime.time(hour=9, minute=7)
 )
-data_structures_and_algorithms_ii.trucks[1].load_truck(26)
-data_structures_and_algorithms_ii.trucks[1].load_truck(31)
-data_structures_and_algorithms_ii.trucks[1].load_truck(
+__init__.trucks[1].load_truck(26)
+__init__.trucks[1].load_truck(31)
+__init__.trucks[1].load_truck(
     32, datetime.time(hour=9, minute=7)
 )
 
 # loading truck 3
-data_structures_and_algorithms_ii.trucks[2].load_truck(12)
-data_structures_and_algorithms_ii.trucks[2].load_truck(17)
-data_structures_and_algorithms_ii.trucks[2].load_truck(5)
-data_structures_and_algorithms_ii.trucks[2].load_truck(
+__init__.trucks[2].load_truck(12)
+__init__.trucks[2].load_truck(17)
+__init__.trucks[2].load_truck(5)
+__init__.trucks[2].load_truck(
     28, datetime.time(hour=9, minute=7)
 )
-data_structures_and_algorithms_ii.trucks[2].load_truck(
+__init__.trucks[2].load_truck(
     9, datetime.time(hour=10, minute=22)
 )
-data_structures_and_algorithms_ii.trucks[2].load_truck(27)
-data_structures_and_algorithms_ii.trucks[2].load_truck(35)
-data_structures_and_algorithms_ii.trucks[2].load_truck(7)
-data_structures_and_algorithms_ii.trucks[2].load_truck(39)
-data_structures_and_algorithms_ii.trucks[2].load_truck(10)
-data_structures_and_algorithms_ii.trucks[2].load_truck(11)
+__init__.trucks[2].load_truck(27)
+__init__.trucks[2].load_truck(35)
+__init__.trucks[2].load_truck(7)
+__init__.trucks[2].load_truck(39)
+__init__.trucks[2].load_truck(10)
+__init__.trucks[2].load_truck(11)
 
-data_structures_and_algorithms_ii.trucks[0].depart_truck(
+__init__.trucks[0].depart_truck(
     datetime.time(hour=8, minute=5)
 )
-data_structures_and_algorithms_ii.trucks[1].depart_truck(
+__init__.trucks[1].depart_truck(
     datetime.time(hour=9, minute=10)
 )
-data_structures_and_algorithms_ii.trucks[2].depart_truck(
+__init__.trucks[2].depart_truck(
     datetime.time(hour=10, minute=25)
 )
 
-data_structures_and_algorithms_ii.trucks[0].deliver_all()
-data_structures_and_algorithms_ii.trucks[1].deliver_all()
-data_structures_and_algorithms_ii.trucks[2].deliver_all()
+__init__.trucks[0].deliver_all()
+__init__.trucks[1].deliver_all()
+__init__.trucks[2].deliver_all()
 
 hour, minute = cmd_input.cmd_input()
 input_time = datetime.time(hour=hour, minute=minute)
 
-item_tuples = data_structures_and_algorithms_ii.packages.get_all()
+item_tuples = __init__.packages.get_all()
 item_values = [i[1] for i in item_tuples]
 
 package_list_at_time = (
@@ -155,7 +155,7 @@ truck_view_list = []
 total_distance_traveled_at_time = 0
 total_distance_traveled_by_end_of_day = 0
 
-for i in data_structures_and_algorithms_ii.trucks:  # O(n) - for loop
+for i in __init__.trucks:  # O(n) - for loop
 
     distance_traveled = (
         search_function.distance_traveled(

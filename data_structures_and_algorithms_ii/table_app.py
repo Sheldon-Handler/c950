@@ -10,16 +10,16 @@
 import datetime
 import tkinter
 
-import data_structures_and_algorithms_ii.truck
+import truck
 
 
 def main_window(
-    packages_list: list,
-    trucks_view_list: list,
-    hour: int,
-    minute: int,
-    total_distance_at_time: float,
-    total_distance_by_end_of_day: float,
+        packages_list: list,
+        trucks_view_list: list,
+        hour: int,
+        minute: int,
+        total_distance_at_time: float,
+        total_distance_by_end_of_day: float,
 ):
     """
     Creates the main window with the tables of packages and trucks
@@ -99,8 +99,8 @@ def packages_table(package_list: list, parent: tkinter.Tk) -> None:
 
 
 def trucks_distance(
-    truck_view_list: [data_structures_and_algorithms_ii.truck.TruckView],
-    parent: tkinter.Tk,
+        truck_view_list: [truck.TruckView],
+        parent: tkinter.Tk,
 ) -> None:
     """
     Creates a table of trucks and their distances traveled.
@@ -153,9 +153,9 @@ def trucks_distance(
 
 
 def total_distances(
-    parent: tkinter.Tk,
-    total_distance_at_time: float,
-    total_distance_by_end_of_day: float,
+        parent: tkinter.Tk,
+        total_distance_at_time: float,
+        total_distance_by_end_of_day: float,
 ) -> None:
     """
     Calculates the total distance traveled by the trucks.

@@ -1,14 +1,14 @@
-import data_structures_and_algorithms_ii.package
+import package
 
 
 class Address:
     """Represents an address object with its information."""
 
     def __init__(
-        self,
-        id: int,
-        name: str,
-        address: str,
+            self,
+            id: int,
+            name: str,
+            address: str,
     ):
         """
         Initializes an Address object instance with its information.
@@ -51,13 +51,13 @@ class Address:
 
 
 def load_from_package_list(
-    addresses: [Address], packages: [data_structures_and_algorithms_ii.package.Package]
+        addresses: [Address], packages: [package.Package]
 ) -> None:
     """Loads the addresses with their respective packages.
 
     Args:
-        addresses ([data_structures_and_algorithms_ii.address.Address]): The list of addresses.
-        packages ([data_structures_and_algorithms_ii.package.Package]): The list of packages.
+        addresses ([address.Address]): The list of addresses.
+        packages ([package.Package]): The list of packages.
 
     Returns:
         None
