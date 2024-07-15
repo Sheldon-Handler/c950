@@ -167,14 +167,19 @@ package_list_at_time = (
 
 distance_traveled_list = []
 truck_view_list = []
+total_distance_traveled_at_time = 0
+total_distance_traveled_by_end_of_day = 0
 
 for truck in data_structures_and_algorithms_ii.trucks:  # O(n) - for loop
 
     distance_traveled = (
         data_structures_and_algorithms_ii.search_function.distance_traveled(
             truck, package_list_at_time, input_time
-        )  # O(n^2)
+        )  # O(n^2) - function call
     )
+
+    total_distance_traveled_at_time += distance_traveled
+    total_distance_traveled_by_end_of_day += truck.distance_traveled
 
     truck_status = ""
     if input_time < truck.departure_time:
@@ -185,7 +190,7 @@ for truck in data_structures_and_algorithms_ii.trucks:  # O(n) - for loop
         truck_status = "At Hub"
 
     truck_view = data_structures_and_algorithms_ii.truck.TruckView(
-        truck.id, distance_traveled, truck_status
+        truck.id, distance_traveled, truck.distance_traveled, truck_status
     )
     truck_view_list.append(truck_view)
 
@@ -194,4 +199,6 @@ data_structures_and_algorithms_ii.table_app.main_window(
     trucks_view_list=truck_view_list,
     hour=hour,
     minute=minute,
+    total_distance_at_time=total_distance_traveled_at_time,
+    total_distance_by_end_of_day=total_distance_traveled_by_end_of_day,
 )

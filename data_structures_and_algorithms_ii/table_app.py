@@ -18,6 +18,8 @@ def main_window(
     trucks_view_list: list,
     hour: int,
     minute: int,
+    total_distance_at_time: float,
+    total_distance_by_end_of_day: float,
 ):
     """
     Creates the main window with the tables of packages and trucks
@@ -38,11 +40,34 @@ def main_window(
 
     packages_table(packages_list, root)  # O(n^3) - packages_table
     trucks_distance(trucks_view_list, root)  # O(n^3) - trucks_distance
+    total_distances(
+        root, total_distance_at_time, total_distance_by_end_of_day
+    )  # O(n) - total_distances
 
     root.mainloop()
 
 
-def packages_table(package_list: list, parent):
+def packages_table(package_list: list, parent: tkinter.Tk) -> None:
+    """
+    Creates a table of packages.
+
+    Args:
+        package_list (list): A list of packages to display in the table.
+        parent (tkinter.Tk): The parent window.
+
+    Returns:
+        None
+
+    Notes:
+        time complexity:
+            best case: O(n^3)
+            worst case: O(n^3)
+            average case: O(n^3)
+        space complexity:
+            best case: O(n^3)
+            worst case: O(n^3)
+            average case: O(n^3)
+    """
     root = tkinter.PanedWindow(parent)
     root.pack(fill="both", expand=1)  # O(n) - pack
 
@@ -71,64 +96,6 @@ def packages_table(package_list: list, parent):
             cell.grid(row=i + 1, column=j, sticky="nsew")
             row_cells.append(cell)
         package_cells.append(row_cells)
-
-
-# def addresses_table(address_list: list, parent):
-#     root = tkinter.PanedWindow(parent)
-#     root.pack(fill="both", expand=1)
-#
-#     # Define attribute names as labels in the first row
-#     address_column_names = address_list[0].__dict__.keys()
-#     address_column_names = list(address_column_names)
-#
-#     address_cells = []
-#
-#     for col, name in enumerate(address_column_names):
-#         label = tkinter.Label(root, text=name)
-#         label.grid(row=0, column=col)
-#
-#     for i in range(len(address_list)):
-#         row_cells = []
-#         for j in range(len(address_column_names)):
-#             cell = tkinter.Label(
-#                 root,
-#                 text=getattr(address_list[i], address_column_names[j]),
-#                 borderwidth=1,
-#                 relief="solid",
-#                 bg="white",
-#             )
-#             cell.grid(row=i + 1, column=j, sticky="nsew")
-#             row_cells.append(cell)
-#         address_cells.append(row_cells)
-
-
-# def trucks_table(truck_list: list, parent):
-#     root = tkinter.PanedWindow(parent)
-#     root.pack(fill="both", expand=1)
-#
-#     # Define attribute names as labels in the first row
-#     truck_column_names = truck_list[0].__dict__.keys()
-#     truck_column_names = list(truck_column_names)
-#
-#     truck_cells = []
-#
-#     for col, name in enumerate(truck_column_names):
-#         label = tkinter.Label(root, text=name)
-#         label.grid(row=0, column=col)
-#
-#     for i in range(len(truck_list)):
-#         row_cells = []
-#         for j in range(len(truck_column_names)):
-#             cell = tkinter.Label(
-#                 root,
-#                 text=getattr(truck_list[i], truck_column_names[j]),
-#                 borderwidth=1,
-#                 relief="solid",
-#                 bg="white",
-#             )
-#             cell.grid(row=i + 1, column=j, sticky="nsew")
-#             row_cells.append(cell)
-#         truck_cells.append(row_cells)
 
 
 def trucks_distance(
@@ -183,3 +150,53 @@ def trucks_distance(
             cell.grid(row=i + 1, column=j, sticky="nsew")
             row_cells.append(cell)
         truck_cells.append(row_cells)
+
+
+def total_distances(
+    parent: tkinter.Tk,
+    total_distance_at_time: float,
+    total_distance_by_end_of_day: float,
+) -> None:
+    """
+    Calculates the total distance traveled by the trucks.
+
+    Args:
+        parent (tkinter.Tk): The parent window.
+        total_distance_at_time (float): The total distance traveled by the trucks at the given time.
+        total_distance_by_end_of_day (float): The total distance traveled by the trucks by the end of the day.
+
+    Returns:
+        None
+
+    Notes:
+        time complexity:
+            best case: O(n)
+            worst case: O(n)
+            average case: O(n)
+        space complexity:
+            best case: O(1)
+            worst case: O(1)
+            average case: O(1)
+    """
+    root = tkinter.PanedWindow(parent)  # O(n) - PanedWindow
+    root.pack(fill="both", expand=1)  # O(n) - pack
+
+    # Define attribute names as labels in the first row
+    column_names = [
+        "Total Distance Traveled at Time",
+        "Total Distance Traveled by End of Day",
+    ]
+
+    for col, name in enumerate(column_names):  # O(n) - for loop
+        label = tkinter.Label(root, text=name)
+        label.grid(row=0, column=col)
+
+    for i in range(len(column_names)):
+        cell = tkinter.Label(
+            root,
+            text=total_distance_at_time if i == 0 else total_distance_by_end_of_day,
+            borderwidth=1,
+            relief="solid",
+            bg="white",
+        )
+        cell.grid(row=1, column=i, sticky="nsew")

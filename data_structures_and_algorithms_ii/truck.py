@@ -215,6 +215,7 @@ class Truck:
         )
         self.return_time = self.truck_time
         self.traveled_distances.append(distance_between)
+        self.distance_traveled += distance_between
         self.current_address = 0
         self.truck_status = "At Hub"
         print(f"Truck {self.id} has returned to the hub at {self.truck_time}.\n")
@@ -311,15 +312,45 @@ class TruckView:
     This class represents a view of the truck at a given time
     """
 
-    def __init__(self, truck_id: int, distance_traveled: float, truck_status: str):
+    def __init__(
+        self,
+        truck_id: int,
+        distance_traveled_at_time: float,
+        distance_traveled_by_end_of_day: float,
+        truck_status: str,
+    ):
         """
         Initializes the TruckView class with the truck ID and distance traveled.
 
         Args:
             truck_id (int): The ID of the truck to create a view for.
-            distance_traveled (float): The distance the truck has traveled.
+            distance_traveled_at_time (float): The distance the truck has traveled at the given time.
             truck_status (str): The status of the truck.
         """
         self.truck_id = truck_id
-        self.distance_traveled = distance_traveled
+        self.distance_traveled_at_time = distance_traveled_at_time
+        self.distance_traveled_by_end_of_day = distance_traveled_by_end_of_day
         self.truck_status = truck_status
+
+
+class TotalDistances:
+    """
+    This class represents the total distances traveled by the trucks.
+    """
+
+    def __init__(
+        self,
+        total_distance_traveled_at_time: float,
+        total_distance_traveled_by_end_of_day: float,
+    ):
+        """
+        Initializes the TotalDistances class with the total distances traveled by the trucks.
+
+        Args:
+            total_distance_traveled_at_time (float): The total distance traveled by the trucks at the given time.
+            total_distance_traveled_by_end_of_day (float): The total distance traveled by the trucks by the end of the day.
+        """
+        self.total_distance_traveled_at_time = total_distance_traveled_at_time
+        self.total_distance_traveled_by_end_of_day = (
+            total_distance_traveled_by_end_of_day
+        )
