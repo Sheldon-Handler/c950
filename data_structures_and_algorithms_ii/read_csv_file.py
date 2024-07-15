@@ -1,5 +1,4 @@
 import csv
-import os
 
 import data_structures_and_algorithms_ii
 import data_structures_and_algorithms_ii.address
@@ -31,7 +30,7 @@ def init():
 
 
 def get_addresses(
-    file: os.path.relpath = data_structures_and_algorithms_ii.address_csv_file,
+        file: str = data_structures_and_algorithms_ii.address_csv_file,
 ) -> [data_structures_and_algorithms_ii.address.Address]:
     """
     This function reads a csv file and returns a list of Address objects.
@@ -49,8 +48,8 @@ def get_addresses(
     addresses = []
 
     # Open the csv file and read the rows into a list
-    csv_file = open(file, "r")
-    csv_reader = csv.reader(csv_file)
+    file = open(file, "r")
+    csv_reader = csv.reader(file)
 
     # Read the csv file and store the rows in a list
     for i in csv_reader:  # O(n) - for loop
@@ -64,7 +63,7 @@ def get_addresses(
 
 
 def get_distances(
-    file: os.path.realpath = data_structures_and_algorithms_ii.distance_csv_file,
+        file: str = data_structures_and_algorithms_ii.distance_csv_file,
 ) -> [[float]]:
     """
     This function reads a csv file and returns a list of Location objects.
@@ -112,7 +111,7 @@ def get_distances(
 
 
 def get_packages(
-    file: os.path.realpath = data_structures_and_algorithms_ii.package_csv_file,
+        file: str = data_structures_and_algorithms_ii.package_csv_file,
 ) -> data_structures_and_algorithms_ii.hash_table.HashTable:
     """
     This function reads a csv file and returns a list of Package objects.

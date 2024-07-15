@@ -8,8 +8,6 @@
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import os
-
 import data_structures_and_algorithms_ii.hash_table
 
 addresses = []
@@ -23,6 +21,6 @@ truck_capacity = 16
 truck_speed = 18
 starting_location = 0
 
-address_csv_file = os.path.realpath("../data/address.csv", strict=True)
-distance_csv_file = os.path.realpath("../data/distance.csv", strict=True)
-package_csv_file = os.path.realpath("../data/package.csv", strict=True)
+address_csv_file = "data/address.csv"
+distance_csv_file = "data/distance.csv"
+package_csv_file = "data/package.csv"
