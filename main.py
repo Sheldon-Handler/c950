@@ -1,3 +1,13 @@
+#  MIT License
+#
+#  Copyright (c) 2024 Sheldon Handler
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 # Student Name: Sheldon Handler
 # Student ID: 007830903
 
@@ -137,8 +147,10 @@ __init__.trucks[0].deliver_all()
 __init__.trucks[1].deliver_all()
 __init__.trucks[2].deliver_all()
 
-hour, minute = cmd_input.cmd_input()
-input_time = datetime.time(hour=hour, minute=minute)
+# hour, minute = cmd_input.cmd_input()
+# input_time = datetime.time(hour=hour, minute=minute)
+
+input_time = cmd_input.prompt_time()
 
 item_tuples = __init__.packages.get_all()
 item_values = [i[1] for i in item_tuples]
@@ -182,8 +194,8 @@ for i in __init__.trucks:  # O(n) - for loop
 table_app.main_window(
     packages_list=package_list_at_time,
     trucks_view_list=truck_view_list,
-    hour=hour,
-    minute=minute,
+    hour=input_time.hour,
+    minute=input_time.minute,
     total_distance_at_time=total_distance_traveled_at_time,
     total_distance_by_end_of_day=total_distance_traveled_by_end_of_day,
 )
