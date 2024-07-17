@@ -1,42 +1,18 @@
+#  MIT License
+#
+#  Copyright (c) 2024 Sheldon Handler
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 import datetime
 
 import address
 import hash_table
 import __init__
-
-
-class ModifiedTime:
-    """This dataclass represents a modified time object with its information which has not had any data mutated."""
-
-    def __init__(self, old_data, hour: int, minute: int):
-        """
-        Initializes a ModifiedTime class instance.
-
-        Args:
-            old_data: The old data before it was mutated.
-            hour (int): The hour of the time.
-            minute (int): The minute of the time.
-        """
-        self.old_data = old_data
-        self.modified_time = datetime.time(hour, minute)
-
-    def __str__(self) -> str:
-        """Returns the string representation of the ModifiedTime object.
-
-        Returns:
-            str: The string representation of the ModifiedTime object.
-
-        Notes:
-            time complexity:
-                best case: O(1)
-                worst case: O(1)
-                average case: O(1)
-            space complexity:
-                best case: O(1)
-                worst case: O(1)
-                average case: O(1)
-        """
-        return f"{self.modified_time}\n"
 
 
 class Package:
@@ -60,7 +36,8 @@ class Package:
             load_time: datetime.time = None,
             departure_time: datetime.time = None,
             delivery_time: datetime.time = None,
-            modified_time: ModifiedTime = None,
+            modified_time: datetime.time = None,
+            old_address: address.Address = None,
     ):
         """
         Initializes a Package class instance. Converts the string values to the appropriate data types.
@@ -101,22 +78,24 @@ class Package:
         self.departure_time = departure_time
         self.delivery_time = delivery_time
         self.modified_time = modified_time
+        self.old_address = old_address
 
-    def update_address(self, correct_address_id: int, hour_modified, minute_modified) -> None:
+    def update_address(self, correct_address_id: int, update_time: datetime.time) -> None:
         """
         Updates the address field to a corrected one.
 
         Args:
             correct_address_id (int): The correct address to replace existing address with.
+            update_time (datetime.time): The time the address was updated.
 
         Returns:
             None
 
         Notes:
             time complexity:
-                best case: O(1)
-                worst case: O(1)
-                average case: O(1)
+                best case: O(n)
+                worst case: O(n)
+                average case: O(n)
             space complexity:
                 best case: O(1)
                 worst case: O(1)
@@ -125,20 +104,17 @@ class Package:
         address_list = __init__.addresses
 
         correct_address: address.Address = None
-        old_address: address.Address = None
+        self.old_address = address.Address(self.address_id, self.address_name, self.address)
 
-        for i in address_list:
+        for i in address_list:  # O(n) - for loop
             if i.id == correct_address_id:
                 correct_address = i
-
-            if i.id == self.address_id:
-                old_address = i
 
         self.address_id = correct_address.id
         self.address_name = correct_address.name
         self.address = correct_address.address
 
-        self.modified_time = ModifiedTime(old_address, hour_modified, minute_modified)
+        self.modified_time = update_time
 
     def update_delivery_status(self, updated_delivery_status: str) -> None:
         """Updates the delivery status of the package. If a delivery time is provided, it will also update the

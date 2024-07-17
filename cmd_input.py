@@ -17,6 +17,7 @@
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import datetime
 
+import hash_table
 import package
 
 
@@ -125,7 +126,7 @@ def prompt_time() -> datetime.time:
     return time_input
 
 
-def show_all_packages(packages: [package.Package], time: datetime.time) -> None:
+def show_all_packages(packages: hash_table.HashTable, time: datetime.time) -> None:
     """
     Show all the packages in the system. The function prints the ID, address ID, deadline, weight, status, and notes of
     each package in the system. The function is used to display all the packages in the system to the user.
@@ -136,9 +137,9 @@ def show_all_packages(packages: [package.Package], time: datetime.time) -> None:
 
     Notes:
         time complexity:
-            best case: O(n)
-            worst case: O(n)
-            average case: O(n)
+            best case: O(n^2)
+            worst case: O(n^2)
+            average case: O(n^2)
         space complexity:
             best case: O(n)
             worst case: O(n)
@@ -146,18 +147,20 @@ def show_all_packages(packages: [package.Package], time: datetime.time) -> None:
     """
     print(f"\nAll Packages at {time.strftime('%I:%M %p')}:")
 
-    for package in packages:
+    packages_table = packages.get_all()  # O(n^2) - for loop
+    packages_list = [i[1] for i in packages_table]  # O(n) - for loop
+
+    for package in packages_list:  # O(n) - for loop
         if package.modified_time.resolution < time.resolution:
-            old_address = package.modified_time.old_address
             print(
-                f"ID: {package.id}, Address: {old_address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}")
+                f"ID: {package.id}, Address: {package.old_address.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}")
         else:
             print(
                 f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}")
         print("\n")
 
 
-def show_specific_package(packages: [package.Package], time: datetime.time, package_id: int) -> None:
+def show_specific_package(packages: hash_table.HashTable, time: datetime.time) -> None:
     """
     Show a specific package in the system. The function prompts the user to enter a package ID. The function checks if
     the package ID is valid and if the package exists in the system. If the package ID is not valid or the package does
@@ -165,6 +168,10 @@ def show_specific_package(packages: [package.Package], time: datetime.time, pack
     the ID, address ID, deadline, weight, status, and notes of the package. The function is used to display a specific
     package in the system to the user.
 
+    Args:
+        packages (hash_table.HashTable): The HashTable of packages in the system.
+        time (datetime.time): The time to check the status of the packages.
+        package_id (int): The ID of the package to display.
 
     Returns:
         None
@@ -179,17 +186,20 @@ def show_specific_package(packages: [package.Package], time: datetime.time, pack
             worst case: O(n)
             average case: O(n)
     """
-
     package_id = input("Enter package ID: ")
+
     # Check if the package ID is a number
     if package_id.isdigit():
         package_id = int(package_id)
-        for package in packages:
-            if package.id == package_id:
+        package = packages.get(package_id)  # O(n) - function call
+        if package is not None:
+            if package.modified_time.resolution < time.resolution:
                 print(
-                    f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}")
-                print("\n")
-                return
-        raise ValueError("Package does not exist.")
+                    f"ID: {package.id}, Address: {package.old_address.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}")
+            print(
+                f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}")
+            print("\n")
+        else:
+            raise ValueError("Package does not exist.")
     else:
         raise ValueError("Invalid input. Please enter a number.")

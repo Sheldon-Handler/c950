@@ -39,8 +39,10 @@ __init__.packages.get(32).set_arrival_time(
     datetime.time(hour=9, minute=5)
 )
 
+# Set address for package 9 to be wrong and input correct address ID
 package_with_wrong_address = __init__.packages.get(9)
-package_with_wrong_address.update_address(19, 10, 20)
+wrong_address_update_time = datetime.time(hour=10, minute=20)
+package_with_wrong_address.update_address(19, wrong_address_update_time)
 
 items = __init__.packages.get_all()
 
@@ -146,9 +148,6 @@ __init__.trucks[2].depart_truck(
 __init__.trucks[0].deliver_all()
 __init__.trucks[1].deliver_all()
 __init__.trucks[2].deliver_all()
-
-# hour, minute = cmd_input.cmd_input()
-# input_time = datetime.time(hour=hour, minute=minute)
 
 input_time = cmd_input.prompt_time()
 
