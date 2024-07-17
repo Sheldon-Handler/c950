@@ -3,11 +3,11 @@
 
 import datetime
 
+import __init__
 import address
 import cmd_input
 import read_csv_file
 import truck
-import __init__
 
 # Initialize csv files into lists
 read_csv_file.init()

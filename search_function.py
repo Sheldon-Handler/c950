@@ -41,7 +41,7 @@ def specific_package_at_time(
     )
 
     if time.__class__ == datetime.time:
-        if time < found_package.modified_time:
+        if found_package.modified_time != None and time < found_package.modified_time:
             current_address_id, current_address_name, current_address = (
                 found_package.old_address_id,
                 found_package.old_address_name,
@@ -86,51 +86,6 @@ def specific_package_at_time(
     )
 
     return cloned_package
-
-
-# def package_status_at_time(
-#     packages_list: [package.Package],
-#     time: datetime.time = None,
-# ) -> [package.Package]:
-#     """
-#     Returns a list of packages and their statuses at a given time.
-#
-#     Args:
-#         packages_list (list): A list of packages.
-#         time (datetime.time): The time to check the statuses of the packages.
-#
-#     Returns:
-#         list: A list of packages and their statuses.
-#
-#     Notes:
-#         time complexity:
-#             best case: O(n)
-#             worst case: O(n)
-#             average case: O(n)
-#         space complexity:
-#             best case: O(n)
-#             worst case: O(n)
-#             average case: O(n)
-#     """
-#     #   cloned_packages_list = copy.deepcopy(packages_list)  # O(n) - deep copy
-#     cloned_packages_list = copy.deepcopy(packages_list)  # O(n) - deep copy
-#
-#     # Check if the time is a datetime.time object
-#     if time.__class__ == datetime.time:
-#         # Set the status of each package based on the time
-#         for package in cloned_packages_list:  # O(n) - for loop
-#             if time < package.arrival_time:
-#                 package.delivery_status = "Not Available"
-#             elif time < package.load_time:
-#                 package.delivery_status = "At Hub"
-#             elif time < package.departure_time:
-#                 package.delivery_status = "At Hub"
-#             elif time < package.delivery_time:
-#                 package.delivery_status = "En Route"
-#             else:
-#                 package.delivery_status = "Delivered"
-#
-#     return cloned_packages_list
 
 
 def package_status_at_time(

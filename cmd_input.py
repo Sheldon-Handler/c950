@@ -152,10 +152,16 @@ def show_all_packages(
 
     # Print all the packages in the system
     for package in packages_at_time:  # O(n) - for loop
-        print(
-            f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}"
-        )
-    print("\n")
+        if package.delivery_status == "Delivered":
+            print(
+                f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}, Delivery Time: {package.delivery_time}"
+            )
+        else:
+            print(
+                f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}"
+            )
+
+    print()
 
 
 def show_truck_distances(
@@ -246,16 +252,13 @@ def show_specific_package(
                     "Package does not exist. Please enter a valid package ID that exists."
                 )
             else:
-                if (
-                    package.modified_time is not None
-                    and package.modified_time.resolution < time.resolution
-                ):
+                if package.delivery_status == "Delivered":
                     print(
-                        f"ID: {package.id}, Address: {package.old_address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}\n"
+                        f"\nID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}, Delivery Time: {package.delivery_time}\n"
                     )
                 else:
                     print(
-                        f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}\n"
+                        f"\nID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}\n"
                     )
 
         except ValueError:
