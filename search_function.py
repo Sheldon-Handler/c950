@@ -19,9 +19,9 @@ import copy
 import datetime
 
 import __init__
+import hash_table
 import package
 import truck
-import hash_table
 
 
 def specific_package_at_time(

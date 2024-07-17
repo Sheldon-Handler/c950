@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39ad6a4d-e35e-4b4a-8fd3-53f73a2244d9" name="Changes" comment="Finalizing">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/address.py" beforeDir="false" afterPath="$PROJECT_DIR$/address.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/cmd_input.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/delivery_time_calculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_time_calculator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hash_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/hash_table.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.py" beforeDir="false" afterPath="$PROJECT_DIR$/package.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/search_function.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/truck.py" beforeDir="false" afterPath="$PROJECT_DIR$/truck.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/table_app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,14 +177,6 @@
       <workItem from="1721054492608" duration="3789000" />
       <workItem from="1721059586852" duration="325000" />
       <workItem from="1721072371963" duration="8860000" />
-    </task>
-    <task id="LOCAL-00071" summary="Fixed some things">
-      <option name="closed" value="true" />
-      <created>1718726841213</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1718726841213</updated>
     </task>
     <task id="LOCAL-00072" summary="Fixed some things">
       <option name="closed" value="true" />
@@ -572,7 +562,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721234040683</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Finalizing">
+      <option name="closed" value="true" />
+      <created>1721251698850</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1721251698850</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -66,4 +66,7 @@ This code has unfortunately been overengineered, with a seperate deliver, load, 
 Package, Truck, and Address. The Truck class has methods that than call those functions from the Package and Address
 classes. This could have been simplified by having a single function that handles updating the data in Package, Truck,
 and Address classes. This would make the code more readable, maintainable, concise, easier to understand, and require
-less jumping between functions that call other functions in different classes.
+less jumping between functions that call other functions in different classes. This happened due to confusion on the
+actual requirements of the code, and deadline approach made refactoring impossible. There is an unused module called
+"table_app.py" that was meant to be used to display the data in a GUI using tkinter, but it was never implemented due to
+time constraints. I would use that if I had more time to work on this project.
