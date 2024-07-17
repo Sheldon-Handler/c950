@@ -15,10 +15,10 @@ class Address:
     """Represents an address object with its information."""
 
     def __init__(
-            self,
-            id: int,
-            name: str,
-            address: str,
+        self,
+        id: int,
+        name: str,
+        address: str,
     ):
         """
         Initializes an Address object instance with its information.
@@ -60,9 +60,7 @@ class Address:
         self.packages.append(package_id)
 
 
-def load_from_package_list(
-        addresses: [Address], packages: [package.Package]
-) -> None:
+def load_from_package_list(addresses: [Address], packages: [package.Package]) -> None:
     """Loads the addresses with their respective packages.
 
     Args:
@@ -76,4 +74,4 @@ def load_from_package_list(
         for j in packages:  # O(n) - for loop
             if i.id == j.address_id:
                 i.load_address(j.id)
-                print(f"Package {j.id} loaded to address {i.id}.")
+                # print(f"Package {j.id} loaded to address {i.id}.")

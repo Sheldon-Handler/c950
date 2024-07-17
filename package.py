@@ -7,10 +7,8 @@
 #  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
 #
 #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+import copy
 import datetime
-
-import address
 import hash_table
 import __init__
 
@@ -19,25 +17,24 @@ class Package:
     """This dataclass represents a package instance with its information which has not had any data mutated."""
 
     def __init__(
-            self,
-            id: int,
-            address_id: int,
-            address_name: str,
-            address: str,
-            city: str,
-            state: str,
-            zip: str,
-            delivery_deadline: str,
-            weight_kilo: int,
-            special_notes: str,
-            delivery_status: str = None,
-            truck_id: int = None,
-            arrival_time: datetime.time = datetime.time(hour=8, minute=0),
-            load_time: datetime.time = None,
-            departure_time: datetime.time = None,
-            delivery_time: datetime.time = None,
-            modified_time: datetime.time = None,
-            old_address: address.Address = None,
+        self,
+        id: int,
+        address_id: int,
+        address_name: str,
+        address: str,
+        city: str,
+        state: str,
+        zip: str,
+        delivery_deadline: str,
+        weight_kilo: int,
+        special_notes: str,
+        delivery_status: str = None,
+        truck_id: int = None,
+        arrival_time: datetime.time = datetime.time(hour=8, minute=0),
+        load_time: datetime.time = None,
+        departure_time: datetime.time = None,
+        delivery_time: datetime.time = None,
+        modified_time: datetime.time = None,
     ):
         """
         Initializes a Package class instance. Converts the string values to the appropriate data types.
@@ -78,9 +75,13 @@ class Package:
         self.departure_time = departure_time
         self.delivery_time = delivery_time
         self.modified_time = modified_time
-        self.old_address = old_address
+        self.old_address_id = copy.deepcopy(address_id)
+        self.old_address_name = copy.deepcopy(address_name)
+        self.old_address = copy.deepcopy(address)
 
-    def update_address(self, correct_address_id: int, update_time: datetime.time) -> None:
+    def update_address(
+        self, correct_address_id: int, update_time: datetime.time
+    ) -> None:
         """
         Updates the address field to a corrected one.
 
@@ -103,8 +104,7 @@ class Package:
         """
         address_list = __init__.addresses
 
-        correct_address: address.Address = None
-        self.old_address = address.Address(self.address_id, self.address_name, self.address)
+        correct_address = None
 
         for i in address_list:  # O(n) - for loop
             if i.id == correct_address_id:
@@ -137,7 +137,7 @@ class Package:
                 average case: O(1)
         """
         self.delivery_status = updated_delivery_status
-        print(f"Package {self.id} delivery status updated to {self.delivery_status}.\n")
+        # print(f"Package {self.id} delivery status updated to {self.delivery_status}.\n")
 
     def set_arrival_time(self, arrival_time: datetime.time) -> None:
         """Sets the arrival time of the package.
@@ -160,10 +160,10 @@ class Package:
         """
         self.delivery_status = "At Hub"
         self.arrival_time = arrival_time
-        print(f"Package {self.id} arrived to hub at {self.arrival_time}.\n")
+        # print(f"Package {self.id} arrived to hub at {self.arrival_time}.\n")
 
     def load_package(
-            self, truck_id: int, load_time: datetime.time = datetime.time(hour=8, minute=2)
+        self, truck_id: int, load_time: datetime.time = datetime.time(hour=8, minute=2)
     ) -> None:
         """Loads the package onto the truck. Updates the truck_id attribute.
 
@@ -187,7 +187,7 @@ class Package:
         self.truck_id = truck_id
         self.delivery_status = "At Hub"
         self.load_time = load_time
-        print(f"Package {self.id} loaded onto truck {self.truck_id}.\n")
+        # print(f"Package {self.id} loaded onto truck {self.truck_id}.\n")
 
     def package_departure(self, departure_time: datetime.time) -> None:
         """Sends the truck to deliver the package. Updates departure_time and delivery_status attributes.
@@ -210,9 +210,9 @@ class Package:
         """
         self.departure_time = departure_time
         self.delivery_status = "En Route"
-        print(
-            f"Truck {self.truck_id} sent to deliver package {self.id} at {self.departure_time}.\n"
-        )
+        # print(
+        #     f"Truck {self.truck_id} sent to deliver package {self.id} at {self.departure_time}.\n"
+        # )
 
     def deliver_package(self, delivery_time: datetime.time) -> None:
         """Delivers the package. Updates the delivery_status and delivery_time attributes.
@@ -235,9 +235,9 @@ class Package:
         """
         self.delivery_status = "Delivered"
         self.delivery_time = delivery_time
-        print(
-            f"Package {self.id} delivered at {self.delivery_time} on truck {self.truck_id}.\n"
-        )
+        # print(
+        #     f"Package {self.id} delivered at {self.delivery_time} on truck {self.truck_id}.\n"
+        # )
 
     def __str__(self) -> str:
         """Returns the string representation of the Package object.
@@ -275,8 +275,8 @@ class Package:
 
 
 def get_package_ids_with_address_id(
-        address_id: int,
-        packages: hash_table.HashTable(),
+    address_id: int,
+    packages: hash_table.HashTable(),
 ) -> [int]:
     """
     This function returns a list of package ids whose address matches the address id.

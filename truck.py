@@ -1,3 +1,13 @@
+#  MIT License
+#
+#  Copyright (c) 2024 Sheldon Handler
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice (including the next paragraph) shall be included in all copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 import datetime
 
 import __init__
@@ -20,14 +30,14 @@ class Truck:
     """
 
     def __init__(
-            self,
-            id: int,
-            truck_status: str,
-            distance_traveled: float = None,
-            departure_time: datetime.time = None,
-            truck_time: datetime.time = None,
-            current_address: int = 0,
-            # load_time: datetime.time = None,
+        self,
+        id: int,
+        truck_status: str,
+        distance_traveled: float = None,
+        departure_time: datetime.time = None,
+        truck_time: datetime.time = None,
+        current_address: int = 0,
+        # load_time: datetime.time = None,
     ):
         """
         Initializes the truck class with its information.
@@ -67,7 +77,7 @@ class Truck:
 
         if truck_status in truck_statuses:
             self.truck_status = truck_status
-            print(f"Truck {self.id} status updated to {self.truck_status}.")
+            # print(f"Truck {self.id} status updated to {self.truck_status}.")
             return True
         else:
             raise ValueError(
@@ -75,9 +85,9 @@ class Truck:
             )
 
     def load_truck(
-            self,
-            package_id: int,
-            load_time: datetime.time = datetime.time(hour=8, minute=2),
+        self,
+        package_id: int,
+        load_time: datetime.time = datetime.time(hour=8, minute=2),
     ) -> None:
         """Loads a package onto the truck.
 
@@ -99,9 +109,7 @@ class Truck:
                 average case = O(1)
         """
         # Find package in the package hash table
-        package = __init__.packages.get(
-            package_id
-        )  # O(n) - hash table get
+        package = __init__.packages.get(package_id)  # O(n) - hash table get
         # Run the load_package method on the package
         package.load_package(self.id, load_time)
         # Add the package ID to the truck's packages list
@@ -111,9 +119,7 @@ class Truck:
             self.addresses.append(package.address_id)
             self.addresses_not_yet_delivered.append(package.address_id)
         # Update the package in the package hash table
-        __init__.packages.update(
-            package_id, package
-        )  # O(n) - hash table update
+        __init__.packages.update(package_id, package)  # O(n) - hash table update
 
     def depart_truck(self, departure_time: datetime.time):
         """Sends the truck to deliver the packages. Updates departure_time and delivery_status attributes of the
@@ -202,21 +208,17 @@ class Truck:
                 worst case = O(1)
                 average case = O(1)
         """
-        distance_between = __init__.distances[
-            self.current_address
-        ][0]
-        self.truck_time = (
-            delivery_time_calculator.time_updater(
-                self.truck_time,
-                distance_between,
-            )  # O(n) - function call
-        )
+        distance_between = __init__.distances[self.current_address][0]
+        self.truck_time = delivery_time_calculator.time_updater(
+            self.truck_time,
+            distance_between,
+        )  # O(n) - function call
         self.return_time = self.truck_time
         self.traveled_distances.append(distance_between)
         self.distance_traveled += distance_between
         self.current_address = 0
         self.truck_status = "At Hub"
-        print(f"Truck {self.id} has returned to the hub at {self.truck_time}.\n")
+        # print(f"Truck {self.id} has returned to the hub at {self.truck_time}.\n")
 
     def deliver(self, address_id: int) -> None:
         """
@@ -239,19 +241,13 @@ class Truck:
                 average case = O(n)
         """
 
-        distance_between = __init__.distances[
-            self.current_address
-        ][address_id]
+        distance_between = __init__.distances[self.current_address][address_id]
 
-        delivery_time = (
-            delivery_time_calculator.time_updater(
-                self.truck_time, distance_between
-            )
+        delivery_time = delivery_time_calculator.time_updater(
+            self.truck_time, distance_between
         )
 
-        package_list = (
-            __init__.packages.get_all()
-        )  # O(n^2) - function call
+        package_list = __init__.packages.get_all()  # O(n^2) - function call
         item_values = [i[1] for i in package_list]  # O(n) - list comprehension
 
         # Loop through the package IDs to deliver the package
@@ -264,9 +260,7 @@ class Truck:
                     self.packages_delivered.append(i.id)
 
         # Update the truck's distance traveled
-        added_distance = __init__.distances[
-            self.current_address
-        ][address_id]
+        added_distance = __init__.distances[self.current_address][address_id]
         self.traveled_distances.append(added_distance)
         self.distance_traveled += added_distance
 
@@ -311,11 +305,11 @@ class TruckView:
     """
 
     def __init__(
-            self,
-            truck_id: int,
-            distance_traveled_at_time: float,
-            distance_traveled_by_end_of_day: float,
-            truck_status: str,
+        self,
+        truck_id: int,
+        distance_traveled_at_time: float,
+        distance_traveled_by_end_of_day: float = None,
+        truck_status: str = None,
     ):
         """
         Initializes the TruckView class with the truck ID and distance traveled.
@@ -327,28 +321,9 @@ class TruckView:
         """
         self.truck_id = truck_id
         self.distance_traveled_at_time = distance_traveled_at_time
-        self.distance_traveled_by_end_of_day = distance_traveled_by_end_of_day
-        self.truck_status = truck_status
+        # self.distance_traveled_by_end_of_day = distance_traveled_by_end_of_day
+        # self.truck_status = truck_status
 
-
-class TotalDistances:
-    """
-    This class represents the total distances traveled by the trucks.
-    """
-
-    def __init__(
-            self,
-            total_distance_traveled_at_time: float,
-            total_distance_traveled_by_end_of_day: float,
-    ):
-        """
-        Initializes the TotalDistances class with the total distances traveled by the trucks.
-
-        Args:
-            total_distance_traveled_at_time (float): The total distance traveled by the trucks at the given time.
-            total_distance_traveled_by_end_of_day (float): The total distance traveled by the trucks by the end of the day.
-        """
-        self.total_distance_traveled_at_time = total_distance_traveled_at_time
-        self.total_distance_traveled_by_end_of_day = (
-            total_distance_traveled_by_end_of_day
-        )
+    def __str__(self):
+        """Returns the string representation of the TruckView object."""
+        return f"Truck ID: {self.truck_id}, Distance Traveled at Time: {self.distance_traveled_at_time}, Truck Status: {self.truck_status}"
