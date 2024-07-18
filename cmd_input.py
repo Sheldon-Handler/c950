@@ -56,7 +56,6 @@ def prompt_menu():
                 show_specific_package(time_input, __init__.packages)
                 option = None
             elif option == 3:
-                print("Quitting program.")
                 return
             else:
                 print("Invalid option. Please enter a number between 1 and 3.")
