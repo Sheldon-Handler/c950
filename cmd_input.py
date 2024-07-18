@@ -48,7 +48,7 @@ def prompt_menu():
             if option == 1:
                 time_input = prompt_time()
                 packages_at_time = package_list_at_time(time_input, __init__.packages)
-                show_all_packages(time_input, packages_at_time, __init__.trucks)
+                show_all_packages(time_input, packages_at_time)
                 show_truck_distances(packages_at_time, time_input, __init__.trucks)
                 option = None
             elif option == 2:
@@ -100,7 +100,6 @@ def package_list_at_time(
     Args:
         time (datetime.time): The time to check the status of the packages.
         packages (hash_table.HashTable): The HashTable of packages in the system.
-        trucks (list): The list of trucks in the system.
 
     Returns:
         list: A list of packages in the system at the specific time.
@@ -126,11 +125,14 @@ def package_list_at_time(
 def show_all_packages(
         time: datetime.time,
         packages_at_time: [package.Package],
-        trucks: list = __init__.trucks,
 ) -> None:
     """
     Show all the packages in the system. The function prints the ID, address ID, deadline, weight, status, and notes of
     each package in the system. The function is used to display all the packages in the system to the user.
+
+    Args:
+        time (datetime.time): The time to check the status of the packages.
+        packages_at_time ([package.Package]): The list of packages in the system at the specific
 
 
     Returns:
@@ -153,11 +155,11 @@ def show_all_packages(
     for package in packages_at_time:  # O(n) - for loop
         if package.delivery_status == "Delivered":
             print(
-                f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Status: {package.delivery_status}, Delivery Time: {package.delivery_time}"
+                f"ID: {package.id}, Address: {package.address}, City: {package.city}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Deadline: {package.delivery_deadline}, Delivery Status: {package.delivery_status}, Delivery Time: {package.delivery_time}"
             )
         else:
             print(
-                f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Status: {package.delivery_status}"
+                f"ID: {package.id}, Address: {package.address}, City: {package.city}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Deadline: {package.delivery_deadline}, Delivery Status: {package.delivery_status}"
             )
 
     print()
@@ -216,9 +218,8 @@ def show_specific_package(
     package in the system to the user.
 
     Args:
-        package_table (hash_table.HashTable): The HashTable of packages in the system.
         time (datetime.time): The time to check the status of the packages.
-        package_id (int): The ID of the package to display.
+        packages (hash_table.HashTable): The HashTable of packages in the system.
 
     Returns:
         None
@@ -253,11 +254,11 @@ def show_specific_package(
             else:
                 if package.delivery_status == "Delivered":
                     print(
-                        f"\nID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Status: {package.delivery_status}, Delivery Time: {package.delivery_time}\n"
+                        f"\nID: {package.id}, Address: {package.address}, City: {package.city}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Deadline: {package.delivery_deadline}, Delivery Status: {package.delivery_status}, Delivery Time: {package.delivery_time}\n"
                     )
                 else:
                     print(
-                        f"\nID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Status: {package.delivery_status}\n"
+                        f"\nID: {package.id}, Address: {package.address}, City: {package.city}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Deadline: {package.delivery_deadline}, Delivery Status: {package.delivery_status}\n"
                     )
 
         except ValueError:
