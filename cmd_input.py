@@ -90,8 +90,8 @@ def prompt_time() -> datetime.time:
 
 
 def package_list_at_time(
-    time: datetime.time,
-    packages: hash_table.HashTable = __init__.packages,
+        time: datetime.time,
+        packages: hash_table.HashTable = __init__.packages,
 ) -> list:
     """
     Get the list of packages at a specific time. The function gets all the packages in the system at a specific time. The
@@ -124,9 +124,9 @@ def package_list_at_time(
 
 
 def show_all_packages(
-    time: datetime.time,
-    packages_at_time: [package.Package],
-    trucks: list = __init__.trucks,
+        time: datetime.time,
+        packages_at_time: [package.Package],
+        trucks: list = __init__.trucks,
 ) -> None:
     """
     Show all the packages in the system. The function prints the ID, address ID, deadline, weight, status, and notes of
@@ -153,20 +153,20 @@ def show_all_packages(
     for package in packages_at_time:  # O(n) - for loop
         if package.delivery_status == "Delivered":
             print(
-                f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}, Delivery Time: {package.delivery_time}"
+                f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Status: {package.delivery_status}, Delivery Time: {package.delivery_time}"
             )
         else:
             print(
-                f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}"
+                f"ID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Status: {package.delivery_status}"
             )
 
     print()
 
 
 def show_truck_distances(
-    packages_at_time: [package.Package],
-    time: datetime.time,
-    trucks: list = __init__.trucks,
+        packages_at_time: [package.Package],
+        time: datetime.time,
+        trucks: list = __init__.trucks,
 ) -> None:
     """
     Show the distances traveled by each truck in the system. The function prints the ID of the truck and the distance
@@ -206,7 +206,7 @@ def show_truck_distances(
 
 
 def show_specific_package(
-    time: datetime.time, packages: hash_table.HashTable = __init__.packages
+        time: datetime.time, packages: hash_table.HashTable = __init__.packages
 ) -> None:
     """
     Show a specific package in the system. The function prompts the user to enter a package ID. The function checks if
@@ -253,11 +253,11 @@ def show_specific_package(
             else:
                 if package.delivery_status == "Delivered":
                     print(
-                        f"\nID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}, Delivery Time: {package.delivery_time}\n"
+                        f"\nID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Status: {package.delivery_status}, Delivery Time: {package.delivery_time}\n"
                     )
                 else:
                     print(
-                        f"\nID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Delivery Status: {package.delivery_status}\n"
+                        f"\nID: {package.id}, Address: {package.address}, City: {package.delivery_deadline}, State: {package.state}, Zip: {package.zip}, Weight: {package.weight_kilo}, Truck: {package.truck_id}, Delivery Status: {package.delivery_status}\n"
                     )
 
         except ValueError:
